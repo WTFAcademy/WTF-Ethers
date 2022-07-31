@@ -6,7 +6,7 @@
 
 **推特**：[@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy社群：** [官网](https://wtf.academy) | [discord]((https://discord.gg/5akcruXrsk)) | [微信群（已满需申请排队）](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform)
+**WTF Academy社群：** [官网](https://wtf.academy) | [discord](https://discord.gg/5akcruXrsk) | [微信群（已满需申请排队）](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform)
 
 所有代码和教程开源在github: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTFEthers)
 
