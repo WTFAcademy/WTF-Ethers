@@ -117,7 +117,7 @@ const balance = await provider.getBalance(`vitalik.eth`);
 
 这是WTF Ethers极简教程的第一讲，我们介绍了`ethers.js`，并完成了第一个使用`ethers`的程序`HelloVitalik`，查询v神钱包的`ETH`余额。
 
-**课后作业**：在图4和图5中，v神的`ETH`余额并不一样。第一张余额为`2251 ETH`，而第二章变为了`1951 ETH`，减少`300 ETH`。其实，两张图片对应是v神在`2022.07.30`和`2022.07.31`的持仓。那么，这一天v神用`300 ETH`干了什么？
+**课后作业**：在图4和图5中，v神的`ETH`余额并不一样。第一张余额为`2251 ETH`，而第二章变为了`1951 ETH`，减少`300 ETH`。其实，两张图片对应v神在`2022.07.30`和`2022.07.31`的持仓。那么，这一天v神用`300 ETH`干了什么？
 
 ethers官方文档：https://docs.ethers.io/v5/
 
