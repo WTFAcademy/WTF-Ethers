@@ -70,7 +70,7 @@ import { ethers } from "ethers";
 ```
 如果在`playcode`平台上，免费账号不能安装外部库。我们可以直接从`ethers`的CDN导入（出于安全考虑，仅用于教学）：
 ```javascript
-import { ethers } from "https://cdn-cors.ethers.io/lib/ethers-5.6.9.umd.min.js";
+import { ethers } from "https://cdn-cors.ethers.io/lib/ethers-5.6.9.esm.min.js";
 ```
 
 ### 2. 连接以太坊
