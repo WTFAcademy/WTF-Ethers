@@ -1,7 +1,8 @@
 // 导入ethers包
-// import { ethers } from "ethers";
-// 用playcode免费版不能安装ethers，用这条命令
-import { ethers } from "https://cdn-cors.ethers.io/lib/ethers-5.6.9.umd.min.js";
+import { ethers } from "ethers";
+// playcode免费版不能安装ethers，用这条命令，需要从网络上import包（把上面这行注释掉）
+// import { ethers } from "https://cdn-cors.ethers.io/lib/ethers-5.6.9.umd.min.js";
+
 // 利用ethers默认的Provider连接以太坊网络
 const provider = new ethers.getDefaultProvider();
 const main = async () => {
