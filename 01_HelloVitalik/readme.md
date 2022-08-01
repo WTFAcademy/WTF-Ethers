@@ -107,7 +107,11 @@ const balance = await provider.getBalance(`vitalik.eth`);
 ```javascript
     console.log(`ETH Balance of vitalik: ${ethers.utils.formatEther(balance)} ETH`);
 ```
-
+如果你使用的是vscode开发工具的话，你需要在vscode控制台输入以下命令
+```javascript
+cd ./01_HelloVitalik 
+node HelloVitalik.js
+```
 这样，你就能在控制台中看到v神的`ETH`余额了：`1951 ETH`。当然这不是v神的全部持仓，它有多个钱包，`vitalik.eth`应该只是他用的比较频繁的一个热钱包。
 
 ![在控制台打印v神余额](./img/1-5.png)
