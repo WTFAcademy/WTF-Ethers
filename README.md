@@ -6,8 +6,7 @@
 ### VScode运行
 ```shell
 npm install
-cd ./01_HelloVitalik 
-node HelloVitalik.js
+node 01_HelloVitalik/HelloVitalik.js
 ```
 ### 在线编辑器运行
 
