@@ -108,7 +108,7 @@ const balance = await provider.getBalance(`vitalik.eth`);
     console.log(`ETH Balance of vitalik: ${ethers.utils.formatEther(balance)} ETH`);
 ```
 如果你使用的是vscode开发工具的话，你需要在vscode控制台输入以下命令
-```javascript
+```shell
 cd ./01_HelloVitalik 
 node HelloVitalik.js
 ```
