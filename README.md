@@ -16,3 +16,6 @@ node 01_HelloVitalik/HelloVitalik.js
 
 ## 入门
 **第1讲：HelloVitalik（6行代码）**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/01_HelloVitalik)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/01_HelloVitalik/readme.md)】
+
+**第1讲：Provider 提供器**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/02_Provider)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/02_Provider/readme.md)】
+
