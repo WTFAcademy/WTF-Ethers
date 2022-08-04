@@ -1,4 +1,4 @@
-![](./img/banner_ethers.jpeg)
+![](./img/logo_ethers.jpeg)
 
 # WTF Ethers
 [WTF Solidity极简教程](https://github.com/AmazingAng/WTFSolidity)姊妹篇，由[WTF Academy](https://wtf.academy)社群荣誉出品。
