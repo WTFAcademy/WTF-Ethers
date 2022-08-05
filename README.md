@@ -19,3 +19,5 @@ node 01_HelloVitalik/HelloVitalik.js
 
 **第2讲：Provider 提供器**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/02_Provider)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/02_Provider/readme.md)】
 
+**第3讲：读取合约信息**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/03_ReadContract)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/03_ReadContract/readme.md)】
+
