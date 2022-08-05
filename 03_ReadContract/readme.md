@@ -56,7 +56,7 @@ const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io
 
 `ABI` (Application Binary Interface) 是与以太坊智能合约交互的标准，更多内容见[WTF Solidity教程第27讲: ABI编码](https://github.com/AmazingAng/WTFSolidity/blob/main/27_ABIEncode/readme.md)。`ethers`支持两种`abi`填法：
 
-- **方法1.**  直接输入合约`abi`。你可以从`remix`的变异页面中复制，在本地编译合约时生成的`artifact`文件夹的`json`文件中得到，或者从`etherscan`开源合约的代码页面得到。我们用这个方法创建`WETH`的合约实例：
+- **方法1.**  直接输入合约`abi`。你可以从`remix`的编译页面中复制，在本地编译合约时生成的`artifact`文件夹的`json`文件中得到，或者从`etherscan`开源合约的代码页面得到。我们用这个方法创建`WETH`的合约实例：
 
 ```javascript
 // 第1种输入abi的方式: 复制abi全文
