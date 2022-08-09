@@ -21,3 +21,5 @@ node 01_HelloVitalik/HelloVitalik.js
 
 **第3讲：读取合约信息**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/03_ReadContract)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/03_ReadContract/readme.md)】
 
+**第4讲：发送ETH**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/04_SendETH)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/04_SendETH/readme.md)】
+
