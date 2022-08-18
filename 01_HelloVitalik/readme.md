@@ -52,7 +52,7 @@ npm install --save ethers
 
 ```javascript
 import { ethers } from "ethers";
-const provider = new ethers.getDefaultProvider();
+const provider = ethers.getDefaultProvider();
 const main = async () => {
     const balance = await provider.getBalance(`vitalik.eth`);
     console.log(`ETH Balance of vitalik: ${ethers.utils.formatEther(balance)} ETH`);}
@@ -76,7 +76,7 @@ import { ethers } from "https://cdn-cors.ethers.io/lib/ethers-5.6.9.esm.min.js";
 在`ethers`中，`Provider`类是一个为以太坊网络连接提供抽象的类，它提供对区块链及其状态的只读访问。我们声明一个`provider`用于连接以太坊网络。`ethers`内置了一些公用`rpc`，方便用户连接以太坊：
 
 ```javascript
-const provider = new ethers.getDefaultProvider();
+const provider = ethers.getDefaultProvider();
 ```
 
 **注意:**`ethers`内置的`rpc`访问速度有限制，仅测试用，生产环境还是要申请个人`rpc`。
