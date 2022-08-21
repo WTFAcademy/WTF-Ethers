@@ -23,3 +23,5 @@ node 01_HelloVitalik/HelloVitalik.js
 
 **第4讲：发送ETH**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/04_SendETH)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/04_SendETH/readme.md)】
 
+**第5讲：合约交互**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/05_WriteContract)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/05_WriteContract/readme.md)】
+
