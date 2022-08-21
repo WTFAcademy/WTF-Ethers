@@ -1,6 +1,6 @@
 // 声明只可写合约的规则：
-// const contract = new ethers.Contract(`address`, `abi`, `wallet`);
-// 参数分别为合约地址`address`，合约ABI `abi`，Wallet变量`wallet`
+// const contract = new ethers.Contract(`address`, `abi`, `signer`);
+// 参数分别为合约地址`address`，合约ABI `abi`，Signer变量`signer`
 
 import { ethers } from "ethers";
 // playcode免费版不能安装ethers，用这条命令，需要从网络上import包（把上面这行注释掉）
@@ -16,22 +16,23 @@ const provider = new ethers.providers.JsonRpcProvider(`https://rinkeby.infura.io
 const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
 const wallet = new ethers.Wallet(privateKey, provider)
 
-// 第2种输入abi的方式：输入程序需要用到的函数，逗号分隔，ethers会自动帮你转换成相应的abi
-// 人类可读abi，以ERC20合约为例
+// WETH的ABI
 const abiWETH = [
     "function balanceOf(address) public view returns(uint)",
     "function deposit() public payable",
     "function transfer(address, uint) public returns (bool)",
 ];
-
-// WETH合约（Rinkeby测试网）
+// WETH合约地址（Rinkeby测试网）
 const addressWETH = '0xc778417e063141139fce010982780140aa0cd5ab' // WETH Contract
+
 // 声明可写合约
 const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)
-// 也可以声明一个只读合约，在用contract.connect(wallet)转换成可写合约。
+// 也可以声明一个只读合约，再用connect(wallet)函数转换成可写合约。
+// const contractWETH = new ethers.Contract(addressWETH, abiWETH, provider)
+// contractWETH.connect(wallet)
 
 const main = async () => {
-    
+
     const address = await wallet.getAddress()
     // 1. 读取WETH合约的链上信息（WETH abi）
     console.log("\n1. 读取WETH余额")
