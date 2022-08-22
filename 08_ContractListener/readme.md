@@ -44,7 +44,7 @@ contract.on( event , listener )
 ### 一、通过开源合约代码获得ABI
 首先打开[Tether: USDT Stablecoin | Address 0xdac17f958d2ee523a2206206994597c13d831ec7 | Etherscan](https://etherscan.io/address/0xdac17f958d2ee523a2206206994597c13d831ec7#code)USDT的合约地址，切换到合约`Contract`
 
-![](https://afox-1256168983.cos.ap-shanghai.myqcloud.com/20220821151416.png)
+![etherscan contract 截图](./img/1.png)
 
 搜索合约代码中的监听`event Transfer`
 
@@ -76,7 +76,7 @@ const abi = [
 
 你可以通过etherscan获得具体的ABI
 
-![](https://afox-1256168983.cos.ap-shanghai.myqcloud.com/20220821152251.png)
+![etherscan 合约abi](img/2.png)
 
 ## 实现监听完整代码
 ```js
@@ -146,7 +146,7 @@ contract.filters.Transfer(null, [ myAddress, otherAddress ])
 
 该条hash做了一件事：从 `binance14` 这个地址 将USDT转给了 `0x354de44bedba213d612e92d3248b899de17b0c58` 这个地址
 
-![](https://afox-1256168983.cos.ap-shanghai.myqcloud.com/20220821161133.png)
+![etherscan 示意图](img/3.png)
 
 查看该事件日志信息
 `address` 为USDT合约地址
@@ -154,7 +154,7 @@ contract.filters.Transfer(null, [ myAddress, otherAddress ])
 `topics[1]` 为from地址 就是 `binance14`交易所的地址
 `topics[2]` 为to地址 就是接受USDT的地址
 `data` 为发送的数量
-![](https://afox-1256168983.cos.ap-shanghai.myqcloud.com/20220821161226.png)
+![etherscan logs示意图](img/4.png)
 
 ### 通过ethers查看一条交易信息
 已知一条交易hash为：`0xab1f7b575600c4517a2e479e46e3af98a95ee84dd3f46824e02ff4618523fff5`
@@ -289,4 +289,4 @@ const contractUSDT = new ethers.Contract(contractAddress, abi, provider);
 ```
 
 ## 总结
-至此我们就完成了最简单的监听eth链上交易所的监听，你可以通过该代码监听交易所上的大额转入转出，你也可以通过该代码监听NFT的各种信息等。
+至此我们就完成了最简单的监听eth链上交易所的监听，你可以通过该代码监听交易所上的大额转入转出，你也可以拓展该代码监听NFT的各种信息等。
