@@ -78,7 +78,10 @@ const abi = [
 
 ![etherscan 合约abi](img/2.png)
 
-## 实现监听完整代码
+## 完整代码
+
+通过该代码你可以实现监听USDT的合约转账事件。
+
 ```js
 // 获取alchealchemy的节点
 const config = require('dotenv').config().parsed
@@ -114,7 +117,9 @@ const contractUSDT = new ethers.Contract(contractAddress, abi, provider);
 
 ## 实现布隆过滤
 默认的监听是会监听全网所有跟该合约地址交互的信息，但是有时候我们就只想监听固定的from或者to地址的操作，这个时候就可以使用创建过滤器来实现了。
+
 详细的过滤可以看官方文档：[Events](https://docs.ethers.io/v5/concepts/events/#events--filters)
+
 这里我列举几个常用的方式
 ### 构建过滤器
 你可以通过如下方法构建一个过滤器
@@ -179,8 +184,7 @@ const provider = new ethers.providers.JsonRpcProvider(config.ALCHEMY_MAINNET_URL
 - `from`:为发起地址
 - `to`: 为接收地址，一般是erc20的合约地址，如果是nft的话，就是nft的合约地址
 
-```json
-receipt
+```
   {
     to: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
     from: '0x28C6c06298d514Db089934071355E5743bf21d60',
@@ -220,8 +224,8 @@ receipt
 - `topics[2]` 为to地址 就是接受USDT的地址
 - `data` 为发送的数量
 
-```json
-receipt.logs  ============= logs 信息
+`receipt.logs`展开信息
+```
   [
     {
       transactionIndex: 93,
@@ -242,7 +246,7 @@ receipt.logs  ============= logs 信息
 
 注意观察上述信息我们可以得到如下 `address`和`topics`部分
 
-```json
+```
       address: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
       topics: [
         '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
@@ -281,6 +285,9 @@ contractUSDT.on(filterBinanceIn, (from, to, value) => {
 ```
 
 ### 完整代码
+
+通过该代码你可以实现监听USDT的合约转账事件，并指定事件发起者和接受的者。
+
 ```js
 const config = require('dotenv').config().parsed
 const { ethers } = require('ethers');
