@@ -149,11 +149,13 @@ contract.filters.Transfer(null, [ myAddress, otherAddress ])
 ![etherscan 示意图](img/3.png)
 
 查看该事件日志信息
-`address` 为USDT合约地址
-`topics[0]`为keccak256("Transfer(address,address,uint256)")
-`topics[1]` 为from地址 就是 `binance14`交易所的地址
-`topics[2]` 为to地址 就是接受USDT的地址
-`data` 为发送的数量
+
+- `address` 为USDT合约地址
+- `topics[0]`为keccak256("Transfer(address,address,uint256)")
+- `topics[1]` 为from地址 就是 `binance14`交易所的地址
+- `topics[2]` 为to地址 就是接受USDT的地址
+- `data` 为发送的数量
+
 ![etherscan logs示意图](img/4.png)
 
 ### 通过ethers查看一条交易信息
@@ -174,8 +176,8 @@ const provider = new ethers.providers.JsonRpcProvider(config.ALCHEMY_MAINNET_URL
 
 `receipt`的详细信息
 看如下信息：
-`from`:为发起地址
-`to`: 为接收地址，一般是erc20的合约地址，如果是nft的话，就是nft的合约地址
+- `from`:为发起地址
+- `to`: 为接收地址，一般是erc20的合约地址，如果是nft的话，就是nft的合约地址
 
 ```json
 receipt
@@ -211,11 +213,13 @@ receipt
 ```
 
 `logs`中的信息展开
-`address` 为USDT合约地址
-`topics[0]`为keccak256("Transfer(address,address,uint256)")
-`topics[1]` 为from地址 就是 `binance14`交易所的地址
-`topics[2]` 为to地址 就是接受USDT的地址
-`data` 为发送的数量
+
+- `address` 为USDT合约地址
+- `topics[0]`为keccak256("Transfer(address,address,uint256)")
+- `topics[1]` 为from地址 就是 `binance14`交易所的地址
+- `topics[2]` 为to地址 就是接受USDT的地址
+- `data` 为发送的数量
+
 ```json
 receipt.logs  ============= logs 信息
   [
