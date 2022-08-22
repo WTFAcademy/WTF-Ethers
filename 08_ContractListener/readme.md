@@ -144,7 +144,7 @@ contract.filters.Transfer(null, [ myAddress, otherAddress ])
 ```
 
 ## 监听交易所地址的USDT信息
-监听ethers之前，我们需要先看懂一条hash的交易状态，以及如何看懂该hash的`topics`,我们是通过`topics`的结构来创建过滤器的。
+监听USDT合约之前，我们需要先看懂一条hash的交易状态，以及如何看懂该hash的`topics`,我们是通过`topics`的结构来创建过滤器的。
 
 ### 通过etherscan查看事件
 查看该hash[0xab1f7b575600c4517a2e479e46e3af98a95ee84dd3f46824e02ff4618523fff5](https://etherscan.io/tx/0xab1f7b575600c4517a2e479e46e3af98a95ee84dd3f46824e02ff4618523fff5)
