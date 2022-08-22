@@ -14,11 +14,11 @@
 
 ## ethers
 ethers入门的话可以看 [GitHub - WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTFEthers) 
+
 官方文档：[Documentation](https://docs.ethers.io/v5/)
+
 如何通过ethers实现监听呢？在ethersjs中，我们可以通过合约对象来实现监听。合约对象有一个`contract.on`的监听方法。
 ## Contract 合约对象
-合约是已部署到区块链上的代码的抽象。
-一个合约可以被发送交易，这将触发其代码在交易数据的输入下运行。
 
 ### 创建合约对象
 
@@ -38,9 +38,9 @@ new ethers.Contract( address , abi , signerOrProvider )
 contract.on( event , listener )
 ```
 
-## 查找ABI
+## 获取ABI
 ### 通过etherscan.io查找abi
-因为我们新建`contract`对象对时候需要三个参数，其中provider和address我们都可以很容易获得，ABI参数有2种方法可以获得。
+因为我们新建`contract`对象对时候需要三个参数，其中`provider`和`address`我们都可以很容易获得，ABI参数有2种方法可以获得。
 ### 一、通过开源合约代码获得ABI
 首先打开[Tether: USDT Stablecoin | Address 0xdac17f958d2ee523a2206206994597c13d831ec7 | Etherscan](https://etherscan.io/address/0xdac17f958d2ee523a2206206994597c13d831ec7#code)USDT的合约地址，切换到合约`Contract`
 
@@ -74,7 +74,7 @@ const abi = [
 
 ### 二、通过etherscan网站获得abi
 
-你可以通过etherscan获得具体的ABI
+你也可以通过etherscan获得具体的ABI
 
 ![etherscan 合约abi](img/2.png)
 
@@ -238,6 +238,46 @@ receipt.logs  ============= logs 信息
       blockHash: '0x36c70a48ba9cff240854327f0d373d6bd295d9798b26dcf5cfff88d93d356de4'
     }
   ]
+```
+
+注意观察上述信息我们可以得到如下 `address`和`topics`部分
+
+```json
+      address: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+      topics: [
+        '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
+        '0x00000000000000000000000028c6c06298d514db089934071355e5743bf21d60',
+        '0x000000000000000000000000354de44bedba213d612e92d3248b899de17b0c58'
+      ],
+      data: '0x00000000000000000000000000000000000000000000000000000000b1ae7340',
+```
+
+我们需要根据这部分构建过滤信息。通过如下代码，我们会构件出一个类似上边的过滤结构。
+
+```js
+let filterBinanceIn = contractUSDT.filters.Transfer(null, balanceAccount);
+/** 打印`filterBinanceIn`得到如下信息
+{
+  address: '0xdac17f958d2ee523a2206206994597c13d831ec7',
+  topics: [
+    '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
+    null,
+    '0x00000000000000000000000028c6c06298d514db089934071355e5743bf21d60'
+  ]
+}
+ */
+```
+
+上述就是生成了一个完整的过滤结构，最后带入监听即可。
+
+```js
+contractUSDT.on(filterBinanceIn, (from, to, value) => {
+  console.log('---------监听USDT进入交易所--------');
+  console.log(
+    `${from} -> ${to} ${ethers.BigNumber.from(value).toString()}`
+  )
+})
+
 ```
 
 ### 完整代码
