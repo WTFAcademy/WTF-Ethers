@@ -125,6 +125,14 @@ await tx.wait()
         console.log(`转账后WETH持仓: ${ethers.utils.formatEther(balanceWETH_transfer)}\n`)
     ```
     ![给V神转WETH](img/5-3.png)
+    
+6.打印ETH和WETH余额，调用`WETH`合约的`withdraw()`函数，取出`0.001WTH`，再打印取款后相应的余额，可以看到WETH从`1.001997`减少到`1.000997`，ETH从`0.004683789696395792`增加到`0.005630884813217944`。增加值少于`0.001ETH`是因为扣除了gas。
+
+    ![](img/5-4.png)
+    
+    ![](img/5-5.jpg)
+    
+    ![](img/5-6.png)
 
 ## 总结
 
