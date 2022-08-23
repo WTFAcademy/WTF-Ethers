@@ -21,6 +21,7 @@ const abiWETH = [
     "function balanceOf(address) public view returns(uint)",
     "function deposit() public payable",
     "function transfer(address, uint) public returns (bool)",
+    "function withdraw(uint) public ",
 ];
 // WETH合约地址（Rinkeby测试网）
 const addressWETH = '0xc778417e063141139fce010982780140aa0cd5ab' // WETH Contract
@@ -38,9 +39,12 @@ const main = async () => {
     console.log("\n1. 读取WETH余额")
     const balanceWETH = await contractWETH.balanceOf(address)
     console.log(`存款前WETH持仓: ${ethers.utils.formatEther(balanceWETH)}\n`)
+    //读取钱包内ETH余额
+    const balanceETH = await wallet.getBalance()
+
     
     // 如果钱包ETH足够
-    if(ethers.utils.formatEther(balanceWETH) > 0.0015){
+    if(ethers.utils.formatEther(balanceETH) > 0.0015){
 
         // 2. 调用desposit函数，将0.001 ETH转为WETH
         console.log("\n2. 调用desposit()函数，存入0.001 ETH")
@@ -71,3 +75,39 @@ const main = async () => {
 }
 
 main()
+
+
+const withdraw = async () => {
+
+    const address = await wallet.getAddress()
+    // 4. 读取WETH合约的链上信息（WETH abi）
+    console.log("\n1. 读取WETH余额")
+    const balanceWETH = await contractWETH.balanceOf(address)
+    console.log(`取款前WETH持仓: ${ethers.utils.formatEther(balanceWETH)}\n`)
+    //读取钱包内ETH余额
+    const balanceETH = await wallet.getBalance()
+    console.log(`取款前ETH持仓: ${ethers.utils.formatEther(balanceETH)}\n`)
+    
+    // 如果WETH足够
+    if(ethers.utils.formatEther(balanceWETH) >= 0.001){
+
+        // 5. 调用withdraw函数，将0.001 WETH转为ETH
+        console.log("\n2. 调用withdraw(uint wad)函数，取出0.001 ETH")
+        // 发起交易
+        const tx = await contractWETH.withdraw(ethers.utils.parseEther("0.001"))
+        // 等待交易上链
+        await tx.wait()
+        console.log(`交易详情：`)
+        console.log(tx)
+        const balanceWETH_withdraw = await contractWETH.balanceOf(address)
+        console.log(`取款后WETH持仓: ${ethers.utils.formatEther(balanceWETH_withdraw)}\n`)
+        const balanceETH_withdraw = await wallet.getBalance()
+        console.log(`取款后ETH持仓: ${ethers.utils.formatEther(balanceETH_withdraw)}\n`)
+
+    }else{
+        // 如果WETH不足
+        console.log("请先存入ETH")
+    }
+}
+
+withdraw();
