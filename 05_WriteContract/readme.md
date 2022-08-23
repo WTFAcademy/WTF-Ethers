@@ -77,6 +77,7 @@ await tx.wait()
         "function balanceOf(address) public view returns(uint)",
         "function deposit() public payable",
         "function transfer(address, uint) public returns (bool)",
+        "function withdraw(uint) public",
     ];
     // WETH合约地址（Rinkeby测试网）
     const addressWETH = '0xc778417e063141139fce010982780140aa0cd5ab' // WETH Contract
