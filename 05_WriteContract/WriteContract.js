@@ -16,6 +16,7 @@ const provider = new ethers.providers.JsonRpcProvider(`https://rinkeby.infura.io
 const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
 const wallet = new ethers.Wallet(privateKey, provider)
 
+// WETH的ABI
 const abiWETH = [
     "function balanceOf(address) public view returns(uint)",
     "function deposit() public payable",
