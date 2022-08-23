@@ -130,18 +130,18 @@ await tx.wait()
      
     ```js
         const address = await wallet.getAddress()
-        // 4. 读取WETH合约的链上信息（WETH abi）
+        // 读取WETH合约的链上信息（WETH abi）
         console.log("\n1. 读取WETH余额")
         const balanceWETH = await contractWETH.balanceOf(address)
         console.log(`取款前WETH持仓: ${ethers.utils.formatEther(balanceWETH)}\n`)
-        //读取钱包内ETH余额
+        // 读取钱包内ETH余额
         const balanceETH = await wallet.getBalance()
         console.log(`取款前ETH持仓: ${ethers.utils.formatEther(balanceETH)}\n`)
     ```
     ![取款前余额](img/5-4.png)
     
     ```js
-        // 5. 调用withdraw函数，将0.001 WETH转为ETH
+        // 调用withdraw函数，将0.001 WETH转为ETH
         console.log("\n2. 调用withdraw(uint wad)函数，取出0.001 ETH")
         // 发起交易
         const tx = await contractWETH.withdraw(ethers.utils.parseEther("0.001"))
