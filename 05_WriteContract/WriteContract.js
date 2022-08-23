@@ -16,6 +16,15 @@ const provider = new ethers.providers.JsonRpcProvider(`https://rinkeby.infura.io
 const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
 const wallet = new ethers.Wallet(privateKey, provider)
 
+const abiWETH = [
+    "function balanceOf(address) public view returns(uint)",
+    "function deposit() public payable",
+    "function transfer(address, uint) public returns (bool)",
+    "function withdraw(uint) public ",
+];
+// WETH合约地址（Rinkeby测试网）
+const addressWETH = '0xc778417e063141139fce010982780140aa0cd5ab' // WETH Contract
+
 // 声明可写合约
 const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)
 // 也可以声明一个只读合约，再用connect(wallet)函数转换成可写合约。
