@@ -162,6 +162,6 @@ await tx.wait()
 
 ## 总结
 
-这一讲，我们介绍了如何声明可写的`Contract`合约变量，并利用它与测试网的`WETH`合约交互。我们调用`WETH`的`deposit()`函数，将`0.001 ETH`转换为`WETH`，并转账给了V神。
+这一讲，我们介绍了如何声明可写的`Contract`合约变量，并利用它与测试网的`WETH`合约交互。我们不仅调用`WETH`的`deposit()`函数，将`0.001 ETH`转换为`WETH`，并转账给了V神。还调用了`WETH`的`withdraw()`函数，将`0.001 WETH`取出并获得了相应的`ETH`。
 
 
