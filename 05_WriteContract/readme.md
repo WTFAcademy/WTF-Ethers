@@ -127,12 +127,36 @@ await tx.wait()
     ![给V神转WETH](img/5-3.png)
     
 6.打印ETH和WETH余额，调用`WETH`合约的`withdraw()`函数，取出`0.001WTH`，再打印取款后相应的余额，可以看到WETH从`1.001997`减少到`1.000997`，ETH从`0.004683789696395792`增加到`0.005630884813217944`。增加值少于`0.001ETH`是因为扣除了gas。
-
-    ![](img/5-4.png)
-    
-    ![](img/5-5.jpg)
-    
-    ![](img/5-6.png)
+     
+    ```js
+        const address = await wallet.getAddress()
+        // 4. 读取WETH合约的链上信息（WETH abi）
+        console.log("\n1. 读取WETH余额")
+        const balanceWETH = await contractWETH.balanceOf(address)
+        console.log(`取款前WETH持仓: ${ethers.utils.formatEther(balanceWETH)}\n`)
+        //读取钱包内ETH余额
+        const balanceETH = await wallet.getBalance()
+        console.log(`取款前ETH持仓: ${ethers.utils.formatEther(balanceETH)}\n`)
+    ```
+    ![取款前余额](img/5-4.png)
+    ```js
+        // 5. 调用withdraw函数，将0.001 WETH转为ETH
+        console.log("\n2. 调用withdraw(uint wad)函数，取出0.001 ETH")
+        // 发起交易
+        const tx = await contractWETH.withdraw(ethers.utils.parseEther("0.001"))
+        // 等待交易上链
+        await tx.wait()
+        console.log(`交易详情：`)
+        console.log(tx)
+    ```
+    ![取出WETH](img/5-5.jpg)
+    ```js
+        const balanceWETH_withdraw = await contractWETH.balanceOf(address)
+        console.log(`取款后WETH持仓: ${ethers.utils.formatEther(balanceWETH_withdraw)}\n`)
+        const balanceETH_withdraw = await wallet.getBalance()
+        console.log(`取款后ETH持仓: ${ethers.utils.formatEther(balanceETH_withdraw)}\n`)
+    ```
+    ![取款后余额](img/5-6.png)
 
 ## 总结
 
