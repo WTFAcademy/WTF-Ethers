@@ -1,5 +1,5 @@
 // 声明只可写合约的规则：
-// const contract = new ethers.Contract(`address`, `abi`, `signer`);
+// const contract = new ethers.Contract(address, abi, signer);
 // 参数分别为合约地址`address`，合约ABI `abi`，Signer变量`signer`
 
 import { ethers } from "ethers";
