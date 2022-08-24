@@ -53,7 +53,7 @@ await contract.deployTransaction.wait()
     const wallet = new ethers.Wallet(privateKey, provider)
     ```
 
-2. 准备ERC20合约的字节码和ABI。因为ERC20的构造函数含有参数，因此我们必须把它包含在ABI中。合约的字节码可以从`remix`的部署面板中点击`Bytecode`按钮，把它复制下来，其中"object"字段对应的数据就是字节码。
+2. 准备ERC20合约的字节码和ABI。因为ERC20的构造函数含有参数，因此我们必须把它包含在ABI中。合约的字节码可以从`remix`的部署面板中点击`Bytecode`按钮，把它复制下来，其中"object"字段对应的数据就是字节码。如果部署在链上的合约，你可以在etherscan的Contract页面的`Contract Creation Code`中找到。
 
     ```js
     // ERC20的人类可读abi
