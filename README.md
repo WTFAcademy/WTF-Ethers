@@ -25,4 +25,7 @@ node 01_HelloVitalik/HelloVitalik.js
 
 **第5讲：合约交互**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/05_WriteContract)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/05_WriteContract/readme.md)】
 
+**第6讲：部署合约**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/06_DeployContract)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/06_DeployContract/readme.md)】
+
+
 **第8讲：合约监听**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/08_ContractListener)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/08_ContractListener/readme.md)】
