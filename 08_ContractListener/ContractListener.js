@@ -1,7 +1,9 @@
-const config = require('dotenv').config().parsed
 const { ethers } = require('ethers');
 
-const provider = new ethers.providers.JsonRpcProvider(config.ALCHEMY_MAINNET_URL);
+//准备 alchemy API  可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
+const ALCHEMY_MAINNET_URL = 'YOUR_ALCHEMY_MAINNET_URL';
+
+const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
 // 合约地址
 const contractAddress = '0xdac17f958d2ee523a2206206994597c13d831ec7'
 // 交易所地址
