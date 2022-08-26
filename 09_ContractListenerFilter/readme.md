@@ -1,4 +1,4 @@
-# Ethers极简入门: 8. 过滤合约监听
+# Ethers极简入门: 9. 过滤合约监听
 
 我最近在重新学`ethers.js`，巩固一下细节，也写一个`WTF Ethers极简入门`，供小白们使用。
 
@@ -65,13 +65,13 @@ contract.filters.Transfer(null, [ myAddress, otherAddress ])
 通过代码从区块链上看该代码的信息
 ```js
 const provider = new ethers.providers.JsonRpcProvider(config.ALCHEMY_MAINNET_URL);
-  const receipt =  await provider.getTransactionReceipt('0xab1f7b575600c4517a2e479e46e3af98a95ee84dd3f46824e02ff4618523fff5');
-  console.group('receipt');
-  console.log(receipt);
-  console.groupEnd();
-  console.group('receipt.logs');
-  console.log(receipt.logs);
-  console.groupEnd();
+const receipt =  await provider.getTransactionReceipt('0xab1f7b575600c4517a2e479e46e3af98a95ee84dd3f46824e02ff4618523fff5');
+console.group('receipt');
+console.log(receipt);
+console.groupEnd();
+console.group('receipt.logs');
+console.log(receipt.logs);
+console.groupEnd();
 ```
 
 通过上述代码得到如下结构：
