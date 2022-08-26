@@ -1,4 +1,4 @@
-const { ethers } = require('ethers');
+import { ethers } from "ethers";
 
 //准备 alchemy API  可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
 const ALCHEMY_MAINNET_URL = 'YOUR_ALCHEMY_MAINNET_URL';
