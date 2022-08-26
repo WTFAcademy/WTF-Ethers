@@ -48,7 +48,7 @@ contract.filters.Transfer(null, [ myAddress, otherAddress ])
 
 该条hash做了一件事：从 `binance14` 这个地址 将USDT转给了 `0x354de44bedba213d612e92d3248b899de17b0c58` 这个地址
 
-![etherscan 示意图](img/3.png)
+![etherscan 示意图](img/1.png)
 
 查看该事件日志信息
 
@@ -58,7 +58,7 @@ contract.filters.Transfer(null, [ myAddress, otherAddress ])
 - `topics[2]` 为to地址 就是接受USDT的地址
 - `data` 为发送的数量
 
-![etherscan logs示意图](img/4.png)
+![etherscan logs示意图](img/2.png)
 
 ### 通过ethers查看一条交易信息
 已知一条交易hash为：`0xab1f7b575600c4517a2e479e46e3af98a95ee84dd3f46824e02ff4618523fff5`
