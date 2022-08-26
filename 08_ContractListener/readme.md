@@ -49,7 +49,7 @@ contract.on( event , listener )
 ### 通过etherscan.io查找abi
 因为我们新建`contract`对象对时候需要三个参数，其中`provider`和`address`我们都可以很容易获得，ABI参数有2种方法可以获得。
 ### 一、通过开源合约代码获得ABI
-首先打开[Tether: USDT Stablecoin | Address 0xdac17f958d2ee523a2206206994597c13d831ec7 | Etherscan](https://etherscan.io/address/0xdac17f958d2ee523a2206206994597c13d831ec7#code)USDT的合约地址，切换到合约`Contract`
+首先打开[Tether: USDT Stablecoin | USDT合约地址](https://etherscan.io/address/0xdac17f958d2ee523a2206206994597c13d831ec7#code)，切换到合约`Contract`
 
 ![etherscan contract 截图](./img/1.png)
 
@@ -87,7 +87,7 @@ const abi = [
 
 ## 完整代码
 
-通过该代码你可以实现监听USDT的合约转账事件。
+有了ABI之后，通过如下代码你可以实现监听USDT的合约转账事件。
 
 ```js
 // 获取alchealchemy的节点
