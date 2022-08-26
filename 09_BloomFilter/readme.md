@@ -1,6 +1,19 @@
+# Ethers极简入门: 8. 过滤合约监听
+
+我最近在重新学`ethers.js`，巩固一下细节，也写一个`WTF Ethers极简入门`，供小白们使用。
+
+**推特**：[@0xAA_Science](https://twitter.com/0xAA_Science)
+
+**WTF Academy社群：** [官网 wtf.academy](https://wtf.academy) | [WTF Solidity教程](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.wtf.academy) | [微信群申请](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+
+所有代码和教程开源在github: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTFEthers)
+
+-----
+
+在上一讲 [Ethers极简入门: 8. 合约监听](https://github.com/WTFAcademy/WTFEthers/tree/main/08_ContractListener) 的基础上，我们拓展一下合约监听，在监听的过程中增加过滤器，以便我们可以监听指定的`from`或者`to`地址。
 
 ## 实现布隆过滤
-默认的监听是会监听全网所有跟该合约地址交互的信息，但是有时候我们就只想监听固定的from或者to地址的操作，这个时候就可以使用创建过滤器来实现了。
+默认的监听是会监听全网所有跟该合约地址交互的信息，但是有时候我们就只想监听固定的`from`或者`to`地址的操作，这个时候就可以使用创建过滤器来实现了。
 
 详细的过滤可以看官方文档：[Events](https://docs.ethers.io/v5/concepts/events/#events--filters)
 
@@ -173,8 +186,10 @@ contractUSDT.on(filterBinanceIn, (from, to, value) => {
 通过该代码你可以实现监听USDT的合约转账事件，并指定事件发起者和接受的者。
 
 ```js
-const config = require('dotenv').config().parsed
-const { ethers } = require('ethers');
+import { ethers } from "ethers";
+
+//准备 alchemy API  可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
+const ALCHEMY_MAINNET_URL = 'YOUR_ALCHEMY_MAINNET_URL';
 
 const provider = new ethers.providers.JsonRpcProvider(config.ALCHEMY_MAINNET_URL);
 // 合约地址
@@ -225,4 +240,4 @@ const contractUSDT = new ethers.Contract(contractAddress, abi, provider);
 
 ## 总结
 
-你可以通过该代码监听交易所上的大额转入转出，你也可以拓展该代码监听NFT的各种信息等。
+至此，通过添加过滤器，你可以通过该代码监听指定合约下的指定事件，并且过滤指定的`from`或者`to`地址，你也可以拓展该代码监听NFT的各种信息等。
