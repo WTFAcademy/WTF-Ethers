@@ -52,7 +52,7 @@ const main = async () => {
         console.log("部署合约的交易详情")
         console.log(contractERC20.deployTransaction)
         console.log("\n等待合约部署上链")
-        await contractERC20.deployTransaction.wait()
+        await contractERC20.deployed()
         console.log("合约已上链")
 
         // 2. 打印合约的name()和symbol()，然后调用mint()函数，给自己地址mint 10,000代币

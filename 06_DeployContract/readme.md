@@ -85,7 +85,7 @@ await contract.deployTransaction.wait()
 4. 调用工厂合约的`deploy()`函数并填入构造函数的参数（代币名称和代号），部署`ERC20`代币合约并获得合约实例。你可以利用：
     - `contract.address`获取合约地址，
     - `contract.deployTransaction`获取部署详情，
-    - `contractERC20.deployTransaction.wait()`等待合约部署在链上确认。
+    - `contractERC20.deployed()`等待合约部署在链上确认。
 
     ```js
     // 1. 利用contractFactory部署ERC20代币合约
@@ -96,7 +96,7 @@ await contract.deployTransaction.wait()
     console.log("部署合约的交易详情")
     console.log(contractERC20.deployTransaction)
     console.log("\n等待合约部署上链")
-    await contractERC20.deployTransaction.wait()
+    await contractERC20.deployed()
     console.log("合约已上链")
     ```
 
