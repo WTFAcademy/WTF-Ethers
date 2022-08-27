@@ -14,7 +14,7 @@
 
 ## `Contract`类
 
-在`ethers`中，`Contract`类是部署在以太坊网络上的合约（`EVM`字节码）的抽象。通过它，开发者可以非常容易的对合约进行读取`call`和交易`transcation`，并可以获得交易的结果和事件。
+在`ethers`中，`Contract`类是部署在以太坊网络上的合约（`EVM`字节码）的抽象。通过它，开发者可以非常容易的对合约进行读取`call`和交易`transcation`，并可以获得交易的结果和事件。以太坊强大的地方正是合约，所以对于合约的操作要熟练掌握。
 
 ## 创建`Contract`变量
 
@@ -121,13 +121,17 @@ const main = async () => {
 main()
 ```
 
-可以看到，用两种方法创建的合约实例都能成功与链上交互。V神的钱包里有`0.05 WETH`及`555508 DAI`。
+可以看到，用两种方法创建的合约实例都能成功与链上交互。V神的钱包里有`0.05 WETH`及`555508 DAI`，见下图。
 
-![成功读取V神WETH和DAI持仓](img/3-1.png)
+![成功读取V神WETH和DAI持仓](img/3-2.png)
+
+**说明**
+我们可以通过[以太坊浏览器](https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2#readContract) 验证V神钱包里的`WETH`余额, 是否与通过`Contract`读取的一致。 通过[ENS](https://app.ens.domains/name/vitalik.eth/details) 查到V神钱包地址是`0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`,然后通过合约方法`balanceOf`得到余额正好是`0.05 WETH`, 结论是一致！
+![V神WETH余额](img/3-3.png)
 
 ## 总结
 
-这一讲，我们介绍了`ethers`中的`Contract`合约类，并创建了`WETH`和`DAI`的只读`Contract`实例，成功读取了v神这两个币的持仓。
+这一讲，我们介绍了`ethers`中的`Contract`合约类，并创建了`WETH`和`DAI`的只读`Contract`实例，成功读取了V神这两个币的持仓。
 
 
 
