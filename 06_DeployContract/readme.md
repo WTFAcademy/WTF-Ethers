@@ -30,9 +30,10 @@ const contractFactory = new ethers.ContractFactory(abi, bytecode, signer);
 const contract = await contractFactory.deploy(args)
 ```
 
-你可以利用下面的命令，等待合约部署在链上确认，然后再进行交互。
+你可以利用下面两种命令，等待合约部署在链上确认，然后再进行交互。
 ```js
-await contract.deployTransaction.wait()
+await contractERC20.deployed()
+//或者 await contract.deployTransaction.wait()
 ```
 
 ## 例子：部署ERC20代币合约

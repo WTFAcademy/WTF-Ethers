@@ -23,18 +23,21 @@ const addressWETH = '0xc778417e063141139fce010982780140aa0cd5ab'
 const contract = new ethers.Contract(addressWETH, abiWETH, provider)
 
 const main = async () => {
+
+    // 获取过去10个区块内的Transfer事件
+    console.log("\n1. 获取过去10个区块内的Transfer事件，并打印出1个");
     // 得到当前block
     const block = await provider.getBlockNumber()
     console.log(`当前区块高度: ${block}`);
-    // 获取过去10个block内的Transfer事件
-    console.log("获取过去10个block内的Transfer事件，并打印出1个");
+    console.log(`打印事件详情:`);
     const transferEvents = await contract.queryFilter('Transfer', block - 10, block)
     // 打印第1个Transfer事件
     console.log(transferEvents[0])
-    // 解析Transfer事件的数据
-    console.log("解析事件：")
+
+    // 解析Transfer事件的数据（变量在args中）
+    console.log("\n2. 解析事件：")
     const amount = ethers.utils.formatUnits(ethers.BigNumber.from(transferEvents[0].args["amount"]), "ether");
-    console.log(`地址 ${transferEvents[0].args["from"]} 转账 ${amount} WETH到地址 ${transferEvents[0].args["to"]}`)
+    console.log(`地址 ${transferEvents[0].args["from"]} 转账${amount} WETH 到地址 ${transferEvents[0].args["to"]}`)
 }
 
 main()
