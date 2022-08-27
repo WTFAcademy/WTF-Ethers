@@ -3,7 +3,7 @@
 import { ethers } from "ethers";
 
 // 准备Infura API Key, 教程：https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL02_Infura/readme.md
-const INFURA_ID = '184d4c5ec78243c290d151d3f1a10f1d'
+const INFURA_ID = ''
 // 连接rinkeby测试网
 const provider = new ethers.providers.JsonRpcProvider(`https://rinkeby.infura.io/v3/${INFURA_ID}`)
 
@@ -49,8 +49,8 @@ const main = async () => {
 
     // 5. 发送ETH
     // 如果这个钱包没rinkeby测试网ETH了，去水龙头领一些，钱包地址: 0xe16C1623c1AA7D919cd2241d8b36d9E79C1Be2A2
-    //   1. chainlink水龙头: https://faucets.chain.link/rinkeby
-    //   2. paradigm水龙头: https://faucet.paradigm.xyz/
+    // 1. chainlink水龙头: https://faucets.chain.link/rinkeby
+    // 2. paradigm水龙头: https://faucet.paradigm.xyz/
     console.log(`\n5. 发送ETH（测试网）`);
     // i. 打印交易前余额
     console.log(`i. 发送前余额`)
