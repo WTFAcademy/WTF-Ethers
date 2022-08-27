@@ -1,5 +1,5 @@
 // 声明只可写合约的规则：
-// const contract = new ethers.Contract(`address`, `abi`, `signer`);
+// const contract = new ethers.Contract(address, abi, signer);
 // 参数分别为合约地址`address`，合约ABI `abi`，Signer变量`signer`
 
 import { ethers } from "ethers";
@@ -21,6 +21,7 @@ const abiWETH = [
     "function balanceOf(address) public view returns(uint)",
     "function deposit() public payable",
     "function transfer(address, uint) public returns (bool)",
+    "function withdraw(uint) public ",
 ];
 // WETH合约地址（Rinkeby测试网）
 const addressWETH = '0xc778417e063141139fce010982780140aa0cd5ab' // WETH Contract
@@ -38,11 +39,14 @@ const main = async () => {
     console.log("\n1. 读取WETH余额")
     const balanceWETH = await contractWETH.balanceOf(address)
     console.log(`存款前WETH持仓: ${ethers.utils.formatEther(balanceWETH)}\n`)
+    //读取钱包内ETH余额
+    const balanceETH = await wallet.getBalance()
+
     
     // 如果钱包ETH足够
-    if(ethers.utils.formatEther(balanceWETH) > 0.0015){
+    if(ethers.utils.formatEther(balanceETH) > 0.0015){
 
-        // 2. 调用desposit函数，将0.001 ETH转为WETH
+        // 2. 调用desposit()函数，将0.001 ETH转为WETH
         console.log("\n2. 调用desposit()函数，存入0.001 ETH")
         // 发起交易
         const tx = await contractWETH.deposit({value: ethers.utils.parseEther("0.001")})

@@ -77,6 +77,7 @@ await tx.wait()
         "function balanceOf(address) public view returns(uint)",
         "function deposit() public payable",
         "function transfer(address, uint) public returns (bool)",
+        "function withdraw(uint) public",
     ];
     // WETH合约地址（Rinkeby测试网）
     const addressWETH = '0xc778417e063141139fce010982780140aa0cd5ab' // WETH Contract
@@ -125,9 +126,9 @@ await tx.wait()
         console.log(`转账后WETH持仓: ${ethers.utils.formatEther(balanceWETH_transfer)}\n`)
     ```
     ![给V神转WETH](img/5-3.png)
-
+    
 ## 总结
 
-这一讲，我们介绍了如何声明可写的`Contract`合约变量，并利用它与测试网的`WETH`合约交互。我们调用`WETH`的`deposit()`函数，将`0.001 ETH`转换为`WETH`，并转账给了V神。
+这一讲，我们介绍了如何声明可写的`Contract`合约变量，并利用它与测试网的`WETH`合约交互。我们不仅调用`WETH`的`deposit()`函数，将`0.001 ETH`转换为`WETH`，并转账给了V神。
 
 
