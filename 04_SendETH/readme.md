@@ -50,6 +50,8 @@ const wallet2 = new ethers.Wallet(privateKey, provider)
 // 从助记词创建wallet对象
 const wallet3 = new ethers.Wallet.fromMnemonic(mnemonic.phrase)
 ```
+### 其他方法：通过JSON文件创建wallet对象
+以上三种方法即可满足大部分需求，当然还可以通过`ethers.Wallet.fromEncryptedJson`解密一个`JSON`钱包文件创建钱包实例，`JSON`文件即`keystore`文件，通常来自`Geth`, `Parity`等钱包，通过`Geth`搭建过以太坊节点的个人对`keystore`文件不会陌生。
 
 ## 发送`ETH`
 
@@ -172,8 +174,8 @@ console.log(`钱包1助记词: ${wallet1.mnemonic.phrase}`)
 ```javascript
     // 5. 发送ETH
     // 如果这个钱包没rinkeby测试网ETH了，去水龙头领一些，钱包地址: 0xe16C1623c1AA7D919cd2241d8b36d9E79C1Be2A2
-    //   1. chainlink水龙头: https://faucets.chain.link/rinkeby
-    //   2. paradigm水龙头: https://faucet.paradigm.xyz/
+    // 1. chainlink水龙头: https://faucets.chain.link/rinkeby
+    // 2. paradigm水龙头: https://faucet.paradigm.xyz/
     console.log(`\n5. 发送ETH（测试网）`);
     // i. 打印交易前余额
     console.log(`i. 发送前余额`)
