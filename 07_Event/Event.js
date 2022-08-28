@@ -1,6 +1,6 @@
-// 声明只可写合约的规则：
-// const contract = new ethers.Contract(address, abi, signer);
-// 参数分别为合约地址`address`，合约ABI `abi`，Signer变量`signer`
+// 检索事件的方法：
+// const transferEvents = await contract.queryFilter("事件名", [起始区块高度，结束区块高度])
+// 其中起始区块高度和结束区块高度为选填参数。
 
 import { ethers } from "ethers";
 // playcode免费版不能安装ethers，用这条命令，需要从网络上import包（把上面这行注释掉）

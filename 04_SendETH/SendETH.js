@@ -3,7 +3,7 @@
 import { ethers } from "ethers";
 
 // 准备Infura API Key, 教程：https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL02_Infura/readme.md
-const INFURA_ID = ''
+const INFURA_ID = '184d4c5ec78243c290d151d3f1a10f1d'
 // 连接rinkeby测试网
 const provider = new ethers.providers.JsonRpcProvider(`https://rinkeby.infura.io/v3/${INFURA_ID}`)
 
