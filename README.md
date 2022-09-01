@@ -33,4 +33,6 @@ node 01_HelloVitalik/HelloVitalik.js
 **第8讲：合约监听**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/08_ContractListener)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/08_ContractListener/readme.md)】
 
 
-**第9讲：合约监听过滤器**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/09_EventFilter)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/09_EventFilter/readme.md)】
+**第9讲：事件过滤**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/09_EventFilter)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/09_EventFilter/readme.md)】
+
+**第10讲：单位转换**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/10_Units)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/10_Units/readme.md)】
