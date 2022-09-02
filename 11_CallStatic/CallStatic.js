@@ -1,8 +1,7 @@
-// contract.callStatic.函数名(参数)
-
+// contract.callStatic.函数名(参数, {override})
 import { ethers } from "ethers";
 
-//准备 alchemy API  可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
+//准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
 const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
 const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
 
@@ -10,32 +9,39 @@ const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
 const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
 const wallet = new ethers.Wallet(privateKey, provider)
 
-// WETH的ABI
-const abiWETH = [
+// DAI的ABI
+const abiDAI = [
     "function balanceOf(address) public view returns(uint)",
     "function transfer(address, uint) public returns (bool)",
 ];
-// WETH合约地址（Rinkeby测试网）
-const addressWETH = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2' // WETH Contract
+// DAI合约地址（主网）
+const addressDAI = '0x6B175474E89094C44Da98b954EedeAC495271d0F' // DAI Contract
 
-// 创建WETH合约实例
-const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)
-
+// 创建DAI合约实例
+const contractDAI = new ethers.Contract(addressDAI, abiDAI, provider)
 
 const main = async () => {
-
+    try {
     const address = await wallet.getAddress()
-    // 1. 读取WETH合约的链上信息
-    console.log("\n1. 读取WETH余额")
-    const balanceWETH = await contractWETH.balanceOf(address)
-    console.log(`WETH持仓: ${ethers.utils.formatEther(balanceWETH)}\n`)
+    // 1. 读取DAI合约的链上信息
+    console.log("\n1. 读取测试钱包的DAI余额")
+    const balanceDAI = await contractDAI.balanceOf(address)
+    console.log(`DAI持仓: ${ethers.utils.formatEther(balanceDAI)}\n`)
 
-
-    // 2. 调用desposit()函数，将0.001 ETH转为WETH
-    console.log("\n2. 利用callStatic，测试转账0.01 WETH能否成功")
+    // 2. 用callStatic尝试调用transfer转账10000 DAI，msg.sender为V神，交易将成功
+    console.log("\n2.  用callStatic尝试调用transfer转账1 DAI，msg.sender为V神地址")
     // 发起交易
-    const tx = await contractWETH.callStatic.transfer("vitalik.eth", ethers.utils.parseEther("0.01"))
-    console.log(`交易详情：`, tx)
+    const tx = await contractDAI.callStatic.transfer("vitalik.eth", ethers.utils.parseEther("10000"), {from: "vitalik.eth"})
+    console.log(`交易会成功吗？：`, tx)
+
+    // 3. 用callStatic尝试调用transfer转账10000 DAI，msg.sender为测试钱包地址，交易将失败
+    console.log("\n3.  用callStatic尝试调用transfer转账1 DAI，msg.sender为测试钱包地址")
+    const tx2 = await contractDAI.callStatic.transfer("vitalik.eth", ethers.utils.parseEther("10000"), {from: address})
+    console.log(`交易会成功吗？：`, tx)
+
+    } catch (e) {
+        console.log(e);
+      }
 }
 
 main()
