@@ -46,7 +46,11 @@ npm install --save ethers
 
 ## HelloVitalik
 
-现在，让我们用`ethers`编写第一个程序`HelloVitalik`：查询V神的`ETH`余额，并输出在`console`中。整个程序只需要6行，非常简单！
+现在，让我们用`ethers`编写第一个程序`HelloVitalik`：查询V神的`ETH`余额，并输出在`console`中。整个程序只需要6行，非常简单！第一次运行可能会提示`module not found`，这是因为`ethers`库还没有安装，只需要点击`install`按钮安装即可。
+
+```javascript
+
+```javascript
 
 ![Hello Vitalik](./img/1-4.png)
 
@@ -109,7 +113,7 @@ const balance = await provider.getBalance(`vitalik.eth`);
 ```shell
 node 01_HelloVitalik/HelloVitalik.js
 ```
-这样，你就能在控制台中看到v神的`ETH`余额了：`1951 ETH`。当然这不是v神的全部持仓，它有多个钱包，`vitalik.eth`应该只是他用的比较频繁的一个热钱包。
+这样，你就能在控制台中看到v神的`ETH`余额了：`1951 ETH`。当然这不是v神的全部持仓，他有多个钱包，`vitalik.eth`应该只是他用的比较频繁的一个热钱包。
 
 ![在控制台打印v神余额](./img/1-5.png)
 
