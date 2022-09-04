@@ -46,11 +46,9 @@ npm install --save ethers
 
 ## HelloVitalik
 
-现在，让我们用`ethers`编写第一个程序`HelloVitalik`：查询V神的`ETH`余额，并输出在`console`中。整个程序只需要6行，非常简单！第一次运行可能会提示`module not found`，这是因为`ethers`库还没有安装，只需要点击`install`按钮安装即可。
+现在，让我们用`ethers`编写第一个程序`HelloVitalik`：查询V神的`ETH`余额，并输出在`console`中。整个程序只需要6行，非常简单！
 
-```javascript
-
-```javascript
+**注意**：在`playcode`上第一次运行可能会提示`module not found`，这是因为`ethers`库还没有安装，只需要点击`install`按钮安装即可。
 
 ![Hello Vitalik](./img/1-4.png)
 
