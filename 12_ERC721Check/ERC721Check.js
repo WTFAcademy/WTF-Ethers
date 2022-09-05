@@ -19,6 +19,7 @@ const contractERC721 = new ethers.Contract(addressBAYC, abiERC721, provider)
 const selectorERC721 = "0x80ac58cd"
 
 const main = async () => {
+    try {
     // 1. 读取ERC721合约的链上信息
     const nameERC721 = await contractERC721.name()
     const symbolERC721 = await contractERC721.symbol()
@@ -31,6 +32,10 @@ const main = async () => {
     const isERC721 = await contractERC721.supportsInterface(selectorERC721)
     console.log("\n2. 利用ERC165的supportsInterface，确定合约是否为ERC721标准")
     console.log(`合约是否为ERC721标准: ${isERC721}`)
+    }catch (e) {
+        // 如果不是ERC721，则会报错
+        console.log(e);
+    }
 }
 
 main()
