@@ -3,7 +3,7 @@
 // const interface = ethers.utils.Interface(abi)
 // 直接从contract中获取
 // const interface2 = contract.interface
-import { ethers, Signer } from "ethers";
+import { ethers } from "ethers";
 
 //准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
 const ALCHEMY_RINKEBY_URL = 'https://eth-rinkeby.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
