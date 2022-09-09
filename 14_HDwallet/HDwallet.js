@@ -4,7 +4,7 @@ console.log("\n1. 创建HD钱包")
 // 生成随机助记词
 const mnemonic = utils.entropyToMnemonic(utils.randomBytes(32))
 // 创建HD钱包
-const hdNode = ethers.utils.HDNode.fromMnemonic(mnemonic)
+const hdNode = utils.HDNode.fromMnemonic(mnemonic)
 console.log(hdNode);
 
 

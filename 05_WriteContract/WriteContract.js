@@ -41,7 +41,6 @@ const main = async () => {
     console.log(`存款前WETH持仓: ${ethers.utils.formatEther(balanceWETH)}\n`)
     //读取钱包内ETH余额
     const balanceETH = await wallet.getBalance()
-
     
     // 如果钱包ETH足够
     if(ethers.utils.formatEther(balanceETH) > 0.0015){
