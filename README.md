@@ -56,3 +56,4 @@ node 01_HelloVitalik/HelloVitalik.js
 
 **第15讲：批量转账**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/15_MultiTransfer)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/15_MultiTransfer/readme.md)】
 
+**第16讲：批量归集**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/16_MultiCollect)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/16_MultiCollect/readme.md)】

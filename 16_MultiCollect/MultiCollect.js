@@ -39,6 +39,7 @@ for (let i = 0; i < numWallet; i++) {
     wallets.push(walletNew);
     console.log(walletNew.address)
 }
+// 定义发送数额
 const amount = utils.parseEther("0.0001")
 console.log(`发送数额：${amount}`)
 
@@ -63,6 +64,7 @@ const main = async () => {
             value: amount
         }
         for (let i = 0; i < numWallet; i++) {
+            // 将钱包连接到provider
             let walletiWithProvider = wallets[i].connect(provider)
             var tx = await walletiWithProvider.sendTransaction(txSendETH)
             console.log(`第 ${i+1} 个钱包 ${walletiWithProvider.address} ETH 归集开始`)
@@ -73,7 +75,9 @@ const main = async () => {
         // 7. 批量归集钱包的WETH
         console.log("\n5. 批量归集20个钱包的WETH")
         for (let i = 0; i < numWallet; i++) {
+            // 将钱包连接到provider
             let walletiWithProvider = wallets[i].connect(provider)
+            // 将合约连接到新的钱包
             let contractConnected = contractWETH.connect(walletiWithProvider)
             var tx = await contractConnected.transfer(wallet.address, amount)
             console.log(`第 ${i+1} 个钱包 ${wallets[i].address} WETH 归集开始`)
