@@ -169,4 +169,4 @@ npm install merkletreejs
 
 ## 总结
 
-这一讲，我们简单介绍了`Merkle Tree`，并讲了如何利用`MerkleTree.js`和`ethers.js`创建和验证白名单，并铸造`NFT`。
+这一讲，我们简单介绍了`Merkle Tree`，并讲了个例子，利用`MerkleTree.js`和`ethers.js`创建和验证白名单，铸造`NFT`。
