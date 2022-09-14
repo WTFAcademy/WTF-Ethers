@@ -1,4 +1,5 @@
 ![](./img/logo_ethers.jpeg)
+**WTF Academy进入Gitcoin GR15，欢迎给我们捐款！[捐款链接](https://gitcoin.co/grants/6090/wtf-solidity)**
 
 # WTF Ethers
 [WTF Solidity极简教程](https://github.com/AmazingAng/WTFSolidity)姊妹篇，由[WTF Academy](https://wtf.academy)社群荣誉出品。
@@ -59,3 +60,5 @@ node 01_HelloVitalik/HelloVitalik.js
 **第16讲：批量归集**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/16_MultiCollect)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/16_MultiCollect/readme.md)】
 
 **第17讲：MerkleTree脚本**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/17_MerkleTree)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/17_MerkleTree/readme.md)】
+
+**第18讲：数字签名脚本**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/18_Signature)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/18_Signature/readme.md)】

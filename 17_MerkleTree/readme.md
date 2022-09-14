@@ -23,7 +23,7 @@
 
 ## `Merkle Tree`合约简述
 
-[WTF Solidity极简教程第37讲：Merkle Tree](https://github.com/AmazingAng/WTFSolidity/blob/main/36_MerkleTree/readme.md)中的`MerkleTree`合约利用`Merkle Tree`作为白名单铸造`NFT`。我们简单讲下这里用到的两个函数：
+[WTF Solidity极简教程第36讲：Merkle Tree](https://github.com/AmazingAng/WTFSolidity/blob/main/36_MerkleTree/readme.md)中的`MerkleTree`合约利用`Merkle Tree`验证白名单铸造`NFT`。我们简单讲下这里用到的两个函数：
 
 1. 构造函数：初始化NFT的名称，代号，和`Merkle Tree`的`root`。
 
@@ -74,7 +74,7 @@ npm install merkletreejs
     const proof = merkletree.getHexProof(leaf[0]);
     ```
 
-## `Merkle Tree`白名单铸造
+## `Merkle Tree`白名单铸造`NFT`
 
 这里，我们举个例子，利用`MerkleTree.js`和`ethers.js`验证白名单并铸造`NFT`。
 
@@ -167,6 +167,16 @@ npm install merkletreejs
     ```
     ![白名单铸造](./img/17-5.png)
 
+## 用于生产
+
+在生产环境使用`Merkle Tree`验证白名单发行`NFT`主要有以下步骤：
+
+1. 确定白名单列表。
+2. 在后端生成白名单列表的`Merkle Tree`。
+3. 部署`NFT`合约，并将`Merkle Tree`的`root`保存在合约中。
+4. 用户铸造时，向后端请求地址对应的`proof`。
+5. 用户调用`mint()`函数进行铸造`NFT`。
+
 ## 总结
 
-这一讲，我们简单介绍了`Merkle Tree`，并讲了个例子，利用`MerkleTree.js`和`ethers.js`创建和验证白名单，铸造`NFT`。
+这一讲，我们简单介绍了`Merkle Tree`，并利用`MerkleTree.js`和`ethers.js`创建、验证白名单，铸造`NFT`。

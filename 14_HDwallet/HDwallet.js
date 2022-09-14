@@ -1,4 +1,5 @@
 import { ethers, utils } from "ethers";
+
 // 1. 创建HD钱包
 console.log("\n1. 创建HD钱包")
 // 生成随机助记词
@@ -6,7 +7,6 @@ const mnemonic = utils.entropyToMnemonic(utils.randomBytes(32))
 // 创建HD钱包
 const hdNode = utils.HDNode.fromMnemonic(mnemonic)
 console.log(hdNode);
-
 
 // 2. 通过HD钱包派生20个钱包
 console.log("\n2. 通过HD钱包派生20个钱包")

@@ -38,9 +38,9 @@ const abiAirdrop = [
     "function multiTransferToken(address,address[],uint256[]) external",
     "function multiTransferETH(address[],uint256[]) public payable",
 ];
-// WETH合约地址（Rinkeby测试网）
+// Airdrop合约地址（Rinkeby测试网）
 const addressAirdrop = '0x76b6fe5e4965bb8047f70c01212d5f843432ee37' // WETH Contract
-// 声明WETH合约
+// 声明Airdrop合约
 const contractAirdrop = new ethers.Contract(addressAirdrop, abiAirdrop, wallet)
 
 // 5. 声明WETH合约
