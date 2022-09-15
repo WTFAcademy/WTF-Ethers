@@ -14,6 +14,9 @@
 - [ ] 256:star:发课程认证
 
 ### VScode运行
+
+需要安装[VSCode](https://code.visualstudio.com/download)和[Node.js](https://nodejs.org/zh-cn/download/)，然后运行：
+
 ```shell
 npm install
 node 01_HelloVitalik/HelloVitalik.js
