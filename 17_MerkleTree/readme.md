@@ -167,7 +167,7 @@ npm install merkletreejs
     ```
     ![白名单铸造](./img/17-5.png)
 
-## 用于生产
+## 用于生产环境
 
 在生产环境使用`Merkle Tree`验证白名单发行`NFT`主要有以下步骤：
 
