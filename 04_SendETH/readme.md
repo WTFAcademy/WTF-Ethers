@@ -29,7 +29,7 @@
 
 ```javascript
 // 创建随机的wallet对象
-const wallet1 = new ethers.Wallet.createRandom()
+const wallet1 = ethers.Wallet.createRandom()
 ```
 
 ### 方法2：用私钥创建wallet对象
