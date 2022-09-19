@@ -95,7 +95,7 @@ const provider = new ethers.providers.JsonRpcProvider(`https://rinkeby.infura.io
 
 ```javascript
 // 创建随机的wallet对象
-const wallet1 = new ethers.Wallet.createRandom()
+const wallet1 = ethers.Wallet.createRandom()
 const wallet1WithProvider = wallet1.connect(provider)
 const mnemonic = wallet1.mnemonic // 获取助记词
 ```
@@ -111,7 +111,7 @@ const wallet2 = new ethers.Wallet(privateKey, provider)
 
 ```javascript
 // 从助记词创建wallet对象
-const wallet3 = new ethers.Wallet.fromMnemonic(mnemonic.phrase)
+const wallet3 = ethers.Wallet.fromMnemonic(mnemonic.phrase)
 ```
 
 ### 3. 获取钱包地址
