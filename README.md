@@ -67,3 +67,5 @@ node 01_HelloVitalik/HelloVitalik.js
 **第18讲：数字签名脚本**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/18_Signature)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/18_Signature/readme.md)】
 
 **第19讲：监听Mempool**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/19_Mempool)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/19_Mempool/readme.md)】
+
+**第20讲：解码交易**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/20_DecodeTx)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/20_DecodeTx/readme.md)】
