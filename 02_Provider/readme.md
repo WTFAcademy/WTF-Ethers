@@ -30,7 +30,7 @@
 
 这里，我们用Infura节点作为例子。在创建好Infura API Key之后，就可以利用`ethers.provider.JsonRpcProvider()`方法来创建`Provider`变量。`JsonRpcProvider()`以节点服务的`url`作为参数。
 
-在下面这个例子中，我们分别创建连接到`ETH`主网和`Rinkeby`测试网的`provider`：
+在下面这个例子中，我们分别创建连接到`ETH`主网和`Goerli`测试网的`provider`：
 
 ```javascript
 // 利用Infura的rpc节点连接以太坊网络
@@ -38,8 +38,8 @@
 const INFURA_ID = ''
 // 连接以太坊主网
 const providerETH = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`)
-// 连接Rinkeby测试网
-const providerRinkeby = new ethers.providers.JsonRpcProvider(`https://rinkeby.infura.io/v3/${INFURA_ID}`)
+// 连接Goerli测试网
+const providerGoerli = new ethers.providers.JsonRpcProvider(`https://goerli.infura.io/v3/${INFURA_ID}`)
 ```
 
 ### 利用`Provider`读取链上数据
@@ -49,14 +49,14 @@ const providerRinkeby = new ethers.providers.JsonRpcProvider(`https://rinkeby.in
 **1.** 利用`getBalance()`函数读取主网和测试网V神的`ETH`余额：
 
 ```javascript
-    // 1. 查询vitalik在主网和Rinkeby测试网的ETH余额
-    console.log("1. 查询vitalik在主网和Rinkeby测试网的ETH余额");
+    // 1. 查询vitalik在主网和Goerli测试网的ETH余额
+    console.log("1. 查询vitalik在主网和Goerli测试网的ETH余额");
     const balance = await providerETH.getBalance(`vitalik.eth`);
-    const balanceRinkeby = await providerRinkeby.getBalance(`vitalik.eth`);
+    const balanceGoerli = await providerGoerli.getBalance(`vitalik.eth`);
     // 将余额输出在console（主网）
     console.log(`ETH Balance of vitalik: ${ethers.utils.formatEther(balance)} ETH`);
-    // 输出Rinkeby测试网ETH余额
-    console.log(`Rinkeby ETH Balance of vitalik: ${ethers.utils.formatEther(balanceRinkeby)} ETH`);
+    // 输出Goerli测试网ETH余额
+    console.log(`Goerli ETH Balance of vitalik: ${ethers.utils.formatEther(balanceGoerli)} ETH`);
 ```
 
 ![V神余额](img/2-2.png)
@@ -130,4 +130,4 @@ const providerRinkeby = new ethers.providers.JsonRpcProvider(`https://rinkeby.in
 
 ## 总结
 
-这一讲，我们将介绍ethers.js的`Provider`类，并用Infura的节点API Key创建了`jsonRpcProvider`，读取了`ETH`主网和`Rinkeby`测试网的链上信息。
+这一讲，我们将介绍ethers.js的`Provider`类，并用Infura的节点API Key创建了`jsonRpcProvider`，读取了`ETH`主网和`Goerli`测试网的链上信息。
