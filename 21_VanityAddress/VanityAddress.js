@@ -15,8 +15,8 @@ while(!isValid){
     //console.log(wallet.address)
 }
 // 打印靓号地址与私钥
-console.log(`靓号地址：${wallet.address}`)
-console.log(`靓号私钥：${wallet.privateKey}`)
+console.log(`\n靓号地址：${wallet.address}`)
+console.log(`靓号私钥：${wallet.privateKey}\n`)
 
 
 

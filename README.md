@@ -69,3 +69,5 @@ node 01_HelloVitalik/HelloVitalik.js
 **第19讲：监听Mempool**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/19_Mempool)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/19_Mempool/readme.md)】
 
 **第20讲：解码交易数据**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/20_DecodeTx)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/20_DecodeTx/readme.md)】
+
+**第21讲：靓号生成器**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/21_VanityAddress)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/21_VanityAddress/readme.md)】
