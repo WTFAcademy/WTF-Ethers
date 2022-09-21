@@ -136,13 +136,13 @@ npm install merkletreejs
     // 里面"object"字段对应的数据就是Bytecode，挺长的，608060起始
     // "object": "608060405260646000553480156100...
     const bytecodeNFT = contractJson.default.object;
-    const factoryNFT = new ethers.ContractFactory(abiERC20, bytecodeNFT, wallet);
+    const factoryNFT = new ethers.ContractFactory(abiNFT, bytecodeNFT, wallet);
     ```
 
 4. 利用contractFactory部署NFT合约
 
     ```js
-    console.log("\n2. 利用contractFactory部署ERC20代币合约")
+    console.log("\n2. 利用contractFactory部署NFT合约")
     // 部署合约，填入constructor的参数
     const contractNFT = await factoryNFT.deploy("WTF Merkle Tree", "WTF", root)
     console.log(`合约地址: ${contractNFT.address}`);
