@@ -2,10 +2,10 @@
 // 由于playcode不支持ethers.Wallet.createRandom()函数，我们只能用VScode运行这一讲代码
 import { ethers } from "ethers";
 
-// 利用Alchemy的rpc节点连接以太坊网络
+// 利用Alchemy的rpc节点连接以太坊测试网络
 // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-const ALCHEMY_RINKEBY_URL = 'https://eth-rinkeby.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_RINKEBY_URL);
+const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
+const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
 
 // 创建随机的wallet对象
 const wallet1 = new ethers.Wallet.createRandom()
@@ -48,8 +48,8 @@ const main = async () => {
     console.log(`钱包2发送交易次数: ${txCount2}`)
 
     // 5. 发送ETH
-    // 如果这个钱包没rinkeby测试网ETH了，去水龙头领一些，钱包地址: 0xe16C1623c1AA7D919cd2241d8b36d9E79C1Be2A2
-    // 1. chainlink水龙头: https://faucets.chain.link/rinkeby
+    // 如果这个钱包没goerli测试网ETH了，去水龙头领一些，钱包地址: 0xe16C1623c1AA7D919cd2241d8b36d9E79C1Be2A2
+    // 1. chainlink水龙头: https://faucets.chain.link/goerli
     // 2. paradigm水龙头: https://faucet.paradigm.xyz/
     console.log(`\n5. 发送ETH（测试网）`);
     // i. 打印交易前余额

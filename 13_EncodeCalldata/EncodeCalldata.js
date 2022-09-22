@@ -6,8 +6,8 @@
 import { ethers } from "ethers";
 
 //准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-const ALCHEMY_RINKEBY_URL = 'https://eth-rinkeby.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_RINKEBY_URL);
+const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
+const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
 
 // 利用私钥和provider创建wallet对象
 const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
@@ -18,8 +18,8 @@ const abiWETH = [
     "function balanceOf(address) public view returns(uint)",
     "function deposit() public payable",
 ];
-// WETH合约地址（Rinkeby测试网）
-const addressWETH = '0xc778417e063141139fce010982780140aa0cd5ab' // WETH Contract
+// WETH合约地址（Goerli测试网）
+const addressWETH = '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6'
 
 // 声明WETH合约
 const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)
@@ -72,8 +72,8 @@ const main = async () => {
 
     }else{
         // 如果ETH不足
-        console.log("ETH不足，去水龙头领一些Rinkeby ETH")
-        console.log("1. chainlink水龙头: https://faucets.chain.link/rinkeby")
+        console.log("ETH不足，去水龙头领一些Goerli ETH")
+        console.log("1. chainlink水龙头: https://faucets.chain.link/goerli")
         console.log("2. paradigm水龙头: https://faucet.paradigm.xyz/")
     }
 }

@@ -8,8 +8,8 @@ import { ethers } from "ethers";
 
 // 利用Alchemy的rpc节点连接以太坊网络
 // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-const ALCHEMY_RINKEBY_URL = 'https://eth-rinkeby.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_RINKEBY_URL);
+const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
+const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
 
 // WETH ABI，只包含我们关心的Transfer事件
 const abiWETH = [
@@ -17,7 +17,7 @@ const abiWETH = [
 ];
 
 // 测试网WETH地址
-const addressWETH = '0xc778417e063141139fce010982780140aa0cd5ab'
+const addressWETH = '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6'
 // 声明合约实例
 const contract = new ethers.Contract(addressWETH, abiWETH, provider)
 
