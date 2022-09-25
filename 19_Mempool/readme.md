@@ -68,7 +68,7 @@ provider.on("pending", listener)
 
     ```js
     provider.on("pending", async (txHash) => {
-        if (txHash && i < 100) {
+        if (txHash && j < 100) {
             // 打印txHash
             console.log(`[${(new Date).toLocaleTimeString()}] 监听Pending交易 ${i}: ${txHash} \r`);
             i++
@@ -82,7 +82,7 @@ provider.on("pending", listener)
     ```js
     let j = 0
     provider.on("pending", throttle(async (txHash) => {
-        if (txHash && i >= 100) {
+        if (txHash && j >= 100) {
             // 获取tx详情
             let tx = await provider.getTransaction(txHash);
             console.log(`\n[${(new Date).toLocaleTimeString()}] 监听Pending交易 ${j}: ${txHash} \r`);
