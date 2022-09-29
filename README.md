@@ -1,5 +1,4 @@
 ![](./img/logo_ethers.jpeg)
-**WTF Academy进入Gitcoin GR15，欢迎给我们捐款！[捐款链接](https://gitcoin.co/grants/6090/wtf-solidity)**
 
 # WTF Ethers
 [WTF Solidity极简教程](https://github.com/AmazingAng/WTFSolidity)姊妹篇，由[WTF Academy](https://wtf.academy)社群荣誉出品。
