@@ -70,3 +70,13 @@ node 01_HelloVitalik/HelloVitalik.js
 **第20讲：解码交易数据**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/20_DecodeTx)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/20_DecodeTx/readme.md)】
 
 **第21讲：靓号生成器**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/21_VanityAddress)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/21_VanityAddress/readme.md)】
+
+## WTF Ethers贡献者
+<div align="center">
+  <h4 align="center">
+    贡献者是WTF学院的基石
+  </h4>
+  <a href="https://github.com/WTFAcademy/WTF-Ethers/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=WTFAcademy/WTF-Ethers" />
+  </a>
+</div>
