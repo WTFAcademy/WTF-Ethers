@@ -20,6 +20,8 @@
 
 你可以利用`ethers.BigNumber.from()`函数将`string`，`number`，`BigNumber`等类型转换为`BigNumber`。
 
+代码参考：https://docs.ethers.io/v5/api/utils/bignumber/#BigNumber
+
 **注意**，超过js最大安全整数的数值将不能转换。
 ```js
 const oneGwei = ethers.BigNumber.from("1000000000"); // 从十进制字符串生成
@@ -58,7 +60,9 @@ console.log("是否相等：", oneGwei.eq("1000000000"))
 在应用中，我们经常将数值在用户可读的字符串（以`ether`为单位）和机器可读的数值（以`wei`为单位）之间转换。例如，钱包可以为用户界面指定余额（以`ether`为单位）和`gas`价格（以`gwei`为单位），但是在发送交易时，两者都必须转换成以`wei`为单位的数值。`ethers.js`提供了一些功能函数，方便这类转换。
 
 - `formatUnits(变量, 单位)`：格式化，小单位转大单位，比如`wei` -> `ether`，在显示余额时很有用。参数中，单位填位数（数字）或指定的单位（字符串）。
+
     ```js
+    //代码参考：https://docs.ethers.io/v5/api/utils/display-logic/#utils-parseUnits
     console.group('\n2. 格式化：小单位转大单位，formatUnits');
     console.log(ethers.utils.formatUnits(oneGwei, 0));
     // '1000000000'
@@ -81,7 +85,8 @@ console.log("是否相等：", oneGwei.eq("1000000000"))
 
     ```js
     // 3. 解析：大单位转小单位
-    // 例如将ether转换为wei：parseUnits(变量, 单位)
+    // 例如将ether转换为wei：parseUnits(变量, 单位),parseUnits默认单位是 ether
+    // 代码参考：https://docs.ethers.io/v5/api/utils/display-logic/#utils-parseUnits
     console.group('\n3. 解析：大单位转小单位，parseUnits');
     console.log(ethers.utils.parseUnits("1.0").toString());
     // { BigNumber: "1000000000000000000" }
