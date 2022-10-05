@@ -12,6 +12,10 @@
 
 这一讲，我们介绍合约类的`callStatic`方法，在发送交易之前检查交易是否会失败，节省大量gas。
 
+`callStatic`方法是属于```ethers.Contract```类的编写方法分析，同类的还有`populateTransaction`和`estimateGas`方法。
+
+具体可参考[ethers.js文档](https://docs.ethers.io/v5/api/contract/contract/#Contract-callStatic)。
+
 ## 可能失败的交易
 
 在以太坊上发交易需要付昂贵的`gas`，并且有失败的风险，发送失败的交易并不会把`gas`返还给你。因此，在发送交易前知道哪些交易可能会失败非常重要。如果你用过`metamask`小狐狸钱包，那对下图不会陌生。
