@@ -78,7 +78,7 @@ await contractERC20.deployed()
     ```
 
     ![Remix中获取字节码](img/6-1.png)
-    ![json](img/bytecode in json.jpg)
+    ![json](img/json.jpg)
     ![object](img/object.jpg)
 
 3. 创建合约工厂`ContractFactory`实例。
