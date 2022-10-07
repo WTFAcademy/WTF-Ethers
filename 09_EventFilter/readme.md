@@ -12,6 +12,8 @@
 
 在上一讲 [Ethers极简入门: 8. 合约监听](https://github.com/WTFAcademy/WTFEthers/tree/main/08_ContractListener) 的基础上，我们拓展一下，在监听的过程中增加过滤器，监听指定地址的转入转出。
 
+具体可参考[ethers.js文档](https://docs.ethers.io/v5/concepts/events)。
+
 ## 过滤器
 
 当合约创建日志（释放事件）时，它最多可以包含[4]条数据作为索引（`indexed`）。索引数据经过哈希处理并包含在[布隆过滤器](https://en.wikipedia.org/wiki/Bloom_filter)中，这是一种允许有效过滤的数据结构。因此，一个事件过滤器最多包含`4`个主题集，每个主题集是个条件，用于筛选目标事件。规则：
