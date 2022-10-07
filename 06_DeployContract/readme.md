@@ -72,12 +72,14 @@ await contractERC20.deployed()
     // 填入合约字节码，在remix中，你可以在两个地方找到Bytecode
     // 1. 部署面板的Bytecode按钮
     // 2. 文件面板artifact文件夹下与合约同名的json文件中
-    // 里面"object"字段对应的数据就是Bytecode，挺长的，608060起始
+    // 里面"bytecode"属性下的"object"字段对应的数据就是Bytecode，挺长的，608060起始
     // "object": "608060405260646000553480156100...
     const bytecodeERC20 = ""
     ```
 
     ![Remix中获取字节码](img/6-1.png)
+    ![json](img/bytecode in json.jpg)
+    ![object](img/object.jpg)
 
 3. 创建合约工厂`ContractFactory`实例。
 
