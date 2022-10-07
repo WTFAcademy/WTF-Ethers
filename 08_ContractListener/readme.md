@@ -12,6 +12,8 @@
 
 这一讲，我们将介绍如何监听合约，并实现监听USDT合约的`Transfer`事件。
 
+具体可参考[ethers.js文档](https://docs.ethers.io/v5/api/contract/contract/#Contract--events)。
+
 ## 监听合约事件
 
 ### `contract.on`
