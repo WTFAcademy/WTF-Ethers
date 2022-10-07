@@ -12,6 +12,8 @@
 
 这一讲，我们将介绍`ethers.js`中的合约工厂`ContractFactory`类型，并利用它部署合约。
 
+具体可参考[ethers.js文档](https://docs.ethers.io/v5/api/contract/contract-factory)。
+
 ## 部署智能合约
 
 在以太坊上，智能合约的部署是一种特殊的交易：将编译智能合约得到的字节码发送到0地址。如果这个合约的构造函数有参数的话，需要利用`abi.encode`将参数编码为字节码，然后附在在合约字节码的尾部一起发送。对于ABI编码的介绍见WTF Solidity极简教程[第27讲 ABI编码](https://github.com/AmazingAng/WTFSolidity/blob/main/27_ABIEncode/readme.md)。
