@@ -29,6 +29,7 @@ const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo
 const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
 
 // 利用私钥和provider创建wallet对象
+// 如果这个钱包没goerli测试网ETH了，去水龙头领一些，钱包地址: 0xe16C1623c1AA7D919cd2241d8b36d9E79C1Be2A2
 const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
 const wallet = new ethers.Wallet(privateKey, provider)
 
@@ -86,7 +87,7 @@ const main = async () => {
         // 8. 调用multiTransferToken()函数，给每个钱包转 0.0001 WETH
         console.log("\n5. 调用multiTransferToken()函数，给每个钱包转 0.0001 WETH")
         // 先approve WETH给Airdrop合约
-        const txApprove = await contractWETH.approve(addressAirdrop, utils.parseEther("0.002"))
+        const txApprove = await contractWETH.approve(addressAirdrop, utils.parseEther("1"))
         await txApprove.wait()
         // 发起交易
         const tx2 = await contractAirdrop.multiTransferToken(addressWETH, addresses, amounts)
