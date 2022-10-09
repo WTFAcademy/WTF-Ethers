@@ -58,7 +58,7 @@ npm install merkletreejs
     const leaf = tokens.map(x => utils.keccak256(x))
     ```
 
-3. 创建`Merkle Tree`，哈希函数仍然选择`keccak256`，可选参数`sortPairs: true`，与`Merkle Tree`合约处理方式保持一致。
+3. 创建`Merkle Tree`，哈希函数仍然选择`keccak256`，可选参数`sortPairs: true`（[constructor函数文档](https://github.com/miguelmota/merkletreejs/blob/master/docs/classes/_src_merkletree_.merkletree.md#constructor)），与`Merkle Tree`合约处理方式保持一致。
 
     ```js
     const merkletree = new MerkleTree(leaf, utils.keccak256, { sortPairs: true });
@@ -110,8 +110,8 @@ npm install merkletreejs
 
     ```js
     // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-    const ALCHEMY_RINKEBY_URL = 'https://eth-rinkeby.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-    const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_RINKEBY_URL);
+    const ALCHEMY_GOERLI_URL = 'https://eth-goerli.g.alchemy.com/v2/YOUR_API_KEY';
+    const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
     // 利用私钥和provider创建wallet对象
     const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
     const wallet = new ethers.Wallet(privateKey, provider)
