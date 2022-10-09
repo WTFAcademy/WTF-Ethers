@@ -80,8 +80,8 @@ const main = async () => {
 
     }else{
         // 如果ETH不足
-        console.log("ETH不足，去水龙头领一些Rinkeby ETH")
-        console.log("1. chainlink水龙头: https://faucets.chain.link/rinkeby")
+        console.log("ETH不足，去水龙头领一些Goerli ETH")
+        console.log("1. chainlink水龙头: https://faucets.chain.link/goerli")
         console.log("2. paradigm水龙头: https://faucet.paradigm.xyz/")
     }
 }

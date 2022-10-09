@@ -29,6 +29,7 @@ const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo
 const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
 
 // 利用私钥和provider创建wallet对象
+// 如果这个钱包没goerli测试网ETH了，去水龙头领一些，钱包地址: 0xe16C1623c1AA7D919cd2241d8b36d9E79C1Be2A2
 const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
 const wallet = new ethers.Wallet(privateKey, provider)
 
@@ -38,8 +39,8 @@ const abiAirdrop = [
     "function multiTransferToken(address,address[],uint256[]) external",
     "function multiTransferETH(address[],uint256[]) public payable",
 ];
-// Airdrop合约地址（Rinkeby测试网）
-const addressAirdrop = '0x76b6fe5e4965bb8047f70c01212d5f843432ee37' // WETH Contract
+// Airdrop合约地址（Goerli测试网）
+const addressAirdrop = '0x71C2aD976210264ff0468d43b198FD69772A25fa' // Airdrop Contract
 // 声明Airdrop合约
 const contractAirdrop = new ethers.Contract(addressAirdrop, abiAirdrop, wallet)
 
@@ -50,8 +51,8 @@ const abiWETH = [
     "function transfer(address, uint) public returns (bool)",
     "function approve(address, uint256) public returns (bool)"
 ];
-// WETH合约地址（Rinkeby测试网）
-const addressWETH = '0xc778417e063141139fce010982780140aa0cd5ab' // WETH Contract
+// WETH合约地址（Goerli测试网）
+const addressWETH = '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6' // WETH Contract
 // 声明WETH合约
 const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)
 
@@ -68,8 +69,9 @@ const main = async () => {
     console.log(`ETH持仓: ${ethers.utils.formatEther(balanceETH)}\n`)
 
     const myETH = await wallet.getBalance()
-    // 如果钱包ETH足够
-    if(ethers.utils.formatEther(myETH) > 0.002){
+    const myToken = await contractWETH.balanceOf(wallet.getAddress())
+    // 如果钱包ETH足够和WETH足够
+    if(ethers.utils.formatEther(myETH) > 0.002 && ethers.utils.formatEther(myToken) >= 0.002){
 
         // 7. 调用multiTransferETH()函数，给每个钱包转 0.0001 ETH
         console.log("\n4. 调用multiTransferETH()函数，给每个钱包转 0.0001 ETH")
@@ -83,7 +85,7 @@ const main = async () => {
         console.log(`发送后该钱包ETH持仓: ${ethers.utils.formatEther(balanceETH2)}\n`)
         
         // 8. 调用multiTransferToken()函数，给每个钱包转 0.0001 WETH
-        console.log("\n5. 调用multiTransferToken()函数，给每个钱包转 0.001 WETH")
+        console.log("\n5. 调用multiTransferToken()函数，给每个钱包转 0.0001 WETH")
         // 先approve WETH给Airdrop合约
         const txApprove = await contractWETH.approve(addressAirdrop, utils.parseEther("1"))
         await txApprove.wait()
@@ -98,9 +100,9 @@ const main = async () => {
         console.log(`发送后该钱包WETH持仓: ${ethers.utils.formatEther(balanceWETH2)}\n`)
 
     }else{
-        // 如果ETH不足
-        console.log("ETH不足，去水龙头领一些Rinkeby ETH")
-        console.log("1. chainlink水龙头: https://faucets.chain.link/rinkeby")
+        // 如果ETH和WETH不足
+        console.log("ETH不足，去水龙头领一些Goerli ETH，并兑换一些WETH")
+        console.log("1. chainlink水龙头: https://faucets.chain.link/goerli")
         console.log("2. paradigm水龙头: https://faucet.paradigm.xyz/")
     }
 }

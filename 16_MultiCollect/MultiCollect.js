@@ -14,8 +14,8 @@ const abiWETH = [
     "function balanceOf(address) public view returns(uint)",
     "function transfer(address, uint) public returns (bool)",
 ];
-// WETH合约地址（Rinkeby测试网）
-const addressWETH = '0xc778417e063141139fce010982780140aa0cd5ab' // WETH Contract
+// WETH合约地址（Goerli测试网）
+const addressWETH = '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6' // WETH Contract
 // 声明WETH合约
 const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)
 
@@ -55,7 +55,7 @@ const main = async () => {
     console.log(`ETH持仓: ${ethers.utils.formatEther(balanceETH)}\n`)
 
     // 如果钱包ETH足够
-    if(ethers.utils.formatEther(balanceETH) > 0.0005){
+    if(ethers.utils.formatEther(balanceETH) > amount && ethers.utils.formatEther(balanceWETH) >= amount){
 
         // 6. 批量归集钱包的ETH
         console.log("\n4. 批量归集20个钱包的ETH")

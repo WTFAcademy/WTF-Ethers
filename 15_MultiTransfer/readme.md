@@ -28,7 +28,7 @@
 
 我们在`Goerli`测试网部署了一个`Airdrop`合约，地址为：
 ```
-0x76b6fe5e4965bb8047f70c01212d5f843432ee37
+0x71C2aD976210264ff0468d43b198FD69772A25fa
 ```
 
 ## 批量转账
@@ -72,6 +72,7 @@
     const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
 
     // 利用私钥和provider创建wallet对象
+    // 如果这个钱包没goerli测试网ETH了，去水龙头领一些，钱包地址: 0xe16C1623c1AA7D919cd2241d8b36d9E79C1Be2A2
     const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
     const wallet = new ethers.Wallet(privateKey, provider)
     ```
@@ -84,7 +85,7 @@
         "function multiTransferETH(address[],uint256[]) public payable",
     ];
     // Airdrop合约地址（Goerli测试网）
-    const addressAirdrop = '0x76b6fe5e4965bb8047f70c01212d5f843432ee37' // Airdrop Contract
+    const addressAirdrop = '0x71C2aD976210264ff0468d43b198FD69772A25fa' // Airdrop Contract
     // 声明Airdrop合约
     const contractAirdrop = new ethers.Contract(addressAirdrop, abiAirdrop, wallet)
     ```
@@ -97,7 +98,7 @@
         "function approve(address, uint256) public returns (bool)"
     ];
     // WETH合约地址（Goerli测试网）
-    const addressWETH = '0xc778417e063141139fce010982780140aa0cd5ab' // WETH Contract
+    const addressWETH = '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6' // WETH Contract
     // 声明WETH合约
     const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)
     ```
