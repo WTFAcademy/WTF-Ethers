@@ -3,8 +3,8 @@ import { ethers, utils} from "ethers";
 
 // 1. 创建provider和wallet，监听事件时候推荐用wss连接而不是http
 // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-const ALCHEMY_RINKEBY_WSSURL = 'wss://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
-const provider = new ethers.providers.WebSocketProvider(ALCHEMY_RINKEBY_WSSURL);
+const ALCHEMY_MAINNET_WSSURL = 'wss://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
+const provider = new ethers.providers.WebSocketProvider(ALCHEMY_MAINNET_WSSURL);
 let network = provider.getNetwork()
 network.then(res => console.log(`[${(new Date).toLocaleTimeString()}] 连接到 chain ID ${res.chainId}`));
 
