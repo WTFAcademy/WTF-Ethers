@@ -71,7 +71,7 @@ const main = async () => {
     const myETH = await wallet.getBalance()
     const myToken = await contractWETH.balanceOf(wallet.getAddress())
     // 如果钱包ETH足够和WETH足够
-    if(ethers.utils.formatEther(myETH) > 0.002 && ethers.utils.formatEther(myToken) > 0.002){
+    if(ethers.utils.formatEther(myETH) > 0.002 && ethers.utils.formatEther(myToken) >= 0.002){
 
         // 7. 调用multiTransferETH()函数，给每个钱包转 0.0001 ETH
         console.log("\n4. 调用multiTransferETH()函数，给每个钱包转 0.0001 ETH")
