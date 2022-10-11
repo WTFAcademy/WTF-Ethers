@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <h1 id="header">Connect to Metamask</h1>
+    <button class="connect"> Connect</button>
+    <h2>钱包地址: <span class="showAccount"></span></h2>
+    <h2>ChainID: <span class="showChainID"></span></h2>
+    <h2>ETH 余额: <span class="showETHBalance"></span></h2>
+
+    <script type="module">
+      import { ethers } from "https://cdn-cors.ethers.io/lib/ethers-5.6.9.esm.min.js";
+      const ethereumButton = document.querySelector('.connect');
+      const showAccount = document.querySelector('.showAccount');
+      const showChainID = document.querySelector('.showChainID');
+      const showETHBalance = document.querySelector('.showETHBalance');
+
+      ethereumButton.addEventListener(`click`, onClickHandler())
+      
+      async function onClickHandler() {
+          console.log("连接钱包")
+          // 获得provider
+          const provider = new ethers.providers.Web3Provider(window.ethereum)
+          // 读取钱包地址
+          const accounts = await provider.send("eth_requestAccounts", []);
+          const account = accounts[0]
+          console.log(`钱包地址: ${account}`)
+          showAccount.innerHTML = account;
+          // 读取chainid
+          const { chainId } = await provider.getNetwork()
+          console.log(`chainid: ${chainId}`)
+          showChainID.innerHTML = chainId;
+          // 读取ETH余额
+          const signer = provider.getSigner()
+          const balance = await provider.getBalance(signer.getAddress());
+          console.log(`以太坊余额： ${ethers.utils.formatUnits(balance)}`)
+          showETHBalance.innerHTML = ethers.utils.formatUnits(balance);
+        }
+    </script>  
+  </body>
+</html>

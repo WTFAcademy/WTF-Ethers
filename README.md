@@ -71,6 +71,10 @@ node 01_HelloVitalik/HelloVitalik.js
 
 **第21讲：靓号生成器**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/21_VanityAddress)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/21_VanityAddress/readme.md)】
 
+## 工具
+
+**ET01：连接Metamask钱包**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask/readme.md)】
+
 ## WTF Ethers贡献者
 <div align="center">
   <h4 align="center">
