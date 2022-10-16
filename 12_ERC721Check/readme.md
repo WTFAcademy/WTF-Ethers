@@ -83,6 +83,7 @@ interface IERC165 {
 
 4. 利用`ERC165`的`supportsInterface()`函数，识别合约是否为ERC721标准。如果是，则返回`ture`；反之，则报错或返回`false`。
 
+    注意此处的代码中的`selectorERC721`常量被提取出main函数
     ```js
     // 2. 利用ERC165的supportsInterface，确定合约是否为ERC721标准
     // ERC721接口的ERC165 identifier
