@@ -44,7 +44,7 @@ await tx.wait()
 - gasPrice：gas价格
 - gasLimit：gas上限
 - value：调用时传入的ether（单位是wei）
-- nonce：nounce
+- nonce：nonce
 
 **注意：** 此方法不能获取合约运行的返回值，如有需要，要使用`Solidity`事件记录，然后利用交易收据去查询。
 
