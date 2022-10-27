@@ -22,7 +22,9 @@ node 01_HelloVitalik/HelloVitalik.js
 ```
 ### 在线编辑器运行
 
-`javascript`在线编辑平台：[playcode.io](https://playcode.io)
+`javascript`在线编辑平台：
+* [replit.com](https://replit.com/)
+* [playcode.io](https://playcode.io)
 
 ## 入门
 **第1讲：HelloVitalik（6行代码）**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/01_HelloVitalik)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/01_HelloVitalik/readme.md)】
