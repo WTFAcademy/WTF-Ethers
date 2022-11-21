@@ -40,7 +40,7 @@ const main = async () => {
     console.log("\n4. 监听pending交易，获取txHash，并输出交易详情。")
     let j = 0
     provider.on("pending", throttle(async (txHash) => {
-        if (txHash && i >= 100) {
+        if (txHash && j <= 100) {
             // 获取tx详情
             let tx = await provider.getTransaction(txHash);
             console.log(`\n[${(new Date).toLocaleTimeString()}] 监听Pending交易 ${j}: ${txHash} \r`);
