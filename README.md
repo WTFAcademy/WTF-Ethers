@@ -49,7 +49,7 @@ node 01_HelloVitalik/HelloVitalik.js
 
 **第10讲：单位转换**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/10_Units)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/10_Units/readme.md)】
 
-## 应用
+## 进阶
 
 **第11讲：CallStatic**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/11_CallStatic)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/11_CallStatic/readme.md)】
 
@@ -71,7 +71,11 @@ node 01_HelloVitalik/HelloVitalik.js
 
 **第20讲：解码交易数据**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/20_DecodeTx)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/20_DecodeTx/readme.md)】
 
+## 应用
+
 **第21讲：靓号生成器**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/21_VanityAddress)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/21_VanityAddress/readme.md)】
+
+**第22讲：读取任意数据**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/22_ReadAnyData)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/22_ReadAnyData/readme.md)】
 
 ## 工具
 

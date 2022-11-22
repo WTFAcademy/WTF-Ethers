@@ -38,6 +38,7 @@ const main = async () => {
 
     // 3. 获取私钥
     console.log(`\n3. 获取私钥`);
+    console.log(`钱包1私钥: ${wallet1.privateKey}`)
     console.log(`钱包2私钥: ${wallet2.privateKey}`)
 
     // 4. 获取链上发送交易次数    
