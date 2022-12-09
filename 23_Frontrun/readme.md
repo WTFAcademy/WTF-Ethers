@@ -43,7 +43,7 @@ contract FreeMint is ERC721 {
 
 ## 抢跑脚本
 
-下面，我们详解一下抢跑脚本`frontrun.js`。
+下面，我们详解一下抢跑脚本`frontrun.js`，这个脚本会监听链上的`mint()`交易并进行抢跑。
 
 1. 创建连接到foundry本地测试网的`provider`对象，用于监听和发送交易。foundry本地测试网默认url：`"http://127.0.0.1:8545"`。
     ```js
