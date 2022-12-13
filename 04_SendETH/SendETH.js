@@ -8,7 +8,7 @@ const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo
 const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
 
 // 创建随机的wallet对象
-const wallet1 = new ethers.Wallet.createRandom()
+const wallet1 = ethers.Wallet.createRandom()
 const wallet1WithProvider = wallet1.connect(provider)
 const mnemonic = wallet1.mnemonic // 获取助记词
 
