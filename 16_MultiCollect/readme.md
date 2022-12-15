@@ -1,4 +1,4 @@
-# Ethers极简入门: 15. 批量归集
+# Ethers极简入门: 16. 批量归集
 
 我最近在重新学`ethers.js`，巩固一下细节，也写一个`WTF Ethers极简入门`，供小白们使用。
 
@@ -35,7 +35,7 @@
         "function transfer(address, uint) public returns (bool)",
     ];
     // WETH合约地址（Goerli测试网）
-    const addressWETH = '0xc778417e063141139fce010982780140aa0cd5ab' // WETH Contract
+    const addressWETH = '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6' // WETH Contract
     // 声明WETH合约
     const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)
     ```

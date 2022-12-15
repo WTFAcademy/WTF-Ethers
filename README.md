@@ -77,6 +77,8 @@ node 01_HelloVitalik/HelloVitalik.js
 
 **第22讲：读取任意数据**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/22_ReadAnyData)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/22_ReadAnyData/readme.md)】
 
+**第23讲：抢先交易脚本**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/23_Frontrun)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/23_Frontrun/readme.md)】
+
 ## 工具
 
 **ET01：连接Metamask钱包**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask/readme.md)】

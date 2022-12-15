@@ -55,7 +55,8 @@ const main = async () => {
     console.log(`ETH持仓: ${ethers.utils.formatEther(balanceETH)}\n`)
 
     // 如果钱包ETH足够
-    if(ethers.utils.formatEther(balanceETH) > amount && ethers.utils.formatEther(balanceWETH) >= amount){
+    if(ethers.utils.formatEther(balanceETH) > ethers.utils.formatEther(amount) &&
+    ethers.utils.formatEther(balanceWETH) >= ethers.utils.formatEther(amount)){
 
         // 6. 批量归集钱包的ETH
         console.log("\n4. 批量归集20个钱包的ETH")
