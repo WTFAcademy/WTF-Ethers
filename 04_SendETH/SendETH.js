@@ -17,7 +17,8 @@ const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d59
 const wallet2 = new ethers.Wallet(privateKey, provider)
 
 // 从助记词创建wallet对象
-const wallet3 = new ethers.Wallet.fromMnemonic(mnemonic.phrase)
+const wallet3Mnemonic= new ethers.Wallet.fromMnemonic(mnemonic.phrase)
+const wallet3 = new Wallet(wallet3Mnemonic.privateKey, provider)
 
 const main = async () => {
     // 1. 获取钱包地址
