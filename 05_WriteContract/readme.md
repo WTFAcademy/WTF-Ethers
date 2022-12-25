@@ -31,7 +31,7 @@ const contract2 = contract.connect(signer)
 
 我们在[第三讲](https://github.com/WTFAcademy/WTFEthers/blob/main/03_ReadContract/readme.md)介绍了读取合约信息。它不需要`gas`。这里我们介绍写入合约信息，你需要构建交易，并且支付`gas`。该交易将由整个网络上的每个节点以及矿工验证，并改变区块链状态。
 
-你可以用下面方法方法进行合约交互：
+你可以用下面的方法进行合约交互：
 
 ```js
 // 发送交易
