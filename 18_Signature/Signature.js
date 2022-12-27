@@ -70,7 +70,7 @@ const main = async () => {
         console.log("合约已上链")
 
         // 5. 调用mint()函数，利用签名验证白名单，给account地址铸造NFT
-        console.log("\n3. 调用mint()函数，利用merkle tree验证白名单，给第一个地址铸造NFT")
+        console.log("\n3. 调用mint()函数，利用签名验证白名单，给第一个地址铸造NFT")
         console.log(`NFT名称: ${await contractNFT.name()}`)
         console.log(`NFT代号: ${await contractNFT.symbol()}`)
         let tx = await contractNFT.mint(account, tokenId, signature)
