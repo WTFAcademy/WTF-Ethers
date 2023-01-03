@@ -69,7 +69,7 @@ const provider = new ethers.providers.Web3Provider(window.ethereum)
     const showChainID = document.querySelector('.showChainID');
     const showETHBalance = document.querySelector('.showETHBalance');
 
-    ethereumButton.addEventListener(`click`, onClickHandler())
+    ethereumButton.addEventListener(`click`, onClickHandler)
     ```
 
 2. 接下来我们写`onClickHandler()` 函数的内容，首先连接metamask，创建`provider`变量。
