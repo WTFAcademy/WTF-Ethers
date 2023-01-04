@@ -79,6 +79,8 @@ node 01_HelloVitalik/HelloVitalik.js
 
 **第23讲：抢先交易脚本**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/23_Frontrun)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/23_Frontrun/readme.md)】
 
+**第24讲：识别ERC20**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/24_ERC20Check)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/24_ERC20Check/readme.md)】
+
 ## 工具
 
 **ET01：连接Metamask钱包**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask/readme.md)】
