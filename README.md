@@ -81,6 +81,8 @@ node 01_HelloVitalik/HelloVitalik.js
 
 **第24讲：识别ERC20**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/24_ERC20Check)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/24_ERC20Check/readme.md)】
 
+**第25讲：Flashbots**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/25_Flashbots)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/25_Flashbots/readme.md)】
+
 ## 工具
 
 **ET01：连接Metamask钱包**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask/readme.md)】
