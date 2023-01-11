@@ -12,7 +12,7 @@ WTF Academy 社群：[Discord](https://discord.wtf.academy)｜[微信群](https:
 
 在以太坊转为 POS 之后，有超过 60% 的区块都是 flashbots 产出的，非常惊人，但是很多人并不了解它。这一讲，我们将介绍 Flashbots，包括:
 1. 什么是 Flashbots?
-2. 加密钱包如何连接 Flashbots 节点发送隐私交易。
+2. 普通用户如何连接 Flashbots 节点发送隐私交易。
 3. 开发者如何使用 Flashbots Bundle 打包多笔交易。
 
 ## Flashbots
