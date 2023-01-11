@@ -28,30 +28,31 @@ const msgHash = utils.solidityKeccak256(
     ['address', 'uint256'],
     [account, tokenId])
 console.log(`msgHash：${msgHash}`)
-// 签名
-const messageHashBytes = ethers.utils.arrayify(msgHash)
-const signature = await wallet.signMessage(messageHashBytes);
-console.log(`签名：${signature}`)
-
-// 3. 创建合约工厂
-// NFT的人类可读abi
-const abiNFT = [
-    "constructor(string memory _name, string memory _symbol, address _signer)",
-    "function name() view returns (string)",
-    "function symbol() view returns (string)",
-    "function mint(address _account, uint256 _tokenId, bytes memory _signature) external",
-    "function ownerOf(uint256) view returns (address)",
-    "function balanceOf(address) view returns (uint256)",
-];
-// 合约字节码，在remix中，你可以在两个地方找到Bytecode
-// i. 部署面板的Bytecode按钮
-// ii. 文件面板artifact文件夹下与合约同名的json文件中
-// 里面"object"字段对应的数据就是Bytecode，挺长的，608060起始
-// "object": "608060405260646000553480156100...
-const bytecodeNFT = contractJson.default.object;
-const factoryNFT = new ethers.ContractFactory(abiNFT, bytecodeNFT, wallet);
 
 const main = async () => {
+    // 签名
+    const messageHashBytes = ethers.utils.arrayify(msgHash)
+    const signature = await wallet.signMessage(messageHashBytes);
+    console.log(`签名：${signature}`)
+
+    // 3. 创建合约工厂
+    // NFT的人类可读abi
+    const abiNFT = [
+        "constructor(string memory _name, string memory _symbol, address _signer)",
+        "function name() view returns (string)",
+        "function symbol() view returns (string)",
+        "function mint(address _account, uint256 _tokenId, bytes memory _signature) external",
+        "function ownerOf(uint256) view returns (address)",
+        "function balanceOf(address) view returns (uint256)",
+    ];
+    // 合约字节码，在remix中，你可以在两个地方找到Bytecode
+    // i. 部署面板的Bytecode按钮
+    // ii. 文件面板artifact文件夹下与合约同名的json文件中
+    // 里面"object"字段对应的数据就是Bytecode，挺长的，608060起始
+    // "object": "608060405260646000553480156100...
+    const bytecodeNFT = contractJson.default.object;
+    const factoryNFT = new ethers.ContractFactory(abiNFT, bytecodeNFT, wallet);
+
     // 读取钱包内ETH余额
     const balanceETH = await wallet.getBalance()
 
