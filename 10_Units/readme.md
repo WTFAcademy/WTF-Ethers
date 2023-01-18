@@ -1,3 +1,7 @@
+---
+title: 10. BigNumber和单位转换
+---
+
 # Ethers极简入门: 10. BigNumber和单位转换
 
 我最近在重新学`ethers.js`，巩固一下细节，也写一个`WTF Ethers极简入门`，供小白们使用。

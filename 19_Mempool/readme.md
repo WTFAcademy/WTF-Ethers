@@ -1,3 +1,7 @@
+---
+title: 19. 监听Mempool
+---
+
 # Ethers极简入门: 19. 监听Mempool
 
 我最近在重新学`ethers.js`，巩固一下细节，也写一个`WTF Ethers极简入门`，供小白们使用。
