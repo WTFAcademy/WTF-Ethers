@@ -124,7 +124,7 @@ npm install --save @flashbots/ethers-provider-bundle
     ]
     ```
 
-6. 模拟交易并打印交易详情。bundle 要模拟成功后才能被执行。这里用到了flashbots provider的 `signBundle()` 和 `simulate()` 方法。注意，`simulate()` 方法需要制定交易执行的目标区块高度，这里用的下一个区块。
+6. 模拟交易并打印交易详情。bundle 要模拟成功后才能被执行。这里用到了flashbots provider的 `signBundle()` 和 `simulate()` 方法。注意，`simulate()` 方法需要指定交易执行的目标区块高度，这里用的下一个区块。
 
     ![](./img/25-4.png)
     ```js
