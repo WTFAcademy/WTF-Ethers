@@ -218,6 +218,137 @@ Chain ID: 1
 Nonce: 6971359
 Issued At: 2023-02-16T06:03:49.534Z
 ```
+
+## ethers.utils.verifyMessage(nonce, signature) 在后端的实现
+Java 后端项目
+maven导入web3j
+```
+<dependency>
+   <groupId>org.web3j</groupId>
+   <artifactId>core</artifactId>
+   <version>4.5.16</version>
+</dependency>
+```
+Java main方法示例代码
+```java
+import org.web3j.crypto.ECDSASignature;
+import org.web3j.crypto.Hash;
+import org.web3j.crypto.Keys;
+import org.web3j.crypto.Sign;
+import org.web3j.utils.Numeric;
+
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+
+public class SignInWithEthereum {
+   public static void main(String[] args) {
+      String address = "0x4adbe2009cff6a1e9d280d28815c49e91b8ebad0";
+      String nonce = "3618473";
+      String signature = "0x9a38fb504315869609ef2e948b1a80f670e6ff725d16b5ae443b118eb2d108bc3c659c2417d96bbff240b44d4f1078fde73b72f83cc71e4e726640bc19a9c2a91c";
+      String MESSAGE_PREFIX = "\u0019Ethereum Signed Message:\n";
+      try {
+         String digest = Hash.sha3(
+                 Numeric.toHexStringNoPrefix(
+                         (MESSAGE_PREFIX + nonce.length() + nonce).getBytes(StandardCharsets.UTF_8)));
+
+         byte[] signatureBytes = Numeric.hexStringToByteArray(signature);
+         byte v = signatureBytes[64];
+         if (v < 27) {
+            v += 27;
+         }
+         byte[] r = (byte[]) Arrays.copyOfRange(signatureBytes, 0, 32);
+         byte[] s = (byte[]) Arrays.copyOfRange(signatureBytes, 32, 64);
+
+         Sign.SignatureData signatureData = new Sign.SignatureData(v, r, s);
+         int header = 0;
+         for (byte b : signatureData.getV()) {
+            header = (header << 8) + (b & 0xFF);
+         }
+         if (header < 27 || header > 34) {
+            System.out.println("false");
+         }
+         int recId = header - 27;
+         BigInteger key = Sign.recoverFromSignature(
+                 recId,
+                 new ECDSASignature(
+                         new BigInteger(1, signatureData.getR()), new BigInteger(1, signatureData.getS())),
+                 Numeric.hexStringToByteArray(digest));
+         if (key == null) {
+            System.out.println("false");
+         }
+         String signAddress = ("0x" + Keys.getAddress(key)).trim();
+         System.out.println("signAddress:" + signAddress);
+         if (address.toLowerCase().equals(signAddress.toLowerCase())) {
+            System.out.println("true");
+         }
+      } catch (Exception e) {
+         System.out.println("false");
+      }
+   }
+}
+```
+Java 封装的工具类
+```Java
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+
+import org.web3j.crypto.ECDSASignature;
+import org.web3j.crypto.Hash;
+import org.web3j.crypto.Keys;
+import org.web3j.crypto.Sign;
+import org.web3j.crypto.Sign.SignatureData;
+import org.web3j.utils.Numeric;
+
+public class EthersUtils {
+  private static final String MESSAGE_PREFIX = "\u0019Ethereum Signed Message:\n";
+
+  public static String verifyMessage(String message, String signature) {
+    return EthersUtils.recoverAddress(EthersUtils.hashMessage(message), signature);
+  }
+
+  public static String hashMessage(String message) {
+    return Hash.sha3(
+        Numeric.toHexStringNoPrefix(
+            (EthersUtils.MESSAGE_PREFIX + message.length() + message).getBytes(StandardCharsets.UTF_8)));
+  }
+
+  public static String recoverAddress(String digest, String signature) {
+    SignatureData signatureData = EthersUtils.getSignatureData(signature);
+    int header = 0;
+    for (byte b : signatureData.getV()) {
+      header = (header << 8) + (b & 0xFF);
+    }
+    if (header < 27 || header > 34) {
+      return null;
+    }
+    int recId = header - 27;
+    BigInteger key = Sign.recoverFromSignature(
+        recId,
+        new ECDSASignature(
+            new BigInteger(1, signatureData.getR()), new BigInteger(1, signatureData.getS())),
+        Numeric.hexStringToByteArray(digest));
+    if (key == null) {
+      return null;
+    }
+    return ("0x" + Keys.getAddress(key)).trim();
+  }
+
+  private static SignatureData getSignatureData(String signature) {
+    byte[] signatureBytes = Numeric.hexStringToByteArray(signature);
+    byte v = signatureBytes[64];
+    if (v < 27) {
+      v += 27;
+    }
+    byte[] r = (byte[]) Arrays.copyOfRange(signatureBytes, 0, 32);
+    byte[] s = (byte[]) Arrays.copyOfRange(signatureBytes, 32, 64);
+    return new SignatureData(v, r, s);
+  }
+}
+```
+
+
 ## 总结
 
 这一讲，我们介绍如何通过 `ethers.js` 在网页上连接小狐狸钱包，实现MetaMask签名授权后完成登录功能，用户一个钱包地址完成一个登录中心化网站的登录流程
