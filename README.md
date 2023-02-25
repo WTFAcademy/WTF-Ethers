@@ -85,9 +85,9 @@ node 01_HelloVitalik/HelloVitalik.js
 
 ## 工具
 
-**ET01：连接Metamask钱包**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask/readme.md)】
+**ET01：连接钱包**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask/readme.md)】
 
-**ET02：实现MetaMask签名授权登录**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/ET02_SignInWithEthereum)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/ET02_SignInWithEthereum/readme.md)】
+**ET02：钱包签名登录**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/ET02_SignInWithEthereum)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/ET02_SignInWithEthereum/readme.md)】
 
 ## WTF Ethers贡献者
 <div align="center">
