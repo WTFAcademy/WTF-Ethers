@@ -62,7 +62,7 @@ air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orb
     // 生成随机助记词
     const mnemonic = utils.entropyToMnemonic(utils.randomBytes(32))
     // 创建HD钱包
-    const hdNode = ethers.utils.HDNode.fromMnemonic(mnemonic)
+    const hdNode = utils.HDNode.fromMnemonic(mnemonic)
     console.log(hdNode);
     ```
     ![HDNode](img/14-2.png)
