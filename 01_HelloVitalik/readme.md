@@ -16,6 +16,8 @@ title: 1. HelloVitalik (6行代码)
 
 这一讲，我们会介绍`ethers.js`库，javascript在线编辑器`playcode`，并且我们会写第一个程序`HelloVitalik`：查询V神的`ETH`余额，并输出在`console`中。
 
+> 教程使用 v5 版本。最新的 v6 版本改动较大。
+
 ## ethers.js简述
 
 `ethers.js`是一个完整而紧凑的开源库，用于与以太坊区块链及其生态系统进行交互。如果你要写Dapp的前端，你就需要用到`ethers.js`。
