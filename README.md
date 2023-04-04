@@ -101,4 +101,4 @@ node 01_HelloVitalik/HelloVitalik.js
 
 ## 参考
 - [Ethers.js Docs](https://docs.ethers.org/v5/)
-- [A beginner’s guide: 4 ways to play with `Ethers.js`](https://dev.to/yakult/a-beginers-guide-four-ways-to-play-with-ethersjs-354a)
+- [A beginner’s guide: 4 ways to play with Ethers.js](https://dev.to/yakult/a-beginers-guide-four-ways-to-play-with-ethersjs-354a)
