@@ -98,3 +98,7 @@ node 01_HelloVitalik/HelloVitalik.js
     <img src="https://contrib.rocks/image?repo=WTFAcademy/WTF-Ethers" />
   </a>
 </div>
+
+## 参考
+- [Ethers.js Docs](https://docs.ethers.org/v5/)
+- [A beginner’s guide: 4 ways to play with `Ethers.js`](https://dev.to/yakult/a-beginers-guide-four-ways-to-play-with-ethersjs-354a)
