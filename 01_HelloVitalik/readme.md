@@ -37,7 +37,7 @@ title: 1. HelloVitalik (6行代码)
 你可以使用本地`vscode`进行开发。你需要安装[Node.js](https://nodejs.org/zh-cn/download/)，然后利用包管理工具`npm`安装`ethers`库：
 
 ```shell
-npm install --save ethers
+npm install ethers@5.7.1 --save
 ```
 
 ### 2. playcode
