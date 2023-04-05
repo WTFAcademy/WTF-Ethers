@@ -1,7 +1,7 @@
 ![](./img/logo_ethers.jpeg)
 
 # WTF Ethers
-[WTF Solidity极简教程](https://github.com/AmazingAng/WTFSolidity)姊妹篇，由[WTF Academy](https://wtf.academy)社群荣誉出品。
+[WTF Solidity极简教程](https://github.com/AmazingAng/WTFSolidity)姊妹篇，由[WTF Academy](https://wtf.academy)社群荣誉出品。**本教程的版本基于 Ethers v5，最新版本为 v6**。
 
 >我们最近在重新学ethers.js，巩固一下细节，也写一个“WTF Ether.js极简入门”，供小白们使用，每周更新1-3讲。
 
@@ -85,7 +85,9 @@ node 01_HelloVitalik/HelloVitalik.js
 
 ## 工具
 
-**ET01：连接Metamask钱包**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask/readme.md)】
+**ET01：连接钱包**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask/readme.md)】
+
+**ET02：钱包签名登录**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/ET02_SignInWithEthereum)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/ET02_SignInWithEthereum/readme.md)】
 
 ## WTF Ethers贡献者
 <div align="center">
@@ -96,3 +98,7 @@ node 01_HelloVitalik/HelloVitalik.js
     <img src="https://contrib.rocks/image?repo=WTFAcademy/WTF-Ethers" />
   </a>
 </div>
+
+## 参考
+- [Ethers.js Docs](https://docs.ethers.org/v5/)
+- [A beginner’s guide: 4 ways to play with Ethers.js](https://dev.to/yakult/a-beginers-guide-four-ways-to-play-with-ethersjs-354a)
