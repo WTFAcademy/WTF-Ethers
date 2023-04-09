@@ -8,9 +8,9 @@ import { ethers } from "ethers";
 const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
 const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
 // 连接以太坊主网
-const providerETH = new ethers.providers.JsonRpcProvider(ALCHEMY_MAINNET_URL)
+const providerETH = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL)
 // 连接Goerli测试网
-const providerGoerli = new ethers.providers.JsonRpcProvider(ALCHEMY_GOERLI_URL)
+const providerGoerli = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL)
 
 const main = async () => {
     // 利用provider读取链上信息
@@ -19,9 +19,9 @@ const main = async () => {
     const balance = await providerETH.getBalance(`vitalik.eth`);
     const balanceGoerli = await providerGoerli.getBalance(`vitalik.eth`);
     // 将余额输出在console（主网）
-    console.log(`ETH Balance of vitalik: ${ethers.utils.formatEther(balance)} ETH`);
+    console.log(`ETH Balance of vitalik: ${ethers.formatEther(balance)} ETH`);
     // 输出Goerli测试网ETH余额
-    console.log(`Goerli ETH Balance of vitalik: ${ethers.utils.formatEther(balanceGoerli)} ETH`);
+    console.log(`Goerli ETH Balance of vitalik: ${ethers.formatEther(balanceGoerli)} ETH`);
     
     // 2. 查询provider连接到了哪条链
     console.log("\n2. 查询provider连接到了哪条链")
@@ -33,10 +33,10 @@ const main = async () => {
     const blockNumber = await providerETH.getBlockNumber();
     console.log(blockNumber);
 
-    // 4. 查询当前gas price
-    console.log("\n4. 查询当前gas price")
-    const gasPrice = await providerETH.getGasPrice();
-    console.log(gasPrice);
+    // 4. 查询 vitalik 钱包历史交易次数
+    console.log("\n4. 查询 vitalik 钱包历史交易次数")
+    const txCount = await providerETH.getTransactionCount("vitalik.eth");
+    console.log(txCount);
 
     // 5. 查询当前建议的gas设置
     console.log("\n5. 查询当前建议的gas设置")

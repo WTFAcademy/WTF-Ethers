@@ -65,7 +65,7 @@ const wallet3 = new ethers.Wallet.fromMnemonic(mnemonic.phrase)
     // 创建交易请求，参数：to为接收地址，value为ETH数额
     const tx = {
         to: address1,
-        value: ethers.utils.parseEther("0.001")
+        value: ethers.parseEther("0.001")
     }
 ```
 
@@ -90,7 +90,7 @@ import { ethers } from "ethers";
 // 准备Infura API Key, 教程：https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL02_Infura/readme.md
 const INFURA_ID = '184d4c5ec78243c290d151d3f1a10f1d'
 // 连接rinkeby测试网
-const provider = new ethers.providers.JsonRpcProvider(`https://rinkeby.infura.io/v3/${INFURA_ID}`)
+const provider = new ethers.JsonRpcProvider(`https://rinkeby.infura.io/v3/${INFURA_ID}`)
 ```
 
 ### 2. 用三种不同方法创建`Wallet`实例
@@ -183,12 +183,12 @@ console.log(`钱包1助记词: ${wallet1.mnemonic.phrase}`)
     console.log(`\n5. 发送ETH（测试网）`);
     // i. 打印交易前余额
     console.log(`i. 发送前余额`)
-    console.log(`钱包1: ${ethers.utils.formatEther(await wallet1WithProvider.getBalance())} ETH`)
-    console.log(`钱包2: ${ethers.utils.formatEther(await wallet2.getBalance())} ETH`)
+    console.log(`钱包1: ${ethers.formatEther(await provider.getBalance(wallet1WithProvider.address))} ETH`)
+    console.log(`钱包2: ${ethers.formatEther(await provider.getBalance(wallet2.address))} ETH`)
     // ii. 构造交易请求，参数：to为接收地址，value为ETH数额
     const tx = {
         to: address1,
-        value: ethers.utils.parseEther("0.001")
+        value: ethers.parseEther("0.001")
     }
     // iii. 发送交易，获得收据
     console.log(`\nii. 等待交易在区块链确认（需要几分钟）`)
@@ -197,8 +197,8 @@ console.log(`钱包1助记词: ${wallet1.mnemonic.phrase}`)
     console.log(receipt) // 打印交易详情
     // iv. 打印交易后余额
     console.log(`\niii. 发送后余额`)
-    console.log(`钱包1: ${ethers.utils.formatEther(await wallet1WithProvider.getBalance())} ETH`)
-    console.log(`钱包2: ${ethers.utils.formatEther(await wallet2.getBalance())} ETH`)
+    console.log(`钱包1: ${ethers.formatEther(await provider.getBalance(wallet1WithProvider.address))} ETH`)
+    console.log(`钱包2: ${ethers.formatEther(await provider.getBalance(wallet2.address))} ETH`)
 ```
 
 ![发送ETH](img/4-5.png)

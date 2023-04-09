@@ -11,7 +11,7 @@ import { ethers } from "ethers";
 // 利用Alchemy的rpc节点连接以太坊网络
 // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
 const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
 
 // 利用私钥和provider创建wallet对象
 const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
@@ -39,19 +39,19 @@ const factoryERC20 = new ethers.ContractFactory(abiERC20, bytecodeERC20, wallet)
 
 const main = async () => {
     // 读取钱包内ETH余额
-    const balanceETH = await wallet.getBalance()
+    const balanceETH = await provider.getBalance(wallet.address)
 
     // 如果钱包ETH足够
-    if(ethers.utils.formatEther(balanceETH) > 0.002){
+    if(ethers.formatEther(balanceETH) > 0.002){
         // 1. 利用contractFactory部署ERC20代币合约
         console.log("\n1. 利用contractFactory部署ERC20代币合约")
         // 部署合约，填入constructor的参数
         const contractERC20 = await factoryERC20.deploy("WTF Token", "WTF")
-        console.log(`合约地址: ${contractERC20.address}`);
+        console.log(`合约地址: ${contractERC20.target}`);
         console.log("部署合约的交易详情")
-        console.log(contractERC20.deployTransaction)
+        console.log(contractERC20.deploymentTransaction())
         console.log("\n等待合约部署上链")
-        await contractERC20.deployed()
+        await contractERC20.waitForDeployment()
         // 也可以用 contractERC20.deployTransaction.wait()
         console.log("合约已上链")
 

@@ -85,7 +85,7 @@ const filter = contract.filters.EVENT_NAME( ...args )
 2. 创建`provider`，`abi`，和`USDT`合约变量：
 
   ```js
-  const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
+  const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
   // 合约地址
   const addressUSDT = '0xdac17f958d2ee523a2206206994597c13d831ec7'
   // 交易所地址
@@ -102,7 +102,7 @@ const filter = contract.filters.EVENT_NAME( ...args )
 3. 读取币安热钱包USDT余额。可以看到，当前币安热钱包有8亿多枚USDT
   ```js
   const balanceUSDT = await contractUSDT.balanceOf(accountBinance)
-  console.log(`USDT余额: ${ethers.utils.formatUnits(ethers.BigNumber.from(balanceUSDT),6)}\n`)
+  console.log(`USDT余额: ${ethers.formatUnits(ethers.BigNumber.from(balanceUSDT),6)}\n`)
   ```
   ![币安热钱包USDT余额](img/9-4.png)
 
@@ -117,10 +117,8 @@ const filter = contract.filters.EVENT_NAME( ...args )
   contractUSDT.on(filterBinanceIn, (from, to, value) => {
     console.log('---------监听USDT进入交易所--------');
     console.log(
-      `${from} -> ${to} ${ethers.utils.formatUnits(ethers.BigNumber.from(value),6)}`
+      `${from} -> ${to} ${ethers.formatUnits(ethers.BigNumber.from(value),6)}`
     )
-  }).on('error', (error) => {
-    console.log(error)
   })
   ```
   ![监听转入币安的USDT交易](img/9-5.png)
@@ -135,12 +133,10 @@ const filter = contract.filters.EVENT_NAME( ...args )
   contractUSDT.on(filterToBinanceOut, (from, to, value) => {
     console.log('---------监听USDT转出交易所--------');
     console.log(
-      `${from} -> ${to} ${ethers.utils.formatUnits(ethers.BigNumber.from(value),6)}`
+      `${from} -> ${to} ${ethers.formatUnits(ethers.BigNumber.from(value),6)}`
     )
   }
-  ).on('error', (error) => {
-    console.log(error)
-  });
+  )
   ```
   ![监听转出币安的USDT交易](img/9-6.png) 
 

@@ -10,7 +10,7 @@
     "license": "MIT",
     "dependencies": {
         "@flashbots/ethers-provider-bundle": "^0.6.1",
-        "ethers": "^5.7.1",
+        "ethers": "^6.2.3",
         "merkletreejs": "^0.2.32"
     }
 }

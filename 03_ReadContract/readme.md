@@ -51,7 +51,7 @@ import { ethers } from "ethers";
 // 准备Infura API Key, 教程：https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL02_Infura/readme.md
 const INFURA_ID = ''
 // 连接以太坊主网
-const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`)
+const provider = new ethers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`)
 ```
 
 ### 2. 创建只读Contract实例
@@ -105,9 +105,9 @@ const main = async () => {
     console.log(`合约地址: ${addressWETH}`)
     console.log(`名称: ${nameWETH}`)
     console.log(`代号: ${symbolWETH}`)
-    console.log(`总供给: ${ethers.utils.formatEther(totalSupplyWETH)}`)
+    console.log(`总供给: ${ethers.formatEther(totalSupplyWETH)}`)
     const balanceWETH = await contractWETH.balanceOf('vitalik.eth')
-    console.log(`Vitalik持仓: ${ethers.utils.formatEther(balanceWETH)}\n`)
+    console.log(`Vitalik持仓: ${ethers.formatEther(balanceWETH)}\n`)
 
     // 2. 读取DAI合约的链上信息（IERC20接口合约）
     const nameDAI = await contractDAI.name()
@@ -117,9 +117,9 @@ const main = async () => {
     console.log(`合约地址: ${addressDAI}`)
     console.log(`名称: ${nameDAI}`)
     console.log(`代号: ${symbolDAI}`)
-    console.log(`总供给: ${ethers.utils.formatEther(totalSupplDAI)}`)
+    console.log(`总供给: ${ethers.formatEther(totalSupplDAI)}`)
     const balanceDAI = await contractDAI.balanceOf('vitalik.eth')
-    console.log(`Vitalik持仓: ${ethers.utils.formatEther(balanceDAI)}\n`)
+    console.log(`Vitalik持仓: ${ethers.formatEther(balanceDAI)}\n`)
 }
 
 main()

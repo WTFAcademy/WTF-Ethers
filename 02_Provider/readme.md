@@ -32,7 +32,7 @@ title: 2. 提供器 Provider
 
 ### 连接Infura节点
 
-这里，我们用Infura节点作为例子。在创建好Infura API Key之后，就可以利用`ethers.provider.JsonRpcProvider()`方法来创建`Provider`变量。`JsonRpcProvider()`以节点服务的`url`作为参数。
+这里，我们用Infura节点作为例子。在创建好Infura API Key之后，就可以利用`ethers.JsonRpcProvider()`方法来创建`Provider`变量，该方法以节点服务的`url`链接作为参数。
 
 在下面这个例子中，我们分别创建连接到`ETH`主网和`Goerli`测试网的`provider`：
 
@@ -41,9 +41,9 @@ title: 2. 提供器 Provider
 // 填入Infura API Key, 教程：https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL02_Infura/readme.md
 const INFURA_ID = ''
 // 连接以太坊主网
-const providerETH = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`)
+const providerETH = new ethers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`)
 // 连接Goerli测试网
-const providerGoerli = new ethers.providers.JsonRpcProvider(`https://goerli.infura.io/v3/${INFURA_ID}`)
+const providerGoerli = new ethers.JsonRpcProvider(`https://goerli.infura.io/v3/${INFURA_ID}`)
 ```
 
 ### 利用`Provider`读取链上数据
@@ -87,13 +87,13 @@ const providerGoerli = new ethers.providers.JsonRpcProvider(`https://goerli.infu
 
 ![getBlockNumber](img/2-4.png)
 
-**4.** 利用`getGasPrice()`查询当前`gas price`，返回的数据格式为`BigNumber`，可以用`BigNumber`类的`toNumber()`或`toString()`方法转换成数字和字符串。
+**4.** 利用`getTransactionCount()`查询某个钱包的历史交易次数。
 
 ```javascript
-    // 4. 查询当前gas price
-    console.log("\n4. 查询当前gas price")
-    const gasPrice = await providerETH.getGasPrice();
-    console.log(gasPrice);
+    // 4. 查询 vitalik 钱包历史交易次数
+    console.log("\n4. 查询 vitalik 钱包历史交易次数")
+    const txCount = await providerETH.getTransactionCount("vitalik.eth");
+    console.log(txCount);
 ```
 
 ![getGasPrice](img/2-5.png)

@@ -1,9 +1,13 @@
 ![](./img/logo_ethers.jpeg)
 
 # WTF Ethers
-[WTF Solidity极简教程](https://github.com/AmazingAng/WTFSolidity)姊妹篇，由[WTF Academy](https://wtf.academy)社群荣誉出品。**本教程的版本基于 Ethers v5，最新版本为 v6**。
+我们最近在重新学ethers.js，巩固一下细节，也写一个“WTF Ether.js极简入门”，供小白们使用，每周更新1-3讲。
 
->我们最近在重新学ethers.js，巩固一下细节，也写一个“WTF Ether.js极简入门”，供小白们使用，每周更新1-3讲。
+这是[WTF Solidity极简教程](https://github.com/AmazingAng/WTFSolidity)姊妹篇，由[WTF Academy](https://wtf.academy)社群荣誉出品。
+
+> 注意: 本教程的版本基于最新的 Ethers.js v6版本，之前 v5 版本的教程见 [链接](https://github.com/WTFAcademy/WTF-Ethers/tree/wtf-ethers-v5)。
+
+
 
 路线图根据本仓库star数量来定：
 - [x] 64 :star: 建立社群：[discord](https://discord.gg/5akcruXrsk) | [微信群](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform)

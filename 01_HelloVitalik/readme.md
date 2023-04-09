@@ -16,7 +16,7 @@ title: 1. HelloVitalik (6行代码)
 
 这一讲，我们会介绍`ethers.js`库，javascript在线编辑器`playcode`，并且我们会写第一个程序`HelloVitalik`：查询V神的`ETH`余额，并输出在`console`中。
 
-> 教程使用 v5 版本。最新的 v6 版本改动较大。
+> 教程使用 ethers.js 最新的 v6 版本，与 v5 改动较大。v5 版本教程，见 [链接](https://github.com/WTFAcademy/WTF-Ethers/tree/wtf-ethers-v5)。
 
 ## ethers.js简述
 
@@ -37,7 +37,7 @@ title: 1. HelloVitalik (6行代码)
 你可以使用本地`vscode`进行开发。你需要安装[Node.js](https://nodejs.org/zh-cn/download/)，然后利用包管理工具`npm`安装`ethers`库：
 
 ```shell
-npm install ethers@5.7.1 --save
+npm install ethers@6.2.3 --save
 ```
 
 ### 2. playcode
@@ -77,7 +77,7 @@ import { ethers } from "ethers";
 ```
 如果在`playcode`平台上，免费账号不能安装外部库。我们可以直接从`ethers`的CDN导入（出于安全考虑，仅用于教学）：
 ```javascript
-import { ethers } from "https://cdn-cors.ethers.io/lib/ethers-5.6.9.esm.min.js";
+import { ethers } from "https://cdnjs.cloudflare.com/ajax/libs/ethers/6.2.3/ethers.js";
 ```
 
 ### 2. 连接以太坊
@@ -88,7 +88,12 @@ import { ethers } from "https://cdn-cors.ethers.io/lib/ethers-5.6.9.esm.min.js";
 const provider = ethers.getDefaultProvider();
 ```
 
-**注意:**`ethers`内置的`rpc`访问速度有限制，仅测试用，生产环境还是要申请个人`rpc`。
+**注意:**`ethers`内置的`rpc`访问速度有限制，仅测试用，生产环境还是要申请个人`rpc`。比如:
+
+```js
+const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
+const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL)
+```
 
 ### 3. 声明`async`函数
 
@@ -112,7 +117,7 @@ const balance = await provider.getBalance(`vitalik.eth`);
 我们从链上获取的以太坊余额以`wei`为单位，而`1 ETH = 10^18 wei`。我们打印在`console`之前，需要进行单位转换。`ethers`提供了功能函数`formatEther`，我们可以利用它将`wei`转换为`ETH`。
 
 ```javascript
-    console.log(`ETH Balance of vitalik: ${ethers.utils.formatEther(balance)} ETH`);
+    console.log(`ETH Balance of vitalik: ${ethers.formatEther(balance)} ETH`);
 ```
 如果你使用的是vscode开发工具的话，你需要在vscode控制台输入以下命令
 ```shell

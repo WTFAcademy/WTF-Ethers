@@ -46,7 +46,7 @@ contract.once("eventName", function)
   // 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
   const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
   // 连接主网 provider
-  const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
+  const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
   ```
 
 2. 声明合约变量：我们只关心`USDT`合约的`Transfer`事件，把它填入到`abi`中就可以。如果你关心其他函数和事件的话，可以在[etherscan](https://etherscan.io/address/0xdac17f958d2ee523a2206206994597c13d831ec7#code)上找到。
@@ -70,7 +70,7 @@ contract.once("eventName", function)
     contractUSDT.once('Transfer', (from, to, value)=>{
       // 打印结果
       console.log(
-        `${from} -> ${to} ${ethers.utils.formatUnits(ethers.BigNumber.from(value),6)}`
+        `${from} -> ${to} ${ethers.formatUnits(ethers.BigNumber.from(value),6)}`
       )
     })
   ```
@@ -83,7 +83,7 @@ contract.once("eventName", function)
     contractUSDT.on('Transfer', (from, to, value)=>{
       console.log(
        // 打印结果
-       `${from} -> ${to} ${ethers.utils.formatUnits(ethers.BigNumber.from(value),6)}`
+       `${from} -> ${to} ${ethers.formatUnits(ethers.BigNumber.from(value),6)}`
       )
     })
   ```

@@ -53,7 +53,7 @@ await contractERC20.deployed()
     // 利用Infura的rpc节点连接以太坊网络
     const INFURA_ID = '184d4c5ec78243c290d151d3f1a10f1d'
     // 连接Rinkeby测试网
-    const provider = new ethers.providers.JsonRpcProvider(`https://rinkeby.infura.io/v3/${INFURA_ID}`)
+    const provider = new ethers.JsonRpcProvider(`https://rinkeby.infura.io/v3/${INFURA_ID}`)
 
     // 利用私钥和provider创建wallet对象
     const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
@@ -101,11 +101,12 @@ await contractERC20.deployed()
     console.log("\n1. 利用contractFactory部署ERC20代币合约")
     // 部署合约，填入constructor的参数
     const contractERC20 = await factoryERC20.deploy("WTF Token", "WTF")
-    console.log(`合约地址: ${contractERC20.address}`);
+    console.log(`合约地址: ${contractERC20.target}`);
     console.log("部署合约的交易详情")
-    console.log(contractERC20.deployTransaction)
+    console.log(contractERC20.deploymentTransaction())
     console.log("\n等待合约部署上链")
-    await contractERC20.deployed()
+    await contractERC20.waitForDeployment()
+    // 也可以用 contractERC20.deployTransaction.wait()
     console.log("合约已上链")
     ```
 

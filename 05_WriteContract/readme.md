@@ -64,7 +64,7 @@ await tx.wait()
     // 利用Infura的rpc节点连接以太坊网络
     const INFURA_ID = '184d4c5ec78243c290d151d3f1a10f1d'
     // 连接Rinkeby测试网
-    const provider = new ethers.providers.JsonRpcProvider(`https://rinkeby.infura.io/v3/${INFURA_ID}`)
+    const provider = new ethers.JsonRpcProvider(`https://rinkeby.infura.io/v3/${INFURA_ID}`)
 
     // 利用私钥和provider创建wallet对象
     const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
@@ -97,7 +97,7 @@ await tx.wait()
     // 读取WETH合约的链上信息（WETH abi）
     console.log("\n1. 读取WETH余额")
     const balanceWETH = await contractWETH.balanceOf(address)
-    console.log(`存款前WETH持仓: ${ethers.utils.formatEther(balanceWETH)}\n`)
+    console.log(`存款前WETH持仓: ${ethers.formatEther(balanceWETH)}\n`)
     ```
 
     ![读取WETH余额](img/5-1.png)
@@ -108,13 +108,13 @@ await tx.wait()
     ```js
         console.log("\n2. 调用desposit()函数，存入0.001 ETH")
         // 发起交易
-        const tx = await contractWETH.deposit({value: ethers.utils.parseEther("0.001")})
+        const tx = await contractWETH.deposit({value: ethers.parseEther("0.001")})
         // 等待交易上链
         await tx.wait()
         console.log(`交易详情：`)
         console.log(tx)
         const balanceWETH_deposit = await contractWETH.balanceOf(address)
-        console.log(`存款后WETH持仓: ${ethers.utils.formatEther(balanceWETH_deposit)}\n`)
+        console.log(`存款后WETH持仓: ${ethers.formatEther(balanceWETH_deposit)}\n`)
     ```
     ![调用deposit](img/5-2.png)
 
@@ -123,11 +123,11 @@ await tx.wait()
     ```js
         console.log("\n3. 调用transfer()函数，给vitalik转账0.001 WETH")
         // 发起交易
-        const tx2 = await contractWETH.transfer("vitalik.eth", ethers.utils.parseEther("0.001"))
+        const tx2 = await contractWETH.transfer("vitalik.eth", ethers.parseEther("0.001"))
         // 等待交易上链
         await tx2.wait()
         const balanceWETH_transfer = await contractWETH.balanceOf(address)
-        console.log(`转账后WETH持仓: ${ethers.utils.formatEther(balanceWETH_transfer)}\n`)
+        console.log(`转账后WETH持仓: ${ethers.formatEther(balanceWETH_transfer)}\n`)
     ```
     ![给V神转WETH](img/5-3.png)
 

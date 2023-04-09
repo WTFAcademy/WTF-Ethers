@@ -55,7 +55,7 @@ const transferEvents = await contract.queryFilter('事件名', 起始区块, 结
     // 准备Infura API Key, 教程：https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL02_Infura/readme.md
     const INFURA_ID = '184d4c5ec78243c290d151d3f1a10f1d'
     // 连接rinkeby测试网
-    const provider = new ethers.providers.JsonRpcProvider(`https://rinkeby.infura.io/v3/${INFURA_ID}`)
+    const provider = new ethers.JsonRpcProvider(`https://rinkeby.infura.io/v3/${INFURA_ID}`)
     ```
 
 2. 创建包含检索事件的`abi`。
@@ -93,7 +93,7 @@ const transferEvents = await contract.queryFilter('事件名', 起始区块, 结
     ```
     // 解析Transfer事件的数据（变量在args中）
     console.log("\n2. 解析事件：")
-    const amount = ethers.utils.formatUnits(ethers.BigNumber.from(transferEvents[0].args["amount"]), "ether");
+    const amount = ethers.formatUnits(ethers.getBigInt(transferEvents[0].args["amount"]), "ether");
     console.log(`地址 ${transferEvents[0].args["from"]} 转账${amount} WETH 到地址 ${transferEvents[0].args["to"]}`)
     ```
 

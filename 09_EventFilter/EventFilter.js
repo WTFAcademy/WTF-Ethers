@@ -3,7 +3,7 @@ import { ethers } from "ethers";
 // 利用Alchemy的rpc节点连接以太坊网络
 // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
 const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
-const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
+const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
 
 // 合约地址
 const addressUSDT = '0xdac17f958d2ee523a2206206994597c13d831ec7'
@@ -23,7 +23,7 @@ const contractUSDT = new ethers.Contract(addressUSDT, abi, provider);
     // 1. 读取币安热钱包USDT余额
     console.log("\n1. 读取币安热钱包USDT余额")
     const balanceUSDT = await contractUSDT.balanceOf(accountBinance)
-    console.log(`USDT余额: ${ethers.utils.formatUnits(ethers.BigNumber.from(balanceUSDT),6)}\n`)
+    console.log(`USDT余额: ${ethers.formatUnits(ethers.getBigInt(balanceUSDT),6)}\n`)
 
     // 2. 创建过滤器，监听转移USDT进交易所
     console.log("\n2. 创建过滤器，监听转移USDT进交易所")
@@ -33,10 +33,8 @@ const contractUSDT = new ethers.Contract(addressUSDT, abi, provider);
     contractUSDT.on(filterBinanceIn, (from, to, value) => {
       console.log('---------监听USDT进入交易所--------');
       console.log(
-        `${from} -> ${to} ${ethers.utils.formatUnits(ethers.BigNumber.from(value),6)}`
+        `${from} -> ${to} ${ethers.formatUnits(ethers.getBigInt(value),6)}`
       )
-    }).on('error', (error) => {
-      console.log(error)
     })
 
     // 3. 创建过滤器，监听交易所转出USDT
@@ -47,12 +45,10 @@ const contractUSDT = new ethers.Contract(addressUSDT, abi, provider);
     contractUSDT.on(filterToBinanceOut, (from, to, value) => {
       console.log('---------监听USDT转出交易所--------');
       console.log(
-        `${from} -> ${to} ${ethers.utils.formatUnits(ethers.BigNumber.from(value),6)}`
+        `${from} -> ${to} ${ethers.formatUnits(ethers.BigNumber.from(value),6)}`
       )
     }
-    ).on('error', (error) => {
-      console.log(error)
-    });
+    );
   } catch (e) {
     console.log(e);
   }
