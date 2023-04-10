@@ -50,7 +50,7 @@ title: 16. 批量归集
     console.log("\n1. 创建HD钱包")
     // 通过助记词生成HD钱包
     const mnemonic = `air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orbit weapon universe require tired sing casino business anxiety seminar hunt`
-    const hdNode = utils.HDNode.fromMnemonic(mnemonic)
+    const hdNode = ethers.HDNodeWallet.fromMnemonic(mnemonic)
     console.log(hdNode);
     ```
     ![HD钱包](img/16-1.png)
@@ -70,7 +70,7 @@ title: 16. 批量归集
         console.log(walletNew.address)
     }
     // 定义发送数额
-    const amount = utils.parseEther("0.0001")
+    const amount = ethers.parseEther("0.0001")
     console.log(`发送数额：${amount}`)
     ```
     ![生成20个地址](img/16-2.png)
@@ -81,10 +81,10 @@ title: 16. 批量归集
     console.log("\n3. 读取一个地址的ETH和WETH余额")
     //读取WETH余额
     const balanceWETH = await contractWETH.balanceOf(wallets[19].address)
-    console.log(`WETH持仓: ${ethers.utils.formatEther(balanceWETH)}`)
+    console.log(`WETH持仓: ${ethersfromPhrase.formatEther(balanceWETH)}`)
     //读取ETH余额
     const balanceETH = await provider.getBalance(wallets[19].address)
-    console.log(`ETH持仓: ${ethers.utils.formatEther(balanceETH)}\n`)
+    console.log(`ETH持仓: ${ethersfromPhrase.formatEther(balanceETH)}\n`)
     ```
     ![读取余额](img/16-3.png)
 
@@ -129,10 +129,10 @@ title: 16. 批量归集
     console.log("\n6. 读取一个地址在归集后的ETH和WETH余额")
     // 读取WETH余额
     const balanceWETHAfter = await contractWETH.balanceOf(wallets[19].address)
-    console.log(`归集后WETH持仓: ${ethers.utils.formatEther(balanceWETHAfter)}`)
+    console.log(`归集后WETH持仓: ${ethersfromPhrase.formatEther(balanceWETHAfter)}`)
     // 读取ETH余额
     const balanceETHAfter = await provider.getBalance(wallets[19].address)
-    console.log(`归集后ETH持仓: ${ethers.utils.formatEther(balanceETHAfter)}\n`)
+    console.log(`归集后ETH持仓: ${ethersfromPhrase.formatEther(balanceETHAfter)}\n`)
     ```
     ![归集后余额变动](img/16-6.png)
 

@@ -1,9 +1,9 @@
-import { ethers, utils } from "ethers";
+import { ethers } from "ethers";
 
 // 1. 创建provider和wallet，发送代币用
 // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
 const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
 // 利用私钥和provider创建wallet对象
 const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
 const wallet = new ethers.Wallet(privateKey, provider)
@@ -23,7 +23,7 @@ const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)
 console.log("\n1. 创建HD钱包")
 // 通过助记词生成HD钱包
 const mnemonic = `air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orbit weapon universe require tired sing casino business anxiety seminar hunt`
-const hdNode = utils.HDNode.fromMnemonic(mnemonic)
+const hdNode = ethers.HDNodeWallet.fromPhrase(mnemonic)
 console.log(hdNode);
 
 // 4. 获得20个钱包
@@ -40,7 +40,7 @@ for (let i = 0; i < numWallet; i++) {
     console.log(walletNew.address)
 }
 // 定义发送数额
-const amount = utils.parseEther("0.0001")
+const amount = ethers.parseEther("0.0001")
 console.log(`发送数额：${amount}`)
 
 
@@ -49,14 +49,14 @@ const main = async () => {
     console.log("\n3. 读取一个地址的ETH和WETH余额")
     //读取WETH余额
     const balanceWETH = await contractWETH.balanceOf(wallets[19].address)
-    console.log(`WETH持仓: ${ethers.utils.formatEther(balanceWETH)}`)
+    console.log(`WETH持仓: ${ethers.formatEther(balanceWETH)}`)
     //读取ETH余额
     const balanceETH = await provider.getBalance(wallets[19].address)
-    console.log(`ETH持仓: ${ethers.utils.formatEther(balanceETH)}\n`)
+    console.log(`ETH持仓: ${ethers.formatEther(balanceETH)}\n`)
 
     // 如果钱包ETH足够
-    if(ethers.utils.formatEther(balanceETH) > ethers.utils.formatEther(amount) &&
-    ethers.utils.formatEther(balanceWETH) >= ethers.utils.formatEther(amount)){
+    if(ethers.formatEther(balanceETH) > ethers.formatEther(amount) &&
+    ethers.formatEther(balanceWETH) >= ethers.formatEther(amount)){
 
         // 6. 批量归集钱包的ETH
         console.log("\n4. 批量归集20个钱包的ETH")
@@ -90,10 +90,10 @@ const main = async () => {
         console.log("\n6. 读取一个地址在归集后的ETH和WETH余额")
         // 读取WETH余额
         const balanceWETHAfter = await contractWETH.balanceOf(wallets[19].address)
-        console.log(`归集后WETH持仓: ${ethers.utils.formatEther(balanceWETHAfter)}`)
+        console.log(`归集后WETH持仓: ${ethers.formatEther(balanceWETHAfter)}`)
         // 读取ETH余额
         const balanceETHAfter = await provider.getBalance(wallets[19].address)
-        console.log(`归集后ETH持仓: ${ethers.utils.formatEther(balanceETHAfter)}\n`)
+        console.log(`归集后ETH持仓: ${ethers.formatEther(balanceETHAfter)}\n`)
     }
 }
 

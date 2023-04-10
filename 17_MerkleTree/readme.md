@@ -45,7 +45,6 @@ npm install merkletreejs
 
 1. 创建白名单地址数组。
     ```js
-    import { utils } from "ethers";
     import { MerkleTree } from "merkletreejs";
     // 白名单地址
     const tokens = [
@@ -59,13 +58,13 @@ npm install merkletreejs
 2. 将数据进行`keccak256`哈希（与solidity使用的哈希函数匹配），创建叶子结点。
 
     ```js
-    const leaf = tokens.map(x => utils.keccak256(x))
+    const leaf = tokens.map(x => ethers.keccak256(x))
     ```
 
 3. 创建`Merkle Tree`，哈希函数仍然选择`keccak256`，可选参数`sortPairs: true`（[constructor函数文档](https://github.com/miguelmota/merkletreejs/blob/master/docs/classes/_src_merkletree_.merkletree.md#constructor)），与`Merkle Tree`合约处理方式保持一致。
 
     ```js
-    const merkletree = new MerkleTree(leaf, utils.keccak256, { sortPairs: true });
+    const merkletree = new MerkleTree(leaf, ethers.keccak256, { sortPairs: true });
     ```
 
 4. 获得`Merkle Tree`的`root`。
@@ -95,8 +94,8 @@ npm install merkletreejs
         "0x78731D3Ca6b7E34aC0F824c42a7cC18A495cabaB"
     ];
     // leaf, merkletree, proof
-    const leaf       = tokens.map(x => utils.keccak256(x))
-    const merkletree = new MerkleTree(leaf, utils.keccak256, { sortPairs: true });
+    const leaf       = tokens.map(x => ethers.keccak256(x))
+    const merkletree = new MerkleTree(leaf, ethers.keccak256, { sortPairs: true });
     const proof      = merkletree.getHexProof(leaf[0]);
     const root = merkletree.getHexRoot()
     console.log("Leaf:")
@@ -115,7 +114,7 @@ npm install merkletreejs
     ```js
     // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
     const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-    const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+    const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
     // 利用私钥和provider创建wallet对象
     const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
     const wallet = new ethers.Wallet(privateKey, provider)
@@ -149,12 +148,9 @@ npm install merkletreejs
     console.log("\n2. 利用contractFactory部署NFT合约")
     // 部署合约，填入constructor的参数
     const contractNFT = await factoryNFT.deploy("WTF Merkle Tree", "WTF", root)
-    console.log(`合约地址: ${contractNFT.address}`);
-    // console.log("部署合约的交易详情")
-    // console.log(contractNFT.deployTransaction)
+    console.log(`合约地址: ${contractNFT.target}`);
     console.log("等待合约部署上链")
-    await contractNFT.deployed()
-    // 也可以用 contractNFT.deployTransaction.wait()
+    await contractNFT.waitForDeployment()
     console.log("合约已上链")
     ```
     ![部署Merkle Tree合约](./img/17-4.png)

@@ -1,4 +1,4 @@
-import { ethers, utils } from "ethers";
+import { ethers } from "ethers";
 import { MerkleTree } from "merkletreejs";
 import * as contractJson from "./contract.json" assert {type: "json"};
 
@@ -12,8 +12,8 @@ const tokens = [
     "0x78731D3Ca6b7E34aC0F824c42a7cC18A495cabaB"
 ];
 // leaf, merkletree, proof
-const leaf       = tokens.map(x => utils.keccak256(x))
-const merkletree = new MerkleTree(leaf, utils.keccak256, { sortPairs: true });
+const leaf       = tokens.map(x => ethers.keccak256(x))
+const merkletree = new MerkleTree(leaf, ethers.keccak256, { sortPairs: true });
 const proof      = merkletree.getHexProof(leaf[0]);
 const root = merkletree.getHexRoot()
 console.log("Leaf:")
@@ -28,7 +28,7 @@ console.log(root)
 // 2. 创建provider和wallet
 // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
 const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
 // 利用私钥和provider创建wallet对象
 const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
 const wallet = new ethers.Wallet(privateKey, provider)
@@ -53,19 +53,17 @@ const factoryNFT = new ethers.ContractFactory(abiNFT, bytecodeNFT, wallet);
 
 const main = async () => {
     // 读取钱包内ETH余额
-    const balanceETH = await wallet.getBalance()
+    const balanceETH = await provider.getBalance(wallet.address)
 
     // 如果钱包ETH足够
-    if(ethers.utils.formatEther(balanceETH) > 0.002){
+    if(ethers.formatEther(balanceETH) > 0.002){
         // 4. 利用contractFactory部署NFT合约
         console.log("\n2. 利用contractFactory部署NFT合约")
         // 部署合约，填入constructor的参数
         const contractNFT = await factoryNFT.deploy("WTF Merkle Tree", "WTF", root)
-        console.log(`合约地址: ${contractNFT.address}`);
-        // console.log("部署合约的交易详情")
-        // console.log(contractNFT.deployTransaction)
+        console.log(`合约地址: ${contractNFT.target}`);
         console.log("等待合约部署上链")
-        await contractNFT.deployed()
+        await contractNFT.waitForDeployment()
         // 也可以用 contractNFT.deployTransaction.wait()
         console.log("合约已上链")
 

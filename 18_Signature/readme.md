@@ -46,7 +46,7 @@ title: 18. 数字签名脚本
     const account = "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4"
     const tokenId = "0"
     // 等效于Solidity中的keccak256(abi.encodePacked(account, tokenId))
-    const msgHash = utils.solidityKeccak256(
+    const msgHash = ethers.solidityKeccak256(
         ['address', 'uint256'],
         [account, tokenId])
     console.log(`msgHash：${msgHash}`)
@@ -56,7 +56,7 @@ title: 18. 数字签名脚本
 2. 签名：为了避免用户误签了恶意交易，`EIP191`提倡在`消息`前加上`"\x19Ethereum Signed Message:\n32"`字符，再做一次`keccak256`哈希得到`以太坊签名消息`，然后再签名。`ethers.js`的钱包类提供了`signMessage()`函数进行符合`EIP191`标准的签名。注意，如果`消息`为`string`类型，则需要利用`arrayify()`函数处理下。例子：
     ```js
     // 签名
-    const messageHashBytes = ethers.utils.arrayify(msgHash)
+    const messageHashBytes = ethers.getBytes(msgHash)
     const signature = await wallet.signMessage(messageHashBytes);
     console.log(`签名：${signature}`)
     // 签名：0x390d704d7ab732ce034203599ee93dd5d3cb0d4d1d7c600ac11726659489773d559b12d220f99f41d17651b0c1c6a669d346a397f8541760d6b32a5725378b241c
@@ -69,7 +69,7 @@ title: 18. 数字签名脚本
     ```js
     // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
     const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-    const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+    const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
     // 利用私钥和provider创建wallet对象
     const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
     const wallet = new ethers.Wallet(privateKey, provider)
@@ -81,12 +81,12 @@ title: 18. 数字签名脚本
     const account = "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4"
     const tokenId = "0"
     // 等效于Solidity中的keccak256(abi.encodePacked(account, tokenId))
-    const msgHash = utils.solidityKeccak256(
+    const msgHash = ethers.solidityPackedKeccak256(
         ['address', 'uint256'],
         [account, tokenId])
     console.log(`msgHash：${msgHash}`)
     // 签名
-    const messageHashBytes = ethers.utils.arrayify(msgHash)
+    const messageHashBytes = ethers.getBytes(msgHash)
     const signature = await wallet.signMessage(messageHashBytes);
     console.log(`签名：${signature}`)
     ```
@@ -116,11 +116,9 @@ title: 18. 数字签名脚本
     ```js
     // 部署合约，填入constructor的参数
     const contractNFT = await factoryNFT.deploy("WTF Signature", "WTF", wallet.address)
-    console.log(`合约地址: ${contractNFT.address}`);
-    // console.log("部署合约的交易详情")
-    // console.log(contractNFT.deployTransaction)
+    console.log(`合约地址: ${contractNFT.target}`);
     console.log("等待合约部署上链")
-    await contractNFT.deployed()
+    await contractNFT.waitForDeployment()
     // 也可以用 contractNFT.deployTransaction.wait()
     console.log("合约已上链")
     ```
