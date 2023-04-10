@@ -55,14 +55,14 @@ air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orb
 
 ## 批量生成钱包
 
-`ethers.js`提供了[HDNode类](https://docs.ethers.io/v5/api/utils/hdnode/)，方便开发者使用HD钱包。下面我们利用它从一个助记词批量生成20个钱包。
+`ethers.js`提供了[HDNode类](https://docs.ethers.org/v6-beta/api/wallet/#HDNodeWallet)，方便开发者使用HD钱包。下面我们利用它从一个助记词批量生成20个钱包。
 
 1. 创建`HDNode`钱包变量，可以看到助记词为`'air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orbit weapon universe require tired sing casino business anxiety seminar hunt'`
     ```js
     // 生成随机助记词
-    const mnemonic = utils.entropyToMnemonic(utils.randomBytes(32))
+    const mnemonic = ethers.Mnemonic.entropyToPhrase(utils.randomBytes(32))
     // 创建HD钱包
-    const hdNode = utils.HDNode.fromMnemonic(mnemonic)
+    const hdNode = ethers.HDNodeWallet.fromPhrase(mnemonic)
     console.log(hdNode);
     ```
     ![HDNode](img/14-2.png)
@@ -87,7 +87,7 @@ air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orb
 3. 保存钱包为加密json：
 
     ```js
-    const wallet = ethers.Wallet.fromMnemonic(mnemonic)
+    const wallet = ethers.Wallet.fromPhrase(mnemonic)
     console.log("通过助记词创建钱包：")
     console.log(wallet)
     // 加密json用的密码，可以更改成别的

@@ -1,11 +1,11 @@
-import { ethers, utils } from "ethers";
+import { ethers } from "ethers";
 
 // 1. 创建HD钱包
 console.log("\n1. 创建HD钱包")
 // 生成随机助记词
-const mnemonic = utils.entropyToMnemonic(utils.randomBytes(32))
+const mnemonic = ethers.Mnemonic.entropyToPhrase(ethers.randomBytes(32))
 // 创建HD钱包
-const hdNode = utils.HDNode.fromMnemonic(mnemonic)
+const hdNode = ethers.HDNodeWallet.fromPhrase(mnemonic)
 console.log(hdNode);
 
 // 2. 通过HD钱包派生20个钱包
@@ -24,7 +24,7 @@ for (let i = 0; i < numWallet; i++) {
 
 // 3. 保存钱包（加密json）
 console.log("\n3. 保存钱包（加密json）")
-const wallet = ethers.Wallet.fromMnemonic(mnemonic)
+const wallet = ethers.Wallet.fromPhrase(mnemonic)
 console.log("通过助记词创建钱包：")
 console.log(wallet)
 // 加密json用的密码，可以更改成别的

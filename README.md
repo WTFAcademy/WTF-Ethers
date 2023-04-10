@@ -55,7 +55,7 @@ node 01_HelloVitalik/HelloVitalik.js
 
 ## 进阶
 
-**第11讲：CallStatic**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/11_CallStatic)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/11_CallStatic/readme.md)】
+**第11讲：CallStatic**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/11_StaticCall)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/11_StaticCall/readme.md)】
 
 **第12讲：识别ERC721**：【[代码](https://github.com/WTFAcademy/WTFEthers/blob/main/12_ERC721Check)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/12_ERC721Check/readme.md)】
 
