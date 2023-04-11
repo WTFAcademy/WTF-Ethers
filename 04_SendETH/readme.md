@@ -183,8 +183,8 @@ console.log(`钱包1助记词: ${wallet1.mnemonic.phrase}`)
     console.log(`\n5. 发送ETH（测试网）`);
     // i. 打印交易前余额
     console.log(`i. 发送前余额`)
-    console.log(`钱包1: ${ethers.formatEther(await provider.getBalance(wallet1WithProvider.address))} ETH`)
-    console.log(`钱包2: ${ethers.formatEther(await provider.getBalance(wallet2.address))} ETH`)
+    console.log(`钱包1: ${ethers.formatEther(await provider.getBalance(wallet1WithProvider))} ETH`)
+    console.log(`钱包2: ${ethers.formatEther(await provider.getBalance(wallet2))} ETH`)
     // ii. 构造交易请求，参数：to为接收地址，value为ETH数额
     const tx = {
         to: address1,
@@ -197,8 +197,8 @@ console.log(`钱包1助记词: ${wallet1.mnemonic.phrase}`)
     console.log(receipt) // 打印交易详情
     // iv. 打印交易后余额
     console.log(`\niii. 发送后余额`)
-    console.log(`钱包1: ${ethers.formatEther(await provider.getBalance(wallet1WithProvider.address))} ETH`)
-    console.log(`钱包2: ${ethers.formatEther(await provider.getBalance(wallet2.address))} ETH`)
+    console.log(`钱包1: ${ethers.formatEther(await provider.getBalance(wallet1WithProvider))} ETH`)
+    console.log(`钱包2: ${ethers.formatEther(await provider.getBalance(wallet2))} ETH`)
 ```
 
 ![发送ETH](img/4-5.png)

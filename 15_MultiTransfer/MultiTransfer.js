@@ -68,7 +68,7 @@ const main = async () => {
     const balanceETH = await provider.getBalance(addresses[10])
     console.log(`ETH持仓: ${ethers.formatEther(balanceETH)}\n`)
 
-    const myETH = await provider.getBalance(wallet.address)
+    const myETH = await provider.getBalance(wallet)
     const myToken = await contractWETH.balanceOf(wallet.getAddress())
     // 如果钱包ETH足够和WETH足够
     if(ethers.formatEther(myETH) > 0.002 && ethers.formatEther(myToken) >= 0.002){

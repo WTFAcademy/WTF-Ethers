@@ -14,6 +14,8 @@ WTF Academy 社群：[Discord](https://discord.gg/5akcruXrsk)｜[微信群](http
 
 ---
 
+> 目前 Flashbots Bundle 仅支持 ethers.js v5 版本。
+
 在以太坊转为 POS 之后，有超过 60% 的区块都是 flashbots 产出的，非常惊人，但是很多人并不了解它。这一讲，我们将介绍 Flashbots，包括:
 1. 什么是 Flashbots?
 2. 普通用户如何连接 Flashbots 节点发送隐私交易。

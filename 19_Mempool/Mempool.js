@@ -1,5 +1,5 @@
 // provider.on("pending", listener)
-import { ethers} from "ethers";
+import { ethers } from "ethers";
 
 // 1. 创建provider和wallet，监听事件时候推荐用wss连接而不是http
 console.log("\n1. 连接 wss RPC")

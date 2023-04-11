@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 
 // 1. 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
 const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
-const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
+const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
 
 // 2. 合约地址
 // DAI address (mainnet)

@@ -48,10 +48,10 @@ const main = async () => {
     // 5. 读取一个地址的ETH和WETH余额
     console.log("\n3. 读取一个地址的ETH和WETH余额")
     //读取WETH余额
-    const balanceWETH = await contractWETH.balanceOf(wallets[19].address)
+    const balanceWETH = await contractWETH.balanceOf(wallets[19])
     console.log(`WETH持仓: ${ethers.formatEther(balanceWETH)}`)
     //读取ETH余额
-    const balanceETH = await provider.getBalance(wallets[19].address)
+    const balanceETH = await provider.getBalance(wallets[19])
     console.log(`ETH持仓: ${ethers.formatEther(balanceETH)}\n`)
 
     // 如果钱包ETH足够
@@ -89,10 +89,10 @@ const main = async () => {
         // 8. 读取一个地址在归集后的ETH和WETH余额
         console.log("\n6. 读取一个地址在归集后的ETH和WETH余额")
         // 读取WETH余额
-        const balanceWETHAfter = await contractWETH.balanceOf(wallets[19].address)
+        const balanceWETHAfter = await contractWETH.balanceOf(wallets[19])
         console.log(`归集后WETH持仓: ${ethers.formatEther(balanceWETHAfter)}`)
         // 读取ETH余额
-        const balanceETHAfter = await provider.getBalance(wallets[19].address)
+        const balanceETHAfter = await provider.getBalance(wallets[19])
         console.log(`归集后ETH持仓: ${ethers.formatEther(balanceETHAfter)}\n`)
     }
 }

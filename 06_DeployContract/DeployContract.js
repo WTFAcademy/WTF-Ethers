@@ -39,7 +39,7 @@ const factoryERC20 = new ethers.ContractFactory(abiERC20, bytecodeERC20, wallet)
 
 const main = async () => {
     // 读取钱包内ETH余额
-    const balanceETH = await provider.getBalance(wallet.address)
+    const balanceETH = await provider.getBalance(wallet)
 
     // 如果钱包ETH足够
     if(ethers.formatEther(balanceETH) > 0.002){
@@ -62,7 +62,7 @@ const main = async () => {
         let tx = await contractERC20.mint("10000")
         console.log("等待交易上链")
         await tx.wait()
-        console.log(`mint后地址中代币余额: ${await contractERC20.balanceOf(wallet.address)}`)
+        console.log(`mint后地址中代币余额: ${await contractERC20.balanceOf(wallet)}`)
         console.log(`代币总供给: ${await contractERC20.totalSupply()}`)
 
         // 3. 调用transfer()函数，给V神转账1000代币

@@ -1,13 +1,13 @@
-import { ethers, utils } from "ethers";
+import { ethers } from "ethers";
 
 // 1. 创建provider
-var url = "http://127.0.0.1:8545";
-const provider = new ethers.providers.WebSocketProvider(url);
+var url = "wss://127.0.0.1:8545";
+const provider = new ethers.WebSocketProvider(url);
 let network = provider.getNetwork()
 network.then(res => console.log(`[${(new Date).toLocaleTimeString()}] 连接到 chain ID ${res.chainId}`));
 
 // 2. 创建interface对象，用于解码交易详情。
-const iface = new utils.Interface([
+const iface = new ethers.Interface([
     "function mint() external",
 ])
 
@@ -24,7 +24,7 @@ const main = async () => {
             let tx = await provider.getTransaction(txHash);
             if (tx) {
                 // filter pendingTx.data
-                if (tx.data.indexOf(iface.getSighash("mint")) !== -1 && tx.from != wallet.address ) {
+                if (tx.data.indexOf(iface.getFunction("mint").selector) !== -1 && tx.from != wallet.address ) {
                     // 打印txHash
                     console.log(`\n[${(new Date).toLocaleTimeString()}] 监听Pending交易: ${txHash} \r`);
 
@@ -55,19 +55,6 @@ const main = async () => {
             }
         }
     });
-
-    provider._websocket.on("error", async () => {
-        console.log(`Unable to connect to ${ep.subdomain} retrying in 3s...`);
-        setTimeout(init, 3000);
-      });
-
-    provider._websocket.on("close", async (code) => {
-        console.log(
-            `Connection lost with code ${code}! Attempting reconnect in 3s...`
-        );
-        provider._websocket.terminate();
-        setTimeout(init, 3000);
-    });    
 };
 
 main()

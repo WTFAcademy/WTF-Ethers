@@ -30,12 +30,11 @@ Metamask（小狐狸）钱包是以太坊最受欢迎的开源钱包，它可以
 
 ## 连接metamask
 
-在安装好metamask钱包后，浏览器会给每个页面注入一个`window.ethereum`对象，用于和钱包交互。`ethers.js`提供的 `Web3Provider` 封装了一个标准的 Web3
-Provider，直接在程序中生成一个provider对象，方便使用：
+在安装好metamask钱包后，浏览器会给每个页面注入一个`window.ethereum`对象，用于和钱包交互。`ethers.js`提供的 `BrowserProvider` 封装了一个标准的 Web3 Provider，直接在程序中生成一个provider对象，方便使用：
 
 ```js
 // 获得provider
-const provider = new ethers.providers.Web3Provider(window.ethereum)
+const provider = new ethers.BrowserProvider(window.ethereum)
 ```
 
 之后就像 `ethers.js` 中的 `provider` 一样使用就好，下面举几个例子。
@@ -124,7 +123,7 @@ const provider = new ethers.providers.Web3Provider(window.ethereum)
         let nonce = users[address].nonce
         console.log(`nonce: ${nonce}`)
         //验证对nonce进行签名的地址
-        const decodedAddress = ethers.utils.verifyMessage(nonce.toString(), signature.toString())
+        const decodedAddress = ethers.verifyMessage(nonce.toString(), signature.toString())
         console.log(`decodedAddress: ${decodedAddress}`)
         //比较地址和签名的地址是否一致
         if (address.toLowerCase() === decodedAddress.toLowerCase()) {
@@ -143,7 +142,7 @@ const provider = new ethers.providers.Web3Provider(window.ethereum)
     async function onClickHandler() {
         console.log("连接钱包")
         // 获得provider
-        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const provider = new ethers.Web3Provider(window.ethereum)
         // 读取钱包地址
         const accounts = await provider.send("eth_requestAccounts", []);
         const account = accounts[0]
@@ -219,7 +218,7 @@ Nonce: 6971359
 Issued At: 2023-02-16T06:03:49.534Z
 ```
 
-## ethers.utils.verifyMessage(nonce, signature) 在后端的实现
+## ethers.verifyMessage(nonce, signature) 在后端的实现
 Java 后端项目
 maven导入web3j
 ```

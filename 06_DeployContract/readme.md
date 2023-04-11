@@ -122,7 +122,7 @@ await contractERC20.deployed()
     let tx = await contractERC20.mint("10000")
     console.log("等待交易上链")
     await tx.wait()
-    console.log(`mint后地址中代币余额: ${await contractERC20.balanceOf(wallet.address)}`)
+    console.log(`mint后地址中代币余额: ${await contractERC20.balanceOf(wallet)}`)
     console.log(`代币总供给: ${await contractERC20.totalSupply()}`)
     ```
     ![铸造代币](img/6-3.png)

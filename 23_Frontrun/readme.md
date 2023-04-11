@@ -51,11 +51,11 @@ contract FreeMint is ERC721 {
 
 1. 创建连接到foundry本地测试网的`provider`对象，用于监听和发送交易。foundry本地测试网默认url：`"http://127.0.0.1:8545"`。
     ```js
-    import { ethers, utils } from "ethers";
+    import { ethers } from "ethers";
 
     // 1. 创建provider
     var url = "http://127.0.0.1:8545";
-    const provider = new ethers.providers.WebSocketProvider(url);
+    const provider = new ethers.WebSocketProvider(url);
     let network = provider.getNetwork()
     network.then(res => console.log(`[${(new Date).toLocaleTimeString()}] 连接到 chain ID ${res.chainId}`));
     ```
@@ -63,7 +63,7 @@ contract FreeMint is ERC721 {
 2. 创建一个包含我们感兴趣的`mint()`函数的`interface`对象，用于解码交易。如果你不了解它，可以阅读[WTF Ethers极简教程第20讲：解码交易](https://github.com/WTFAcademy/WTFEthers/blob/main/20_DecodeTx/readme.md)。
     ```js
     // 2. 创建interface对象，用于解码交易详情。
-    const iface = new utils.Interface([
+    const iface = new ethers.Interface([
         "function mint() external",
     ])
     ```
@@ -85,7 +85,7 @@ contract FreeMint is ERC721 {
             let tx = await provider.getTransaction(txHash);
             if (tx) {
                 // filter pendingTx.data
-                if (tx.data.indexOf(iface.getSighash("mint")) !== -1 && tx.from != wallet.address ) {
+                if (tx.data.indexOf(iface.getFunction("mint").selector) !== -1 && tx.from != wallet.address ) {
                     // 打印txHash
                     console.log(`\n[${(new Date).toLocaleTimeString()}] 监听Pending交易: ${txHash} \r`);
     ```

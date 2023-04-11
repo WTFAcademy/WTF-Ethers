@@ -60,7 +60,7 @@ air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orb
 1. 创建`HDNode`钱包变量，可以看到助记词为`'air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orbit weapon universe require tired sing casino business anxiety seminar hunt'`
     ```js
     // 生成随机助记词
-    const mnemonic = ethers.Mnemonic.entropyToPhrase(utils.randomBytes(32))
+    const mnemonic = ethers.Mnemonic.entropyToPhrase(randomBytes(32))
     // 创建HD钱包
     const hdNode = ethers.HDNodeWallet.fromPhrase(mnemonic)
     console.log(hdNode);

@@ -25,7 +25,7 @@ title: 16. 批量归集
     ```js
     // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
     const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-    const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+    const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
     // 利用私钥和provider创建wallet对象
     const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
     const wallet = new ethers.Wallet(privateKey, provider)
@@ -80,10 +80,10 @@ title: 16. 批量归集
     ```js
     console.log("\n3. 读取一个地址的ETH和WETH余额")
     //读取WETH余额
-    const balanceWETH = await contractWETH.balanceOf(wallets[19].address)
+    const balanceWETH = await contractWETH.balanceOf(wallets[19])
     console.log(`WETH持仓: ${ethersfromPhrase.formatEther(balanceWETH)}`)
     //读取ETH余额
-    const balanceETH = await provider.getBalance(wallets[19].address)
+    const balanceETH = await provider.getBalance(wallets[19])
     console.log(`ETH持仓: ${ethersfromPhrase.formatEther(balanceETH)}\n`)
     ```
     ![读取余额](img/16-3.png)
@@ -128,10 +128,10 @@ title: 16. 批量归集
     ```js
     console.log("\n6. 读取一个地址在归集后的ETH和WETH余额")
     // 读取WETH余额
-    const balanceWETHAfter = await contractWETH.balanceOf(wallets[19].address)
+    const balanceWETHAfter = await contractWETH.balanceOf(wallets[19])
     console.log(`归集后WETH持仓: ${ethersfromPhrase.formatEther(balanceWETHAfter)}`)
     // 读取ETH余额
-    const balanceETHAfter = await provider.getBalance(wallets[19].address)
+    const balanceETHAfter = await provider.getBalance(wallets[19])
     console.log(`归集后ETH持仓: ${ethersfromPhrase.formatEther(balanceETHAfter)}\n`)
     ```
     ![归集后余额变动](img/16-6.png)
