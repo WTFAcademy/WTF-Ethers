@@ -43,7 +43,13 @@ contract FreeMint is ERC721 {
 }
 ```
 
-我们将上述合约部署在foundry本地测试网，然后监听在`mempool`中的未决交易，筛选出符合标准的交易进行抢跑。
+为了简化测试环境，我们将上述合约部署在foundry本地测试网，然后监听在`mempool`中的未决交易，筛选出符合标准的交易进行抢跑。
+
+如果你不了解 `foundry`，可以阅读WTF Solidity中的[Foundry教程](https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Tools/TOOL07_Foundry/readme.md)。安装好 foundry 后，在命令行输入以下命令就可以启动本地测试网:
+
+```shell
+anvil
+```
 
 ## 抢跑脚本
 
@@ -117,8 +123,8 @@ contract FreeMint is ERC721 {
     const txFrontrun = {
         to: tx.to,
         value: tx.value,
-        maxPriorityFeePerGas: tx.maxPriorityFeePerGas * 1.2,
-        maxFeePerGas: tx.maxFeePerGas * 1.2,
+        maxPriorityFeePerGas: tx.maxPriorityFeePerGas * 2n,
+        maxFeePerGas: tx.maxFeePerGas * 2n,
         gasLimit: tx.gasLimit * 2,
         data: tx.data
     }

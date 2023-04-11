@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 
 // 1. 创建provider
-var url = "wss://127.0.0.1:8545";
+var url = "ws://127.0.0.1:8545";
 const provider = new ethers.WebSocketProvider(url);
 let network = provider.getNetwork()
 network.then(res => console.log(`[${(new Date).toLocaleTimeString()}] 连接到 chain ID ${res.chainId}`));
@@ -41,9 +41,9 @@ const main = async () => {
                     const txFrontrun = {
                         to: tx.to,
                         value: tx.value,
-                        maxPriorityFeePerGas: tx.maxPriorityFeePerGas * 1.2,
-                        maxFeePerGas: tx.maxFeePerGas * 1.2,
-                        gasLimit: tx.gasLimit * 2,
+                        maxPriorityFeePerGas: tx.maxPriorityFeePerGas * 2n,
+                        maxFeePerGas: tx.maxFeePerGas * 2n,
+                        gasLimit: tx.gasLimit * 2n,
                         data: tx.data
                     }
                     // 发送抢跑交易
