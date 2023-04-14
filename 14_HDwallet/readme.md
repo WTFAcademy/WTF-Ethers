@@ -107,4 +107,4 @@ air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orb
     ![读取钱包](img/14-5.png)
 
 ## 总结
-这一讲我们介绍了HD钱包（BIP32，BIP44，BIP39），并利用它在`ethers.js`批量生成了20个钱包。
+这一讲我们介绍了HD钱包（BIP32，BIP44，BIP39），并利用它使用`ethers.js`批量生成了20个钱包。
