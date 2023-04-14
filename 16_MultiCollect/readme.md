@@ -27,7 +27,7 @@ title: 16. 批量归集
     const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
     const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
     // 利用私钥和provider创建wallet对象
-    const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
+    const privateKey = '0x21ac72b6ce19661adf31ef0d2bf8c3fcad003deee3dc1a1a64f5fa3d6b049c06'
     const wallet = new ethers.Wallet(privateKey, provider)
     ```
 
