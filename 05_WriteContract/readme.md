@@ -8,9 +8,9 @@ title: 5. 合约交互
 
 **推特**：[@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy社群：** [官网 wtf.academy](https://wtf.academy) | [WTF Solidity教程](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [微信群申请](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**WTF Academy社群：** [官网 wtf.academy](https://wtf.academy) | [WTF Solidity教程](https://github.com/AmazingAng/WTF-Solidity) | [discord](https://discord.gg/5akcruXrsk) | [微信群申请](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-所有代码和教程开源在github: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTFEthers)
+所有代码和教程开源在github: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
@@ -61,20 +61,19 @@ await tx.wait()
     ```js
     import { ethers } from "ethers";
 
-    // 利用Infura的rpc节点连接以太坊网络
-    const INFURA_ID = '184d4c5ec78243c290d151d3f1a10f1d'
-    // 连接Rinkeby测试网
-    const provider = new ethers.JsonRpcProvider(`https://rinkeby.infura.io/v3/${INFURA_ID}`)
+    // 利用Alchemy的rpc节点连接以太坊网络
+    const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
+    const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
 
     // 利用私钥和provider创建wallet对象
     const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
     const wallet = new ethers.Wallet(privateKey, provider)
     ```
-2. 创建可写`WETH`合约变量，我们在`ABI`中加入了3个我们要调用的函数：
-    - `balanceOf()`：查询地址的`WETH`余额。
+2. 创建可写`WETH`合约变量，我们在`ABI`中加入了4个我们要调用的函数：
+    - `balanceOf(address)`：查询地址的`WETH`余额。
     - `deposit()`：将转入合约的`ETH`转为`WETH`。
-    - `transfer()`：转账。
-
+    - `transfer(adress, uint256)`：转账。
+    - `withdraw(uint256)`：取款。
     ```js
     // WETH的ABI
     const abiWETH = [
@@ -83,11 +82,14 @@ await tx.wait()
         "function transfer(address, uint) public returns (bool)",
         "function withdraw(uint) public",
     ];
-    // WETH合约地址（Rinkeby测试网）
-    const addressWETH = '0xc778417e063141139fce010982780140aa0cd5ab' // WETH Contract
+    // WETH合约地址（Goerli测试网）
+    const addressWETH = '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6' // WETH Contract
 
     // 声明可写合约
     const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)
+    // 也可以声明一个只读合约，再用connect(wallet)函数转换成可写合约。
+    // const contractWETH = new ethers.Contract(addressWETH, abiWETH, provider)
+    // contractWETH.connect(wallet)
     ```
 
 3. 读取账户`WETH`余额，可以看到余额为`1.001997`。

@@ -26,7 +26,7 @@ const main = async () => {
     // 2. 查询provider连接到了哪条链
     console.log("\n2. 查询provider连接到了哪条链")
     const network = await providerETH.getNetwork();
-    console.log(network);
+    console.log(network.toJSON());
 
     // 3. 查询区块高度
     console.log("\n3. 查询区块高度")

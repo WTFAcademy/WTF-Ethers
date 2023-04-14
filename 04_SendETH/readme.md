@@ -7,9 +7,9 @@ title: 4. 发送ETH
 
 **推特**：[@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy社群：** [官网 wtf.academy](https://wtf.academy) | [WTF Solidity教程](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [微信群申请](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**WTF Academy社群：** [官网 wtf.academy](https://wtf.academy) | [WTF Solidity教程](https://github.com/AmazingAng/WTF-Solidity) | [discord](https://discord.gg/5akcruXrsk) | [微信群申请](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-所有代码和教程开源在github: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTFEthers)
+所有代码和教程开源在github: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
@@ -87,10 +87,10 @@ const wallet3 = new ethers.Wallet.fromMnemonic(mnemonic.phrase)
 // 由于playcode不支持ethers.Wallet.createRandom()函数，我们只能用VScode运行这一讲代码
 import { ethers } from "ethers";
 
-// 准备Infura API Key, 教程：https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL02_Infura/readme.md
-const INFURA_ID = '184d4c5ec78243c290d151d3f1a10f1d'
-// 连接rinkeby测试网
-const provider = new ethers.JsonRpcProvider(`https://rinkeby.infura.io/v3/${INFURA_ID}`)
+// 利用Alchemy的rpc节点连接以太坊测试网络
+// 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
+const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
+const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
 ```
 
 ### 2. 用三种不同方法创建`Wallet`实例
@@ -115,7 +115,7 @@ const wallet2 = new ethers.Wallet(privateKey, provider)
 
 ```javascript
 // 从助记词创建wallet对象
-const wallet3 = ethers.Wallet.fromMnemonic(mnemonic.phrase)
+const wallet3 = ethers.Wallet.fromPhrase(mnemonic.phrase)
 ```
 
 ### 3. 获取钱包地址
@@ -140,7 +140,7 @@ const wallet3 = ethers.Wallet.fromMnemonic(mnemonic.phrase)
 
 ### 4. 获取助记词
 
-利用钱包对象的`mnemonic`成员获取助记词：
+利用钱包对象的`mnemonic.phrase`成员获取助记词：
 
 ```javascript
 console.log(`钱包1助记词: ${wallet1.mnemonic.phrase}`)
@@ -177,8 +177,8 @@ console.log(`钱包1助记词: ${wallet1.mnemonic.phrase}`)
 
 ```javascript
     // 5. 发送ETH
-    // 如果这个钱包没rinkeby测试网ETH了，去水龙头领一些，钱包地址: 0xe16C1623c1AA7D919cd2241d8b36d9E79C1Be2A2
-    // 1. chainlink水龙头: https://faucets.chain.link/rinkeby
+    // 如果这个钱包没goerli测试网ETH了，去水龙头领一些，钱包地址: 0xe16C1623c1AA7D919cd2241d8b36d9E79C1Be2A2
+    // 1. chainlink水龙头: https://faucets.chain.link/goerli
     // 2. paradigm水龙头: https://faucet.paradigm.xyz/
     console.log(`\n5. 发送ETH（测试网）`);
     // i. 打印交易前余额
