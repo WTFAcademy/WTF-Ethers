@@ -28,7 +28,7 @@ function throttle(fn, delay) {
 }
 
 const main = async () => {
-    // 4. 监听pending的uniswapV3交易，获取交易详情，然后解码。
+    // 4. 监听pending的erc20 transfer交易，获取交易详情，然后解码。
     console.log("\n4. 监听pending交易，获取txHash，并输出交易详情。")
     provider.on("pending", throttle(async (txHash) => {
         if (txHash) {
