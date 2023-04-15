@@ -10,11 +10,11 @@ title: 23. 抢先交易脚本
 
 WTF Academy 社群：[Discord](https://discord.gg/5akcruXrsk)｜[微信群](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)｜[官网 wtf.academy](https://wtf.academy)
 
-所有代码和教程开源在 github: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTFEthers)
+所有代码和教程开源在 github: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTF-Ethers)
 
 ---
 
-这一讲，我们将介抢先交易（Front-running，抢跑）的脚本。据统计，以太坊上的套利者通过三明治攻击（sandwich attack）[共获利12亿美元](https://dune.com/chorus_one/ethereum-mev-data)。在学习之前，请先阅读[WTF Solidity教程 合约安全S11: 抢先交易](https://github.com/AmazingAng/WTFSolidity/blob/main/S11_Frontrun/readme.md)。
+这一讲，我们将介绍抢先交易（Front-running，抢跑）的脚本。据统计，以太坊上的套利者通过三明治攻击（sandwich attack）[共获利12亿美元](https://dune.com/chorus_one/ethereum-mev-data)。在学习之前，请先阅读[WTF Solidity教程 合约安全S11: 抢先交易](https://github.com/AmazingAng/WTFSolidity/blob/main/S11_Frontrun/readme.md)。
 
 ![](./img/23-1.png)
 
@@ -43,13 +43,7 @@ contract FreeMint is ERC721 {
 }
 ```
 
-为了简化测试环境，我们将上述合约部署在foundry本地测试网，然后监听在`mempool`中的未决交易，筛选出符合标准的交易进行抢跑。
-
-如果你不了解 `foundry`，可以阅读WTF Solidity中的[Foundry教程](https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Tools/TOOL07_Foundry/readme.md)。安装好 foundry 后，在命令行输入以下命令就可以启动本地测试网:
-
-```shell
-anvil
-```
+我们将上述合约部署在foundry本地测试网，然后监听在`mempool`中的未决交易，筛选出符合标准的交易进行抢跑。
 
 ## 抢跑脚本
 
@@ -57,11 +51,11 @@ anvil
 
 1. 创建连接到foundry本地测试网的`provider`对象，用于监听和发送交易。foundry本地测试网默认url：`"http://127.0.0.1:8545"`。
     ```js
-    import { ethers } from "ethers";
+    import { ethers, utils } from "ethers";
 
     // 1. 创建provider
     var url = "http://127.0.0.1:8545";
-    const provider = new ethers.WebSocketProvider(url);
+    const provider = new ethers.providers.WebSocketProvider(url);
     let network = provider.getNetwork()
     network.then(res => console.log(`[${(new Date).toLocaleTimeString()}] 连接到 chain ID ${res.chainId}`));
     ```
@@ -69,7 +63,7 @@ anvil
 2. 创建一个包含我们感兴趣的`mint()`函数的`interface`对象，用于解码交易。如果你不了解它，可以阅读[WTF Ethers极简教程第20讲：解码交易](https://github.com/WTFAcademy/WTFEthers/blob/main/20_DecodeTx/readme.md)。
     ```js
     // 2. 创建interface对象，用于解码交易详情。
-    const iface = new ethers.Interface([
+    const iface = new utils.Interface([
         "function mint() external",
     ])
     ```
@@ -91,7 +85,7 @@ anvil
             let tx = await provider.getTransaction(txHash);
             if (tx) {
                 // filter pendingTx.data
-                if (tx.data.indexOf(iface.getFunction("mint").selector) !== -1 && tx.from != wallet.address ) {
+                if (tx.data.indexOf(iface.getSighash("mint")) !== -1 && tx.from != wallet.address ) {
                     // 打印txHash
                     console.log(`\n[${(new Date).toLocaleTimeString()}] 监听Pending交易: ${txHash} \r`);
     ```
@@ -123,8 +117,8 @@ anvil
     const txFrontrun = {
         to: tx.to,
         value: tx.value,
-        maxPriorityFeePerGas: tx.maxPriorityFeePerGas * 2n,
-        maxFeePerGas: tx.maxFeePerGas * 2n,
+        maxPriorityFeePerGas: tx.maxPriorityFeePerGas * 1.2,
+        maxFeePerGas: tx.maxFeePerGas * 1.2,
         gasLimit: tx.gasLimit * 2,
         data: tx.data
     }

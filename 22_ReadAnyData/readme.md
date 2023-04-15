@@ -10,7 +10,7 @@ title: 22. 读取任意数据
 
 WTF Academy 社群：[Discord](https://discord.gg/5akcruXrsk)｜[微信群](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)｜[官网 wtf.academy](https://wtf.academy)
 
-所有代码和教程开源在 github: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTFEthers)
+所有代码和教程开源在 github: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTF-Ethers)
 
 ---
 
@@ -54,7 +54,7 @@ import { ethers } from "ethers";
 
 //准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
 const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
-const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
+const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
 
 // 目标合约地址: Arbitrum ERC20 bridge（主网）
 const addressBridge = '0x8315177aB297bA92A06054cE80a67Ed4DBd7ed3a' // DAI Contract
@@ -63,8 +63,8 @@ const slot = `0xb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103
 
 const main = async () => {
     console.log("开始读取特定slot的数据")
-    const privateData = await provider.getStorage(addressBridge, slot)
-    console.log("读出的数据（owner地址）: ", ethers.getAddress(ethers.dataSlice(privateData, 12)))
+    const privateData = await provider.getStorageAt(addressBridge, slot)
+    console.log("读出的数据（owner地址）: ", ethers.utils.getAddress(ethers.utils.hexDataSlice(privateData, 12)))
 }
 
 main()

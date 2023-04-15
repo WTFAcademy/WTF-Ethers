@@ -8,9 +8,9 @@ title: 20. 解码交易详情
 
 **推特**：[@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy社群：** [官网 wtf.academy](https://wtf.academy) | [WTF Solidity教程](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [微信群申请](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**WTF Academy社群：** [官网 wtf.academy](https://wtf.academy) | [WTF Solidity教程](https://github.com/AmazingAng/WTF-Solidity) | [discord](https://discord.gg/5akcruXrsk) | [微信群申请](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-所有代码和教程开源在github: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTFEthers)
+所有代码和教程开源在github: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
@@ -18,28 +18,50 @@ title: 20. 解码交易详情
 
 ## 未决交易
 
-未决交易是用户发出但没被矿工打包上链的交易，在mempool（交易内存池）中出现。对于`mempool`的更多介绍可以看[WTF Ethers极简教程第19讲：监听Mempool](https://github.com/WTFAcademy/WTFEthers/blob/main/19_Mempool/readme.md)
+未决交易是用户发出但没被矿工打包上链的交易，在mempool（交易内存池）中出现。对于`mempool`的更多介绍可以看[WTF Ethers极简教程第19讲：监听Mempool](https://github.com/WTFAcademy/WTF-Ethers/blob/main/19_Mempool/readme.md)
 
-下面是一个转账`ERC20`代币的交易，你可以在[etherscan](https://etherscan.io/tx/0x694e5a2bf12caeee012455f8cd5fb760a8e3804f7f97874e00e7ba0fcd9a1609)上查看交易详情：
+下面是一个利用`Uniswap V3 Router`合约交易代币的未决交易，你可以在[etherscan](https://etherscan.io/tx/0xbe5af8b8885ea9d6ae8a2f3f44315554ff62daebf3f99b42eae9d4cda880208e)上查看交易详情：
 
-![ERC20转账交易](./img/20-1.png)
+![未决交易](./img/20-1.png)
 
 红框中是这个交易的`input data`，看似杂乱无章的十六进制数据，实际上编码了这笔交易的内容：包括调用的函数，以及输入的参数。我们在etherscan点击**Decode Input Data**按钮，就可以解码这段数据：
 
 ![Decode Input Data](./img/20-2.png)
 
-解码之后，我们可以看到这笔交易调用的函数以及输入的参数。
+解码之后，我们可以看到这笔交易调用了合约中的`exactInputSingle()`函数（`Uniswap V3`路由合约中的一个交易函数）以及输入的参数。
 
 ## Interface类
 
 `ethers.js`提供了`Interface`类方便解码交易数据。声明`Interface`类型和声明`abi`的方法差不多，例如：
 
 ```js
-const iface = ethers.Interface([
+const iface = ethers.utils.Interface([
     "function balanceOf(address) public view returns(uint)",
     "function transfer(address, uint) public returns (bool)",
     "function approve(address, uint256) public returns (bool)"
 ]);
+```
+
+如果输入参数是`solidity`的`struct`结构体类型时，我们要做特殊处理，在`javascript`中改为`tuple`元组类型。上面的`exactInputSingle()`函数的参数为`ExactInputSingleParams`结构体：
+```solidity
+    struct ExactInputSingleParams {
+        address tokenIn;
+        address tokenOut;
+        uint24 fee;
+        address recipient;
+        uint256 deadline;
+        uint256 amountIn;
+        uint256 amountOutMinimum;
+        uint160 sqrtPriceLimitX96;
+    }
+```
+
+在`js`中我们要写为：
+
+```js
+const iface = new utils.Interface([
+    "function exactInputSingle(tuple(address tokenIn, address tokenOut, uint24 fee, address recipient, uint deadline, uint amountIn, uint amountOutMinimum, uint160 sqrtPriceLimitX96) calldata) external payable returns (uint amountOut)",
+])
 ```
 
 ## 解码交易数据
@@ -49,9 +71,9 @@ const iface = ethers.Interface([
 1. 创建`provider`和`wallet`，监听交易时候推荐用`wss`连接而不是`http`。
 
     ```js
-    // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
+    // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
     const ALCHEMY_MAINNET_WSSURL = 'wss://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
-    const provider = new ethers.WebSocketProvider(ALCHEMY_MAINNET_WSSURL);
+    const provider = new ethers.providers.WebSocketProvider(ALCHEMY_MAINNET_WSSURL);
     let network = provider.getNetwork()
     network.then(res => console.log(`[${(new Date).toLocaleTimeString()}] 连接到 chain ID ${res.chainId}`));
     ```
@@ -59,8 +81,8 @@ const iface = ethers.Interface([
 2. 创建`Interface`对象，用于解码交易详情。
 
     ```js
-    const iface = new ethers.Interface([
-    "function transfer(address, uint) public returns (bool)",
+    const iface = new utils.Interface([
+        "function exactInputSingle(tuple(address tokenIn, address tokenOut, uint24 fee, address recipient, uint deadline, uint amountIn, uint amountOutMinimum, uint160 sqrtPriceLimitX96) calldata) external payable returns (uint amountOut)",
     ])
     ```
 
@@ -81,7 +103,7 @@ const iface = ethers.Interface([
     }
     ```
 
-4. 监听`pending`的`ERC20` 转账交易，获取交易详情并解码：
+4. 监听`pending`的`uniswapV3`交易，获取交易详情并解码。这里只解码了通过`Uniswap V3`路由合约的`exactInputSingle()`函数的交易。网络不活跃的时候，可能需要等待几分钟才能监听到一笔。
 
     ```js
     provider.on("pending", throttle(async (txHash) => {
@@ -90,7 +112,7 @@ const iface = ethers.Interface([
             let tx = await provider.getTransaction(txHash);
             if (tx) {
                 // filter pendingTx.data
-                if (tx.data.indexOf(iface.getFunction("transfer").selector) !== -1) {
+                if (tx.data.indexOf(iface.getSighash("exactInputSingle")) !== -1) {
                     // 打印txHash
                     console.log(`\n[${(new Date).toLocaleTimeString()}] 监听Pending交易: ${txHash} \r`);
 

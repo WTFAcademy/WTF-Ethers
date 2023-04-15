@@ -19,4 +19,3 @@ console.log(`\n靓号地址：${wallet.address}`)
 console.log(`靓号私钥：${wallet.privateKey}\n`)
 
 
-
