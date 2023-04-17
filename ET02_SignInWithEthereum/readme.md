@@ -154,7 +154,7 @@ const provider = new ethers.BrowserProvider(window.ethereum)
         showNonce.innerHTML = nonce;
         console.log(`获取后台需要签名的数据: ${nonce}`)
         //签名
-        const signer = provider.getSigner()
+        const signer = await provider.getSigner()
         const signature = await signer.signMessage(nonce.toString())
         showSignature.innerHTML = signature;
         //去后台验证签名，完成登录

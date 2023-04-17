@@ -101,7 +101,7 @@ const provider = new ethers.BrowserProvider(window.ethereum)
 
     ```js
     // 读取ETH余额
-    const signer = provider.getSigner()
+    const signer = await provider.getSigner()
     const balance = await provider.getBalance(signer.getAddress());
     console.log(`以太坊余额： ${ethers.formatUnits(balance)}`)
     showETHBalance.innerHTML = ethers.formatUnits(balance);
