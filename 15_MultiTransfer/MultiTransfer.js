@@ -29,7 +29,9 @@ const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo
 const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
 
 // 利用私钥和provider创建wallet对象
-// 如果这个钱包没goerli测试网ETH了，去水龙头领一些，钱包地址: 0xe16C1623c1AA7D919cd2241d8b36d9E79C1Be2A2
+// 如果这个钱包没goerli测试网ETH了
+// 请使用自己的小号钱包测试，钱包地址: 0x338f8891D6BdC58eEB4754352459cC461EfD2a5E ,请不要给此地址发送任何ETH
+// 注意不要把自己的私钥上传到github上
 const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
 const wallet = new ethers.Wallet(privateKey, provider)
 
@@ -101,7 +103,7 @@ const main = async () => {
 
     }else{
         // 如果ETH和WETH不足
-        console.log("ETH不足，去水龙头领一些Goerli ETH，并兑换一些WETH")
+        console.log("ETH不足，请使用自己的小号钱包测试，并兑换一些WETH")
         console.log("1. chainlink水龙头: https://faucets.chain.link/goerli")
         console.log("2. paradigm水龙头: https://faucet.paradigm.xyz/")
     }
