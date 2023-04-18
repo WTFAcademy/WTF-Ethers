@@ -10,7 +10,7 @@ title: 24. 识别ERC20合约
 
 WTF Academy 社群：[Discord](https://discord.gg/5akcruXrsk)｜[微信群](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)｜[官网 wtf.academy](https://wtf.academy)
 
-所有代码和教程开源在 github: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTFEthers)
+所有代码和教程开源在 github: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTF-Ethers)
 
 ---
 
@@ -18,7 +18,7 @@ WTF Academy 社群：[Discord](https://discord.gg/5akcruXrsk)｜[微信群](http
 
 ## `ERC20`
 
-`ERC721` 是以太坊上最常用的代币标准，如果对这个标准不熟悉，可以阅读[WTF Solidity第31讲 ERC20](https://github.com/AmazingAng/WTFSolidity/blob/main/31_ERC20/readme.md)。`ERC20` 标准包含以下函数和事件:
+`ERC721` 是以太坊上最常用的代币标准，如果对这个标准不熟悉，可以阅读[WTF Solidity第31讲 ERC20](https://github.com/AmazingAng/WTF-Solidity/blob/main/31_ERC20/readme.md)。`ERC20` 标准包含以下函数和事件:
 ```solidity
 interface IERC20 {
     event Transfer(address indexed from, address indexed to, uint256 value);
@@ -40,7 +40,7 @@ interface IERC20 {
 ```
 
 ## 识别 `ERC20` 合约
-在之前的[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/12_ERC721Check/readme.md)中，我们讲了如何基于 `ERC165` 识别 `ERC721` 合约。但是由于 `ERC20` 的发布早于 `ERC165`（20 < 165），因此我们没法用相同的办法识别 `ERC20` 合约，只能另找办法。
+在之前的[教程](https://github.com/WTFAcademy/WTF-Ethers/blob/main/12_ERC721Check/readme.md)中，我们讲了如何基于 `ERC165` 识别 `ERC721` 合约。但是由于 `ERC20` 的发布早于 `ERC165`（20 < 165），因此我们没法用相同的办法识别 `ERC20` 合约，只能另找办法。
 
 区块链是公开的，我们能获取任意合约地址上的代码（bytecode）。因此，我们可以先获取合约代码，然后对比其是否包含 `ERC20` 标准中的函数就可以了。
 
@@ -49,7 +49,7 @@ interface IERC20 {
 let code = await provider.getCode(contractAddress)
 ```
 
-接下来我们要检查合约 `bytecode` 是否包含 `ERC20` 标准中的函数。合约 `bytecode` 中存储了相应的[函数选择器]：如果合约包含 `transfer(address, uint256)` 函数，那么 `bytecode` 就会包含 `a9059cbb`；如果合约包含 `balanceOf(address)`，那么 `bytecode` 就会包含 `18160ddd`。如果你不了解函数选择器，可以阅读 WTF Solidity的[相应章节](https://github.com/AmazingAng/WTFSolidity/blob/main/29_Selector/readme.md)。如果想更深入的了解 `bytecode`，可以阅读[深入EVM](https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Translation/DiveEVM2017)。
+接下来我们要检查合约 `bytecode` 是否包含 `ERC20` 标准中的函数。合约 `bytecode` 中存储了相应的[函数选择器]：如果合约包含 `transfer(address, uint256)` 函数，那么 `bytecode` 就会包含 `a9059cbb`；如果合约包含 `balanceOf(address)`，那么 `bytecode` 就会包含 `18160ddd`。如果你不了解函数选择器，可以阅读 WTF Solidity的[相应章节](https://github.com/AmazingAng/WTF-Solidity/blob/main/29_Selector/readme.md)。如果想更深入的了解 `bytecode`，可以阅读[深入EVM](https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Translation/DiveEVM2017)。
 
 这里，我们仅需检测  `transfer(address, uint256)` 和 `balanceOf(address)` 两个函数，而不用检查全部6个，这是因为：
 1. `ERC20`标准中只有 `transfer(address, uint256)` 不包含在 `ERC721`标准、`ERC1155`和`ERC777`标准中。因此如果一个合约包含 `transfer(address, uint256)` 的选择器，就能确定它是 `ERC20` 代币合约，而不是其他。
@@ -101,7 +101,7 @@ main()
 
 输出如下：
 
-![](./ERC20Checker.js)
+![](./img/24-1.png)
 
 脚本成功检测出 `DAI` 合约是 `ERC20` 合约，而 `BAYC` 合约不是 `ERC20` 合约。
 
