@@ -20,10 +20,11 @@ const abiWETH = [
     "function balanceOf(address) public view returns(uint)",
     "function deposit() public payable",
     "function transfer(address, uint) public returns (bool)",
-    "function withdraw(uint) public ",
+    "function withdraw(uint) public",
 ];
 // WETH合约地址（Goerli测试网）
-const addressWETH = '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6' // WETH Contract
+const addressWETH = '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6' 
+// WETH Contract
 
 // 声明可写合约
 const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)

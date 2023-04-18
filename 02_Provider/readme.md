@@ -8,9 +8,9 @@ title: 2. 提供器 Provider
 
 **推特**：[@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy社群：** [官网 wtf.academy](https://wtf.academy) | [WTF Solidity教程](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [微信群申请](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**WTF Academy社群：** [官网 wtf.academy](https://wtf.academy) | [WTF Solidity教程](https://github.com/AmazingAng/WTF-Solidity) | [discord](https://discord.gg/5akcruXrsk) | [微信群申请](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-所有代码和教程开源在github: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTFEthers)
+所有代码和教程开源在github: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
@@ -20,7 +20,7 @@ title: 2. 提供器 Provider
 
 `Provider`类是对以太坊网络连接的抽象，为标准以太坊节点功能提供简洁、一致的接口。在`ethers`中，`Provider`不接触用户私钥，只能读取链上信息，不能写入，这一点比`web3.js`要安全。
 
-除了[之前](https://github.com/WTFAcademy/WTFEthers)介绍的默认提供者`defaultProvider`以外，`ethers`中最常用的是`jsonRpcProvider`，可以让用户连接到特定节点服务商的节点。
+除了[之前](https://github.com/WTFAcademy/WTF-Ethers)介绍的默认提供者`defaultProvider`以外，`ethers`中最常用的是`jsonRpcProvider`，可以让用户连接到特定节点服务商的节点。
 
 ## `jsonRpcProvider`
 
@@ -71,8 +71,9 @@ const providerGoerli = new ethers.JsonRpcProvider(`https://goerli.infura.io/v3/$
     // 2. 查询provider连接到了哪条链
     console.log("\n2. 查询provider连接到了哪条链")
     const network = await providerETH.getNetwork();
-    console.log(network);
+    console.log(network.toJSON());
 ```
+> ethers v6版本, 以上代码中`network`不能直接`console.log()`, 具体原因参考: [discussion-3977](https://github.com/ethers-io/ethers.js/discussions/3977)
 
 ![getNetwork](img/2-3.png)
 
@@ -99,7 +100,7 @@ const providerGoerli = new ethers.JsonRpcProvider(`https://goerli.infura.io/v3/$
 ![getGasPrice](img/2-5.png)
 
 
-**5.** 利用`getFeeData()`查询当前建议的`gas`设置，返回的数据格式为`BigNumber`。
+**5.** 利用`getFeeData()`查询当前建议的`gas`设置，返回的数据格式为`bigint`。
 
 ```javascript
     // 5. 查询当前建议的gas设置

@@ -10,7 +10,7 @@ title: 1. HelloVitalik (6行代码)
 
 **WTF Academy社群：** [官网 wtf.academy](https://wtf.academy) | [WTF Solidity教程](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [微信群申请](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-所有代码和教程开源在github: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTFEthers)
+所有代码和教程开源在github: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
@@ -134,5 +134,6 @@ node 01_HelloVitalik/HelloVitalik.js
 
 **课后作业**：在图4和图5中，v神的`ETH`余额并不一样。第一张余额为`2251 ETH`，而第二张变为了`1951 ETH`，减少`300 ETH`。其实，两张图片对应v神在`2022.07.30`和`2022.07.31`的持仓。那么，这一天v神用`300 ETH`干了什么？
 
-ethers官方文档：https://docs.ethers.io/v5/
+ethers[v5]官方文档：https://docs.ethers.io/v5/
+ethers[v6]官方文档：https://docs.ethers.io/v6/
 
