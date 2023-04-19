@@ -8,11 +8,13 @@ title: 10. BigNumber和单位转换
 
 **推特**：[@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy社群：** [官网 wtf.academy](https://wtf.academy) | [WTF Solidity教程](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [微信群申请](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**WTF Academy社群：** [官网 wtf.academy](https://wtf.academy) | [WTF Solidity教程](https://github.com/AmazingAng/WTF-Solidity) | [discord](https://discord.gg/5akcruXrsk) | [微信群申请](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-所有代码和教程开源在github: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTFEthers)
+所有代码和教程开源在github: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
+
+提示：本教程基于ethers.js 6.3.0 ，如果你使用的是v5，可以参考[ethers.js v5文档](https://docs.ethers.io/v5/)。
 
 这一讲，我们介绍`BigNumber`类和单位转换。
 
@@ -66,7 +68,7 @@ console.log("是否相等：", oneGwei == 1000000000n)
 - `formatUnits(变量, 单位)`：格式化，小单位转大单位，比如`wei` -> `ether`，在显示余额时很有用。参数中，单位填位数（数字）或指定的单位（字符串）。
 
     ```js
-    //代码参考：https://docs.ethers.io/v5/api/utils/display-logic/#utils-parseUnits
+    //代码参考：https://docs.ethers.org/v6/api/utils/#about-units
     console.group('\n2. 格式化：小单位转大单位，formatUnits');
     console.log(ethers.formatUnits(oneGwei, 0));
     // '1000000000'
@@ -90,7 +92,7 @@ console.log("是否相等：", oneGwei == 1000000000n)
     ```js
     // 3. 解析：大单位转小单位
     // 例如将ether转换为wei：parseUnits(变量, 单位),parseUnits默认单位是 ether
-    // 代码参考：https://docs.ethers.io/v5/api/utils/display-logic/#utils-parseUnits
+    // 代码参考：https://docs.ethers.org/v6/api/utils/#about-units
     console.group('\n3. 解析：大单位转小单位，parseUnits');
     console.log(ethers.parseUnits("1.0").toString());
     // { BigNumber: "1000000000000000000" }
