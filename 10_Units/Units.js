@@ -39,7 +39,7 @@ console.groupEnd();
 
 
 // 3. 解析：大单位转小单位
-// 例如将ether转换为wei：parseUnits(变量, 单位)
+// 例如将ether转换为wei：parseUnits(变量, 单位),parseUnits默认单位是 ether
 console.group('\n3. 解析：大单位转小单位，parseUnits');
 console.log(ethers.parseUnits("1.0").toString());
 // { BigNumber: "1000000000000000000" }
