@@ -30,7 +30,7 @@ title: 11. StaticCall
 
 ## `staticCall`
 
-在`ethers.js`中你可以利用`contract`对象的`staticCall()`来调用以太坊节点的`eth_call`。如果调用成功，则返回`ture`；如果失败，则报错并返回失败原因。方法：
+在`ethers.js`中你可以利用`contract`对象的`staticCall()`来调用以太坊节点的`eth_call`。如果调用成功，则返回`true`；如果失败，则报错并返回失败原因。方法：
 
 ```js
     const tx = await contract.函数名.staticCall( 参数, {override})
