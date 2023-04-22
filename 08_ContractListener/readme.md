@@ -8,15 +8,17 @@ title: 8. 监听合约事件
 
 **推特**：[@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy社群：** [官网 wtf.academy](https://wtf.academy) | [WTF Solidity教程](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [微信群申请](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**WTF Academy社群：** [官网 wtf.academy](https://wtf.academy) | [WTF Solidity教程](https://github.com/AmazingAng/WTF-Solidity) | [discord](https://discord.gg/5akcruXrsk) | [微信群申请](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-所有代码和教程开源在github: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTFEthers)
+所有代码和教程开源在github: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
+提示：本教程基于ethers.js 6.3.0 ，如果你使用的是v5，可以参考[ethers.js v5文档](https://docs.ethers.io/v5/)。
+
 这一讲，我们将介绍如何监听合约，并实现监听USDT合约的`Transfer`事件。
 
-具体可参考[ethers.js文档](https://docs.ethers.io/v5/api/contract/contract/#Contract--events)。
+具体可参考[ethers.js文档](https://docs.ethers.org/v6/api/contract/#ContractEvent)。
 
 ## 监听合约事件
 
@@ -70,7 +72,7 @@ contract.once("eventName", function)
     contractUSDT.once('Transfer', (from, to, value)=>{
       // 打印结果
       console.log(
-        `${from} -> ${to} ${ethers.formatUnits(ethers.BigNumber.from(value),6)}`
+        `${from} -> ${to} ${ethers.formatUnits(ethers.getBigInt(value),6)}`
       )
     })
   ```
@@ -83,7 +85,7 @@ contract.once("eventName", function)
     contractUSDT.on('Transfer', (from, to, value)=>{
       console.log(
        // 打印结果
-       `${from} -> ${to} ${ethers.formatUnits(ethers.BigNumber.from(value),6)}`
+       `${from} -> ${to} ${ethers.formatUnits(ethers.getBigInt(value),6)}`
       )
     })
   ```
