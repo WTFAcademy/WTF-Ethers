@@ -16,7 +16,7 @@ async function erc20Checker(addr){
     let code = await provider.getCode(addr)
     // 非合约地址的bytecode是0x
     if(code != "0x"){
-        // 检查bytecode中是否包含transfer函数和balanceOf函数的selector
+        // 检查bytecode中是否包含transfer和totalSupply函数的selector
         if(code.includes("a9059cbb") && code.includes("18160ddd")){
             // 如果有，则是ERC20
             return true

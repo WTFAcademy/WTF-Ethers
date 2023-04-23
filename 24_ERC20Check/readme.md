@@ -49,11 +49,11 @@ interface IERC20 {
 let code = await provider.getCode(contractAddress)
 ```
 
-接下来我们要检查合约 `bytecode` 是否包含 `ERC20` 标准中的函数。合约 `bytecode` 中存储了相应的[函数选择器]：如果合约包含 `transfer(address, uint256)` 函数，那么 `bytecode` 就会包含 `a9059cbb`；如果合约包含 `balanceOf(address)`，那么 `bytecode` 就会包含 `18160ddd`。如果你不了解函数选择器，可以阅读 WTF Solidity的[相应章节](https://github.com/AmazingAng/WTF-Solidity/blob/main/29_Selector/readme.md)。如果想更深入的了解 `bytecode`，可以阅读[深入EVM](https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Translation/DiveEVM2017)。
+接下来我们要检查合约 `bytecode` 是否包含 `ERC20` 标准中的函数。合约 `bytecode` 中存储了相应的[函数选择器]：如果合约包含 `transfer(address, uint256)` 函数，那么 `bytecode` 就会包含 `a9059cbb`；如果合约包含 `totalSupply()`，那么 `bytecode` 就会包含 `18160ddd`。如果你不了解函数选择器，可以阅读 WTF Solidity的[相应章节](https://github.com/AmazingAng/WTF-Solidity/blob/main/29_Selector/readme.md)。如果想更深入的了解 `bytecode`，可以阅读[深入EVM](https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Translation/DiveEVM2017)。
 
-这里，我们仅需检测  `transfer(address, uint256)` 和 `balanceOf(address)` 两个函数，而不用检查全部6个，这是因为：
+这里，我们仅需检测  `transfer(address, uint256)` 和 `totalSupply()` 两个函数，而不用检查全部6个，这是因为：
 1. `ERC20`标准中只有 `transfer(address, uint256)` 不包含在 `ERC721`标准、`ERC1155`和`ERC777`标准中。因此如果一个合约包含 `transfer(address, uint256)` 的选择器，就能确定它是 `ERC20` 代币合约，而不是其他。
-2. 额外检测 `balanceOf(address)` 是为了防止[选择器碰撞](https://github.com/AmazingAng/WTFSolidity/blob/main/S01_ReentrancyAttack/readme.md)：一串随机的字节码可能和 `transfer(address, uint256)` 的选择器（4字节）相同。
+2. 额外检测 `totalSupply()` 是为了防止[选择器碰撞](https://github.com/AmazingAng/WTFSolidity/blob/main/S01_ReentrancyAttack/readme.md)：一串随机的字节码可能和 `transfer(address, uint256)` 的选择器（4字节）相同。
 
 代码如下
 ```js
@@ -62,7 +62,7 @@ async function erc20Checker(addr){
     let code = await provider.getCode(addr)
     // 非合约地址的bytecode是0x
     if(code != "0x"){
-        // 检查bytecode中是否包含transfer函数和balanceOf函数的selector
+        // 检查bytecode中是否包含transfer函数和totalSupply函数的selector
         if(code.includes("a9059cbb") && code.includes("18160ddd")){
             // 如果有，则是ERC20
             return true
