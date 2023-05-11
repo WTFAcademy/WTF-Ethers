@@ -57,7 +57,7 @@ air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orb
 
 `ethers.js`提供了[HDNode类](https://docs.ethers.org/v6-beta/api/wallet/#HDNodeWallet)，方便开发者使用HD钱包。下面我们利用它从一个助记词批量生成20个钱包。
 
-1. 创建`HDNode`钱包变量，可以看到助记词为`'air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orbit weapon universe require tired sing casino business anxiety seminar hunt'`
+1. 创建`HDNode`钱包变量，可以看到助记词为`'food girl tourist front park pyramid crater wrist gossip void amount ecology drum camp fold account menu bulb robust range trip hurt vehicle slush`
     ```js
     // 生成随机助记词
     const mnemonic = ethers.Mnemonic.entropyToPhrase(randomBytes(32))
