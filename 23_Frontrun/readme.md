@@ -123,9 +123,9 @@ anvil
     const txFrontrun = {
         to: tx.to,
         value: tx.value,
-        maxPriorityFeePerGas: tx.maxPriorityFeePerGas * 2n,
-        maxFeePerGas: tx.maxFeePerGas * 2n,
-        gasLimit: tx.gasLimit * 2,
+        maxPriorityFeePerGas: tx.maxPriorityFeePerGas * 1.2n,
+        maxFeePerGas: tx.maxFeePerGas * 1.2n,
+        gasLimit: tx.gasLimit * 2n,
         data: tx.data
     }
     // 发送抢跑交易
