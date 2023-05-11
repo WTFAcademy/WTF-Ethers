@@ -52,7 +52,7 @@ console.log("减法：", oneGwei - 1n)
 console.log("乘法：", oneGwei * 2n)
 console.log("除法：", oneGwei / 2n)
 // 比较
-console.log("是否相等：", oneGwei == 1000000000n)
+console.log("是否相等：", oneGwei == 1000000000)
 ```
 
 ![BigNumber运算](img/10-2.png)
