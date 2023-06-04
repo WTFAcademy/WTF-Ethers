@@ -9,7 +9,7 @@
     "author": "0xAA",
     "license": "MIT",
     "dependencies": {
-        "ethers": "^6.2.3",
+        "ethers": "^6.4.0",
         "merkletreejs": "^0.2.32"
     }
 }

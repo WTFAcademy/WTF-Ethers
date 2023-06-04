@@ -102,7 +102,7 @@ const filter = contract.filters.EVENT_NAME( ...args )
 3. 读取币安热钱包USDT余额。可以看到，当前币安热钱包有8亿多枚USDT
   ```js
   const balanceUSDT = await contractUSDT.balanceOf(accountBinance)
-  console.log(`USDT余额: ${ethers.formatUnits(ethers.BigNumber.from(balanceUSDT),6)}\n`)
+  console.log(`USDT余额: ${ethers.formatUnits(balanceUSDT,6)}\n`)
   ```
   ![币安热钱包USDT余额](img/9-4.png)
 
@@ -110,14 +110,15 @@ const filter = contract.filters.EVENT_NAME( ...args )
 4. 创建过滤器，监听`USDT`转入币安的事件。
 
   ```js
-  console.log("\n2. 创建过滤器，监听转移USDT进交易所")
+  // 2. 创建过滤器，监听转移USDT进交易所
+  console.log("\n2. 创建过滤器，监听USDT转进交易所")
   let filterBinanceIn = contractUSDT.filters.Transfer(null, accountBinance);
   console.log("过滤器详情：")
   console.log(filterBinanceIn);
-  contractUSDT.on(filterBinanceIn, (from, to, value) => {
+  contractUSDT.on(filterBinanceIn, (res) => {
     console.log('---------监听USDT进入交易所--------');
     console.log(
-      `${from} -> ${to} ${ethers.formatUnits(ethers.BigNumber.from(value),6)}`
+      `${res.args[0]} -> ${res.args[1]} ${ethers.formatUnits(res.args[2],6)}`
     )
   })
   ```
@@ -126,17 +127,18 @@ const filter = contract.filters.EVENT_NAME( ...args )
 4. 创建过滤器，监听`USDT`转出币安的交易。
 
   ```js
-  let filterToBinanceOut = contractUSDT.filters.Transfer(accountBinance, null);
-  console.log("\n3. 创建过滤器，监听转移USDT出交易所")
-  console.log("过滤器详情：")
-  console.log(filterToBinanceOut);
-  contractUSDT.on(filterToBinanceOut, (from, to, value) => {
-    console.log('---------监听USDT转出交易所--------');
-    console.log(
-      `${from} -> ${to} ${ethers.formatUnits(ethers.BigNumber.from(value),6)}`
-    )
-  }
-  )
+    // 3. 创建过滤器，监听交易所转出USDT
+    let filterToBinanceOut = contractUSDT.filters.Transfer(accountBinance);
+    console.log("\n3. 创建过滤器，监听USDT转出交易所")
+    console.log("过滤器详情：")
+    console.log(filterToBinanceOut);
+    contractUSDT.on(filterToBinanceOut, (res) => {
+      console.log('---------监听USDT转出交易所--------');
+      console.log(
+        `${res.args[0]} -> ${res.args[1]} ${ethers.formatUnits(res.args[2],6)}`
+      )
+    }
+    );
   ```
   ![监听转出币安的USDT交易](img/9-6.png) 
 
