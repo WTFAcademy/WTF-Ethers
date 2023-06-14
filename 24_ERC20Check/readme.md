@@ -78,7 +78,7 @@ async function erc20Checker(addr){
 
 ## 测试脚本
 
-下面，我们利用 `DAI`（ERC20）和 `BAYC`（ERC72）合约来测试脚本是否能正确识别 `ERC20` 合约。
+下面，我们利用 `DAI`（ERC20）和 `BAYC`（ERC721）合约来测试脚本是否能正确识别 `ERC20` 合约。
 
 ```js
 // DAI address (mainnet)
