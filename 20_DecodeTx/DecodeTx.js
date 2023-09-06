@@ -1,56 +1,35 @@
-// provider.on("pending", listener)
 import { ethers } from "ethers";
-
 // 1. 创建provider和wallet，监听事件时候推荐用wss连接而不是http
 // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
 const ALCHEMY_MAINNET_WSSURL = 'wss://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
 const provider = new ethers.WebSocketProvider(ALCHEMY_MAINNET_WSSURL);
 let network = provider.getNetwork()
-network.then(res => console.log(`[${(new Date).toLocaleTimeString()}] 连接到 chain ID ${res.chainId}`));
+network.then(res => console.log(`[${(new Date).toLocaleTimeString()}]连接到chain-id:${res.chainId}`))
 
 // 2. 创建interface对象，用于解码交易详情。
-const iface = new ethers.Interface([
+const contractABI = [
     "function transfer(address, uint) public returns (bool)",
-])
+]
+const iface = new ethers.utils.Interface(contractABI)
 
-// 3. 限制访问rpc速率，不然调用频率会超出限制，报错。
-function throttle(fn, delay) {
-    let timer;
-    return function(){
-        if(!timer) {
-            fn.apply(this, arguments)
-            timer = setTimeout(()=>{
-                clearTimeout(timer)
-                timer = null
-            },delay)
+// 3. 获取函数签名。
+const functionSignature = 'transfer(address,uint)'
+const selector = iface.getSighash(functionSignature)
+console.log(`函数选择器是${selector}`)
+
+// 4. 监听pending的erc20 transfer交易，获取交易详情，然后解码。
+let j = 0
+provider.on('pending', async (txHash) => {
+    if (txHash) {
+        const tx = await provider.getTransaction(txHash)
+        j++
+        if (tx !== null && tx.data.indexOf(selector) !== -1) {
+            console.log(`[${(new Date).toLocaleTimeString()}]监听到第${j + 1}个pending交易:${txHash}`)
+            console.log(`打印解码交易详情:${JSON.stringify(iface.parseTransaction(tx), null, 2)}`)
+            console.log(`转账目标地址:${iface.parseTransaction(tx).args[0]}`)
+            console.log(`转账金额:${ethers.utils.formatEther(iface.parseTransaction(tx).args[1])}`)
+            provider.removeListener('pending', this)
         }
     }
 }
-
-const main = async () => {
-    // 4. 监听pending的erc20 transfer交易，获取交易详情，然后解码。
-    console.log("\n4. 监听pending交易，获取txHash，并输出交易详情。")
-    provider.on("pending", throttle(async (txHash) => {
-        if (txHash) {
-            // 获取tx详情
-            let tx = await provider.getTransaction(txHash);
-            if (tx) {
-                // filter pendingTx.data
-                if (tx.data.indexOf(iface.getFunction("transfer").selector) !== -1) {
-                    // 打印txHash
-                    console.log(`\n[${(new Date).toLocaleTimeString()}] 监听Pending交易: ${txHash} \r`);
-
-                    // 打印解码的交易详情
-                    let parsedTx = iface.parseTransaction(tx)
-                    console.log("pending交易详情解码：")
-                    console.log(parsedTx);
-                    // Input data解码
-                    console.log("Input Data解码：")
-                    console.log(parsedTx.args);
-                }
-            }
-        }
-    }, 100));
-};
-
-main()
+)
