@@ -33,7 +33,7 @@ title: 4. 发送ETH
 
 ```javascript
 // 创建随机的wallet对象
-const wallet1 = new ethers.Wallet.createRandom()
+const wallet1 = ethers.Wallet.createRandom()
 ```
 
 ### 方法2：用私钥创建wallet对象
@@ -52,7 +52,7 @@ const wallet2 = new ethers.Wallet(privateKey, provider)
 
 ```javascript
 // 从助记词创建wallet对象
-const wallet3 = new ethers.Wallet.fromMnemonic(mnemonic.phrase)
+const wallet3 = ethers.Wallet.fromMnemonic(mnemonic.phrase)
 ```
 ### 其他方法：通过JSON文件创建wallet对象
 以上三种方法即可满足大部分需求，当然还可以通过`ethers.Wallet.fromEncryptedJson`解密一个`JSON`钱包文件创建钱包实例，`JSON`文件即`keystore`文件，通常来自`Geth`, `Parity`等钱包，通过`Geth`搭建过以太坊节点的个人对`keystore`文件不会陌生。
@@ -161,8 +161,8 @@ console.log(`钱包1助记词: ${wallet1.mnemonic.phrase}`)
 利用`getTransactionCount()`函数获取钱包在链上的交互次数。
 
 ```javascript
-    const txCount1 = await wallet1WithProvider.getTransactionCount()
-    const txCount2 = await wallet2.getTransactionCount()
+    const txCount1 = await provider.getTransactionCount(wallet1WithProvider)
+    const txCount2 = await provider.getTransactionCount(wallet2)
     console.log(`钱包1发送交易次数: ${txCount1}`)
     console.log(`钱包2发送交易次数: ${txCount2}`)
 ```
