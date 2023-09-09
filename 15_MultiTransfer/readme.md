@@ -1,5 +1,11 @@
 ---
 title: 15. 批量转账
+tags:
+  - ethers
+  - javascript
+  - multitransfer
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 15. 批量转账

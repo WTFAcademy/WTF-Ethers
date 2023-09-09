@@ -1,5 +1,12 @@
 ---
 title: 3. 读取合约信息
+tags:
+  - ethers
+  - javascript
+  - provider
+  - contract
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 3. 读取合约信息

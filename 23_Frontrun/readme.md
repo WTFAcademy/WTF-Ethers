@@ -1,5 +1,14 @@
 ---
 title: 23. 抢先交易脚本
+tags:
+  - ethers
+  - javascript
+  - mev
+  - mempool
+  - frontrun
+  - nft
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 23. 抢先交易脚本

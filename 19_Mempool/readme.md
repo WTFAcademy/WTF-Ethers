@@ -1,5 +1,13 @@
 ---
 title: 19. 监听Mempool
+tags:
+  - ethers
+  - javascript
+  - mempool
+  - mev
+  - pending
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 19. 监听Mempool

@@ -1,5 +1,13 @@
 ---
 title: 26. EIP712 签名脚本
+tags:
+  - ethers
+  - javascript
+  - eip712
+  - signature
+  - airdrop
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 26. EIP712 签名脚本

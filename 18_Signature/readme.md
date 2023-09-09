@@ -1,5 +1,13 @@
 ---
 title: 18. 数字签名脚本
+tags:
+  - ethers
+  - javascript
+  - airdrop
+  - signature
+  - ecdsa
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 18. 数字签名脚本

@@ -1,5 +1,11 @@
 ---
 title: 16. 批量归集
+tags:
+  - ethers
+  - javascript
+  - collect
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 16. 批量归集

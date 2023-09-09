@@ -1,5 +1,13 @@
 ---
 title: 8. 监听合约事件
+tags:
+  - ethers
+  - javascript
+  - provider
+  - event
+  - listener
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 8. 监听合约事件

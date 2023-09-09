@@ -1,5 +1,12 @@
 ---
 title: 21. 靓号生成器
+tags:
+  - ethers
+  - javascript
+  - vanity
+  - address
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 21. 靓号生成器

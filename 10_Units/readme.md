@@ -1,8 +1,16 @@
 ---
-title: 10. BigNumber和单位转换
+title: 10. BigInt和单位转换
+tags:
+  - ethers
+  - javascript
+  - bigint
+  - parseUnits
+  - formatUnits
+  - frontend
+  - web
 ---
 
-# Ethers极简入门: 10. BigNumber和单位转换
+# Ethers极简入门: 10. BigInt和单位转换
 
 我最近在重新学`ethers.js`，巩固一下细节，也写一个`WTF Ethers极简入门`，供小白们使用。
 
@@ -16,7 +24,7 @@ title: 10. BigNumber和单位转换
 
 提示：本教程基于ethers.js 6.3.0 ，如果你使用的是v5，可以参考[ethers.js v5文档](https://docs.ethers.io/v5/)。
 
-这一讲，我们介绍`BigNumber`类和单位转换。
+这一讲，我们介绍`BigInt`类和单位转换。
 
 ## `BigInt`
 

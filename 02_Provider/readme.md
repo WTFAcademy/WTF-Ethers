@@ -1,5 +1,11 @@
 ---
 title: 2. 提供器 Provider
+tags:
+  - ethers
+  - javascript
+  - provider
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 2. Provider 提供器
@@ -58,9 +64,9 @@ const providerGoerli = new ethers.JsonRpcProvider(`https://goerli.infura.io/v3/$
     const balance = await providerETH.getBalance(`vitalik.eth`);
     const balanceGoerli = await providerGoerli.getBalance(`vitalik.eth`);
     // 将余额输出在console（主网）
-    console.log(`ETH Balance of vitalik: ${ethers.utils.formatEther(balance)} ETH`);
+    console.log(`ETH Balance of vitalik: ${ethers.formatEther(balance)} ETH`);
     // 输出Goerli测试网ETH余额
-    console.log(`Goerli ETH Balance of vitalik: ${ethers.utils.formatEther(balanceGoerli)} ETH`);
+    console.log(`Goerli ETH Balance of vitalik: ${ethers.formatEther(balanceGoerli)} ETH`);
 ```
 
 ![V神余额](img/2-2.png)

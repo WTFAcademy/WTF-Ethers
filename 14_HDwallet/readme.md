@@ -1,5 +1,15 @@
 ---
 title: 14. 批量生成钱包
+tags:
+  - ethers
+  - javascript
+  - wallet
+  - hdwallet
+  - bip32
+  - bip44
+  - bip39
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 14. 批量生成钱包

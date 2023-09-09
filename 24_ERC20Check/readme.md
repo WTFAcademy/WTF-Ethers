@@ -1,5 +1,13 @@
 ---
 title: 24. 识别ERC20合约
+tags:
+  - ethers
+  - javascript
+  - erc20
+  - token
+  - selector
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 24. 识别ERC20合约

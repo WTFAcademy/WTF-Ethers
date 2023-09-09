@@ -1,5 +1,14 @@
 ---
 title: 6. 部署合约
+tags:
+  - ethers
+  - javascript
+  - provider
+  - wallet
+  - contract
+  - create
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 6. 部署合约

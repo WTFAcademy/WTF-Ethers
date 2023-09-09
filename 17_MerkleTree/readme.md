@@ -1,5 +1,12 @@
 ---
 title: 17. MerkleTree脚本
+tags:
+  - ethers
+  - javascript
+  - airdrop
+  - merkletree
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 17. MerkleTree脚本

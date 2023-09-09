@@ -1,5 +1,12 @@
 ---
 title: 1. HelloVitalik (6行代码)
+tags:
+  - ethers
+  - javascript
+  - ens
+  - vitalik
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 1. HelloVitalik (6行代码)

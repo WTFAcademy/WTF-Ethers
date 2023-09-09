@@ -1,5 +1,13 @@
 ---
 title: 12. 识别ERC721合约
+tags:
+  - ethers
+  - javascript
+  - erc165
+  - erc721
+  - selector
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 12. 识别ERC721合约

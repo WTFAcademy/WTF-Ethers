@@ -1,5 +1,13 @@
 ---
 title: 25. Flashbots
+tags:
+  - ethers
+  - javascript
+  - mev
+  - flashbots
+  - bundle
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 25. Flashbots
@@ -106,7 +114,7 @@ npm install --save @flashbots/ethers-provider-bundle
     chainId: CHAIN_ID,
     type: 2,
     to: "0x25df6DA2f4e5C178DdFF45038378C0b08E0Bce54",
-    value: ethers.utils.parseEther("0.001"),
+    value: ethers.parseEther("0.001"),
     maxFeePerGas: GWEI * 100n
     }
     ```

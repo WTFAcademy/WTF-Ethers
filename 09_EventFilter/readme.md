@@ -1,5 +1,12 @@
 ---
 title: 9. 事件过滤
+tags:
+  - ethers
+  - javascript
+  - event
+  - filter
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 9. 事件过滤

@@ -1,5 +1,12 @@
 ---
 title: 7. 检索事件
+tags:
+  - ethers
+  - javascript
+  - provider
+  - event
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 7. 检索事件

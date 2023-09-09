@@ -1,5 +1,12 @@
 ---
 title: 13. 编码calldata
+tags:
+  - ethers
+  - javascript
+  - encode
+  - calldata
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 13. 编码calldata

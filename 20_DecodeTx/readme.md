@@ -1,5 +1,12 @@
 ---
 title: 20. 解码交易详情
+tags:
+  - ethers
+  - javascript
+  - decode
+  - interface
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 20. 解码交易详情

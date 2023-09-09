@@ -1,5 +1,13 @@
 ---
 title: 5. 合约交互
+tags:
+  - ethers
+  - javascript
+  - provider
+  - wallet
+  - contract
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 5. 合约交互

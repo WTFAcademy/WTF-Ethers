@@ -1,5 +1,11 @@
 ---
 title: 11. StaticCall
+tags:
+  - ethers
+  - javascript
+  - staticcall
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 11. StaticCall

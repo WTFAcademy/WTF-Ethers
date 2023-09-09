@@ -1,5 +1,12 @@
 ---
 title: 22. 读取任意数据
+tags:
+  - ethers
+  - javascript
+  - read
+  - slot
+  - frontend
+  - web
 ---
 
 # Ethers极简入门: 22. 读取任意数据
