@@ -10,7 +10,7 @@ const contractABI = [
     "function ownerOf(uint256) public view returns (address) ",
     "function totalSupply() view returns (uint256)"
 ]
-const contractAddress = '0xfbAb4aa40C202E4e80390171E82379824f7372dd'
+const contractAddress = '0xC76A71C4492c11bbaDC841342C4Cb470b5d12193'
 const contractFM = new ethers.Contract(contractAddress, contractABI, provider)
 
 //3.创建Interface对象，用于检索mint函数。
@@ -24,7 +24,7 @@ const privateKey = '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4
 const wallet = new ethers.Wallet(privateKey, provider)
 
 //5. 构建正常mint函数，检验mint结果，显示正常。
-const nornaltx = async () => {
+const normaltx = async () => {
     provider.on('pending', async (txHash) => {
         provider.getTransaction(txHash).then(
             async (tx) => {
@@ -34,8 +34,8 @@ const nornaltx = async () => {
                     await tx.wait()
                     const tokenId = await contractFM.totalSupply()
                     console.log(`mint的NFT编号:${tokenId}`)
-                    console.log(`编号${tokenId}NFT的主人是${await contractFM.ownerOf(tokenId)}`)
-                    console.log(`铸造发起的地址是不是对应NFT的主人:${tx.from === await contractFM.ownerOf(tokenId)}`)
+                    console.log(`编号${tokenId}NFT的持有者是${await contractFM.ownerOf(tokenId)}`)
+                    console.log(`铸造发起的地址是不是对应NFT的持有者:${tx.from === await contractFM.ownerOf(tokenId)}`)
                 }
             }
         )
@@ -57,15 +57,15 @@ const frontRun = async () => {
                 data: tx.data
             }
             const aimTokenId = (await contractFM.totalSupply()).add(1)
-            console.log(`即将被mint的NFT编号是:${aimTokenId}`)
+            console.log(`即将被mint的NFT编号是:${aimTokenId}`)//打印应该被mint的nft编号
             const sentFR = await wallet.sendTransaction(frontRunTx)
             console.log(`正在frontrun交易`)
             const receipt = await sentFR.wait()
             console.log(`frontrun 交易成功,交易hash是:${receipt.transactionHash}`)
             console.log(`铸造发起的地址是:${tx.from}`)
-            console.log(`编号${aimTokenId}NFT的主人是${await contractFM.ownerOf(aimTokenId)}`)
-            console.log(`编号${aimTokenId.add(1)}的NFT的主人是:${await contractFM.ownerOf(aimTokenId.add(1))}`)
-            console.log(`铸造发起的地址是不是对应NFT的主人:${tx.from === await contractFM.ownerOf(aimTokenId)}`)
+            console.log(`编号${aimTokenId}NFT的持有者是${await contractFM.ownerOf(aimTokenId)}`)//刚刚mint的nft持有者并不是tx.from
+            console.log(`编号${aimTokenId.add(1)}的NFT的持有者是:${await contractFM.ownerOf(aimTokenId.add(1))}`)//tx.from被wallet.address抢跑，mint了下一个nft
+            console.log(`铸造发起的地址是不是对应NFT的持有者:${tx.from === await contractFM.ownerOf(aimTokenId)}`)//比对地址，tx.from被抢跑
             //检验区块内数据结果
             const block = await provider.getBlock(tx.blockNumber)
             console.log(`区块内交易数据明细:${block.transactions}`)//在区块内，后发交易排在先发交易前，抢跑成功。
@@ -75,4 +75,4 @@ const frontRun = async () => {
 
 
 frontRun()
-//nornaltx()
+//normaltx()
