@@ -12,7 +12,8 @@ contract FreeMint is ERC721 {
 
     // 铸造函数
     function mint() external {
-        _mint(msg.sender, totalSupply); // mint
         totalSupply++;
+        _mint(msg.sender, totalSupply); // mint
     }
+
 }

