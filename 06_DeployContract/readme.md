@@ -51,7 +51,6 @@ const contract = await contractFactory.deploy(args)
 ```js
 await contractERC20.waitForDeployment();
 
-//或者 await contract.deployTransaction.wait()
 ```
 
 ## 例子：部署ERC20代币合约
