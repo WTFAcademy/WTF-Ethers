@@ -45,7 +45,7 @@ tags:
 
 - 函数名：为模拟调用的函数名。
 - 参数：调用函数的参数。
-- {override}：选填，可包含一下参数：
+- {override}：选填，可包含以下参数：
     - `from`：执行时的`msg.sender`，也就是你可以模拟任何一个人的调用，比如V神。
     - `value`：执行时的`msg.value`。
     - `blockTag`：执行时的区块高度。
@@ -97,7 +97,7 @@ tags:
     ```js
     console.log("\n2.  用staticCall尝试调用transfer转账1 DAI，msg.sender为V神地址")
     // 发起交易
-    const tx = await contractDAI.transfer.staticCall("vitalik.eth", ethers.parseEther("10000"), {from: "vitalik.eth"})
+    const tx = await contractDAI.transfer.staticCall("vitalik.eth", ethers.parseEther("10000"), {from:  await provider.resolveName("vitalik.eth")})
     console.log(`交易会成功吗？：`, tx)
     ```
     ![模拟V神转账](img/11-3.png)
