@@ -64,12 +64,12 @@ const main = async () => {
         console.log(`mint后地址中代币余额: ${await contractERC20.balanceOf(wallet)}`)
         console.log(`代币总供给: ${await contractERC20.totalSupply()}`)
 
-        // 3. 调用transfer()函数，给V神转账1000代币
-        console.log("\n3. 调用transfer()函数，给V神转账1,000代币")
+        // 3. 调用transfer()函数，给Vitalik转账1000代币
+        console.log("\n3. 调用transfer()函数，给Vitalik转账1,000代币")
         tx = await contractERC20.transfer("vitalik.eth", "1000")
         console.log("等待交易上链")
         await tx.wait()
-        console.log(`V神钱包中的代币余额: ${await contractERC20.balanceOf("vitalik.eth")}`)
+        console.log(`Vitalik钱包中的代币余额: ${await contractERC20.balanceOf("vitalik.eth")}`)
 
     }else{
         // 如果ETH不足

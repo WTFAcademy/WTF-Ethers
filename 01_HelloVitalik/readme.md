@@ -21,7 +21,7 @@ tags:
 
 -----
 
-这一讲，我们会介绍`ethers.js`库，javascript在线编辑器`playcode`，并且我们会写第一个程序`HelloVitalik`：查询V神的`ETH`余额，并输出在`console`中。
+这一讲，我们会介绍`ethers.js`库，javascript在线编辑器`playcode`，并且我们会写第一个程序`HelloVitalik`：查询Vitalik的`ETH`余额，并输出在`console`中。
 
 > 教程使用 ethers.js 最新的 v6 版本，与 v5 改动较大。v5 版本教程，见 [链接](https://github.com/WTFAcademy/WTF-Ethers/tree/wtf-ethers-v5)。
 
@@ -39,15 +39,15 @@ tags:
 
 ## 开发工具
 
-### 1. VScode
+### 1. VScode（推荐）
 
 你可以使用本地`vscode`进行开发。你需要安装[Node.js](https://nodejs.org/zh-cn/download/)，然后利用包管理工具`npm`安装`ethers`库：
 
 ```shell
-npm install ethers@6.2.3 --save
+npm install ethers --save
 ```
 
-### 2. playcode
+### 2. playcode（不稳定）
 
 ![playcode](./img/1-2.png)
 
@@ -55,11 +55,11 @@ npm install ethers@6.2.3 --save
 
 ![playcode](./img/1-3.png)
 
-本教程将用`playcode`做演示。你需要在官网注册一个免费账号，然后点击`OPEN PLAYGROUND`以`Javascript`模版创建一个新项目，然后将代码写在自动生成的`script.js`中即可。
+这一讲，我们将用`playcode`做演示。你需要在官网注册一个免费账号，然后点击`OPEN PLAYGROUND`以`Javascript`模版创建一个新项目，然后将代码写在自动生成的`script.js`中即可。很多时候，`playcode`并不能稳定的使用`ethers`，因此我们推荐使用VScode。
 
 ## HelloVitalik
 
-现在，让我们用`ethers`编写第一个程序`HelloVitalik`：查询V神的`ETH`余额，并输出在`console`中。整个程序只需要6行，非常简单！
+现在，让我们用`ethers`编写第一个程序`HelloVitalik`：查询Vitalik的`ETH`余额，并输出在`console`中。整个程序只需要6行，非常简单！
 
 **注意**：在`playcode`上第一次运行可能会提示`module not found`，这是因为`ethers`库还没有安装，只需要点击`install`按钮安装即可。
 
@@ -111,7 +111,7 @@ const main = async () => {
 }
 main()
 ```
-### 4. 获取v神地址的`ETH`余额
+### 4. 获取Vitalik地址的`ETH`余额
 
 我们可以利用`Provider`类的`getBalance()`函数来查询某个地址的`ETH`余额。由于`ethers`原生支持`ENS`域名，我们不需要知道具体地址，用`ENS`域名`vitalik.eth`就可以查询到以太坊创始人豚林-vitalik的余额。
 
@@ -130,16 +130,16 @@ const balance = await provider.getBalance(`vitalik.eth`);
 ```shell
 node 01_HelloVitalik/HelloVitalik.js
 ```
-这样，你就能在控制台中看到v神的`ETH`余额了：`1951 ETH`。当然这不是v神的全部持仓，他有多个钱包，`vitalik.eth`应该只是他用的比较频繁的一个热钱包。
+这样，你就能在控制台中看到Vitalik的`ETH`余额了：`1951 ETH`。当然这不是Vitalik的全部持仓，他有多个钱包，`vitalik.eth`应该只是他用的比较频繁的一个热钱包。
 
-![在控制台打印v神余额](./img/1-5.png)
+![在控制台打印Vitalik余额](./img/1-5.png)
 
 
 ## 总结
 
-这是WTF Ethers极简教程的第一讲，我们介绍了`ethers.js`，并完成了第一个使用`ethers`的程序`HelloVitalik`，查询v神钱包的`ETH`余额。
+这是WTF Ethers极简教程的第一讲，我们介绍了`ethers.js`，并完成了第一个使用`ethers`的程序`HelloVitalik`，查询Vitalik钱包的`ETH`余额。
 
-**课后作业**：在图4和图5中，v神的`ETH`余额并不一样。第一张余额为`2251 ETH`，而第二张变为了`1951 ETH`，减少`300 ETH`。其实，两张图片对应v神在`2022.07.30`和`2022.07.31`的持仓。那么，这一天v神用`300 ETH`干了什么？
+**课后作业**：在图4和图5中，Vitalik的`ETH`余额并不一样。第一张余额为`2251 ETH`，而第二张变为了`1951 ETH`，减少`300 ETH`。其实，两张图片对应Vitalik在`2022.07.30`和`2022.07.31`的持仓。那么，这一天Vitalik用`300 ETH`干了什么？
 
 ethers[v5]官方文档：https://docs.ethers.io/v5/
 ethers[v6]官方文档：https://docs.ethers.io/v6/
