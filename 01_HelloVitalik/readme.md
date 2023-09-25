@@ -39,15 +39,15 @@ tags:
 
 ## 开发工具
 
-### 1. VScode
+### 1. VScode（推荐）
 
 你可以使用本地`vscode`进行开发。你需要安装[Node.js](https://nodejs.org/zh-cn/download/)，然后利用包管理工具`npm`安装`ethers`库：
 
 ```shell
-npm install ethers@6.2.3 --save
+npm install ethers --save
 ```
 
-### 2. playcode
+### 2. playcode（不稳定）
 
 ![playcode](./img/1-2.png)
 
@@ -55,7 +55,7 @@ npm install ethers@6.2.3 --save
 
 ![playcode](./img/1-3.png)
 
-本教程将用`playcode`做演示。你需要在官网注册一个免费账号，然后点击`OPEN PLAYGROUND`以`Javascript`模版创建一个新项目，然后将代码写在自动生成的`script.js`中即可。
+这一讲，我们将用`playcode`做演示。你需要在官网注册一个免费账号，然后点击`OPEN PLAYGROUND`以`Javascript`模版创建一个新项目，然后将代码写在自动生成的`script.js`中即可。很多时候，`playcode`并不能稳定的使用`ethers`，因此我们推荐使用VScode。
 
 ## HelloVitalik
 
