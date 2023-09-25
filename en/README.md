@@ -29,66 +29,66 @@ JavaScript online editing platforms:
 
 ## Intro 101
 
-**Chapter 1: HelloVitalik (6 lines of code)**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/01_HelloVitalik) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/01_HelloVitalik/readme.md)
+**Chapter 1: HelloVitalik (6 lines of code)**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/01_HelloVitalik) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/01_HelloVitalik/readme.md)
 
-**Chapter 2: Provider**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/02_Provider) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/02_Provider/readme.md)
+**Chapter 2: Provider**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/02_Provider) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/02_Provider/readme.md)
 
-**Chapter 3: Read Contract Information**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/03_ReadContract) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/03_ReadContract/readme.md)
+**Chapter 3: Read Contract Information**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/03_ReadContract) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/03_ReadContract/readme.md)
 
-**Chapter 4: Send ETH**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/04_SendETH) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/04_SendETH/readme.md)
+**Chapter 4: Send ETH**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/04_SendETH) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/04_SendETH/readme.md)
 
-**Chapter 5: Contract Interaction**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/05_WriteContract) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/05_WriteContract/readme.md)
+**Chapter 5: Contract Interaction**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/05_WriteContract) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/05_WriteContract/readme.md)
 
-**Chapter 6: Deploy Contract**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/06_DeployContract) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/06_DeployContract/readme.md)
+**Chapter 6: Deploy Contract**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/06_DeployContract) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/06_DeployContract/readme.md)
 
-**Chapter 7: Retrieve Events**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/07_Event) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/07_Event/readme.md)
+**Chapter 7: Retrieve Events**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/07_Event) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/07_Event/readme.md)
 
-**Chapter 8: Contract Listeners**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/08_ContractListener) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/08_ContractListener/readme.md)
+**Chapter 8: Contract Listeners**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/08_ContractListener) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/08_ContractListener/readme.md)
 
-**Chapter 9: Event Filtering**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/09_EventFilter) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/09_EventFilter/readme.md)
+**Chapter 9: Event Filtering**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/09_EventFilter) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/09_EventFilter/readme.md)
 
-**Chapter 10: Unit Conversion**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/10_Units) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/10_Units/readme.md)
+**Chapter 10: Unit Conversion**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/10_Units) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/10_Units/readme.md)
 
 ## Advanced 102
 
-**Chapter 11: CallStatic**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/11_StaticCall) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/11_StaticCall/readme.md)
+**Chapter 11: CallStatic**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/11_StaticCall) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/11_StaticCall/readme.md)
 
-**Chapter 12: Recognizing ERC721**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/12_ERC721Check) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/12_ERC721Check/readme.md)
+**Chapter 12: Recognizing ERC721**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/12_ERC721Check) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/12_ERC721Check/readme.md)
 
-**Chapter 13: Encoding Calldata**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/13_EncodeCalldata) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/13_EncodeCalldata/readme.md)
+**Chapter 13: Encoding Calldata**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/13_EncodeCalldata) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/13_EncodeCalldata/readme.md)
 
-**Chapter 14: Bulk Wallet Generation**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/14_HDwallet) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/14_HDwallet/readme.md)
+**Chapter 14: Bulk Wallet Generation**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/14_HDwallet) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/14_HDwallet/readme.md)
 
-**Chapter 15: Bulk Transfer**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/15_MultiTransfer) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/15_MultiTransfer/readme.md)
+**Chapter 15: Bulk Transfer**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/15_MultiTransfer) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/15_MultiTransfer/readme.md)
 
-**Chapter 16: Bulk Collection**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/16_MultiCollect) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/16_MultiCollect/readme.md)
+**Chapter 16: Bulk Collection**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/16_MultiCollect) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/16_MultiCollect/readme.md)
 
-**Chapter 17: Merkle Tree Script**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/17_MerkleTree) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/17_MerkleTree/readme.md)
+**Chapter 17: Merkle Tree Script**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/17_MerkleTree) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/17_MerkleTree/readme.md)
 
-**Chapter 18: Digital Signature Script**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/18_Signature) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/18_Signature/readme.md)
+**Chapter 18: Digital Signature Script**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/18_Signature) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/18_Signature/readme.md)
 
-**Chapter 19: Mempool Listening**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/19_Mempool) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/19_Mempool/readme.md)
+**Chapter 19: Mempool Listening**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/19_Mempool) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/19_Mempool/readme.md)
 
-**Chapter 20: Transaction Data Decoding**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/20_DecodeTx) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/20_DecodeTx/readme.md)
+**Chapter 20: Transaction Data Decoding**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/20_DecodeTx) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/20_DecodeTx/readme.md)
 
 
-**Chapter 21: Fancy Address Generator**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/21_VanityAddress) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/21_VanityAddress/readme.md)
+**Chapter 21: Fancy Address Generator**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/21_VanityAddress) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/21_VanityAddress/readme.md)
 
-**Chapter 22: Reading Any Data**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/22_ReadAnyData) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/22_ReadAnyData/readme.md)
+**Chapter 22: Reading Any Data**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/22_ReadAnyData) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/22_ReadAnyData/readme.md)
 
-**Chapter 23: Front-Running Script**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/23_Frontrun) [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/23_Frontrun/readme.md)
+**Chapter 23: Front-Running Script**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/23_Frontrun) [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/23_Frontrun/readme.md)
 
-**Chapter 24: ERC20 Recognition**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/24_ERC20Check) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/24_ERC20Check/readme.md)
+**Chapter 24: ERC20 Recognition**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/24_ERC20Check) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/24_ERC20Check/readme.md)
 
-**Chapter 25: Flashbots**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/25_Flashbots) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/25_Flashbots/readme.md)
+**Chapter 25: Flashbots**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/25_Flashbots) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/25_Flashbots/readme.md)
 
-**Chapter 26: EIP712 Signature Script**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/26_EIP712) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/26_EIP712/readme.md)
+**Chapter 26: EIP712 Signature Script**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/26_EIP712) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/26_EIP712/readme.md)
 
 ## Tools
 
-**ET01: Connect Wallet**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask/readme.md)
+**ET01: Connect Wallet**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/ET01_Metamask) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/ET01_Metamask/readme.md)
 
-**ET02: Wallet Sign-in**: [Code](https://github.com/WTFAcademy/WTFEthers/blob/main/ET02_SignInWithEthereum) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/blob/main/ET02_SignInWithEthereum/readme.md)
+**ET02: Wallet Sign-in**: [Code](https://github.com/WTFAcademy/WTFEthers/tree/main/en/ET02_SignInWithEthereum) | [Tutorial](https://github.com/WTFAcademy/WTFEthers/tree/main/en/ET02_SignInWithEthereum/readme.md)
 
 ## WTF Ethers Contributors
 <div align="center">
