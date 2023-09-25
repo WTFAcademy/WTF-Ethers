@@ -56,7 +56,7 @@ const providerGoerli = new ethers.JsonRpcProvider(`https://goerli.infura.io/v3/$
 
 `Provider`类封装了一些方法，可以便捷的读取链上数据：
 
-**1.** 利用`getBalance()`函数读取主网和测试网V神的`ETH`余额：
+**1.** 利用`getBalance()`函数读取主网和测试网Vitalik的`ETH`余额：
 
 ```javascript
     // 1. 查询vitalik在主网和Goerli测试网的ETH余额
@@ -69,7 +69,7 @@ const providerGoerli = new ethers.JsonRpcProvider(`https://goerli.infura.io/v3/$
     console.log(`Goerli ETH Balance of vitalik: ${ethers.formatEther(balanceGoerli)} ETH`);
 ```
 
-![V神余额](img/2-2.png)
+![Vitalik余额](img/2-2.png)
 
 **2.** 利用`getNetwork()`查询`provider`连接到了哪条链，`homestead`代表`ETH`主网：
 

@@ -128,7 +128,7 @@ await tx.wait()
     ```
     ![调用deposit](img/5-2.png)
 
-5. 调用`WETH`合约的`transfer()`函数，给V神转账`0.001 WETH`，并打印余额。可以看到余额变为`1.001997`。
+5. 调用`WETH`合约的`transfer()`函数，给Vitalik转账`0.001 WETH`，并打印余额。可以看到余额变为`1.001997`。
 
     ```js
         console.log("\n3. 调用transfer()函数，给vitalik转账0.001 WETH")
@@ -139,12 +139,12 @@ await tx.wait()
         const balanceWETH_transfer = await contractWETH.balanceOf(address)
         console.log(`转账后WETH持仓: ${ethers.formatEther(balanceWETH_transfer)}\n`)
     ```
-    ![给V神转WETH](img/5-3.png)
+    ![给Vitalik转WETH](img/5-3.png)
 
 **注意**：观察`deposit()`函数和`balanceOf()`函数，为什么他们的返回值不一样？为什么前者返回一堆数据，而后者只返回确定的值？这是因为对于钱包的余额，它是一个只读操作，读到什么就是什么。而对于一次函数的调用，并不知道数据何时上链，所以只会返回这次交易的信息。总结来说，就是对于非`pure`/`view`函数的调用，会返回交易的信息。如果想知道函数执行过程中合约变量的变化，可以在合约中使用`emit`输出事件，并在返回的`transaction`信息中读取事件信息来获取相应的值。
 
 ## 总结
 
-这一讲，我们介绍了如何声明可写的`Contract`合约变量，并利用它与测试网的`WETH`合约交互。我们不仅调用`WETH`的`deposit()`函数，将`0.001 ETH`转换为`WETH`，并转账给了V神。
+这一讲，我们介绍了如何声明可写的`Contract`合约变量，并利用它与测试网的`WETH`合约交互。我们不仅调用`WETH`的`deposit()`函数，将`0.001 ETH`转换为`WETH`，并转账给了Vitalik。
 
 

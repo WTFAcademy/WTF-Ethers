@@ -139,19 +139,19 @@ await contractERC20.waitForDeployment();
     ```
     ![铸造代币](img/6-3.png)
 
-6. 调用`transfer()`函数，给V神转账`1,000`枚代币。
+6. 调用`transfer()`函数，给Vitalik转账`1,000`枚代币。
 
     ```js
-    // 3. 调用transfer()函数，给V神转账1000代币
-    console.log("\n3. 调用transfer()函数，给V神转账1,000代币")
+    // 3. 调用transfer()函数，给Vitalik转账1000代币
+    console.log("\n3. 调用transfer()函数，给Vitalik转账1,000代币")
     tx = await contractERC20.transfer("vitalik.eth", "1000")
     console.log("等待交易上链")
     await tx.wait()
-    console.log(`V神钱包中的代币余额: ${await contractERC20.balanceOf("vitalik.eth")}`)
+    console.log(`Vitalik钱包中的代币余额: ${await contractERC20.balanceOf("vitalik.eth")}`)
     ```
 
     ![转账](img/6-4.png)
 
 ## 总结
 
-这一讲我们介绍了ether.js中的合约工厂`ContractFactory`类型，利用它部署了一个`ERC20`代币合约，并给V神转账了`1,000`枚代币。
+这一讲我们介绍了ether.js中的合约工厂`ContractFactory`类型，利用它部署了一个`ERC20`代币合约，并给Vitalik转账了`1,000`枚代币。

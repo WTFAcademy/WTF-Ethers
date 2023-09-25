@@ -31,8 +31,8 @@ const main = async () => {
     console.log(`测试钱包 DAI持仓: ${ethers.formatEther(balanceDAI)}\n`)
     console.log(`vitalik DAI持仓: ${ethers.formatEther(balanceDAIVitalik)}\n`)
 
-    // 2. 用staticCall尝试调用transfer转账10000 DAI，msg.sender为V神，交易将成功
-    console.log("\n2.  用staticCall尝试调用transfer转账1 DAI，msg.sender为V神地址")
+    // 2. 用staticCall尝试调用transfer转账10000 DAI，msg.sender为Vitalik，交易将成功
+    console.log("\n2.  用staticCall尝试调用transfer转账1 DAI，msg.sender为Vitalik地址")
     // 发起交易
     const tx = await contractDAI.transfer.staticCall("vitalik.eth", ethers.parseEther("10000"), {from: "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"})
     console.log(`交易会成功吗？：`, tx)
