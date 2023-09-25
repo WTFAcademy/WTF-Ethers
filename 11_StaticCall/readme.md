@@ -97,7 +97,7 @@ tags:
     ```js
     console.log("\n2.  用staticCall尝试调用transfer转账1 DAI，msg.sender为Vitalik地址")
     // 发起交易
-    const tx = await contractDAI.transfer.staticCall("vitalik.eth", ethers.parseEther("10000"), {from: "vitalik.eth"})
+    const tx = await contractDAI.transfer.staticCall("vitalik.eth", ethers.parseEther("1"), {from:  await provider.resolveName("vitalik.eth")})
     console.log(`交易会成功吗？：`, tx)
     ```
     ![模拟Vitalik转账](img/11-3.png)
