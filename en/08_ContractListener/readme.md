@@ -1,5 +1,5 @@
 ---
-title: 8. Listening to Contract Events
+title: 8. Contract Listeners
 tags:
   - ethers
   - javascript
@@ -10,9 +10,7 @@ tags:
   - web
 ---
 
-# WTF Ethers: 8. Listening to Contract Events
-
-# WTF Ethers: 7. Retrieving Events
+# WTF Ethers: 8. Contract Listeners
 
 I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 

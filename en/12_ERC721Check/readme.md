@@ -1,5 +1,5 @@
 ---
-title: 12. Identifying ERC721 Contracts
+title: 12. Identify ERC721 Contracts
 tags:
   - ethers
   - javascript
@@ -10,7 +10,7 @@ tags:
   - web
 ---
 
-# WTF Ethers: 12. Identifying ERC721 Contracts
+# WTF Ethers: 12. Identify ERC721 Contracts
 
 I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 

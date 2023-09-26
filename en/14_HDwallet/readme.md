@@ -1,5 +1,5 @@
 ---
-title: 14. Generate Wallets in Batch
+title: 14. Batch Wallet Generation
 tags:
   - ethers
   - javascript
@@ -12,7 +12,7 @@ tags:
   - web
 ---
 
-# WTF Ethers: 14. Generate Wallets in Batch
+# WTF Ethers: 14. Batch Wallet Generation
 
 I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 

@@ -1,5 +1,5 @@
 ---
-title: 4. Sending ETH
+title: 4. Send ETH
 tags:
   - ethers
   - javascript
@@ -10,14 +10,15 @@ tags:
   - web
 ---
 
-# WTF Ethers: 4. Sending ETH
-Recently, I have been relearning `ethers.js` to solidify my understanding and also write a "# WTF Ethers Guide" for beginners to use.
+# WTF Ethers: 4. Send ETH
+
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy Community**: [Official website wtf.academy](https://wtf.academy) | [WTF Solidity Tutorial](https://github.com/AmazingAng/WTF-Solidity) | [Discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All code and tutorials are open source on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
@@ -25,13 +26,13 @@ In this lesson, we will introduce the `Signer` class and its derived class `Wall
 
 ## `Signer` Class
 
-Unlike `Web3.js`, which assumes that users will deploy Ethereum nodes locally and manage private keys and network connection status through this node (which is not actually the case), `ethers.js` manages network connection status with the `Provider` class, and manages keys securely and flexibly with the `Signer` class or `Wallet` class.
+Unlike `Web3.js`, which assumes that users will deploy Ethereum nodes locally and manage private keys and network connection status through this node (which is not actually the case), `ethers.js` manages network connection status with the `Provider` class, and manages keys securely and flexibly with the `Signer` class or `Wallet` class, separately.
 
 In `ethers`, the `Signer` class is an abstraction of an Ethereum account that can be used to sign messages and transactions, send signed transactions to the Ethereum network, and modify the blockchain state. The `Signer` class is an abstract class and cannot be instantiated directly, so we need to use its subclass: the `Wallet` class.
 
 ## `Wallet` Class
 
-The `Wallet` class inherits from the `Signer` class, and developers can use it to sign transactions and messages just like they own an Externally Owned Account (EOA) with a private key.
+The `Wallet` class inherits from the `Signer` class. Developers can use it to sign transactions and messages just like they own an Externally Owned Account (EOA) with a private key.
 
 Below are several ways to create instances of the `Wallet` class:
 
@@ -167,6 +168,7 @@ console.log(`Wallet 2 private key: ${wallet2.privateKey}`)
 ![Get Private Key](img/4-3.png)
 
 ### 6. Get Number of Interactions on the Chain for the Wallet
+
 Use the `getTransactionCount()` function to get the number of interactions on the chain for the wallet.
 
 ```javascript

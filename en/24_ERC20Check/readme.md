@@ -1,5 +1,5 @@
 ---
-title: 24. Identifying ERC20 Contracts
+title: 24. Identify ERC20 Contracts
 tags:
   - ethers
   - javascript
@@ -10,7 +10,7 @@ tags:
   - web
 ---
 
-# WTF Ethers: 24. Identifying ERC20 Contracts
+# WTF Ethers: 24. Identify ERC20 Contracts
 
 I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 

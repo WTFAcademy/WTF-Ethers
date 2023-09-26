@@ -1,5 +1,5 @@
 ---
-title: 19. Listening to Mempool
+title: 19. Listen to Mempool
 tags:
   - ethers
   - javascript
@@ -10,7 +10,7 @@ tags:
   - web
 ---
 
-# WTF Ethers: 19. Listening to Mempool
+# WTF Ethers: 19. Listen to Mempool
 
 I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 

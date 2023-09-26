@@ -1,5 +1,5 @@
 ---
-title: 13. Encoding calldata
+title: 13. Encode Calldata
 tags:
   - ethers
   - javascript
@@ -9,7 +9,7 @@ tags:
   - web
 ---
 
-# WTF Ethers: 13. Encoding calldata
+# WTF Ethers: 13. Encode Calldata
 
 I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 

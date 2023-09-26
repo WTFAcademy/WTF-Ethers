@@ -1,5 +1,5 @@
 ---
-title: 20. Decoding Transaction
+title: 20. Decode Transaction
 tags:
   - ethers
   - javascript
@@ -9,7 +9,7 @@ tags:
   - web
 ---
 
-# WTF Ethers: 20. Decoding Transaction
+# WTF Ethers: 20. Decode Transaction
 
 I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 

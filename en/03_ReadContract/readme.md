@@ -1,5 +1,5 @@
 ---
-title: 3. Reading Contract Information
+title: 3. Read Contract Information
 tags:
   - ethers
   - javascript
@@ -9,7 +9,7 @@ tags:
   - web
 ---
 
-# WTF Ethers: 3. Reading Contract Information
+# WTF Ethers: 3. Read Contract Information
 
 I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 

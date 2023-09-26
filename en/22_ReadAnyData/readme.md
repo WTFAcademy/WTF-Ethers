@@ -1,5 +1,5 @@
 ---
-title: 22. Reading Arbitrary Data
+title: 22. Read Any Data
 tags:
   - ethers
   - javascript
@@ -9,7 +9,7 @@ tags:
   - web
 ---
 
-# WTF Ethers: 22. Reading Arbitrary Data
+# WTF Ethers: 22. Read Any Data
 
 I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 

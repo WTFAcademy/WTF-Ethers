@@ -1,5 +1,5 @@
 ---
-title: 7. Retrieving Events
+title: 7. Retrieve Events
 tags:
   - ethers
   - javascript
@@ -9,7 +9,7 @@ tags:
   - web
 ---
 
-# WTF Ethers: 7. Retrieving Events
+# WTF Ethers: 7. Retrieve Events
 
 I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
