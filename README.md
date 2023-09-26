@@ -1,5 +1,7 @@
 ![](./img/logo_ethers.jpeg)
 
+:globe_with_meridians:	**[English Version](https://github.com/WTFAcademy/WTF-Ethers/tree/main/en)** :globe_with_meridians:	
+
 # WTF Ethers
 我们最近在重新学ethers.js，巩固一下细节，也写一个“WTF Ethers极简入门”，供小白们使用，每周更新1-3讲。
 
