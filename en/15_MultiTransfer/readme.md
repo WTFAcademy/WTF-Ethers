@@ -8,9 +8,9 @@ tags:
   - web
 ---
 
-# Ethers Quick Start: 15. Batch Transfer
+# WTF Ethers: 15. Batch Transfer
 
-I have been re-learning `ethers.js` recently to solidify the details and write a "WTF Ethers Quick Start" guide for beginners to use.
+I have been re-learning `ethers.js` recently to solidify the details and write a "# WTF Ethers" guide for beginners to use.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 

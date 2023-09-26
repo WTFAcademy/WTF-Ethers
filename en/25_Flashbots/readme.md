@@ -10,9 +10,9 @@ tags:
   - web
 ---
 
-# Ethers Quick Start Guide: 25. Flashbots
+# WTF Ethers: 25. Flashbots
 
-I recently revisited `ethers.js` to refresh my knowledge of the details and also to create a "WTF Ethers Quick Start Guide" for beginners to use.
+I recently revisited `ethers.js` to refresh my knowledge of the details and also to create a "# WTF Ethers Guide" for beginners to use.
 
 Twitter: [@0xAA_Science](https://twitter.com/0xAA_Science) | [@WTFAcademy_](https://twitter.com/WTFAcademy_)
 

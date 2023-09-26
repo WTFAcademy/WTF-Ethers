@@ -10,9 +10,9 @@ tags:
   - web
 ---
 
-# Ethers Quick Start: 12. Identifying ERC721 Contracts
+# WTF Ethers: 12. Identifying ERC721 Contracts
 
-I have recently been relearning `ethers.js`, solidifying the details, and writing a "WTF Ethers Quick Start" guide for beginners to use.
+I have recently been relearning `ethers.js`, solidifying the details, and writing a "# WTF Ethers" guide for beginners to use.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 

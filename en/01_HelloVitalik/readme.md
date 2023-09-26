@@ -1,5 +1,5 @@
 ---
-title: 1. HelloVitalik (6 lines of code)
+title: 1. Hello Vitalik
 tags:
   - ethers
   - javascript
@@ -9,30 +9,30 @@ tags:
   - web
 ---
 
-# Ethers Getting Started: 1. HelloVitalik (6 lines of code)
+# WTF Ethers: 1. Hello Vitalik
 
-I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers Getting Started" for beginners to use.
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy Community**: [Official Website wtf.academy](https://wtf.academy) | [WTF Solidity Tutorials](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
 All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
-In this lesson, we will introduce the `ethers.js` library, an online JavaScript editor called `playcode`, and we will write our first program, `HelloVitalik`: it will query Vitalik's ETH balance and output it to the console.
+In this lesson, we will introduce the `ethers.js` library and write our first program, `HelloVitalik`: it will query Vitalik's ETH balance and output it to the console.
 
-> This tutorial uses the latest version of ethers.js, version 6, which has significant changes compared to version 5. For version 5 tutorial, please see [link](https://github.com/WTFAcademy/WTF-Ethers/tree/wtf-ethers-v5).
+> This tutorial uses the latest version of ethers.js, v6, which has significant changes compared to v5. For v5 tutorial, please check [link](https://github.com/WTFAcademy/WTF-Ethers/tree/wtf-ethers-v5).
 
 ## Overview of ethers.js
 
-`ethers.js` is a complete and compact open-source library for interacting with the Ethereum blockchain and its ecosystem. If you want to build a frontend for a Dapp, you will need to use `ethers.js`.
+`ethers.js` is a complete and compact open-source library for interacting with the Ethereum blockchain and its ecosystem. If you want to build a frontend for a Dapp or write a script to interact with Ethereum, you will need to use `ethers.js`.
 
 Compared to the earlier library `web3.js`, `ethers.js` has the following advantages:
 
 1. More compact code: `ethers.js` is 116.5 kB, while `web3.js` is 590.6 kB.
-2. More secure: `Web3.js` assumes that users will deploy a local Ethereum node, and the private keys and network connectivity are managed by this node (which is not actually the case); in `ethers.js`, the `Provider` class manages network connectivity, and the `Wallet` class manages keys, making it more secure and flexible.
+2. More secure: `Web3.js` assumes that users will deploy a local Ethereum node, and the private keys and network connectivity are managed by this node (which is not actually the case); in `ethers.js`, the `Provider` class manages network connectivity, while the `Wallet` class manages keys, making it more secure and flexible.
 3. Native support for `ENS`.
 
 ![ethers.js connecting Dapp frontend and the blockchain](./img/1-1.png)
@@ -51,17 +51,17 @@ npm install ethers --save
 
 ![playcode](./img/1-2.png)
 
-[Playcode](https://playcode.io/) is an online platform for compiling JavaScript. You can run `.js` files without configuring `Nodejs`, which is very convenient. It is also much faster than the more well-known `codesandbox`.
+[Playcode](https://playcode.io/) is an online platform for compiling JavaScript. You can run `.js` files without configuring `Nodejs`, which is very convenient.
 
 ![playcode](./img/1-3.png)
 
-In this lesson, we will demonstrate using `playcode`. You need to register a free account on the official website, then create a new project with the `Javascript` template by clicking `OPEN PLAYGROUND`, and write the code in the auto-generated `script.js` file. However, `playcode` may not be stable when using `ethers`, so we recommend using VScode.
+In this chapter, we will demonstrate using `playcode`. You need to register a free account on the official website, then create a new project with the `Javascript` template by clicking `OPEN PLAYGROUND`, and write the code in the auto-generated `script.js` file. However, `playcode` may not be stable when using `ethers`, so we recommend using VScode.
 
 ## HelloVitalik
 
 Now, let's write our first program using `ethers` called `HelloVitalik`: it will query Vitalik's ETH balance and output it to the console. The entire program only requires 6 lines, very simple!
 
-**Note**: When running for the first time on `playcode`, it may prompt `module not found`. This is because the `ethers` library has not been installed, simply click the `install` button to install it.
+**Note**: When running for the first time on `playcode`, it may prompt `module not found`. This is because the `ethers` library has not been installed, simply click the `install` button to install it. If this does not work, please use VScode locally.
 
 ![Hello Vitalik](./img/1-4.png)
 
@@ -105,7 +105,7 @@ const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
 
 ### 3. Declare an `async` function
 
-Since interactions with the blockchain are not real-time, we need to use the `async/await` syntax in JavaScript. Each call with the blockchain requires the use of `await`, and we wrap these calls in an `async` function, and finally call this function.
+Since interactions with the blockchain are not real-time, we need to use the `async/await` syntax in JavaScript. Each call with the blockchain requires the use of `await`, and we wrap these calls in an `async` function.
 ```javascript
 const main = async () => {
     //...
@@ -129,7 +129,7 @@ The Ethereum balance we obtained from the chain is in `wei`, where `1 ETH = 10^1
     console.log(`ETH Balance of Vitalik: ${ethers.formatEther(balance)} ETH`);
 ```
 
-If you are using the VScode development tool, you need to enter the following command in the VScode terminal:
+If you are using the VScode development tool, you need to enter the following command in the VScode terminal to run the script:
 ```shell
 node 01_HelloVitalik/HelloVitalik.js
 ```
@@ -140,8 +140,12 @@ This way, you will see Vitalik's `ETH` balance in the console: `1951 ETH`. Of co
 
 ## Summary
 
-This concludes the first lesson of the WTF Ethers Getting Started tutorial. We introduced `ethers.js` and completed our first program using `ethers`: `HelloVitalik`, which queries Vitalik's wallet balance.
+This concludes the first lesson of the WTF Ethers tutorial. We introduced `ethers.js` and completed our first program using `ethers`: `HelloVitalik`, which queries Vitalik's wallet balance.
+
 **Post-Class Assignment**: In Figures 4 and 5, Vitalik's `ETH` balance is different. The balance in the first image is `2251 ETH`, while in the second image it becomes `1951 ETH`, a decrease of `300 ETH`. In fact, these two images correspond to Vitalik's holdings on `2022.07.30` and `2022.07.31`. So, what did Vitalik do with `300 ETH` on that day?
 
-ethers[v5] Official Documentation: https://docs.ethers.io/v5/
-ethers[v6] Official Documentation: https://docs.ethers.io/v6/
+## Recommended Readings
+
+[ethers v5 Official Documentation](https://docs.ethers.io/v5/)
+
+[ethers[v6] Official Documentation](https://docs.ethers.io/v6/)

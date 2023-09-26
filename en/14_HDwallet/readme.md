@@ -12,9 +12,9 @@ tags:
   - web
 ---
 
-# Ethers Quick Start Guide: 14. Generate Wallets in Bulk
+# WTF Ethers: 14. Generate Wallets in Bulk
 
-Recently, I've been relearning `ethers.js` to reinforce the details and write a "WTF Ethers Quick Start Guide" for beginners to use.
+Recently, I've been relearning `ethers.js` to reinforce the details and write a "# WTF Ethers Guide" for beginners to use.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 

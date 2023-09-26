@@ -9,9 +9,9 @@ tags:
   - web
 ---
 
-# Ethers Quick Start Guide: 20. Decoding Transaction Details
+# WTF Ethers: 20. Decoding Transaction Details
 
-I recently started studying `ethers.js` again to reinforce the details and create a "WTF Ethers Quick Start Guide" for beginners to use.
+I recently started studying `ethers.js` again to reinforce the details and create a "# WTF Ethers Guide" for beginners to use.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
@@ -25,7 +25,7 @@ In this lesson, we will use a pending transaction as an example to demonstrate h
 
 ## Pending Transaction
 
-A pending transaction is a transaction sent by a user but has not been included in a block by a miner yet. It appears in the mempool (transaction memory pool). For more information about the mempool, you can refer to the [WTF Ethers Quick Start Guide Lesson 19: Listening to the Mempool](https://github.com/WTFAcademy/WTF-Ethers/blob/main/19_Mempool/readme.md).
+A pending transaction is a transaction sent by a user but has not been included in a block by a miner yet. It appears in the mempool (transaction memory pool). For more information about the mempool, you can refer to the [# WTF Ethers Guide Lesson 19: Listening to the Mempool](https://github.com/WTFAcademy/WTF-Ethers/blob/main/19_Mempool/readme.md).
 
 Below is an example of a pending transaction for transferring an `ERC20` token. You can view the transaction details on [etherscan](https://etherscan.io/tx/0xbe5af8b8885ea9d6ae8a2f3f44315554ff62daebf3f99b42eae9d4cda880208e):
 

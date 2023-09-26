@@ -8,19 +8,19 @@ tags:
   - web
 ---
 
-# Ethers Quick Start: 2. Provider
+# WTF Ethers: 2. Provider
 
-Recently, I have been relearning `ethers.js` to solidify my understanding of the details and to create a "WTF Ethers Quick Start" guide for beginners to use.
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy Community**: [Official Website wtf.academy](https://wtf.academy) | [WTF Solidity Tutorial](https://github.com/AmazingAng/WTF-Solidity) | [Discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All code and tutorials are open-source on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
-In this lesson, we will introduce the `Provider` class in ethers.js and use it to connect to an Infura node to retrieve information from the blockchain.
+In this lesson, we will introduce the `Provider` class in ethers.js and use it to connect to an node to retrieve information from the blockchain.
 
 ## `Provider` Class
 
@@ -32,24 +32,25 @@ In addition to the default provider `defaultProvider` mentioned [previously](htt
 
 ### Creating an API Key for the Node Service Provider
 
-First, you need to register and create an API Key on the website of the node service provider. In the "Tools" section of the "WTF Solidity Quick Start" tutorial, we introduced the methods to create API Keys for two companies, Infura and Alchemy. You can refer to the tutorial for more information.
+First, you need to register and create an API Key on the website of the node service provider. In the "Tools" section of the "WTF Solidity" tutorial, we introduced the methods to create API Keys for two projects, Infura and Alchemy. You can refer to the tutorial for more information.
 
 ![Infura API Key](img/2-1.png)
 
-### Connecting to Infura Node
+### Connecting to Alchemy Node
 
-Here, we will use Infura as an example. After creating the Infura API Key, you can create a `Provider` variable using the `ethers.JsonRpcProvider()` method, which takes the URL of the node service as a parameter.
+Here, we will use Alchemy as an example. After creating the Alchemy API Key, you can create a `Provider` variable using the `ethers.JsonRpcProvider()` method, which takes the URL of the node service as a parameter.
 
 In the following example, we create providers to connect to the `ETH` mainnet and the `Goerli` testnet:
 
 ```javascript
-// Connecting to the Ethereum network using Infura's RPC node
-// Fill in the Infura API Key, tutorial: https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL02_Infura/readme.md
-const INFURA_ID = ''
-// Connecting to the ETH mainnet
-const providerETH = new ethers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`)
-// Connecting to the Goerli testnet
-const providerGoerli = new ethers.JsonRpcProvider(`https://goerli.infura.io/v3/${INFURA_ID}`)
+// Connect to the Ethereum network using Alchemy's RPC node
+// Prepare the alchemy API, please refer to https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
+const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
+const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
+// Connect to the Ethereum mainnet
+const providerETH = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL)
+// Connect to the Goerli testing network
+const providerGoerli = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL)
 ```
 
 ### Using the `Provider` to Retrieve Blockchain Data
@@ -103,7 +104,7 @@ The `Provider` class provides convenient methods to retrieve data from the block
     console.log(txCount);
 ```
 
-![getGasPrice](img/2-5.png)
+![](img/2-5.png)
 
 **5.** Use the `getFeeData()` function to retrieve the current recommended gas settings, which are returned as `bigint`.
 
@@ -130,8 +131,8 @@ The `Provider` class provides convenient methods to retrieve data from the block
 **7.** Use the `getCode()` function to retrieve the bytecode of a contract at a specific address. In the example below, we use the contract address of `WETH` on the mainnet:
 
 ```javascript
-    // 7. Retrieve the bytecode of a contract at a specific address, using the contract address of WETH on the mainnet as an example
-    console.log("\n7. Retrieving the bytecode of a contract at a specific address, using the contract address of WETH on the mainnet as an example")
+// 7. Retrieve the bytecode of a contract at a specific address, using the contract address of WETH on the mainnet as an example
+console.log("\n7. Retrieving the bytecode of a contract at a specific address, using the contract address of WETH on the mainnet as an example")
 const code = await providerETH.getCode("0xc778417e063141139fce010982780140aa0cd5ab");
 console.log(code);
 ```
@@ -140,4 +141,4 @@ console.log(code);
 
 ## Summary
 
-In this lesson, we will introduce the `Provider` class of ethers.js and create a `jsonRpcProvider` with Infura's node API key to read on-chain information from the `ETH` main network and `Goerli` test network.
+In this lesson, we introduced the `Provider` class of ethers.js and create a `jsonRpcProvider` with Alchemy's node API key to read on-chain information from the `ETH` main network and `Goerli` test network.

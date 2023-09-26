@@ -8,9 +8,9 @@ tags:
   - web
 ---
 
-# Ethers Crash Course: 11. StaticCall
+# WTF Ethers: 11. StaticCall
 
-I have been re-learning `ethers.js` recently to solidify my understanding of the details and to create a "WTF Ethers Crash Course" for beginners to use.
+I have been re-learning `ethers.js` recently to solidify my understanding of the details and to create a "WTF Ethers Tutorial" for beginners to use.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 

@@ -10,15 +10,15 @@ tags:
   - web
 ---
 
-# Ethers Quick Start: 5. Contract Interaction
+# WTF Ethers: 5. Contract Interaction
 
-Recently, I've been revisiting `ethers.js` to solidify my understanding of the details and write a "WTF Ethers Quick Start" guide for beginners.
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy Community**: [wtf.academy](https://wtf.academy) | [WTF Solidity Tutorial](https://github.com/AmazingAng/WTF-Solidity) | [Discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All the code and tutorials are open-source on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
@@ -27,6 +27,7 @@ In this lesson, we will learn how to declare a writable `Contract` variable and 
 ## Creating a Writable `Contract` Variable
 
 The rule for declaring a writable `Contract` variable is as follows:
+
 ```js
 const contract = new ethers.Contract(address, abi, signer)
 ```
@@ -40,7 +41,7 @@ const contract2 = contract.connect(signer)
 
 ## Contract Interaction
 
-In [Lesson 3](https://github.com/WTFAcademy/WTFEthers/blob/main/03_ReadContract/readme.md), we learned how to read contract information. It does not require any gas. Here, we will learn how to write contract information, which involves building a transaction and paying for gas. This transaction will be validated by every node and miner on the network, and the blockchain state will be changed.
+In [Lesson 3](https://github.com/WTFAcademy/WTFEthers/tree/main/en/03_ReadContract/readme.md), we learned how to read contract information. It does not require any gas. Here, we will learn how to write to a contract, which involves building a transaction and paying for gas. This transaction will be validated by every node and miner on the network, and the blockchain state will be changed.
 
 You can interact with a contract using the following methods:
 ```js
@@ -60,7 +61,7 @@ Here, `METHOD_NAME` is the name of the function to be called, `args` is the func
 
 ## Example: Interacting with the Test Network's `WETH` Contract
 
-`WETH` (Wrapped ETH) is a wrapped version of `ETH`. It wraps native Ethereum tokens using a smart contract to conform to the `ERC20` standard. For more detailed content about the `WETH` contract, refer to the [41st Lesson of the WTF Solidity Tutorial on WETH](https://github.com/AmazingAng/WTFSolidity/blob/main/41_WETH/readme.md).
+`WETH` (Wrapped ETH) is a wrapped version of `ETH`. It wraps native Ethereum tokens using a smart contract to conform to the `ERC20` standard. For more detailed content about the `WETH` contract, refer to the [WTF Solidity Tutorial on WETH](https://www.wtf.academy/solidity-application/WETH/).
 
 1. Create the `provider` and `wallet` variables.
 
@@ -135,16 +136,16 @@ Here, `METHOD_NAME` is the name of the function to be called, `args` is the func
     ```js
     console.log("\n3. Call the transfer() function to transfer 0.001 WETH to Vitalik")
     // Send the transaction
-const tx2 = await contractWETH.transfer("vitalik.eth", ethers.parseEther("0.001"))
-// Wait for the transaction to be confirmed
-await tx2.wait()
-const balanceWETH_transfer = await contractWETH.balanceOf(address)
-console.log(`WETH balance after transfer: ${ethers.formatEther(balanceWETH_transfer)}\n`)
-```
+    const tx2 = await contractWETH.transfer("vitalik.eth", ethers.parseEther("0.001"))
+    // Wait for the transaction to be confirmed
+    await tx2.wait()
+    const balanceWETH_transfer = await contractWETH.balanceOf(address)
+    console.log(`WETH balance after transfer: ${ethers.formatEther(balanceWETH_transfer)}\n`)
+    ```
 ![Transfer WETH to Vitalik](img/5-3.png)
 
-**Note**: Observe the `deposit()` function and the `balanceOf()` function, why do they return different values? Why does the former return a bunch of data while the latter only returns a specific value? This is because for a wallet balance, it is a read-only operation, it reads what it is. However, for a function call, it does not know when the data will be confirmed on the blockchain, so it only returns information about the transaction. In summary, for non-`pure`/`view` function calls, it will return information about the transaction. If you want to know the changes in contract variables during the execution of a function, you can use `emit` to output events in the contract, and read the event information from the returned `transaction` to obtain the corresponding values.
+**Note**: Observe the `deposit()` function and the `balanceOf()` function, why do they return different values? Why does the former return a bunch of data while the latter only returns a specific value? This is because for a wallet balance, it is a read-only operation, it reads what it is. However, for a function call, it does not know when the data will be confirmed on the blockchain, so it only returns information about the transaction. In summary, for non-`pure`/`view` function calls, it will return the transaction information. If you want to know the changes in contract variables during the execution of a function, you can use `emit` to output events in the contract, and read the event information from the returned `transaction` to obtain the corresponding values.
 
 ## Summary
 
-In this lesson, we have learned how to declare writable `Contract` variables and interact with the `WETH` contract on the test network. We not only called the `deposit()` function of `WETH` to convert `0.001 ETH` into `WETH`, but also transferred it to Vitalik.
+In this lesson, we have learned how to declare writable `Contract` variables and interact with the `WETH` contract on the test network. We called the `deposit()` function of `WETH` to convert `0.001 ETH` into `WETH`, and transferred it to Vitalik.

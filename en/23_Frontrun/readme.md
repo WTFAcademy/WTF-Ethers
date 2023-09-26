@@ -11,9 +11,9 @@ tags:
   - web
 ---
 
-# Ethers Simplified: 23. Front-running Script
+# WTF Ethers: 23. Front-running Script
 
-Recently, I've been relearning `ethers.js` to strengthen my understanding and to write a simplified guide called `WTF Ethers Simplified` for beginners to use.
+Recently, I've been relearning `ethers.js` to strengthen my understanding and to write a simplified guide called `WTF Ethers` for beginners to use.
 
 Twitter: [@0xAA_Science](https://twitter.com/0xAA_Science)｜[@WTFAcademy_](https://twitter.com/WTFAcademy_)
 

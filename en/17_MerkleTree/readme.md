@@ -9,9 +9,9 @@ tags:
   - web
 ---
 
-# Ethers Quick Start: 17. MerkleTree Script
+# WTF Ethers: 17. MerkleTree Script
 
-I have recently been learning ethers.js to solidify my understanding of the details and to create a simple guide called "WTF Ethers Quick Start" for beginners to use.
+I have recently been learning ethers.js to solidify my understanding of the details and to create a simple guide called "# WTF Ethers" for beginners to use.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 

@@ -9,9 +9,9 @@ tags:
   - web
 ---
 
-# A Minimal Introduction to Ethers: 21. Vanity Address Generator
+# WTF Ethers: 21. Vanity Address Generator
 
-Recently, I have been re-learning `ethers.js` to solidify my understanding of the details and write a "WTF Minimal Introduction to Ethers" for beginners to use.
+Recently, I have been re-learning `ethers.js` to solidify my understanding of the details and write a "WTF Ethers Tutorial" for beginners to use.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 

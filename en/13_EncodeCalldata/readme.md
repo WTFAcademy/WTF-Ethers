@@ -9,9 +9,9 @@ tags:
   - web
 ---
 
-# Ethers Quick Start: 13. Encoding calldata
+# WTF Ethers: 13. Encoding calldata
 
-I recently started learning `ethers.js` again to review some details and write a "WTF Ethers Quick Start" for beginners.
+I recently started learning `ethers.js` again to review some details and write a "# WTF Ethers" for beginners.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 

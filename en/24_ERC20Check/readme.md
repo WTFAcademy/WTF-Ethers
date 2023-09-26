@@ -10,7 +10,7 @@ tags:
   - web
 ---
 
-# Introduction to Ethers: 24. Recognizing ERC20 Contracts
+# WTF Ethers: 24. Recognizing ERC20 Contracts
 
 I have been relearning `ethers.js` recently, consolidating the details and writing a "WTF Introduction to Ethers" for beginners.
 

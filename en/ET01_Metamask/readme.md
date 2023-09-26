@@ -1,4 +1,4 @@
-# Ethers Quick Start Toolbox: ET01. Connecting to Metamask
+# WTF Ethers Toolbox: ET01. Connecting to Metamask
 
 I've been relearning `ethers.js` recently, refreshing my knowledge of the details and writing a guide called `WTF Ethers Quickstart` for beginners to use.
 

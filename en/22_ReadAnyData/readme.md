@@ -9,9 +9,9 @@ tags:
   - web
 ---
 
-# Ethers Simplified: 22. Reading Arbitrary Data
+# WTF Ethers: 22. Reading Arbitrary Data
 
-I recently revisited `ethers.js` to refresh my understanding of the details and also to write a "WTF Ethers Simplified" guide for beginners to use.
+I recently revisited `ethers.js` to refresh my understanding of the details and also to write a "WTF Ethers Tutorial" for beginners to use.
 
 Twitter: [@0xAA_Science](https://twitter.com/0xAA_Science)｜[@WTFAcademy_](https://twitter.com/WTFAcademy_)
 

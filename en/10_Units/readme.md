@@ -10,31 +10,31 @@ tags:
   - web
 ---
 
-# Ethers Quick Start: 10. BigInt and Unit Conversion
+# WTF Ethers: 10. BigInt and Unit Conversion
 
-I have recently been relearning ethers.js to solidify my understanding of the details and to write a "WTF Ethers Quick Start" for beginners to use.
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy Community**: [Official Website wtf.academy](https://wtf.academy) | [WTF Solidity Tutorial](https://github.com/AmazingAng/WTF-Solidity) | [Discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All code and tutorials are open-source on GitHub: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTF-Ethers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
-Note: This tutorial is based on ethers.js 6.3.0. If you are using v5, you can refer to the [ethers.js v5 documentation](https://docs.ethers.io/v5/).
+Note: This tutorial is based on ethers.js v6. If you are using v5, you can refer to the [WTF Ethers v5](https://github.com/WTFAcademy/WTF-Ethers/tree/wtf-ethers-v5).
 
 In this lesson, we will introduce the BigInt class and unit conversion.
 
 ## BigInt
 
-In Ethereum, many calculations require values that exceed the safe range of JavaScript integers (the maximum safe integer in JavaScript is `9007199254740991`). Therefore, ethers.js uses the BigInt class native to JavaScript ES2020 to securely perform mathematical operations on numbers of any magnitude. In ethers.js, most operations that need to return a value will return a BigInt, and parameters that accept values will also accept them.
+In Ethereum, many calculations require values that exceed the safe range of JavaScript integers (the maximum safe integer in JavaScript is `9007199254740991`). Therefore, ethers.js uses the BigInt class native to JavaScript ES2020 to securely perform mathematical operations on numbers of any magnitude. In ethers.js, most operations that need to return a value will return as `BigInt`, and parameters that accept values will also accept them.
 
 ### Creating a BigInt Instance
 
-You can use the ethers.getBigInt() function to convert types such as strings and numbers to BigInt.
+You can use the `ethers.getBigInt()` function to convert types such as strings and numbers to `BigInt`.
 
-**Note** that values exceeding the maximum safe integer in JavaScript cannot be converted.
+**Note** the values exceeding the maximum safe integer in JavaScript cannot be converted from numbers.
 
 ```js
 const oneGwei = ethers.getBigInt("1000000000"); // Generate from decimal string
@@ -50,7 +50,8 @@ console.log("Maximum safe integer in JavaScript:", Number.MAX_SAFE_INTEGER)
 
 ### BigInt Operations
 
-BigInt supports many operations, such as addition, subtraction, multiplication, division, modulus (mod), exponentiation (pow), absolute value (abs), etc:
+`BigInt` supports many operations, such as addition, subtraction, multiplication, division, modulus (mod), exponentiation (pow), absolute value (abs), etc:
+
 > Note: Numeric values with the suffix `n` will automatically be converted to BigInt.
 
 ```js
@@ -121,4 +122,4 @@ In applications, we often need to convert values between user-readable strings (
 
 ## Summary
 
-In this lesson, we introduced the BigInt class, the commonly used units in Ethereum, and unit conversion.
+In this lesson, we introduced the `BigInt` class, the commonly used units in Ethereum, and unit conversion bewteen them.

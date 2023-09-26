@@ -10,8 +10,8 @@ tags:
   - web
 ---
 
-# Ethers Quick Start Guide: 4. Sending ETH
-Recently, I have been relearning `ethers.js` to solidify my understanding and also write a "WTF Ethers Quick Start Guide" for beginners to use.
+# WTF Ethers: 4. Sending ETH
+Recently, I have been relearning `ethers.js` to solidify my understanding and also write a "# WTF Ethers Guide" for beginners to use.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 

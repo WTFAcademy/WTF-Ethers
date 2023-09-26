@@ -1,6 +1,6 @@
-# Ethers Quick Start: Tools: ET02. Implement MetaMask Sign-In Functionality
+# WTF Ethers: Tools: ET02. Implement MetaMask Sign-In Functionality
 
-I have been revisiting `ethers.js` recently to reinforce my understanding of the details and to write a beginner's guide called "WTF Ethers Quick Start" for newcomers to use.
+I have been revisiting `ethers.js` recently to reinforce my understanding of the details and to write a beginner's guide called "# WTF Ethers" for newcomers to use.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 

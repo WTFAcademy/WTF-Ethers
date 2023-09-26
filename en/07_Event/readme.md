@@ -9,27 +9,27 @@ tags:
   - web
 ---
 
-# Ethers Quick Start: 7. Retrieving Events
+# WTF Ethers: 7. Retrieving Events
 
-I have recently been reviewing `ethers.js` to refresh my memory on the details and also to write a "WTF Ethers Quick Start" guide for beginners.
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy Community**: [Official website wtf.academy](https://wtf.academy) | [WTF Solidity Tutorial](https://github.com/AmazingAng/WTF-Solidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All code and tutorials are open source on GitHub: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTF-Ethers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
-Note: This tutorial is based on ethers.js 6.3.0. If you are using v5, you can refer to the [ethers.js v5 documentation](https://docs.ethers.io/v5/).
+Note: This tutorial is based on ethers.js v6. If you are using v5, you can refer to the [WTF Ethers v5](https://github.com/WTFAcademy/WTF-Ethers/tree/wtf-ethers-v5).
 
-In this lesson, we will learn how to use `ethers.js` to read events emitted by smart contracts. If you are not familiar with events in `Solidity`, you can read about them in the "Event" section of the WTF Solidity Quick Start [Lesson 12](https://github.com/AmazingAng/WTFSolidity/blob/main/12_Event/readme.md).
+In this lesson, we will learn how to use `ethers.js` to read events emitted by smart contracts. If you are not familiar with events in `Solidity`, you can read about them in the "Event" section of the WTF Solidity [Lesson 12](https://www.wtf.academy/en/solidity-start/Event/).
 
 For more details, refer to the [ethers.js documentation](https://docs.ethers.org/v6/api/contract/#ContractEvent).
 
 ## Event
 
-Events emitted by smart contracts are stored in the logs of the Ethereum virtual machine. Logs consist of two parts: the `topics` and the `data`. The event hash and `indexed` variables are stored in the `topics` for easy future searches, while non-indexed variables are stored in the `data` and cannot be directly retrieved but can store more complex data structures.
+Events emitted by smart contracts are stored in the logs of the Ethereum virtual machine. Logs consist of two parts: the `topics` and the `data`. The event hash and `indexed` variables are stored in the `topics` for efficient queries, while non-indexed variables are stored in the `data` and cannot be directly queried but can store more complex data structures.
 
 Take the `Transfer` event in an ERC20 token contract as an example. It is declared in the contract as follows:
 

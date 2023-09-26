@@ -9,33 +9,31 @@ tags:
   - web
 ---
 
-# Ethers Quick Start: 9. Event Filtering
+# WTF Ethers: 9. Event Filtering
 
-I have been relearning `ethers.js` recently to solidify my understanding of the details and to write a simplified guide called `WTF Ethers Quick Start` for beginners to use.
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy Community**: [Official website wtf.academy](https://wtf.academy) | [WTF Solidity Tutorial](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat group application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All code and tutorials are open-source on GitHub: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTFEthers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
-Building upon the previous lesson on [Ethers Quick Start: 8. Contract Listening](https://github.com/WTFAcademy/WTFEthers/tree/main/08_ContractListener), let's expand our knowledge by adding event filters during the listening process to filter out specific address transfers.
+Building upon the previous lesson, let's expand our knowledge by adding event filters during the listening process to filter out transfers from specific addresses.
 
-For more details, refer to the [ethers.js documentation](https://docs.ethers.io/v5/concepts/events).
+Refer to the [ethers.js documentation](https://docs.ethers.org/v6/api/contract/#ContractEvent) for more details.
 
 ## Filters
 
-When a contract emits a log (fires an event), it can contain up to [4] indexed data items (`indexed`). These indexed data items are hashed and included in a [Bloom filter](https://en.wikipedia.org/wiki/Bloom_filter), which is a data structure that allows for efficient filtering. Therefore, an event filter can contain up to `4` topic sets, and each topic set serves as a condition to filter target events. The rules are as follows:
+When a contract emits a log (fires an event), it can contain up to 4 `indexed` items. These indexed data items are hashed and included in a [Bloom filter](https://en.wikipedia.org/wiki/Bloom_filter), which is a data structure that allows for efficient filtering. Therefore, an event filter can contain up to `4` topic sets, and each topic set serves as a condition to filter target events. The rules are as follows:
 
 - If a topic set is `null`, the log topic at that position will not be filtered, and any value will match.
 - If the topic set is a single value, the log topic at that position must match that value.
 - If the topic set is an array, the log topic at that position must match at least one of the values in the array.
 
 ![Filtering Rules](img/9-1.png)
-
-
 
 ## Building Filters
 The `contract` class in `ethers.js` provides the `contract.filters` method to simplify filter creation:
@@ -66,28 +64,27 @@ Here, `EVENT_NAME` is the desired event name to filter and `..args` refers to th
   contract.filters.Transfer(null, [ myAddress, otherAddress ])
   ```
 
-## Listening for USDT Transfers on an Exchange
-
+## Listening for USDT Transfers from an Exchange
 
 1. Tracking transactions where USDT is transferred out of Binance:
+  
+Before listening to the USDT contract, we need to understand the transaction log `Logs`, including the event `topics` and `data`. Let's find a transaction where USDT was transferred out of Binance and check its details using its hash on etherscan:
 
-  Before listening to the USDT contract, we need to understand the transaction log `Logs`, including the event `topics` and `data`. Let's find a transaction where USDT was transferred out of Binance and check its details using its hash on etherscan:
+Transaction hash: [0xab1f7b575600c4517a2e479e46e3af98a95ee84dd3f46824e02ff4618523fff5](https://etherscan.io/tx/0xab1f7b575600c4517a2e479e46e3af98a95ee84dd3f46824e02ff4618523fff5)
 
-  Transaction hash: [0xab1f7b575600c4517a2e479e46e3af98a95ee84dd3f46824e02ff4618523fff5](https://etherscan.io/tx/0xab1f7b575600c4517a2e479e46e3af98a95ee84dd3f46824e02ff4618523fff5)
+![etherscan diagram](img/9-2.png)
 
-  ![etherscan diagram](img/9-2.png)
+This transaction performed one action: transferred `2983.98` USDT from `binance14` (Binance hot wallet) to the address `0x354de44bedba213d612e92d3248b899de17b0c58`.
 
-  This transaction performed one action: transferred `2983.98` USDT from `binance14` (Binance hot wallet) to the address `0x354de44bedba213d612e92d3248b899de17b0c58`.
+Checking the event log `Logs` information:
 
-  Checking the event log `Logs` information:
+![etherscan logs diagram](img/9-3.png)
 
-  ![etherscan logs diagram](img/9-3.png)
-
-  - `address`: USDT contract address
-  - `topics[0]`: Event hash, `keccak256("Transfer(address,address,uint256)")`
-  - `topics[1]`: From address (Binance hot wallet)
-  - `topics[2]`: To address
-  - `data`: Transfer amount
+- `address`: USDT contract address
+- `topics[0]`: Event hash, `keccak256("Transfer(address,address,uint256)")`
+- `topics[1]`: From address (Binance hot wallet)
+- `topics[2]`: To address
+- `data`: Transfer amount
 
 2. Create `provider`, `abi`, and `USDT` contract variables:
 
@@ -146,10 +143,9 @@ Here, `EVENT_NAME` is the desired event name to filter and `..args` refers to th
       )
     }
     );
-```
-```
+  ```
   ![Monitoring USDT transactions sent to Binance](img/9-6.png)
 
 ## Summary
 
-In this lecture, we introduced event filters and used them to monitor `USDT` transactions related to the hot wallet of Binance exchange. You can use them to monitor any transactions you are interested in, discover new transactions made by `smart money`, see which projects the `NFT` experts are investing in, and so on.
+In this lecture, we introduced event filters and used them to monitor `USDT` transactions related to the hot wallet of Binance exchange. You can use them to monitor any transactions you are interested in, such as discover new transactions made by `smart money`, monitor which projects the `NFT` experts are investing in, and so on.

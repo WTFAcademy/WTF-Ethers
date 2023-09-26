@@ -10,7 +10,7 @@ tags:
   - web
 ---
 
-# Introduction to Ethers: 26. EIP712 Signature Script
+# WTF Ethers: 26. EIP712 Signature Script
 
 Recently, I have been relearning `ethers.js` to review the details and write a simplified guide on `WTF Ethers Introduction` for beginners to use.
 

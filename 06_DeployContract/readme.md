@@ -154,4 +154,4 @@ await contractERC20.waitForDeployment();
 
 ## 总结
 
-这一讲我们介绍了ether.js中的合约工厂`ContractFactory`类型，利用它部署了一个`ERC20`代币合约，并给Vitalik转账了`1,000`枚代币。
+这一讲我们介绍了ethers.js中的合约工厂`ContractFactory`类型，利用它部署了一个`ERC20`代币合约，并给Vitalik转账了`1,000`枚代币。

@@ -10,9 +10,9 @@ tags:
   - web
 ---
 
-# Ethers Simplified Guide: 18. Digital Signature Script
+# WTF Ethers: 18. Digital Signature Script
 
-Recently, I have been revising `ethers.js` to solidify the details and write a simplified guide for beginners, called "WTF Ethers Simplified Guide."
+Recently, I have been revising `ethers.js` to solidify the details and write a simplified guide for beginners, called "WTF Ethers Tutorial".
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 

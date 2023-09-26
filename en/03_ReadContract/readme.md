@@ -9,19 +9,19 @@ tags:
   - web
 ---
 
-# Ethers Quick Start: 3. Reading Contract Information
+# WTF Ethers: 3. Reading Contract Information
 
-I have recently been re-learning `ethers.js` to reinforce the details and create a simple guide called `WTF Ethers Quick Start` for beginners to use.
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity Tutorials](https://github.com/AmazingAng/WTF-Solidity) | [Discord](https://discord.gg/5akcruXrsk) | [Apply for WeChat group](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All code and tutorials are open-source on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
-In this lesson, we will introduce the `Contract` class and use it to read information from contracts on the chain.
+In this lesson, we will introduce the `Contract` class and use it to read information from contracts on Ethereum.
 
 ## The `Contract` Class
 
@@ -31,7 +31,7 @@ In `ethers`, the `Contract` class is an abstraction of contracts (EVM bytecode) 
 
 ### Read-only and Read-write Contracts
 
-`Contract` objects can be divided into two types: read-only and read-write. Read-only `Contract` objects can only read contract information on the chain by executing `call` operations, which involve calling the `view` and `pure` functions in the contract, but they cannot perform transactional `transaction` operations. The methods of creating these two types of `Contract` variables are different:
+`Contract` objects can be divided into two types: read-only and read-write. Read-only `Contract` objects can only read contract information on the chain by executing `call` operations, which involve calling the `view` and `pure` functions in the contract. They cannot perform `transaction` operations. The methods of creating these two types of `Contract` variables are different:
 
 - Read-only `Contract` variable: The parameters are the contract address, contract `abi`, and `provider` variable (read-only).
 
@@ -45,20 +45,19 @@ const contract = new ethers.Contract(`address`, `abi`, `provider`);
 const contract = new ethers.Contract(`address`, `abi`, `signer`);
 ```
 
-**Note:** In `ethers`, the `call` operation refers to a read-only operation, which is different from the `call` operation in `Solidity`.
+**Note:** In `ethers`, the `call` operation refers to a read-only operation, which is different from the `call` in `Solidity`.
 
 ## Reading Contract Information
 
 ### 1. Creating a Provider
 
-We will use the Infura node's API Key to create a `Provider` (refer to [Lesson 2: Provider](../02_Provider/readme.md)):
+We will use the Alchemy node's API Key to create a `Provider`:
 ```javascript
 import { ethers } from "ethers";
-// Connect to the Ethereum network using the Infura RPC node
-// Prepare the Infura API Key, tutorial: https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL02_Infura/readme.md
-const INFURA_ID = ''
-// Connect to the Ethereum mainnet
-const provider = new ethers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`)
+// Connect to the Ethereum network using the Alchemy RPC node
+// Prepare alchemy API, refer to https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md
+const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
+const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
 ```
 
 ### 2. Creating a Read-only Contract Instance
@@ -118,8 +117,7 @@ const main = async () => {
 
     // 2. Reading on-chain information of the DAI contract (IERC20 interface contract)
     const nameDAI = await contractDAI.name()
-```
-const symbolDAI = await contractDAI.symbol()
+    const symbolDAI = await contractDAI.symbol()
     const totalSupplDAI = await contractDAI.totalSupply()
     console.log("\n2. Retrieve DAI contract information")
     console.log(`Contract Address: ${addressDAI}`)

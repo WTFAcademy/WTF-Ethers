@@ -141,4 +141,4 @@ const providerGoerli = new ethers.JsonRpcProvider(`https://goerli.infura.io/v3/$
 
 ## 总结
 
-这一讲，我们将介绍ethers.js的`Provider`类，并用Infura的节点API Key创建了`jsonRpcProvider`，读取了`ETH`主网和`Goerli`测试网的链上信息。
+这一讲，我们介绍了ethers.js的`Provider`类，并用Infura的节点API Key创建了`jsonRpcProvider`，读取了`ETH`主网和`Goerli`测试网的链上信息。

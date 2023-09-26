@@ -10,9 +10,9 @@ tags:
   - web
 ---
 
-# Ethers Quick Start: 19. Listening to Mempool
+# WTF Ethers: 19. Listening to Mempool
 
-I have recently been revisiting `ethers.js` to reinforce my understanding of the details and also to create a simplified guide called `WTF Ethers Quick Start` for beginners.
+I have recently been revisiting `ethers.js` to reinforce my understanding of the details and also to create a simplified guide called `# WTF Ethers` for beginners.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 

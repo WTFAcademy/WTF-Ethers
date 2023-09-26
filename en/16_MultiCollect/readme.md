@@ -8,9 +8,9 @@ tags:
   - web
 ---
 
-# Ethers Simplified Guide: 16. Batch Collection
+# WTF Ethers: 16. Batch Collection
 
-I have recently been relearning `ethers.js`, solidifying the details and writing a `WTF Ethers Simplified Guide` for beginners to use.
+I have recently been relearning `ethers.js`, solidifying the details and writing a `WTF Ethers Tutorial` for beginners to use.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
