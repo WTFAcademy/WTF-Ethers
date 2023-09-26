@@ -13,23 +13,23 @@ tags:
 
 # WTF Ethers: 23. Front-running Script
 
-Recently, I've been relearning `ethers.js` to strengthen my understanding and to write a simplified guide called `WTF Ethers` for beginners to use.
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
-Twitter: [@0xAA_Science](https://twitter.com/0xAA_Science)｜[@WTFAcademy_](https://twitter.com/WTFAcademy_)
+**Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-WTF Academy Community: [Discord](https://discord.gg/5akcruXrsk)｜[WeChat Group](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)｜[Website wtf.academy](https://wtf.academy)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All code and tutorials are open source on GitHub: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTF-Ethers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
----
+-----
 
-In this lesson, we will introduce a script for front-running transactions. According to statistics, arbitrageurs on Ethereum have made $1.2 billion in profits through sandwich attacks. Before proceeding, please read the [WTF Solidity Tutorial Contract Security S11: Front-running](https://github.com/AmazingAng/WTFSolidity/blob/main/S11_Frontrun/readme.md).
+In this lesson, we will introduce a script for front-running transactions. According to statistics, arbitrageurs on Ethereum have made $1.2 billion in profits through sandwich attacks. Before proceeding, please read the [WTF Solidity S11: Front-running](https://github.com/AmazingAng/WTFSolidity/blob/main/S11_Frontrun/readme.md).
 
 ![](./img/23-1.png)
 
 ## Freemint NFT Contract
 
-The target contract that we will be front-running is an ERC721 standard NFT contract called `Frontrun.sol`, which has a `mint()` function for free minting.
+The target contract that we will be front-running is an ERC721 standard NFT contract called `Frontrun.sol`, which has a `mint()` function that users can mint a NFT for free.
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -53,8 +53,7 @@ contract FreeMint is ERC721 {
 ```
 
 To simplify the testing environment, we will deploy the above contract on the local test network, foundry, and then monitor the pending transactions in the mempool to filter out qualifying transactions for front-running.
-
-If you're not familiar with `foundry`, you can read the [Foundry Tutorial in WTF Solidity](https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Tools/TOOL07_Foundry/readme.md). Once you have installed foundry, you can start the local test network by running the following command in the command line:
+First, you need to install foundry, check [Installation Guide](https://book.getfoundry.sh/getting-started/installation). Once you have installed foundry, you can start the local test network by running the following command in the command line:
 
 ```shell
 anvil
@@ -95,6 +94,7 @@ Next, let's take a detailed look at the front-running script `frontrun.js`. This
         return iface.getSighash(fn)
     }
     ```
+
 4. Create a test wallet to send front-running transactions. The private key is provided by the foundry test network and contains 10,000 ETH test tokens.
 
     ```js
@@ -102,6 +102,7 @@ Next, let's take a detailed look at the front-running script `frontrun.js`. This
     const privateKey = '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'
     const wallet = new ethers.Wallet(privateKey, provider)
     ```
+
 5. Let's first see what a normal mint result looks like. We will use the `provider.on` method to monitor the pending transactions in the mempool. When a transaction occurs, we will use the transaction hash `txHash` to read the transaction details `tx` and filter out the transactions that call the `mint()` function. We will then view the transaction result, get the minted NFT token ID and its owner, and compare the transaction sender address with the owner address to confirm that the mint executed as expected.
 
     ```js
@@ -117,11 +118,8 @@ Next, let's take a detailed look at the front-running script `frontrun.js`. This
                     const tokenId = await contractFM.totalSupply()
                     console.log(`Minted NFT token ID: ${tokenId}`)
                     console.log(`Owner of NFT with ID ${tokenId}: ${await contractFM.ownerOf(tokenId)}`) // Print the NFT owner address
-```
-```md
-```js
-console.log(`Is the address that initiated the minting the owner of the corresponding NFT:${tx.from === await contractFM.ownerOf(tokenId)}`)//Compare whether they are the same
-```
+                    console.log(`Is the address that initiated the minting the owner of the corresponding NFT:${tx.from === await contractFM.ownerOf(tokenId)}`)//Compare whether they are the same
+    ```
 
 ![](./img/23-2.png)
 
@@ -163,5 +161,4 @@ console.log(`Is the address that initiated the minting the owner of the correspo
 
 ## Summary
 
-In this lesson, we introduced a simple front-running script. You can add the desired features to this script and start your journey as a scientist in the crypto world!
-```
+In this lesson, we introduced a simple front-running script. You can add the desired features to this script and start your journey as a mev-searcher in the crypto world!

@@ -1,5 +1,5 @@
 ---
-title: 24. Recognizing ERC20 Contracts
+title: 24. Identifying ERC20 Contracts
 tags:
   - ethers
   - javascript
@@ -10,23 +10,23 @@ tags:
   - web
 ---
 
-# WTF Ethers: 24. Recognizing ERC20 Contracts
+# WTF Ethers: 24. Identifying ERC20 Contracts
 
-I have been relearning `ethers.js` recently, consolidating the details and writing a "WTF Introduction to Ethers" for beginners.
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
-Twitter: [@0xAA_Science](https://twitter.com/0xAA_Science) | [@WTFAcademy_](https://twitter.com/WTFAcademy_)
+**Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-WTF Academy Community: [Discord](https://discord.gg/5akcruXrsk) | [WeChat Group](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link) | [Official Website wtf.academy](https://wtf.academy)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All code and tutorials are open source on GitHub: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTF-Ethers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
----
+-----
 
-In this lesson, we will learn how to use `ether.js` to identify whether a contract follows the `ERC20` standard. You will need this knowledge for scenarios such as analysis on the blockchain, recognizing tokens, and participating in token sales.
+In this lesson, we will learn how to use `ethers.js` to identify whether a contract follows the `ERC20` standard.
 
 ## `ERC20`
 
-`ERC721` is the most commonly used token standard on Ethereum. If you are unfamiliar with this standard, you can refer to the WTF Solidity Lesson 31: [ERC20](https://github.com/AmazingAng/WTF-Solidity/blob/main/31_ERC20/readme.md). The `ERC20` standard includes the following functions and events:
+`ERC20` is the most commonly used token standard on Ethereum. If you are unfamiliar with this standard, you can refer to [WTF Solidity 31: ERC20](https://github.com/AmazingAng/WTF-Solidity/blob/main/31_ERC20/readme.md). The `ERC20` standard includes the following functions and events:
 ```solidity
 interface IERC20 {
     event Transfer(address indexed from, address indexed to, uint256 value);
@@ -50,17 +50,17 @@ interface IERC20 {
 ## Identifying `ERC20` Contracts
 In a previous [tutorial](https://github.com/WTFAcademy/WTF-Ethers/blob/main/12_ERC721Check/readme.md), we discussed how to identify `ERC721` contracts based on `ERC165`. However, since the release of `ERC20` predates `ERC165` (20 < 165), we cannot use the same method to identify `ERC20` contracts and need to find an alternative solution.
 
-The blockchain is transparent, and we can obtain the bytecode of any contract address. Therefore, we can first retrieve the bytecode of a contract and compare it to see if it includes the functions specified in the `ERC20` standard.
+The blockchain is transparent, so we can obtain the bytecode of any contract address. Therefore, we can first retrieve the bytecode of a contract and compare it to see if it includes the functions specified in the `ERC20` standard.
 
 First, we use the `getCode()` function of the `provider` to retrieve the bytecode of the corresponding address:
 ```js
 let code = await provider.getCode(contractAddress)
 ```
 
-Next, we need to check if the contract bytecode includes the function selectors specified in the `ERC20` standard. The corresponding selectors are stored in the contract bytecode: if the contract includes the `transfer(address, uint256)` function, the bytecode will include `a9059cbb`; if the contract includes `totalSupply()`, the bytecode will include `18160ddd`. If you're not familiar with function selectors, you can refer to the corresponding section in the WTF Solidity [tutorial](https://github.com/AmazingAng/WTF-Solidity/blob/main/29_Selector/readme.md). If you want to delve deeper into bytecode, you can read the [Dive into EVM](https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Translation/DiveEVM2017).
+Next, we need to check if the contract bytecode includes the function selectors specified in the `ERC20` standard. The corresponding selectors are stored in the contract bytecode: if the contract includes the `transfer(address, uint256)` function, the bytecode will include `a9059cbb`; if the contract includes `totalSupply()`, the bytecode will include `18160ddd`. If you're not familiar with function selectors, you can refer to the corresponding section in the [WTF Solidity tutorial](https://github.com/AmazingAng/WTF-Solidity/blob/main/29_Selector/readme.md). If you want to delve deeper into bytecode, you can read the [Dive into EVM](https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Translation/DiveEVM2017).
 
-In this case, we only need to check the `transfer(address, uint256)` and `totalSupply()` functions instead of all six functions. This is because:
-1. The `transfer(address, uint256)` function is the only one in the `ERC20` standard that is not included in the `ERC721`, `ERC1155`, and `ERC777` standards. Therefore, if a contract includes the `transfer(address, uint256)` selector, it can be determined to be an `ERC20` token contract rather than any other type.
+In this case, we only need to check the `transfer(address, uint256)` and `totalSupply()` functions instead of all six functions, because:
+1. The `transfer(address, uint256)` function is the only one in the `ERC20` standard that is not included in the `ERC721`, `ERC1155`, and `ERC777` standards. Therefore, if a contract includes the `transfer(address, uint256)` selector, we can say it is an `ERC20` token contract rather than `ERC721`, `ERC1155`, and `ERC777`.
 2. The additional check for `totalSupply()` is to prevent [selector collisions](https://github.com/AmazingAng/WTFSolidity/blob/main/S01_ReentrancyAttack/readme.md): a random bytecode sequence may accidentally match the selector of `transfer(address, uint256)` (4 bytes).
 
 Here is the code:
@@ -115,4 +115,4 @@ The script successfully detects that the `DAI` contract is an `ERC20` contract, 
 
 ## Summary
 
-In this lesson, we learned how to retrieve the bytecode of a contract using the contract address and how to use function selectors to check if a contract follows the `ERC20` standard. The script successfully identified the `DAI` contract as an `ERC20` contract and the `BAYC` contract as not an `ERC20` contract. In what scenarios would you use this knowledge?
+In this lesson, we learned how to retrieve the bytecode of a contract using the contract address and how to use function selectors to check if a contract follows the `ERC20` standard. The script successfully identified the `DAI` contract as an `ERC20` contract and the `BAYC` contract as not an `ERC20` contract. Do you have other ways to identify an ERC20 contract?

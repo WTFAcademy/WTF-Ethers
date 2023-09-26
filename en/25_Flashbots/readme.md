@@ -12,17 +12,17 @@ tags:
 
 # WTF Ethers: 25. Flashbots
 
-I recently revisited `ethers.js` to refresh my knowledge of the details and also to create a "# WTF Ethers Guide" for beginners to use.
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
-Twitter: [@0xAA_Science](https://twitter.com/0xAA_Science) | [@WTFAcademy_](https://twitter.com/WTFAcademy_)
+**Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-WTF Academy Community: [Discord](https://discord.gg/5akcruXrsk) | [WeChat Group](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link) | [Official Website wtf.academy](https://wtf.academy)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All code and tutorials are open-source on GitHub: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTFEthers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
----
+-----
 
-> Currently, Flashbots Bundle only supports ethers.js v5.
+> Currently, Flashbots Bundle only supports [ethers.js v5](https://github.com/flashbots/ethers-provider-flashbots-bundle/blob/master/package.json#L28).
 
 After the transition of Ethereum to Proof of Stake (POS), over 60% of blocks are produced by Flashbots, which is quite impressive. However, many people are not familiar with it. In this lesson, we will introduce Flashbots, including:
 1. What is Flashbots?
@@ -40,7 +40,7 @@ In this tutorial, we will mainly focus on the first two products.
 
 ## Flashbots RPC
 
-Flashbots RPC is a free product for regular Ethereum users. By setting the RPC (network node) in your encrypted wallet to Flashbots RPC, you can send transactions to Flashbots' private transaction mempool instead of the public one, avoiding the harm caused by frontrunning transactions/sandwich attacks. If you are not familiar with the mempool or frontrunning transactions, you can read the previous tutorials on [mempool](https://github.com/WTFAcademy/WTFEthers/blob/main/19_Mempool/readme.md) and [frontrunning](https://github.com/WTFAcademy/WTFEthers/blob/main/23_Frontrun/readme.md).
+Flashbots RPC is a free product for regular Ethereum users. By setting the RPC (network node) in your wallet to Flashbots RPC, you can send transactions to Flashbots' private transaction mempool instead of the public one, avoiding the harm caused by frontrunning transactions/sandwich attacks. If you are not familiar with the mempool or frontrunning transactions, you can read the previous tutorials on [mempool](https://github.com/WTFAcademy/WTFEthers/blob/main/19_Mempool/readme.md) and [frontrunning](https://github.com/WTFAcademy/WTFEthers/blob/main/23_Frontrun/readme.md).
 
 Now, let's demonstrate how to connect to Flashbots RPC using the Metamask wallet.
 
@@ -60,13 +60,13 @@ Block Explorer URL: https://etherscan.io
 
 ![](./img/25-2.png)
 
-After completing these two steps, your encrypted wallet will successfully connect to Flashbots RPC, and you can use it as usual to avoid sandwich attacks!
+After completing these two steps, your wallet will successfully connect to Flashbots RPC, and you can use it as usual to avoid sandwich attacks!
 
 ## Flashbots Bundle
 
-Developers who search for MEV opportunities on the blockchain are called "searchers." Flashbots Bundle is a tool that helps searchers extract MEV from Ethereum transactions. Searchers can use it to combine multiple transactions and execute them in a specified order.
+Developers who search for MEV opportunities on the blockchain are called "searchers." Flashbots Bundle is a tool that helps searchers extract MEV from Ethereum transactions. Searchers can use it to combine multiple transactions in a bundle and execute them in a specified order.
 
-For example, if a searcher finds an opportunity for sandwich attacks in a transaction that buys PEOPLE tokens on the public mempool, they can insert a buy and sell transaction before and after this transaction, respectively, to form a transaction bundle and send it to Flashbots. These transactions will be executed in the specified block without changing the order, and there is no need to worry about being attacked by other MEV bots.
+For example, if a searcher finds an opportunity for sandwich attacks in a transaction that buys `PEOPLE` tokens on the public mempool, they can insert a buy and sell transaction before and after this transaction, respectively, to form a transaction bundle and send it to Flashbots. These transactions will either be executed in the specified block without changing the order, or they will never be executed. So there is no need to worry about being attacked by other MEV bots.
 
 ![MEV Steps by 0xBeans.eth](./img/25-3.jpeg)
 
@@ -123,35 +123,38 @@ Now, let's write a script using it to demonstrate how to send a Flashbots Bundle
 
     ```js
     const transactionBundle = [
-```
-{
-    "signer": "wallet", 
-    "transaction": "transaction0" 
-},
-{
-    "signedTransaction": "SIGNED_ORACLE_UPDATE_FROM_PENDING_POOL"
-}
-```
+        {
+            signer: wallet, // ethers signer
+            transaction: transaction0 // ethers populated transaction object
+        }
+        // Can also include pre-signed transactions from mempool (can be sent by anyone)
+        // ,{
+        //     signedTransaction: SIGNED_ORACLE_UPDATE_FROM_PENDING_POOL // serialized signed transaction hex
+        // }
+    ]
+    ```
 
-Simulate the transaction and print transaction details. The bundle must be successfully simulated before it can be executed. Here we use the flashbots provider's `signBundle()` and `simulate()` methods. Note that the `simulate()` method needs to specify the target block height for transaction execution, which is set to the next block here.
+6. Simulate the transaction and print transaction details. The bundle must be successfully simulated before it can be executed. Here we use the flashbots provider's `signBundle()` and `simulate()` methods. Note that the `simulate()` method needs to specify the target block height for transaction execution, which is set to the next block here.
 
-```js
-// Sign transactions
-const signedTransactions = await flashbotsProvider.signBundle(transactionBundle)
-// Set the target execution block for the transactions
-const targetBlockNumber = (await provider.getBlockNumber()) + 1
-// Simulate
-const simulation = await flashbotsProvider.simulate(signedTransactions, targetBlockNumber)
-// Check if simulation is successful
-if ("error" in simulation) {
-    console.log(`Simulation error: ${simulation.error.message}`);
-} else {
-    console.log(`Simulation successful`);
-    console.log(JSON.stringify(simulation, null, 2))
-}
-```
+    ```js
+    // Sign transactions
+    const signedTransactions = await flashbotsProvider.signBundle(transactionBundle)
+    // Set the target execution block for the transactions
+    const targetBlockNumber = (await provider.getBlockNumber()) + 1
+    // Simulate
+    const simulation = await flashbotsProvider.simulate(signedTransactions, targetBlockNumber)
+    // Check if simulation is successful
+    if ("error" in simulation) {
+        console.log(`Simulation error: ${simulation.error.message}`);
+    } else {
+        console.log(`Simulation successful`);
+        console.log(JSON.stringify(simulation, null, 2))
+    }
+    ```
 
-Send the transaction bundle to the blockchain. Since Flashbots Bundle requires specifying the execution block height and there are only few Flashbots nodes on the testnet, it takes many attempts to successfully submit the bundle to the chain. Therefore, we use a loop to try executing the bundle within the next 100 blocks. We use the flashbots provider's `sendRawBundle()` method to send the bundle. There are three possible transaction results:
+![](./img/25-4.png)
+
+7. Send the transaction bundle to the blockchain. Since Flashbots Bundle requires specifying the execution block height and there are only few Flashbots nodes on the testnet, it takes many attempts to successfully submit the bundle to the chain. Therefore, we use a loop to try executing the bundle within the next 100 blocks. We use the flashbots provider's `sendRawBundle()` method to send the bundle. There are three possible transaction results:
 - `BundleIncluded`: The bundle is successfully included in a block.
 - `BlockPassedWithoutInclusion`: The bundle is not included and needs further attempts.
 - `AccountNonceTooHigh`: Incorrect Nonce value.
@@ -182,6 +185,8 @@ for (let i = 1; i <= 100; i++) {
 }
 ```
 
-Summary
+![](./img/25-5.png)
 
-In this lecture, we introduced several Flashbots products and focused on the Flashbots RPC network node that protects regular users from malicious MEV and the Flashbots Bundle for developers. Finally, we wrote a script to send a Flashbots Bundle. We hope this tutorial has given you a better understanding of MEV and Flashbots. What will you do with them?
+## Summary
+
+In this lecture, we introduced several Flashbots products and focused on the Flashbots RPC network node that protects regular users from malicious MEV and the Flashbots Bundle for developers. Moreover, we wrote a script to send a Flashbots Bundle. We hope this tutorial has given you a better understanding of MEV and Flashbots. What will you do with them?

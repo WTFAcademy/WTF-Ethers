@@ -11,21 +11,21 @@ tags:
 
 # WTF Ethers: 22. Reading Arbitrary Data
 
-I recently revisited `ethers.js` to refresh my understanding of the details and also to write a "WTF Ethers Tutorial" for beginners to use.
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
-Twitter: [@0xAA_Science](https://twitter.com/0xAA_Science)｜[@WTFAcademy_](https://twitter.com/WTFAcademy_)
+**Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-WTF Academy Community: [Discord](https://discord.gg/5akcruXrsk)｜[WeChat Group](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)｜[Official Website wtf.academy](https://wtf.academy)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All code and tutorials are open source on GitHub: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTF-Ethers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
----
+-----
 
 All data on Ethereum is public, so `private` variables are not actually private. In this lesson, we will discuss how to read arbitrary data from a smart contract.
 
 ## Smart Contract Storage Layout
 
-The storage in Ethereum smart contracts is a mapping of `uint256 -> uint256`. The size of `uint256` is `32 bytes`, and this fixed-sized storage space is called a `slot`. The contract's data is stored in individual slots, starting from `slot 0` and continuing sequentially. Each primitive data type occupies one slot, such as `uint`, `address`, and so on. However, more complex structures like arrays and mappings are more complicated, as detailed in the [documentation](https://docs.soliditylang.org/en/v0.8.17/internals/layout_in_storage.html?highlight=Layout%20of%20State%20Variables%20in%20Storage).
+The storage in Ethereum smart contracts is a mapping of `uint256 -> uint256`. The size of `uint256` is `32 bytes`, and this fixed-sized storage space is called a `slot`. The contract's data is stored in individual slots, starting from `slot 0` by default and continuing sequentially. Each primitive data type occupies one slot, such as `uint`, `address`, and so on. However, more complex structures like arrays and mappings are more complicated, as detailed in the [documentation](https://docs.soliditylang.org/en/v0.8.17/internals/layout_in_storage.html?highlight=Layout%20of%20State%20Variables%20in%20Storage).
 
 ![](./img/22-1.png)
 
@@ -50,10 +50,6 @@ Contract Address: 0x8315177aB297bA92A06054cE80a67Ed4DBd7ed3a
 Slot Index: 0xb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103
 ```
 
-Output:
-
-![](./img/22-2.png)
-
 Code:
 
 ```js
@@ -76,6 +72,10 @@ const main = async () => {
 
 main()
 ```
+
+Output:
+
+![](./img/22-2.png)
 
 ## Summary
 

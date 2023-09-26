@@ -11,17 +11,17 @@ tags:
 
 # WTF Ethers: 21. Vanity Address Generator
 
-Recently, I have been re-learning `ethers.js` to solidify my understanding of the details and write a "WTF Ethers Tutorial" for beginners to use.
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy Community**: [wtf.academy official website](https://wtf.academy) | [WTF Solidity Tutorial](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat group application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All code and tutorials are open-source on GitHub: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTF-Ethers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
-In this lesson, we will introduce how to generate vanity addresses using `ethers.js`. This is a tutorial worth $160 million (not really).
+In this lesson, we will introduce how to generate vanity addresses using `ethers.js`. This is a tutorial worth $160M (not really).
 
 ## Vanity Addresses
 
@@ -33,11 +33,11 @@ In real life, some people pursue license plates like "888888". Similarly, in the
 
 Yes, this is the vanity address involving the theft of $160 million by the prominent market maker, Wintermute ([report](https://www.blocktempo.com/head-market-maker-wintermute-hacked-loses-160-million-magnesium/)). As mentioned earlier, vanity addresses have the same level of security as regular addresses, so why was it attacked?
 
-The issue lies in the vulnerability of the vanity address generator. Wintermute used a vanity address generator called "Profinity" to generate addresses, but the random seed used by this generator was flawed. Normally, a random seed should have 2^256 possibilities, but the seed used by Profinity was only 2^32 in length, making it vulnerable to brute force attacks.
+The issue lies in the vulnerability of the vanity address generator. Wintermute used a vanity address generator called "Profinity" to generate addresses, but the random seed used by this generator was flawed. Normally, a random seed should have 2^256 possibilities, but the seed used by Profinity was only 2^32 in length, making it vulnerable to brute force attacks. The hacker computed the private key of this addresses by brute-force and drained $160 million.
 
 ## Vanity Address Generator
 
-Using `ethers.js`, we can write a vanity address generator in just 10 lines of code. It may not be as fast as other tools, but it ensures security.
+Using `ethers.js`, we can write a vanity address generator in just 10 lines of code. It may not be as fast as other tools, but it is secure.
 
 ### Generating a Random Wallet
 
@@ -62,7 +62,7 @@ isValid = regex.test(wallet.address) // Check the regular expression
 
 ### Vanity Address Generation Script
 
-The logic of the vanity address generator is very simple. It continuously generates random wallets until it matches the desired vanity address. As a test, generating a vanity address starting with `0x000` takes only a few seconds, and each additional `0` increases the time by 16 times.
+The logic of the vanity address generator is very simple. It continuously generates random wallets until it matches the desired vanity address. In our test, generating a vanity address starting with `0x000` takes only a few seconds, and each additional `0` increases the time by 16 times.
 
 ```js
 import { ethers } from "ethers";

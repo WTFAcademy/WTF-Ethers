@@ -1,7 +1,8 @@
 ![](./img/logo_ethers.jpeg)
 
 # WTF Ethers
-We are currently relearning ethers.js to consolidate our understanding of the details and create a "WTF Ethers Tutorials" for beginners. We will update the guide with 1-3 Chapters every week.
+
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
 This is the sister tutorial to the [WTF Solidity Tutorials](https://github.com/AmazingAng/WTFSolidity), proudly produced by the [WTF Academy](https://wtf.academy) community.
 
@@ -12,7 +13,7 @@ The roadmap is determined based on the number of stars for this repository:
 - [x] 128 :star: Release advanced content
 - [ ] 256 :star: Launch course certification
 
-### Running with VSCode
+### Running with VSCode (Recommended)
 
 You will need to install [VSCode](https://code.visualstudio.com/download) and [Node.js](https://nodejs.org/zh-cn/download/), then run:
 

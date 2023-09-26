@@ -12,23 +12,25 @@ tags:
 
 # WTF Ethers: 26. EIP712 Signature Script
 
-Recently, I have been relearning `ethers.js` to review the details and write a simplified guide on `WTF Ethers Introduction` for beginners to use.
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
-Twitter: [@0xAA_Science](https://twitter.com/0xAA_Science)｜[@WTFAcademy_](https://twitter.com/WTFAcademy_)
+**Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-WTF Academy Community: [Discord](https://discord.gg/5akcruXrsk)｜[WeChat Group](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)｜[Official Website wtf.academy](https://wtf.academy)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All code and tutorials are open-source on GitHub: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTF-Ethers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
----
+-----
 
-In this tutorial, we will introduce how to use Ethers.js to write an EIP712 signature script. Please refer to [WTF Solidity Lesson 52: EIP712](https://github.com/AmazingAng/WTFSolidity/blob/main/52_EIP712/readme.md) for further reading.
+In this tutorial, we will introduce how to use `ethers.js` to write an EIP712 signature script. Please refer to [WTF Solidity 52: EIP712](https://github.com/AmazingAng/WTFSolidity/blob/main/52_EIP712/readme.md) for details on EIP712 contract.
 
 ## EIP712
 
-[EIP712 Typed Data Signatures](https://eips.ethereum.org/EIPS/eip-712) provides a more advanced and secure method of signing. When a Dapp supporting EIP712 requests a signature, the wallet will display the original data of the signature message, allowing the user to sign after verifying that the data meets the expected requirements. Additionally, you can also generate an EIP712 signature using a script.
+[EIP712 Typed Data Signatures](https://eips.ethereum.org/EIPS/eip-712) provides a more advanced and secure method for signatures. When a Dapp supporting EIP712 requests a signature, the wallet will display the original data of the signature message, allowing the user to verify the message data before signing.
 
 ## EIP712 Signature Script
+
+In this section, we will write a script to sign ERP712 signature.
 
 1. Create `provider` and `wallet` objects. In this example, we will use the private key of the Remix test wallet.
 
@@ -100,4 +102,4 @@ In this tutorial, we will introduce how to use Ethers.js to write an EIP712 sign
 
 ## Summary
 
-In this tutorial, we have introduced how to write an EIP712 signature script using Ethers.js.
+In this tutorial, we have introduced how to write an EIP712 signature script using `ethers.js`.
