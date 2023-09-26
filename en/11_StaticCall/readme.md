@@ -10,13 +10,13 @@ tags:
 
 # WTF Ethers: 11. StaticCall
 
-I have been re-learning `ethers.js` recently to solidify my understanding of the details and to create a "WTF Ethers Tutorial" for beginners to use.
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy Community**: [website wtf.academy](https://wtf.academy) | [WTF Solidity Course](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All code and tutorials are open source on GitHub: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTFEthers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
@@ -26,13 +26,13 @@ The `staticCall` method is a method available in the `ethers.Contract` class, an
 
 ## Transactions that Could Fail
 
-Sending transactions on Ethereum requires expensive `gas` fees and carries the risk of failure. Failed transactions do not refund the gas fees. Therefore, it is crucial to know which transactions may fail before sending them. If you have used the MetaMask browser extension, you may be familiar with the following image.
+Sending transactions on Ethereum requires expensive `gas` fees and carries the risk of failure. Failed transactions do not refund the gas fees. Therefore, it is crucial to know which transactions will fail before sending them. If you have used the MetaMask browser extension, you may be familiar with the following image.
 
 ![Your Transaction May Fail!](img/11-1.png)
 
-If your transaction is likely to fail, MetaMask will inform you by showing the message "This transaction may fail." When users see this red warning message, they know to cancel the transaction unless they want to experience the failure themselves.
+If your transaction is likely to fail, MetaMask will inform you by showing the message "This transaction may fail." When users see this red warning message, they will cancel the transaction unless they want to experience the failure themselves.
 
-How does MetaMask achieve this? This is because Ethereum nodes have an `eth_call` method that allows users to simulate a transaction and return the possible transaction result without actually executing it on the blockchain (the transaction is not mined).
+How does MetaMask achieve this? This is because Ethereum nodes have an `eth_call` method that allows users to simulate a transaction and return the possible transaction result without actually executing it on the blockchain (the transaction will not be mined).
 
 ## `staticCall`
 

@@ -11,32 +11,32 @@ tags:
 
 # WTF Ethers: 17. MerkleTree Script
 
-I have recently been learning ethers.js to solidify my understanding of the details and to create a simple guide called "# WTF Ethers" for beginners to use.
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy Community**: [wtf.academy](https://wtf.academy) | [WTF Solidity Tutorial](https://github.com/AmazingAng/WTF-Solidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat group application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All code and tutorials are open source on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
-In this lesson, we will write a script that utilizes the Merkle Tree to whitelist addresses and mint NFTs. If you are not familiar with the Merkle Tree contract, please refer to [WTF Solidity Tutorial Lesson 37: Merkle Tree](https://github.com/AmazingAng/WTF-Solidity/blob/main/36_MerkleTree/readme.md).
+In this lesson, we will write a script that utilizes the Merkle Tree to whitelist addresses for minting NFTs. If you are not familiar with the Merkle Tree contract, please refer to [WTF Solidity 36: Merkle Tree](https://www.wtf.academy/solidity-application/MerkleTree/).
 
 ## Merkle Tree
 A Merkle Tree, also known as a hash tree, is a fundamental cryptographic technology used in blockchain systems, including Bitcoin and Ethereum. A Merkle Tree is a bottom-up constructed binary tree, where each leaf node represents the hash of some data, and each non-leaf node represents the hash of its two child nodes.
 
 ![Merkle Tree](./img/17-1.png)
 
-The Merkle Tree allows for efficient and secure verification of large data structures (Merkle Proof). For a Merkle Tree with N leaf nodes, given the known root value, verifying whether a specific data is valid (belonging to a leaf node of the Merkle Tree) only requires log(N) data (also known as a proof), which is highly efficient. If the data is incorrect or the provided proof is wrong, it is not possible to obtain the root value. In the example below, the Merkle proof for leaf L1 includes "Hash 0-1" and "Hash 1": knowing these two values allows us to verify if the value of L1 is present in the Merkle Tree's leaf nodes.
+The Merkle Tree allows for efficient and secure verification of large data structures (Merkle Proof). For a Merkle Tree with `N` leaf nodes, given the known root value, verifying whether a specific data is valid (belonging to a leaf node of the Merkle Tree) only requires `log(N)` data (also known as a proof), which is highly efficient. If the data is incorrect or the provided proof is wrong, it is not possible to obtain the root value. In the example below, the Merkle proof for leaf L1 includes `"Hash 0-1"` and `"Hash 1"`: knowing these two values allows us to verify if the value of `L1` is present in the Merkle Tree's leaf nodes.
 
 ![Merkle Proof](./img/17-2.png)
 
 ## Merkle Tree Contract Overview
 
-In [WTF Solidity Tutorial Lesson 36: Merkle Tree](https://github.com/AmazingAng/WTF-Solidity/blob/main/36_MerkleTree/readme.md), the `MerkleTree` contract is used to validate whitelisted addresses for minting NFTs. Let's briefly explain the two functions used here:
+In [WTF Solidity 36: Merkle Tree](https://github.com/AmazingAng/WTF-Solidity/blob/main/36_MerkleTree/readme.md), the `MerkleTree` contract is used to validate whitelisted addresses for minting NFTs. Let's briefly explain the two functions used here:
 
-1. Constructor: Initializes the name, code, and root of the NFT.
+1. Constructor: Initializes the name, code, and root of merkle tree of the NFT contract.
 
 2. `mint()`: Uses the Merkle Proof to validate the whitelisted address and mint the NFT. The function parameters are the whitelisted address `account`, the `tokenId` to be minted, and the `proof`.
 
@@ -186,4 +186,4 @@ To use the Merkle Tree to validate whitelist and issue NFTs in production, follo
 
 ## Summary
 
-In this lesson, we introduced the Merkle Tree and used MerkleTree.js and ethers.js to create, validate whitelist, and mint NFTs.
+In this lesson, we introduced the Merkle Tree and used `MerkleTree.js` and `ethers.js` to create, validate whitelist, and mint NFTs.

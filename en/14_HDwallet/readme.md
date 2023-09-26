@@ -1,5 +1,5 @@
 ---
-title: 14. Generate Wallets in Bulk
+title: 14. Generate Wallets in Batch
 tags:
   - ethers
   - javascript
@@ -12,19 +12,19 @@ tags:
   - web
 ---
 
-# WTF Ethers: 14. Generate Wallets in Bulk
+# WTF Ethers: 14. Generate Wallets in Batch
 
-Recently, I've been relearning `ethers.js` to reinforce the details and write a "# WTF Ethers Guide" for beginners to use.
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy Community**: [Website: wtf.academy](https://wtf.academy) | [WTF Solidity Tutorial](https://github.com/AmazingAng/WTF-Solidity) | [Discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All code and tutorials are open source on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
-In this chapter, we will introduce HD Wallets and write a script to generate wallets in bulk.
+In this chapter, we will introduce HD Wallets and write a script to generate wallets in batch.
 
 ## HD Wallets
 
@@ -63,9 +63,9 @@ BIP39 allows users to store private keys in a way that can be memorized with a s
 air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orbit weapon universe require tired sing casino business anxiety seminar hunt
 ```
 
-## Generate Wallets in Bulk
+## Generate Wallets in Batch
 
-`ethers.js` provides the [HDNode class](https://docs.ethers.org/v6-beta/api/wallet/#HDNodeWallet) to facilitate the use of HD Wallets by developers. Below, we will use it to generate 20 wallets in bulk from a mnemonic phrase.
+`ethers.js` provides the [HDNode class](https://docs.ethers.org/v6-beta/api/wallet/#HDNodeWallet) to facilitate the use of HD Wallets by developers. Below, we will use it to generate 20 wallets in batch from a mnemonic phrase.
 
 1. Create an `HDNode` wallet variable. The mnemonic phrase used here is `'air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orbit weapon universe require tired sing casino business anxiety seminar hunt'`.
     ```js
@@ -92,7 +92,7 @@ air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orb
         wallets.push(walletNew);
     }
     ```
-    ![Generate Wallets in Bulk](img/14-3.png)
+    ![Generate Wallets in Batch](img/14-3.png)
 
 3. Save wallets as encrypted JSON:
 
@@ -117,4 +117,4 @@ air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orb
     ![Read Wallet](img/14-5.png)
 
 ## Summary
-In this chapter, we introduced HD Wallets (BIP32, BIP44, BIP39) and used `ethers.js` to generate 20 wallets in bulk.
+In this chapter, we introduced HD Wallets (BIP32, BIP44, BIP39) and used `ethers.js` to generate 20 wallets in batch.

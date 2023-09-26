@@ -11,13 +11,13 @@ tags:
 
 # WTF Ethers: 20. Decoding Transaction Details
 
-I recently started studying `ethers.js` again to reinforce the details and create a "# WTF Ethers Guide" for beginners to use.
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy Community**: [Official website wtf.academy](https://wtf.academy) | [WTF Solidity Tutorial](https://github.com/AmazingAng/WTF-Solidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All code and tutorials are open source on GitHub: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTF-Ethers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
@@ -25,13 +25,13 @@ In this lesson, we will use a pending transaction as an example to demonstrate h
 
 ## Pending Transaction
 
-A pending transaction is a transaction sent by a user but has not been included in a block by a miner yet. It appears in the mempool (transaction memory pool). For more information about the mempool, you can refer to the [# WTF Ethers Guide Lesson 19: Listening to the Mempool](https://github.com/WTFAcademy/WTF-Ethers/blob/main/19_Mempool/readme.md).
+A pending transaction is a transaction sent by a user but has not been included in a block by a miner yet. It appears in the mempool (transaction memory pool). For more information about the mempool, you can refer to the [# WTF Ethers 19: Listening to the Mempool](https://github.com/WTFAcademy/WTF-Ethers/blob/main/19_Mempool/readme.md).
 
-Below is an example of a pending transaction for transferring an `ERC20` token. You can view the transaction details on [etherscan](https://etherscan.io/tx/0xbe5af8b8885ea9d6ae8a2f3f44315554ff62daebf3f99b42eae9d4cda880208e):
+Below is an example of a pending transaction that transafers an `ERC20` token. You can view the transaction details on [etherscan](https://etherscan.io/tx/0xbe5af8b8885ea9d6ae8a2f3f44315554ff62daebf3f99b42eae9d4cda880208e):
 
 ![ERC20 Pending Transaction](./img/20-1.png)
 
-The red box indicates the `input data` of this transaction, which appears as seemingly random hexadecimal data. In fact, it encodes the content of the transaction, including the invoked function and the input parameters. By clicking the **Decode Input Data** button on etherscan, we can decode this data:
+The box at the bottom indicates the `input data` of this transaction, which seems like random hexadecimal data. In fact, it encodes the calldata of the transaction, including the called function and the input parameters. By clicking the **Decode Input Data** button on etherscan, we can decode this data:
 
 ![Decode Input Data](./img/20-2.png)
 
@@ -39,7 +39,7 @@ After decoding, we can see the function called by this transaction and its input
 
 ## Interface Class
 
-`ethers.js` provides the `Interface` class for decoding transaction data. Declaring the `Interface` class and declaring the `abi` are similar, for example:
+`ethers.js` provides the `Interface` class for decoding transaction data. Declaring a `Interface` is similar as declaring a `abi`, for example:
 
 ```js
 const iface = ethers.Interface([
@@ -104,4 +104,4 @@ Now let's write a script to decode the data of a pending transaction.
 
 ## Summary
 
-In this lesson, we introduced the `Interface` class in `ethers.js` and used it to decode transactions in the `mempool` for Uniswap.
+In this lesson, we use `Interface` object to decode pending transactions on Uniswap.

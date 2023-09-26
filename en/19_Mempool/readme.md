@@ -12,13 +12,13 @@ tags:
 
 # WTF Ethers: 19. Listening to Mempool
 
-I have recently been revisiting `ethers.js` to reinforce my understanding of the details and also to create a simplified guide called `# WTF Ethers` for beginners.
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy Community**: [Official Website wtf.academy](https://wtf.academy) | [WTF Solidity Tutorial](https://github.com/AmazingAng/WTF-Solidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All codes and tutorials are open-source on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
@@ -26,15 +26,15 @@ In this lesson, we will learn how to read transactions from the `mempool`.
 
 ## MEV
 
-`MEV` (Maximal Extractable Value) is a fascinating topic. Most people are unfamiliar with it as it did not exist before the invention of blockchain that supports smart contracts. It's a feast for scientists, a friend of miners, and a nightmare for retail investors.
+`MEV` (Maximal Extractable Value) is a fascinating topic. Most people are unfamiliar with it as it did not exist before the invention of blockchain that supports smart contracts. It's a feast for searchers, a friend of miners, and a nightmare for retail investors.
 
-In blockchain, miners can profit by packing, excluding, or reordering transactions in the blocks they generate, and `MEV` is a metric that measures this profit.
+In blockchain, miners/validators can profit by packing, excluding, or reordering transactions in the blocks they generate, and `MEV` is a metric that measures this profit.
 
 ## Mempool
 
-Before a user's transaction is included in the Ethereum blockchain by miners, all transactions gather in the Mempool. Miners also search for high fee transactions in the Mempool to prioritize packaging and maximize their profits. Generally, transactions with higher gas prices are more likely to be packaged.
+Before a user's transaction is included in the Ethereum blockchain by miners/validators, all transactions gather in the Mempool. Miners also search for transactions with high fees in the Mempool to prioritize packaging and maximize their profits. Generally, transactions with higher gas prices are more likely to be packaged.
 
-At the same time, some `MEV` bots also search for profitable trades in the `mempool`. For example, a `swap` transaction with a high slippage setting may be subject to sandwich attacks: the bot adjusts the gas price to insert a buy order before the transaction, and then sends a sell order afterward, effectively selling the tokens at a higher price to the user (front-running).
+At the same time, some `MEV` bots also search for profitable trades in the `mempool`. For example, a `swap` transaction with a high slippage may be subject to sandwich attacks: the bot adjusts the gas price to insert a buy order before the transaction, and then sends a sell order afterward, effectively selling the tokens at a higher price to the user (front-running).
 
 ![Mempool](./img/19-1.png)
 

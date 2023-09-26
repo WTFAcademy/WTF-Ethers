@@ -12,13 +12,13 @@ tags:
 
 # WTF Ethers: 12. Identifying ERC721 Contracts
 
-I have recently been relearning `ethers.js`, solidifying the details, and writing a "# WTF Ethers" guide for beginners to use.
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy Community**: [Official Website wtf.academy](https://wtf.academy) | [WTF Solidity Tutorials](https://github.com/AmazingAng/WTFSolidity) | [Discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All code and tutorials are open-source on GitHub: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTFEthers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
@@ -26,13 +26,13 @@ In this tutorial, we will learn how to use `ethers.js` to identify if a contract
 
 ## `ERC721`
 
-`ERC721` is a popular non-fungible token (NFT) standard on the Ethereum network. If you're unfamiliar with this standard, you can read about it in [WTF Solidity Lesson 34: ERC721](https://github.com/AmazingAng/WTFSolidity/blob/main/34_ERC721/readme.md). When working on NFT-related projects, we need to identify contracts that comply with the `ERC721` standard. For example, OpenSea automatically recognizes `ERC721` contracts and collects their names, codes, metadata, and other data for display. To identify `ERC721` contracts, we first need to understand `ERC165`.
+`ERC721` is a popular non-fungible token (NFT) standard on the Ethereum network. If you're unfamiliar with this standard, you can read about it in [WTF Solidity 34: ERC721](https://www.wtf.academy/solidity-application/ERC721/). When working on NFT-related projects, we need to identify contracts that comply with the `ERC721` standard. For example, OpenSea automatically recognizes `ERC721` contracts and collects their names, codes, metadata, and other data for display. To identify `ERC721` contracts, we first need to understand `ERC165`.
 
 ## `ERC165`
 
 With the [ERC165 standard](https://eips.ethereum.org/EIPS/eip-165), smart contracts can declare the interfaces they support for other contracts to check. Therefore, we can check if a smart contract supports the `ERC721` interface using `ERC165`.
 
-The `IERC165` standard interface contract only declares a `supportsInterface` function. By inputting the `interfaceId` interface ID to be queried (type: `bytes4`), if the contract implements that interface ID, it returns `true`; otherwise, it returns `false`:
+The `IERC165` standard interface contract only declares a `supportsInterface` function. This function returns `true` if it implements that interface ID; otherwise, it returns `false`:
 
 ```solidity
 interface IERC165 {
@@ -109,4 +109,4 @@ interface IERC165 {
 
 ## Summary
 
-In this tutorial, we learned how to use `ethers.js` to identify if a contract is an `ERC721` standard. Since we utilized the `ERC165` standard, only contracts that support the `ERC165` standard can be identified using this method, including `ERC721`, `ERC1155`, and others. However, for standards like `ERC20` that do not support `ERC165`, different methods must be used to identify them. Do you know how to check if a contract is an `ERC20`?
+In this tutorial, we learned how to use `ethers.js` to identify if a contract follows the `ERC721` standard. Since we utilized the `ERC165` standard, contracts that support the `ERC165` standard can be identified using this method, including `ERC721`, `ERC1155`, and others. However, for standards like `ERC20` that do not support `ERC165`, different methods need to be used to identify them. Do you know how to check if a contract is an `ERC20`?

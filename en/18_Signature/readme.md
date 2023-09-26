@@ -12,17 +12,17 @@ tags:
 
 # WTF Ethers: 18. Digital Signature Script
 
-Recently, I have been revising `ethers.js` to solidify the details and write a simplified guide for beginners, called "WTF Ethers Tutorial".
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy Community**: [Official Website wtf.academy](https://wtf.academy) | [WTF Solidity Tutorial](https://github.com/AmazingAng/WTF-Solidity) | [Discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All code and tutorials are open-source on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
-In this article, we introduce a method of using off-chain signatures as a whitelist for distributing NFTs. If you are not familiar with the `ECDSA` contract, please refer to [WTF Solidity Simplified Tutorial 37: Digital Signature](https://github.com/AmazingAng/WTF-Solidity/blob/main/37_Signature/readme.md).
+In this chapter, we will introduce a method of using off-chain signatures as a whitelist for NFTs. If you are not familiar with the `ECDSA` contract, please refer to [WTF Solidity 37: Digital Signature](https://www.wtf.academy/solidity-application/Signature/).
 
 ## Digital Signature
 
@@ -38,7 +38,7 @@ The digital signature algorithm used by Ethereum is called Elliptic Curve Digita
 
 ## Digital Signature Contract Overview
 
-The `SignatureNFT` contract in the [WTF Solidity Simplified Tutorial 37: Digital Signature](https://github.com/AmazingAng/WTF-Solidity/blob/main/37_Signature/readme.md) uses `ECDSA` to validate whitelist addresses and mint NFTs. Let's discuss two important functions:
+The `SignatureNFT` contract in the [WTF Solidity 37: Digital Signature](https://github.com/AmazingAng/WTF-Solidity/blob/main/37_Signature/readme.md) uses `ECDSA` to validate whitelist addresses and mint NFTs. Let's discuss two important functions:
 
 1. Constructor: Initializes the name, symbol, and signing public key `signer` of the NFT.
 
@@ -106,79 +106,54 @@ The `SignatureNFT` contract in the [WTF Solidity Simplified Tutorial 37: Digital
        "constructor(string memory _name, string memory _symbol, address _signer)",
        "function name() view returns (string)",
        "function symbol() view returns (string)",
-   ...
-   ```
-```markdown
----
-title: "Deploy and Mint NFT with Off-chain Signature Verification"
----
+        "function mint(address _account, uint256 _tokenId, bytes memory _signature) external",
+        "function ownerOf(uint256) view returns (address)",
+        "function balanceOf(address) view returns (uint256)",
+    ];
+    // Contract bytecode, in remix, you can find the bytecode in two places
+    // i. Bytecode button in the deployment panel
+    // ii. In the json file with the same name as the contract in the artifact folder in the File panel
+    // The data corresponding to the "object" field inside is the bytecode, quite long, starts with 608060
+    // "object": "608060405260646000553480156100...
+    const bytecodeNFT = contractJson.default.object;
+    const factoryNFT = new ethers.ContractFactory(abiNFT, bytecodeNFT, wallet);
+    ```
 
-# Deploy and Mint NFT with Off-chain Signature Verification
+4. Deploy the NFT contract using the contract factory.
 
-In this tutorial, we will learn how to deploy and mint an NFT (Non-Fungible Token) using off-chain signature verification. The process involves creating a whitelist of addresses and verifying signatures off-chain before minting the NFT.
+    ```js
+    // Deploy the contract, fill in the constructor parameters
+    const contractNFT = await factoryNFT.deploy("WTF Signature", "WTF", wallet.address)
+    console.log(`Contract address: ${contractNFT.target}`);
+    console.log("Waiting for contract deployment on the blockchain")
+    await contractNFT.waitForDeployment()
+    // You can also use contractNFT.deployTransaction.wait()
+    console.log("Contract deployed on the blockchain")
+    ```
+    ![Deploying NFT Contract](./img/18-3.png)
 
-## Prerequisites
+5. Call the `mint()` function of the `NFT` contract, use off-chain signature to verify the whitelist, and mint an `NFT` for the `account` address.
 
-- Knowledge of Solidity and Ethereum smart contracts
-- An Ethereum wallet with testnet ETH
+    ```js
+    console.log(`NFT Name: ${await contractNFT.name()}`)
+    console.log(`NFT Symbol: ${await contractNFT.symbol()}`)
+    let tx = await contractNFT.mint(account, tokenId, signature)
+    console.log("Minting, waiting for the transaction to be confirmed on the blockchain")
+    await tx.wait()
+    console.log(`Mint successful, NFT balance of address ${account}: ${await contractNFT.balanceOf(account)}\n`)
+    ```
+    ![Signature Verification and Minting NFT](./img/18-4.png)
 
-## Steps
+## For Production
 
-1. Define the whitelist of addresses that are allowed to mint the NFT.
+To use off-chain signature verification whitelisting to issue `NFT` in a production environment, follow these steps:
 
-2. Generate a message and sign it using a backend wallet for each address in the whitelist.
+1. Determine the whitelist.
+2. Maintain the private key of the signing wallet in the backend to generate the `message` and `signature` for whitelisted addresses.
+3. Deploy the `NFT` contract and save the public key of the signing wallet (`signer`) in the contract.
+4. When a user wants to mint, request the `signature` corresponding to the address from the backend.
+5. Use the `mint()` function to mint the `NFT`.
 
-3. Deploy the NFT contract, and store the public key of the signing wallet (`signer`) in the contract.
+## Summary
 
-4. When a user wants to mint an NFT, request the corresponding signature for their address from the backend.
-
-5. Call the `mint()` function of the NFT contract, passing the user's address, token ID, and signature as parameters. Verify the signature off-chain to ensure the user is in the whitelist before minting the NFT.
-
-## Deployment
-
-To deploy and mint an NFT using off-chain signature verification, follow these steps:
-
-1. Create a whitelist of addresses that are allowed to mint the NFT.
-
-2. Generate a message and sign it using a backend wallet for each address in the whitelist. For example, using the `ethers.js` library:
-
-   ```javascript
-   const signer = ethers.utils.Wallet.fromMnemonic('<your mnemonic>');
-   const message = ethers.utils.hexlify(ethers.utils.randomBytes(32));
-   const signature = await signer.signMessage(message);
-   ```
-
-3. Deploy the NFT contract, passing the signer's public key (`signer.publicKey`) as a constructor parameter. You can use the `ethers.js` library for deployment:
-
-   ```javascript
-   const abiNFT = ...; // NFT contract ABI
-   const bytecodeNFT = ...; // NFT contract bytecode
-
-   const factoryNFT = new ethers.ContractFactory(abiNFT, bytecodeNFT, wallet);
-
-   // Deploy the contract
-   const contractNFT = await factoryNFT.deploy("WTF Signature", "WTF", wallet.address);
-
-   console.log(`Contract address: ${contractNFT.target}`);
-   console.log("Waiting for contract deployment on the blockchain...");
-   await contractNFT.waitForDeployment();
-   console.log("Contract has been deployed!");
-   ```
-
-4. Call the `mint()` function of the NFT contract using the user's address, token ID, and signature. Verify the signature off-chain before minting the NFT:
-
-   ```javascript
-   console.log(`NFT Name: ${await contractNFT.name()}`);
-   console.log(`NFT Symbol: ${await contractNFT.symbol()}`);
-   const tx = await contractNFT.mint(account, tokenId, signature);
-
-   console.log("Minting in progress, waiting for the transaction to be confirmed...");
-   await tx.wait();
-
-   console.log(`Minted successfully! Balance of NFTs for address ${account}: ${await contractNFT.balanceOf(account)}`);
-   ```
-
-Note: The `abiNFT` and `bytecodeNFT` variables should contain the ABI and bytecode of your NFT contract.
-
-This tutorial explained how to deploy and mint an NFT using off-chain signature verification. It is an efficient and cost-effective way to verify a whitelist before minting the NFTs. Remember to maintain the whitelist and generate signatures securely in the backend to ensure the integrity and security of the process.
-```
+In this lesson, we introduced how to use `ethers.js` together with smart contracts to verify whitelisting using off-chain digital signatures for NFTs. Merkle Tree and off-chain digital signatures are currently the most popular and cost-effective ways to distribute whitelists. If the whitelist is already determined during contract deployment, we recommend using the Merkle Tree approach. If the whitelist needs to be constantly updated after contract deployment, such as in the case of the Galaxy Project's `OAT`, we recommend using the off-chain signature verification approach, otherwise, the `root` of the Merkle Tree in the contract needs to be constantly updated, which costs alot of gas.

@@ -1,5 +1,5 @@
 ---
-title: 16. Batch Collection
+title: 16. Batch Collect
 tags:
   - ethers
   - javascript
@@ -8,21 +8,21 @@ tags:
   - web
 ---
 
-# WTF Ethers: 16. Batch Collection
+# WTF Ethers: 16. Batch Collect
 
-I have recently been relearning `ethers.js`, solidifying the details and writing a `WTF Ethers Tutorial` for beginners to use.
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy Community**: [Official Website wtf.academy](https://wtf.academy) | [WTF Solidity Tutorial](https://github.com/AmazingAng/WTF-Solidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All codes and tutorials are open source on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
 In this session, we will introduce how to use `ethers.js` to collect the assets of multiple wallets (ETH and tokens) into one wallet.
 
-## Batch Collection
+## Batch Collect
 
 After interacting and playing around with the chain, we need to consolidate and manage the assets of multiple wallets. You can use [HD Wallet](https://github.com/WTFAcademy/WTF-Ethers/blob/main/14_HDwallet/readme.md) or other methods to operate multiple wallets with different private keys, and then use the `ethers.js` script to complete the collection. Below, we will demonstrate the collection of `ETH` (native token) and `WETH` (ERC20 token) separately.
 
@@ -122,29 +122,28 @@ After interacting and playing around with the chain, we need to consolidate and 
         let walletiWithProvider = wallets[i].connect(provider)
         // Connect the contract to the new wallet
         let contractConnected = contractWETH.connect(walletiWithProvider)
-```
-var tx = await contractConnected.transfer(wallet.address, amount)
-console.log(`The ${i+1}th wallet ${wallets[i].address} WETH collection starts`)
-}
-await tx.wait()
-console.log(`WETH collection ends`)
-```
+        var tx = await contractConnected.transfer(wallet.address, amount)
+        console.log(`The ${i+1}th wallet ${wallets[i].address} WETH collection starts`)
+        }
+    await tx.wait()
+    console.log(`WETH collection ends`)
+    ```
 
 ![WETH collection](img/16-5.png)
 
 8. Read the post-collection ETH and WETH balance of an address, and you can see the decrease in `ETH` and `WETH` balances, collection succeeded!
-```js
-console.log("\n6. Read the post-collection ETH and WETH balance of an address")
-// Read WETH balance
-const balanceWETHAfter = await contractWETH.balanceOf(wallets[19])
-console.log(`WETH holdings after collection: ${ethersfromPhrase.formatEther(balanceWETHAfter)}`)
-// Read ETH balance
-const balanceETHAfter = await provider.getBalance(wallets[19])
-console.log(`ETH holdings after collection: ${ethersfromPhrase.formatEther(balanceETHAfter)}\n`)
-```
+    ```js
+    console.log("\n6. Read the post-collection ETH and WETH balance of an address")
+    // Read WETH balance
+    const balanceWETHAfter = await contractWETH.balanceOf(wallets[19])
+    console.log(`WETH holdings after collection: ${ethersfromPhrase.formatEther(balanceWETHAfter)}`)
+    // Read ETH balance
+    const balanceETHAfter = await provider.getBalance(wallets[19])
+    console.log(`ETH holdings after collection: ${ethersfromPhrase.formatEther(balanceETHAfter)}\n`)
+    ```
 
 ![Changes in balances after collection](img/16-6.png)
 
 ## Summary
 
-In this lecture, we introduced batch collection and used ethers.js scripts to collect `ETH` and `WETH` from `20` wallets into one wallet.
+In this lecture, we introduced batch collect and used `ethers.js` scripts to collect `ETH` and `WETH` from `20` wallets into one wallet.

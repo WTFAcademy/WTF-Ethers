@@ -11,13 +11,13 @@ tags:
 
 # WTF Ethers: 13. Encoding calldata
 
-I recently started learning `ethers.js` again to review some details and write a "# WTF Ethers" for beginners.
+I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**WTF Academy Community**: [Official website wtf.academy](https://wtf.academy) | [WTF Solidity tutorial](https://github.com/AmazingAng/WTFSolidity) | [Discord](https://discord.gg/5akcruXrsk) | [WeChat group application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
-All code and tutorials are open source on GitHub: [github.com/WTFAcademy/WTFEthers](https://github.com/WTFAcademy/WTFEthers)
+All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
@@ -25,9 +25,9 @@ In this lesson, we will introduce the interface class in `ethers.js` and use it 
 
 ## Interface Class
 
-The interface class in `ethers.js` abstracts the ABI encoding and decoding needed for interacting with contracts on the Ethereum network. ABI (Application Binary Interface) is a format similar to API, used to encode various types of data that contracts can process, enabling them to interact. For more information, see [WTF Solidity tutorial Lecture 27: ABI encoding](https://github.com/AmazingAng/WTFSolidity/tree/main/27_ABIEncode).
+The interface class in `ethers.js` abstracts the ABI encoding and decoding needed for interacting with contracts on the Ethereum network. ABI (Application Binary Interface) is a format similar to API, used to encode various types of data that contracts can process, enabling them to interact. For more information, see [WTF Solidity 27: ABI encoding](https://www.wtf.academy/solidity-advanced/ABIEncode/).
 
-We can generate the `interface` variable using the `abi`, or directly retrieve it from the contract:
+We can generate the `interface` variable from the `abi`, or directly retrieve it from the contract:
 
 ```js
 // Generated using abi
@@ -61,9 +61,9 @@ The interface class encapsulates several encoding and decoding methods. When int
     interface.decodeFunctionResult("balanceOf", resultData)
     ```
 
-## Example: Interacting with the test network `WETH` contract
+## Example: Interacting with the `WETH` contract on test network 
 
-Here, we will use the interface class to encode calldata and repeat the example of interacting with the test network `WETH` contract in [Lesson 5](https://github.com/WTFAcademy/WTFEthers/blob/main/05_WriteContract/readme.md).
+Here, we will use the interface class to encode calldata and repeat the example of interacting with the test network `WETH` contract in [Lesson 5](https://github.com/WTFAcademy/WTFEthers/tree/main/en/05_WriteContract/readme.md).
 
 1. Create the `provider` and `wallet` variables.
 
@@ -133,13 +133,10 @@ Here, we will use the interface class to encode calldata and repeat the example 
     console.log(`Transaction details:`)
     console.log(receipt1)
     const balanceWETH_deposit = await contractWETH.balanceOf(address)
+    console.log(`WETH balance after deposit: ${ethers.formatEther(balanceWETH_deposit)}\n`)
     ```
----
-console.log(`WETH balance after deposit: ${ethers.formatEther(balanceWETH_deposit)}\n`)
-```
 ![Calling the deposit() function](img/13-2.png)
 
 ## Summary
 
-In this lesson, we introduced the interface classes in `ethers.js` and used them to interact with the `calldata` and `WETH` contracts. When interacting with certain special contracts (such as proxy contracts), you need to use these methods to encode the parameters and decode the return values.
----
+In this lesson, we introduced the interface classes in `ethers.js` and used them to encode `calldata` and interact with the `WETH` contract. When interacting with specific contracts (such as proxy contracts), you may need to use these methods to encode the parameters and decode the return values.
