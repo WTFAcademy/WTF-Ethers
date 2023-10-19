@@ -74,14 +74,14 @@ const iface = ethers.Interface([
 3. 获取函数选择器。
 
     ```js
-    const selector = iface.getFunction("transfer")
+    const selector = iface.getFunction("transfer").selector
     console.log(`函数选择器是${selector}`)
     ```
 
 4. 监听`pending`的`ERC20` 转账交易，获取交易详情并解码：
 
     ```js
-    // 处理bitInt
+    // 处理bigInt
     function handleBigInt(key, value) {
         if (typeof value === "bigint") {
             return value.toString() + "n"; // or simply return value.toString();
@@ -111,4 +111,4 @@ const iface = ethers.Interface([
 
 ## 总结
 
-这一讲，我们介绍了`ethers.js`的`Interface`类，并利用它解码了`mempool`中的`Transfer`交易。
+这一讲，我们介绍了`ethers.js`的`Interface`类，并利用它解码了`mempool`中的`transfer`交易。

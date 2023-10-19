@@ -12,11 +12,12 @@ const contractABI = [
 ]
 const iface = new ethers.Interface(contractABI)
 
-// 3. 获取函数签名。
-const selector = iface.getFunction("transfer")
+// 3. 获取函数选择器。
+const selector = iface.getFunction("transfer").selector
 console.log(`函数选择器是${selector}`)
 
 // 4. 监听pending的erc20 transfer交易，获取交易详情，然后解码。
+// 处理bigInt
 function handleBigInt(key, value) {
     if (typeof value === "bigint") {
         return value.toString() + "n"; // or simply return value.toString();
