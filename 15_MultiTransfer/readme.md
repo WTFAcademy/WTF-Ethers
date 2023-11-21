@@ -145,7 +145,7 @@ tags:
 8. 调用multiTransferToken()函数，给每个钱包转 `0.0001 WETH`，可以看到发送后余额发生变化。
 
     ```js
-    console.log("\n5. 调用multiTransferToken()函数，给每个钱包转 0.001 WETH")
+    console.log("\n5. 调用multiTransferToken()函数，给每个钱包转 0.0001 WETH")
     // 先approve WETH给Airdrop合约
     const txApprove = await contractWETH.approve(addressAirdrop, ethers.parseEther("1"))
     await txApprove.wait()
