@@ -87,10 +87,10 @@ tags:
     console.log("\n3. 读取一个地址的ETH和WETH余额")
     //读取WETH余额
     const balanceWETH = await contractWETH.balanceOf(wallets[19])
-    console.log(`WETH持仓: ${ethersfromPhrase.formatEther(balanceWETH)}`)
+    console.log(`WETH持仓: ${ethers.formatEther(balanceWETH)}`)
     //读取ETH余额
     const balanceETH = await provider.getBalance(wallets[19])
-    console.log(`ETH持仓: ${ethersfromPhrase.formatEther(balanceETH)}\n`)
+    console.log(`ETH持仓: ${ethers.formatEther(balanceETH)}\n`)
     ```
     ![读取余额](img/16-3.png)
 
