@@ -1,5 +1,6 @@
 //1.连接到foundry本地网络
 import { ethers } from "ethers";
+// V6 版本 const provider = new ethers.JsonRpcProvider('http://127.0.0.1:8545')
 const provider = new ethers.providers.WebSocketProvider('http://127.0.0.1:8545')
 let network = provider.getNetwork()
 network.then(res => console.log(`[${(new Date).toLocaleTimeString()}]链接到网络${res.chainId}`))
@@ -16,6 +17,7 @@ const contractFM = new ethers.Contract(contractAddress, contractABI, provider)
 //3.创建Interface对象，用于检索mint函数。
 const iface = new ethers.utils.Interface(contractABI)
 function getSignature(fn) {
+    // V6 版本 return iface.getFunction("mint").selector
     return iface.getSighash(fn)
 }
 
@@ -28,7 +30,7 @@ const normaltx = async () => {
     provider.on('pending', async (txHash) => {
         provider.getTransaction(txHash).then(
             async (tx) => {
-                if (tx.data.indexOf(getSignature("mint") !== -1)) {
+                if (tx.data.indexOf(getSignature("mint")) !== -1) {
                     console.log(`[${(new Date).toLocaleTimeString()}]监听到交易:${txHash}`)
                     console.log(`铸造发起的地址是:${tx.from}`)
                     await tx.wait()
@@ -51,6 +53,7 @@ const frontRun = async () => {
             const frontRunTx = {
                 to: tx.to,
                 value: tx.value,
+                // V6版本 maxPriorityFeePerGas: tx.maxPriorityFeePerGas * 2n， 其他运算同理。参考https://docs.ethers.org/v6/migrating/#migrate-bigint
                 maxPriorityFeePerGas: tx.maxPriorityFeePerGas.mul(2),
                 maxFeePerGas: tx.maxFeePerGas.mul(2),
                 gasLimit: tx.gasLimit.mul(2),
