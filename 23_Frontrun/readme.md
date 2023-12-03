@@ -70,7 +70,7 @@ anvil
     //1.连接到foundry本地网络
 
     import { ethers } from "ethers";
-    const provider = new ethers.providers.WebSocketProvider('<http://127.0.0.1:8545>')
+    const provider = new ethers.providers.JsonRpcProvider('<http://127.0.0.1:8545>')
     let network = provider.getNetwork()
     network.then(res => console.log(`[${(new Date).toLocaleTimeString()}]链接到网络${res.chainId}`))
     ```
@@ -91,8 +91,10 @@ anvil
 
     ```js
     //3.创建Interface对象，用于检索mint函数。
+    //V6版本 const iface = new ethers.Interface(contractABI)
     const iface = new ethers.utils.Interface(contractABI)
     function getSignature(fn) {
+    // V6版本 return iface.getFunction("mint").selector
         return iface.getSighash(fn)
     }
     ```
@@ -113,7 +115,7 @@ anvil
     provider.on('pending', async (txHash) => {
         provider.getTransaction(txHash).then(
             async (tx) => {
-                if (tx.data.indexOf(getSignature("mint") !== -1)) {
+                if (tx.data.indexOf(getSignature("mint")) !== -1) {
                     console.log(`[${(new Date).toLocaleTimeString()}]监听到交易:${txHash}`)
                     console.log(`铸造发起的地址是:${tx.from}`)//打印交易发起地址
                     await tx.wait()
@@ -141,6 +143,7 @@ anvil
             const frontRunTx = {
                 to: tx.to,
                 value: tx.value,
+    // V6版本 maxPriorityFeePerGas: tx.maxPriorityFeePerGas * 2n， 其他运算同理。参考https://docs.ethers.org/v6/migrating/#migrate-bigint
                 maxPriorityFeePerGas: tx.maxPriorityFeePerGas.mul(2),
                 maxFeePerGas: tx.maxFeePerGas.mul(2),
                 gasLimit: tx.gasLimit.mul(2),
