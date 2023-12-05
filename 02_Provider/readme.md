@@ -36,37 +36,40 @@ tags:
 
 ![Infura API Key](img/2-1.png)
 
-### 连接Infura节点
+你还可以在 [Chainlist](https://chainlist.org/) 网站找到各个链的公开节点。
 
-这里，我们用Infura节点作为例子。在创建好Infura API Key之后，就可以利用`ethers.JsonRpcProvider()`方法来创建`Provider`变量，该方法以节点服务的`url`链接作为参数。
+### 连接公开节点
 
-在下面这个例子中，我们分别创建连接到`ETH`主网和`Goerli`测试网的`provider`：
+这里，我们用[Chainlist](https://chainlist.org/)上的公开节点作为例子。在找到合适的rpc之后，可以利用`ethers.JsonRpcProvider()`方法来创建`Provider`变量，该方法以节点服务的`url`链接作为参数。
+
+在下面这个例子中，我们分别创建连接到`ETH`主网和`Sepolia`测试网的`provider`：
 
 ```javascript
-// 利用Infura的rpc节点连接以太坊网络
-// 填入Infura API Key, 教程：https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL02_Infura/readme.md
-const INFURA_ID = ''
+// 利用公共rpc节点连接以太坊网络
+// 可以在 https://chainlist.org 上找到
+const ALCHEMY_MAINNET_URL = 'https://rpc.ankr.com/eth';
+const ALCHEMY_SEPOLIA_URL = 'https://rpc.sepolia.org';
 // 连接以太坊主网
-const providerETH = new ethers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`)
-// 连接Goerli测试网
-const providerGoerli = new ethers.JsonRpcProvider(`https://goerli.infura.io/v3/${INFURA_ID}`)
+const providerETH = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL)
+// 连接Sepolia测试网
+const providerSepolia = new ethers.JsonRpcProvider(ALCHEMY_SEPOLIA_URL)
 ```
 
 ### 利用`Provider`读取链上数据
 
 `Provider`类封装了一些方法，可以便捷的读取链上数据：
 
-**1.** 利用`getBalance()`函数读取主网和测试网Vitalik的`ETH`余额：
+**1.** 利用`getBalance()`函数读取主网和测试网Vitalik的`ETH`余额（测试网目前不支持`ENS`域名，只能用钱包地址查询）：
 
 ```javascript
-    // 1. 查询vitalik在主网和Goerli测试网的ETH余额
-    console.log("1. 查询vitalik在主网和Goerli测试网的ETH余额");
+    // 1. 查询vitalik在主网和Sepolia测试网的ETH余额
+    console.log("1. 查询vitalik在主网和Sepolia测试网的ETH余额");
     const balance = await providerETH.getBalance(`vitalik.eth`);
-    const balanceGoerli = await providerGoerli.getBalance(`vitalik.eth`);
+    const balanceSepolia = await providerSepolia.getBalance(`0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`);
     // 将余额输出在console（主网）
     console.log(`ETH Balance of vitalik: ${ethers.formatEther(balance)} ETH`);
-    // 输出Goerli测试网ETH余额
-    console.log(`Goerli ETH Balance of vitalik: ${ethers.formatEther(balanceGoerli)} ETH`);
+    // 输出Sepolia测试网ETH余额
+    console.log(`Sepolia ETH Balance of vitalik: ${ethers.formatEther(balanceSepolia)} ETH`);
 ```
 
 ![Vitalik余额](img/2-2.png)
@@ -141,4 +144,4 @@ const providerGoerli = new ethers.JsonRpcProvider(`https://goerli.infura.io/v3/$
 
 ## 总结
 
-这一讲，我们介绍了ethers.js的`Provider`类，并用Infura的节点API Key创建了`jsonRpcProvider`，读取了`ETH`主网和`Goerli`测试网的链上信息。
+这一讲，我们介绍了ethers.js的`Provider`类，并用Infura的节点API Key创建了`jsonRpcProvider`，读取了`ETH`主网和`Sepolia`测试网的链上信息。
