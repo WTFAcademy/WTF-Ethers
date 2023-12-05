@@ -36,7 +36,9 @@ WTF Academy 社群：[Discord](https://discord.gg/5akcruXrsk)｜[微信群](http
     // 使用 Alchemy 的 RPC 节点连接以太坊网络
     // 准备 Alchemy API 可以参考 https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
     const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
+    // V6版本：const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
     const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+    
 
     // 使用私钥和 provider 创建 wallet 对象
     const privateKey = '0x503f38a9c967ed597e47fe25643985f032b072db8075426a92110f82df48dfcb'
@@ -84,6 +86,7 @@ WTF Academy 社群：[Discord](https://discord.gg/5akcruXrsk)｜[微信群](http
 
     ```js
     // EIP712 签名
+    //V6版本： const signature = await wallet._signTypedData(domain, types, message);
     const signature = await wallet.signTypedData(domain, types, message);
     console.log("Signature:", signature);
     // Signature: 0xdca07f0c1dc70a4f9746a7b4be145c3bb8c8503368e94e3523ea2e8da6eba7b61f260887524f015c82dd77ebd3c8938831c60836f905098bf71b3e6a4a09b7311b
@@ -93,6 +96,7 @@ WTF Academy 社群：[Discord](https://discord.gg/5akcruXrsk)｜[微信群](http
 
     ```js
     // 验证 EIP712 签名，从签名和消息复原出 signer 地址
+    //V6版本： let eip712Signer = verifyTypedData(domain, types, message, signature)
     let eip712Signer = ethers.verifyTypedData(domain, types, message, signature)
     console.log("EIP712 Signer: ", eip712Signer)
     //EIP712 Signer: 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4
