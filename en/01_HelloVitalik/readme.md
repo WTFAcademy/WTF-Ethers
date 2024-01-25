@@ -31,7 +31,7 @@ In this lesson, we will introduce the `ethers.js` library and write our first pr
 
 Compared to the earlier library `web3.js`, `ethers.js` has the following advantages:
 
-1. More compact code: `ethers.js` is 116.5 kB, while `web3.js` is 590.6 kB.
+1. More compact code: `ethers.js` is 210.2 kB, while `web3.js` is 590.6 kB.
 2. More secure: `Web3.js` assumes that users will deploy a local Ethereum node, and the private keys and network connectivity are managed by this node (which is not actually the case); in `ethers.js`, the `Provider` class manages network connectivity, while the `Wallet` class manages keys, making it more secure and flexible.
 3. Native support for `ENS`.
 
@@ -55,23 +55,23 @@ npm install ethers --save
 
 ![playcode](./img/1-3.png)
 
-In this chapter, we will demonstrate using `playcode`. You need to register a free account on the official website, then create a new project with the `Javascript` template by clicking `OPEN PLAYGROUND`, and write the code in the auto-generated `script.js` file. However, `playcode` may not be stable when using `ethers`, so we recommend using VScode.
+You need to register a free account on the official website, then create a new project with the `Javascript` template by clicking `OPEN PLAYGROUND`, and write the code in the auto-generated `script.js` file. However, `playcode` may not be stable when using `ethers`, so we recommend using `VScode` as we will be using it to demonstrate this chapter. 
+
+**Note**: When running for the first time on `playcode`, it may prompt `module not found`. This is because the `ethers` library has not been installed, simply click the `install` button to install it. If this does not work, please use VScode locally.
 
 ## HelloVitalik
 
-Now, let's write our first program using `ethers` called `HelloVitalik`: it will query Vitalik's ETH balance and output it to the console. The entire program only requires 6 lines, very simple!
-
-**Note**: When running for the first time on `playcode`, it may prompt `module not found`. This is because the `ethers` library has not been installed, simply click the `install` button to install it. If this does not work, please use VScode locally.
+Now, let's write our first program using `ethers` called `HelloVitalik`: it will query Vitalik's ETH balance and output it to the console. The entire program only requires 7 lines, very simple!
 
 ![Hello Vitalik](./img/1-4.png)
 
 ```javascript
-import { ethers } from "ethers";
-const provider = ethers.getDefaultProvider();
-const main = async () => {
-    const balance = await provider.getBalance(`vitalik.eth`);
-    console.log(`ETH Balance of vitalik: ${ethers.formatEther(balance)} ETH`);
-}
+const { ethers } = require("ethers");
+const provider = new ethers.JsonRpcProvider(`NODE_URL`) //e.g ALCHEMY, INFURA
+const address = 'vitalik.eth'
+const main = async() => {
+  const balance = await provider.getBalance(address)
+  console.log(`\nETH Balance of ${address} --> ${ethers.formatEther(balance)} ETH\n`)}
 main()
 ```
 
@@ -79,9 +79,9 @@ Let's analyze the program line by line:
 
 ### 1. Import `ethers`
 
-The first line imports the installed `ethers` library:
+The first line fetches the installed `ethers` library:
 ```javascript
-import { ethers } from "ethers";
+const { ethers } require "ethers";
 ```
 If you are using the `playcode` platform where free accounts cannot install external libraries, you can directly import from the `ethers` CDN (for educational purposes only due to security considerations):
 ```javascript
@@ -93,47 +93,57 @@ import { ethers } from "https://cdnjs.cloudflare.com/ajax/libs/ethers/6.2.3/ethe
 In `ethers`, the `Provider` class is an abstract class that provides Ethereum network connectivity. It provides read-only access to the blockchain and its state. We declare a `provider` to connect to the Ethereum network. `ethers` provides some common RPCs for easy connection to Ethereum:
 
 ```javascript
-const provider = ethers.getDefaultProvider();
+const provider = new ethers.JsonRpcProvider(`NODE_URL`)
 ```
 
 **Note**: The built-in `rpc` in `ethers` has limitations on access speed and is for testing purposes only. In a production environment, it is recommended to use a personal `rpc`. For example:
 
 ```js
-const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
-const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
+const ALCHEMY_MAINNET_URL = 'https://mainnet.infura.io/v3/8b9750710d56460d940aeff47967c4ba'; //you have to sign up on ALCHEMY or INFURA to get this
+const provider = new ethers.JsonRpcProvider(INFURA_MAINNET_URL);
 ```
 
-### 3. Declare an `async` function
+### 3. Declare the address you want to query
+
+In this case, Vitalik address. We can copy paste the address but since `ethers` natively supports `ENS` domain names, we can query the balance of Ethereum founder Vitalik's address using the `ENS` domain name `vitalik.eth`
+
+```javascript
+const address = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'
+or
+const address = 'vitalik.eth'
+```
+
+### 4. Get an `async` function 
 
 Since interactions with the blockchain are not real-time, we need to use the `async/await` syntax in JavaScript. Each call with the blockchain requires the use of `await`, and we wrap these calls in an `async` function.
 ```javascript
 const main = async () => {
     //...
 }
-main();
+main()
 ```
 
-### 4. Get the `ETH` balance of Vitalik's address
+### 5. Get the `ETH` balance of Vitalik's address
 
-We can use the `getBalance()` function of the `Provider` class to query the `ETH` balance of a specific address. Since `ethers` natively supports `ENS` domain names, we can query the balance of Ethereum founder Vitalik's address using the `ENS` domain name `vitalik.eth`.
+We can use the `getBalance()` function of the `Provider` class to query the `ETH` balance of a specific address. Since we have already declared a function for Vitalik's address, we can simply call it out here
 
 ```javascript
-const balance = await provider.getBalance(`vitalik.eth`);
+const balance = await provider.getBalance(address);
 ```
 
-### 5. Convert units and output to the console
+### 6. Convert units and output to the console
 
 The Ethereum balance we obtained from the chain is in `wei`, where `1 ETH = 10^18 wei`. Before printing it to the console, we need to convert the units. `ethers` provides a utility function called `formatEther`, which we can use to convert `wei` to `ETH`.
 
 ```javascript
-    console.log(`ETH Balance of Vitalik: ${ethers.formatEther(balance)} ETH`);
+    console.log(`\nETH Balance of ${address} --> ${ethers.formatEther(balance)} ETH\n`)}
 ```
 
 If you are using the VScode development tool, you need to enter the following command in the VScode terminal to run the script:
 ```shell
 node 01_HelloVitalik/HelloVitalik.js
 ```
-This way, you will see Vitalik's `ETH` balance in the console: `1951 ETH`. Of course, this is not his entire holdings. He has multiple wallets, and `vitalik.eth` is likely one of his frequently used hot wallets.
+This way, you will see Vitalik's `ETH` balance in the console: `82.07 ETH`. Of course, this is not his entire holdings. He has multiple wallets, and `vitalik.eth` is likely one of his frequently used hot wallets.
 
 ![Printing Vitalik's balance to the console](./img/1-5.png)
 
@@ -142,7 +152,7 @@ This way, you will see Vitalik's `ETH` balance in the console: `1951 ETH`. Of co
 
 This concludes the first lesson of the WTF Ethers tutorial. We introduced `ethers.js` and completed our first program using `ethers`: `HelloVitalik`, which queries Vitalik's wallet balance.
 
-**Post-Class Assignment**: In Figures 4 and 5, Vitalik's `ETH` balance is different. The balance in the first image is `2251 ETH`, while in the second image it becomes `1951 ETH`, a decrease of `300 ETH`. In fact, these two images correspond to Vitalik's holdings on `2022.07.30` and `2022.07.31`. So, what did Vitalik do with `300 ETH` on that day?
+**Post-Class Assignment**: Substitute Vitalik's address for other addresses (or your address) to query the ETH balance. 
 
 ## Recommended Readings
 
