@@ -99,8 +99,8 @@ const provider = new ethers.JsonRpcProvider(`NODE_URL`)
 **Note**: The built-in `rpc` in `ethers` has limitations on access speed and is for testing purposes only. In a production environment, it is recommended to use a personal `rpc`. For example:
 
 ```js
-const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN'; //you have to sign up on ALCHEMY or INFURA to get this
-const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
+const ALCHEMY_MAINNET_URL = 'https://mainnet.infura.io/v3/8b9750710d56460d940aeff47967c4ba'; //you have to sign up on ALCHEMY or INFURA to get this
+const provider = new ethers.JsonRpcProvider(INFURA_MAINNET_URL);
 ```
 
 ### 3. Declare the address you want to query
