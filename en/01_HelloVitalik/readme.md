@@ -152,9 +152,7 @@ This way, you will see Vitalik's `ETH` balance in the console: `82.07 ETH`. Of c
 
 This concludes the first lesson of the WTF Ethers tutorial. We introduced `ethers.js` and completed our first program using `ethers`: `HelloVitalik`, which queries Vitalik's wallet balance.
 
-**Post-Class Assignment**: Substitute Vitalik's address for other addresses (or your address) to query your ETH balance. 
-
-**Fun fact**: In Figures 4 and 5, Vitalik's `ETH` balance is different. The balance in the first image is `2251 ETH`, while in the second image it becomes `1951 ETH`, a decrease of `300 ETH`. In fact, these two images correspond to Vitalik's holdings on `2022.07.30` and `2022.07.31`. So, what did Vitalik do with `300 ETH` on that day?
+**Post-Class Assignment**: Substitute Vitalik's address for other addresses (or your address) to query the ETH balance. 
 
 ## Recommended Readings
 
