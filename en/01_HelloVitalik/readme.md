@@ -57,11 +57,11 @@ npm install ethers --save
 
 You need to register a free account on the official website, then create a new project with the `Javascript` template by clicking `OPEN PLAYGROUND`, and write the code in the auto-generated `script.js` file. However, `playcode` may not be stable when using `ethers`, so we recommend using `VScode` as we will be using it to demonstrate this chapter. 
 
+**Note**: When running for the first time on `playcode`, it may prompt `module not found`. This is because the `ethers` library has not been installed, simply click the `install` button to install it. If this does not work, please use VScode locally.
+
 ## HelloVitalik
 
 Now, let's write our first program using `ethers` called `HelloVitalik`: it will query Vitalik's ETH balance and output it to the console. The entire program only requires 7 lines, very simple!
-
-**Note**: When running for the first time on `playcode`, it may prompt `module not found`. This is because the `ethers` library has not been installed, simply click the `install` button to install it. If this does not work, please use VScode locally.
 
 ![Hello Vitalik](./img/1-4.png)
 
