@@ -80,7 +80,7 @@ await tx.wait()
 2. 创建可写`WETH`合约变量，我们在`ABI`中加入了4个我们要调用的函数：
     - `balanceOf(address)`：查询地址的`WETH`余额。
     - `deposit()`：将转入合约的`ETH`转为`WETH`。
-    - `transfer(adress, uint256)`：转账。
+    - `transfer(address, uint256)`：转账。
     - `withdraw(uint256)`：取款。
     ```js
     // WETH的ABI

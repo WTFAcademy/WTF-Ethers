@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 contract FreeMint is ERC721 {
     uint256 public totalSupply;
 
-    // Constructor, initilizes the name and symbol of the NFT collection
+    // Constructor, initializes the name and symbol of the NFT collection
     constructor() ERC721("Free Mint NFT", "FreeMint"){}
 
     // Minting function

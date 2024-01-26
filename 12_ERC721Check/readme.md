@@ -93,7 +93,7 @@ interface IERC165 {
     ```
     ![读取合约名称和代好](img/12-1.png)
 
-4. 利用`ERC165`的`supportsInterface()`函数，识别合约是否为ERC721标准。如果是，则返回`ture`；反之，则报错或返回`false`。
+4. 利用`ERC165`的`supportsInterface()`函数，识别合约是否为ERC721标准。如果是，则返回`true`；反之，则报错或返回`false`。
 
     注意此处的代码中的`selectorERC721`常量被提取出main函数
     ```js

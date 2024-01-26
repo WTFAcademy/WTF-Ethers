@@ -122,4 +122,4 @@ In applications, we often need to convert values between user-readable strings (
 
 ## Summary
 
-In this lesson, we introduced the `BigInt` class, the commonly used units in Ethereum, and unit conversion bewteen them.
+In this lesson, we introduced the `BigInt` class, the commonly used units in Ethereum, and unit conversion between them.
