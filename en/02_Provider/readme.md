@@ -26,13 +26,13 @@ In this lesson, we will introduce the `Provider` class in ethers.js and use it t
 
 The `Provider` class provides an abstraction for connecting to the Ethereum network and offers a concise and consistent interface for standard Ethereum node functionality. In `ethers`, the `Provider` class does not handle user private keys and can only read information from the blockchain, making it safer compared to `web3.js`.
 
-In addition to the default provider `defaultProvider` mentioned [previously](https://github.com/WTFAcademy/WTF-Ethers), the most commonly used provider in `ethers` is `jsonRpcProvider`, which allows users to connect to a specific node service provider.
+The most commonly used provider in `ethers` is `jsonRpcProvider`, which allows users to connect to a specific node service provider.
 
 ## `jsonRpcProvider`
 
 ### Creating an API Key for the Node Service Provider
 
-First, you need to register and create an API Key on the website of the node service provider. In the "Tools" section of the "WTF Solidity" tutorial, we introduced the methods to create API Keys for two projects, Infura and Alchemy. You can refer to the tutorial for more information.
+First, you need to register and create an API Key on the website of the node service provider (e.g INFURA, ALCHEMY). In the "Tools" section of the "WTF Solidity" tutorial, we introduced the methods to create API Keys for two projects, Infura and Alchemy. You can refer to the tutorial for more information.
 
 ![Infura API Key](img/2-1.png)
 
@@ -40,12 +40,12 @@ First, you need to register and create an API Key on the website of the node ser
 
 Here, we will use Infura as an example. After creating the Infura API Key, you can create a `Provider` variable using the `ethers.JsonRpcProvider()` method, which takes the URL of the node service as a parameter.
 
-In the following example, we create providers to connect to the `ETH` mainnet and the `Goerli` testnet:
+In the following example, we create providers to connect to the `ETH` mainnet and the `Sepolia` testnet:
 
 ```javascript
 // Connect to the Ethereum network using Infura's RPC node
 const INFURA_MAINNET_URL = 'https://mainnet.infura.io/v3/8b9750710d56460d940aeff479672b3a';
-const INFURA_GOERLI_URL = 'https://sepolia.infura.io/v3/8b9750710d56460d940aeff479672b3a';
+const INFURA_SEPOLIA_URL = 'https://sepolia.infura.io/v3/8b9750710d56460d940aeff479672b3a';
 // Connect to the Ethereum mainnet
 const providerETH = new ethers.JsonRpcProvider(INFURA_MAINNET_URL)
 // Connect to the Sepolia testing network
@@ -56,7 +56,7 @@ const providerSepolia = new ethers.JsonRpcProvider(INFURA_SEPOLIA_URL)
 
 The `Provider` class provides convenient methods to retrieve data from the blockchain:
 
-**1.** Use the `getBalance()` function to retrieve the `ETH` balance of Vitalik on the mainnet and the Goerli testnet:
+**1.** Use the `getBalance()` function to retrieve the `ETH` balance of Vitalik on the mainnet and the Sepolia testnet:
 
 ```javascript
     // 1. Retrieve the ETH balance of Vitalik on the mainnet and the Sepolia testnet
@@ -64,9 +64,9 @@ The `Provider` class provides convenient methods to retrieve data from the block
     const balanceETH = await providerETH.getBalance(`vitalik.eth`);
     const balanceSepolia = await providerSepolia.getBalance(`vitalik.eth`);
     // Output the balances on the console (mainnet)
-    console.log(`ETH Balance of Vitalik: ${ethers.formatEther(balance)} ETH`);
+    console.log(`\nETH Balance of ${address} --> ${ethers.formatEther(balanceETH)} ETH\n`)
     // Output the Sepolia testnet ETH balance
-    console.log(`Sepolia ETH Balance of Vitalik: ${ethers.formatEther(balanceSepolia)} ETH`);
+    console.log(`\nSepoliaETH Balance of ${address} --> ${ethers.formatEther(balanceSepolia)} ETH\n`)
 ```
 
 ![Vitalik Balance](img/2-2.png)
@@ -76,12 +76,11 @@ The `Provider` class provides convenient methods to retrieve data from the block
 ```javascript
     // 2. Check which chain the provider is connected to
       const network1 = await provider1.getNetwork();
-  const network2 = await provider2.getNetwork();
+      const network2 = await provider2.getNetwork();
 
   console.log("Network 1:", network1.name, "ID:", network1.chainId);
   console.log("Network 2:", network2.name, "ID:", network2.chainId);
 ```
-> In ethers v6, the above code cannot directly `console.log()` the `network` object. Refer to the [discussion-3977](https://github.com/ethers-io/ethers.js/discussions/3977) for the specific reason.
 
 ![getNetwork](img/2-3.png)
 
