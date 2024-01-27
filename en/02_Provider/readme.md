@@ -71,7 +71,7 @@ The `Provider` class provides convenient methods to retrieve data from the block
 
 ![Vitalik Balance](img/2-2.png)
 
-**2.** Use the `getNetwork()` function to check which chain the provider is connected to. `homestead` represents the `ETH` mainnet:
+**2.** Use the `getNetwork()` function to check which chain the provider is connected to. 
 
 ```javascript
     // 2. Check which chain the provider is connected to
