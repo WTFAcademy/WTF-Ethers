@@ -146,4 +146,4 @@ const main = async () => {
 
 ## Summary
 
-In this lesson, we introduced the `Provider` class of ethers.js and create a `jsonRpcProvider` with Alchemy's node API key to read on-chain information from the `ETH` main network and `Goerli` test network.
+In this lesson, we introduced the `Provider` class of ethers.js and created a `jsonRpcProvider` with Infura's node API key to read on-chain information from the `ETH` main network and `Sepolia` test network.
