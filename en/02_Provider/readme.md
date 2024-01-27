@@ -101,9 +101,10 @@ const main = async () => {
 
 ```javascript
     // 4. Retrieve the transaction count of Vitalik's wallet
-    console.log("\n4. Retrieving the transaction count of Vitalik's wallet")
-    const txCount = await providerETH.getTransactionCount("vitalik.eth");
-    console.log(txCount);
+const main = async () => {
+  const txcount = await provider1.getTransactionCount('vitalik.eth');
+  console.log(txcount);
+};
 ```
 
 ![](img/2-5.png)
@@ -112,9 +113,10 @@ const main = async () => {
 
 ```javascript
     // 5. Retrieve the current recommended gas settings
-    console.log("\n5. Retrieving the current recommended gas settings")
-    const feeData = await providerETH.getFeeData();
-    console.log(feeData);
+const main = async () => {
+  const feeData = await provider1.getFeeData();
+  console.log(feeData);
+};
 ```
 
 ![getFeeData](img/2-6.png)
@@ -123,9 +125,10 @@ const main = async () => {
 
 ```javascript
     // 6. Retrieve information about a specific block
-    console.log("\n6. Retrieving information about a specific block")
-    const block = await providerETH.getBlock(0);
-    console.log(block);
+const main = async () => {
+  const block = await provider1.getBlock(0);
+  console.log(block);
+};
 ```
 
 ![getBlock](img/2-7.png)
@@ -134,9 +137,10 @@ const main = async () => {
 
 ```javascript
 // 7. Retrieve the bytecode of a contract at a specific address, using the contract address of WETH on the mainnet as an example
-console.log("\n7. Retrieving the bytecode of a contract at a specific address, using the contract address of WETH on the mainnet as an example")
-const code = await providerETH.getCode("0xc778417e063141139fce010982780140aa0cd5ab");
-console.log(code);
+const main = async () => {
+  const bytecode = await provider1.getCode('0xc778417e063141139fce010982780140aa0cd5ab');
+  console.log(bytecode);
+};
 ```
 
 ![getCode](img/2-8.png)
