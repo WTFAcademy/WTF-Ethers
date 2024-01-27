@@ -35,7 +35,6 @@ const main = async () => {
     const blockNumber = await provider1.getBlockNumber();
     console.log(blockNumber);
 
-
     // 4. Query the transaction count of vitalik's wallet
     const main = async () => {
     const txcount = await provider1.getTransactionCount('vitalik.eth');
