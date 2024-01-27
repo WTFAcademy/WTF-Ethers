@@ -104,29 +104,33 @@ We can use the read-only `Contract` instance to call the `view` and `pure` funct
 ```javascript
 const main = async () => {
     // 1. Reading on-chain information of the WETH contract (WETH abi)
-    const nameWETH = await contractWETH.name()
-    const symbolWETH = await contractWETH.symbol()
-    const totalSupplyWETH = await contractWETH.totalSupply()
-    console.log("\n1. Reading WETH contract information")
-    console.log(`Contract address: ${addressWETH}`)
-    console.log(`Name: ${nameWETH}`)
-    console.log(`Symbol: ${symbolWETH}`)
-    console.log(`Total supply: ${ethers.formatEther(totalSupplyWETH)}`)
-    const balanceWETH = await contractWETH.balanceOf('vitalik.eth')
-    console.log(`Vitalik's balance: ${ethers.formatEther(balanceWETH)}\n`)
+  const name = await WETH_contract.name();
+  const symbol = await WETH_contract.symbol();
+  const totalSupply = await WETH_contract.totalSupply();
 
-    // 2. Reading on-chain information of the DAI contract (IERC20 interface contract)
-    const nameDAI = await contractDAI.name()
-    const symbolDAI = await contractDAI.symbol()
-    const totalSupplDAI = await contractDAI.totalSupply()
-    console.log("\n2. Retrieve DAI contract information")
-    console.log(`Contract Address: ${addressDAI}`)
-    console.log(`Name: ${nameDAI}`)
-    console.log(`Code: ${symbolDAI}`)
-    console.log(`Total Supply: ${ethers.formatEther(totalSupplDAI)}`)
-    const balanceDAI = await contractDAI.balanceOf('vitalik.eth')
-    console.log(`Vitalik's Balance: ${ethers.formatEther(balanceDAI)}\n`)
-}
+  console.log(`\nReading from ${WETH_address}\n`);
+  console.log(`Name: ${name}`);
+  console.log(`Symbol: ${symbol}`);
+  console.log(`Total Supply: ${ethers.formatEther(totalSupply)}`);
+
+  const balanceAddress = 'vitalik.eth';
+  const balance = await WETH_contract.balanceOf(balanceAddress);
+  console.log(`Balance Returned: ${ethers.formatEther(balance)}\n`);
+
+    // 2. Reading on-chain information of the DAI contract (ERC20 interface contract)
+  const name = await DAI_contract.name();
+  const symbol = await DAI_contract.symbol();
+  const totalSupply = await DAI_contract.totalSupply();
+
+  console.log(`\nReading from ${DAI_address}\n`);
+  console.log(`Name: ${name}`);
+  console.log(`Symbol: ${symbol}`);
+  console.log(`Total Supply: ${ethers.formatEther(totalSupply)}`);
+
+  const balanceAddress = 'vitalik.eth';
+  const balance = await DAI_contract.balanceOf(balanceAddress);
+  console.log(`Balance Returned: ${ethers.formatEther(balance)}\n`);
+};
 
 main()
 ```
