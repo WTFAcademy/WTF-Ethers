@@ -20,7 +20,7 @@ All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WT
 
 -----
 
-In this lesson, we will introduce the `Provider` class in ethers.js and use it to connect to an node to retrieve information from the blockchain.
+In this lesson, we will introduce the `Provider` class in ethers.js and use it to connect to a node to retrieve information from the blockchain.
 
 ## `Provider` Class
 
@@ -36,21 +36,20 @@ First, you need to register and create an API Key on the website of the node ser
 
 ![Infura API Key](img/2-1.png)
 
-### Connecting to Alchemy Node
+### Connecting to Infura Node
 
-Here, we will use Alchemy as an example. After creating the Alchemy API Key, you can create a `Provider` variable using the `ethers.JsonRpcProvider()` method, which takes the URL of the node service as a parameter.
+Here, we will use Infura as an example. After creating the Infura API Key, you can create a `Provider` variable using the `ethers.JsonRpcProvider()` method, which takes the URL of the node service as a parameter.
 
 In the following example, we create providers to connect to the `ETH` mainnet and the `Goerli` testnet:
 
 ```javascript
-// Connect to the Ethereum network using Alchemy's RPC node
-// Prepare the alchemy API, please refer to https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
-const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
+// Connect to the Ethereum network using Infura's RPC node
+const INFURA_MAINNET_URL = 'https://mainnet.infura.io/v3/8b9750710d56460d940aeff479672b3a';
+const INFURA_GOERLI_URL = 'https://sepolia.infura.io/v3/8b9750710d56460d940aeff479672b3a';
 // Connect to the Ethereum mainnet
-const providerETH = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL)
-// Connect to the Goerli testing network
-const providerGoerli = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL)
+const providerETH = new ethers.JsonRpcProvider(INFURA_MAINNET_URL)
+// Connect to the Sepolia testing network
+const providerSepolia = new ethers.JsonRpcProvider(INFURA_SEPOLIA_URL)
 ```
 
 ### Using the `Provider` to Retrieve Blockchain Data
@@ -60,14 +59,14 @@ The `Provider` class provides convenient methods to retrieve data from the block
 **1.** Use the `getBalance()` function to retrieve the `ETH` balance of Vitalik on the mainnet and the Goerli testnet:
 
 ```javascript
-    // 1. Retrieve the ETH balance of Vitalik on the mainnet and the Goerli testnet
-    console.log("1. Retrieving the ETH balance of Vitalik on the mainnet and the Goerli testnet");
+    // 1. Retrieve the ETH balance of Vitalik on the mainnet and the Sepolia testnet
+    console.log("1. Retrieving the ETH balance of Vitalik on the mainnet and the Sepolia testnet");
     const balance = await providerETH.getBalance(`vitalik.eth`);
-    const balanceGoerli = await providerGoerli.getBalance(`vitalik.eth`);
+    const balanceSepolia = await providerGoerli.getBalance(`vitalik.eth`);
     // Output the balances on the console (mainnet)
     console.log(`ETH Balance of Vitalik: ${ethers.formatEther(balance)} ETH`);
-    // Output the Goerli testnet ETH balance
-    console.log(`Goerli ETH Balance of Vitalik: ${ethers.formatEther(balanceGoerli)} ETH`);
+    // Output the Sepolia testnet ETH balance
+    console.log(`Sepolia ETH Balance of Vitalik: ${ethers.formatEther(balanceGoerli)} ETH`);
 ```
 
 ![Vitalik Balance](img/2-2.png)
