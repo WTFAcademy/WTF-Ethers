@@ -114,7 +114,7 @@ const main = async () => {
   console.log(`Total Supply: ${ethers.formatEther(totalSupply)}`);
 
   const balanceAddress = 'vitalik.eth';
-  const balance = await WETH_contract.balanceOf(balanceAddress);
+  const balance = await WETH_contract.balanceOf('vitalik.eth');
   console.log(`Balance Returned: ${ethers.formatEther(balance)}\n`);
 
     // 2. Reading on-chain information of the DAI contract (ERC20 interface contract)
@@ -128,7 +128,7 @@ const main = async () => {
   console.log(`Total Supply: ${ethers.formatEther(totalSupply)}`);
 
   const balanceAddress = 'vitalik.eth';
-  const balance = await DAI_contract.balanceOf(balanceAddress);
+  const balance = await DAI_contract.balanceOf('vitalik.eth');
   console.log(`Balance Returned: ${ethers.formatEther(balance)}\n`);
 };
 
