@@ -89,9 +89,10 @@ The `Provider` class provides convenient methods to retrieve data from the block
 
 ```javascript
     // 3. Retrieve the current block number
-    console.log("\n3. Retrieving the current block number")
-    const blockNumber = await providerETH.getBlockNumber();
-    console.log(blockNumber);
+const main = async () => {
+  const blockNumber = await provider1.getBlockNumber();
+  console.log(blockNumber);
+};
 ```
 
 ![getBlockNumber](img/2-4.png)
