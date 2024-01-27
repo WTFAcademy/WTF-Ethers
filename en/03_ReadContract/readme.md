@@ -69,11 +69,11 @@ To create a read-only contract instance, we need to provide three parameters: th
 - **Method 1:** Directly input the contract `abi`. You can copy it from the compilation page of Remix, generate it locally when compiling contracts (located in the `artifact` folder), or obtain it from the code page of an open-source contract on Etherscan. We will use this method to create an instance of the `WETH` contract:
 
 ```javascript
-// Method 1: Copy the full abi
-// You can copy the WETH abi from here: https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2#code
-const abiWETH = '[{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view",...omitted for brevity...]';
-const addressWETH = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2' // WETH Contract
-const contractWETH = new ethers.Contract(addressWETH, abiWETH, provider)
+// Method 1: Copy the full ABI
+// You can copy the WETH_ABI from here: https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2#code
+const WETH_ABI = '[{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view",...omitted for brevity...]';
+const WETH_address = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2' // WETH Contract
+const WETH_contract = new ethers.Contract(WETH_address, WETH_ABI, provider)
 
 ```
 
