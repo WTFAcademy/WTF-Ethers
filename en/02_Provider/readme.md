@@ -61,12 +61,12 @@ The `Provider` class provides convenient methods to retrieve data from the block
 ```javascript
     // 1. Retrieve the ETH balance of Vitalik on the mainnet and the Sepolia testnet
     console.log("1. Retrieving the ETH balance of Vitalik on the mainnet and the Sepolia testnet");
-    const balance = await providerETH.getBalance(`vitalik.eth`);
-    const balanceSepolia = await providerGoerli.getBalance(`vitalik.eth`);
+    const balanceETH = await providerETH.getBalance(`vitalik.eth`);
+    const balanceSepolia = await providerSepolia.getBalance(`vitalik.eth`);
     // Output the balances on the console (mainnet)
     console.log(`ETH Balance of Vitalik: ${ethers.formatEther(balance)} ETH`);
     // Output the Sepolia testnet ETH balance
-    console.log(`Sepolia ETH Balance of Vitalik: ${ethers.formatEther(balanceGoerli)} ETH`);
+    console.log(`Sepolia ETH Balance of Vitalik: ${ethers.formatEther(balanceSepolia)} ETH`);
 ```
 
 ![Vitalik Balance](img/2-2.png)
@@ -75,9 +75,11 @@ The `Provider` class provides convenient methods to retrieve data from the block
 
 ```javascript
     // 2. Check which chain the provider is connected to
-    console.log("\n2. Checking which chain the provider is connected to")
-    const network = await providerETH.getNetwork();
-    console.log(network.toJSON());
+      const network1 = await provider1.getNetwork();
+  const network2 = await provider2.getNetwork();
+
+  console.log("Network 1:", network1.name, "ID:", network1.chainId);
+  console.log("Network 2:", network2.name, "ID:", network2.chainId);
 ```
 > In ethers v6, the above code cannot directly `console.log()` the `network` object. Refer to the [discussion-3977](https://github.com/ethers-io/ethers.js/discussions/3977) for the specific reason.
 
