@@ -87,14 +87,14 @@ const WETH_contract = new ethers.Contract(WETH_address, WETH_ABI, provider)
 ```javascript
 // Method 2: Input the functions needed for the program, separated by commas. ethers will automatically convert them into the corresponding abi for you.
 // Human-readable abi, using the example of an ERC20 contract
-const abiERC20 = [
+const ERC20_ABI = [
     "function name() view returns (string)",
     "function symbol() view returns (string)",
     "function totalSupply() view returns (uint256)",
     "function balanceOf(address) view returns (uint)",
 ];
-const addressDAI = '0x6B175474E89094C44Da98b954EedeAC495271d0F' // DAI Contract
-const contractDAI = new ethers.Contract(addressDAI, abiERC20, provider)
+const DAI_address = '0x6B175474E89094C44Da98b954EedeAC495271d0F' // DAI Contract
+const DAI_contract = new ethers.Contract(DAI_address, ERC20_ABI, provider)
 ```
 
 ### 3. Reading on-chain information of `WETH` and `DAI`
