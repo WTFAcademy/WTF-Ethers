@@ -31,15 +31,15 @@ In `ethers`, the `Contract` class is an abstraction of contracts (EVM bytecode) 
 
 ### Read-only and Read-write Contracts
 
-`Contract` objects can be divided into two types: read-only and read-write. Read-only `Contract` objects can only read contract information on the chain by executing `call` operations, which involve calling the `view` and `pure` functions in the contract. They cannot perform `transaction` operations. The methods of creating these two types of `Contract` variables are different:
+`Contract` objects can be divided into two types: read-only and read-write. Read-only `Contract` objects can only read contract information on the chain by executing `call` operations, which involves calling the `view` and `pure` functions in the contract. They cannot perform `transaction` operations. The methods of creating these two types of `Contract` variables are different:
 
-- Read-only `Contract` variable: The parameters are the contract address, contract `abi`, and `provider` variable (read-only).
+- Read-only `Contract` variable: The parameters are the contract address, contract `ABI`, and `provider` variable (read-only).
 
 ```javascript
-const contract = new ethers.Contract(`address`, `abi`, `provider`);
+const contract = new ethers.Contract(`address`, `ABI`, `provider`);
 ```
 
-- Read-write `Contract` variable: The parameters are the contract address, contract `abi`, and `signer` variable. The `Signer` is another class in `ethers` that is used for signing transactions, which we will cover later.
+- Read-write `Contract` variable: The parameters are the contract address, contract `ABI`, and `signer` variable. The `Signer` is another class in `ethers` that is used for signing transactions, which we will cover later.
 
 ```javascript
 const contract = new ethers.Contract(`address`, `ABI`, `signer`);
@@ -63,9 +63,9 @@ const provider = new ethers.JsonRpcProvider(INFURA_MAINNET_URL);
 
 To create a read-only contract instance, we need to provide three parameters: the contract address, contract `ABI`, and `provider` variable. The contract address can be found online, and we have already created the `provider` variable in the previous step. But how do we fill in the `ABI`?
 
-`ABI` (Application Binary Interface) is the standard for interacting with Ethereum smart contracts. For more information, refer to [WTF Solidity Tutorials Lesson 27: ABI Encoding](https://github.com/AmazingAng/WTF-Solidity/blob/main/27_ABIEncode/readme.md). `ethers` supports two ways of providing `ABII`:
+`ABI` (Application Binary Interface) is the standard for interacting with Ethereum smart contracts. For more information, refer to [WTF Solidity Tutorials Lesson 27: ABI Encoding](https://github.com/AmazingAng/WTF-Solidity/blob/main/27_ABIEncode/readme.md). `ethers` supports two ways of providing `ABI`:
 
-- **Method 1:** Directly input the contract `ABI`. You can copy it from the compilation page of Remix, generate it locally when compiling contracts (located in the `artifact` folder), or obtain it from the code page of an open-source contract on Etherscan. We will use this method to create an instance of the `WETH` contract:
+- **Method 1:** Directly input the contract `ABI`. You can copy it from the compilation page of Remix, generate it locally when compiling contracts (located in the `artifact` folder), or obtain it from the code page of an open-source contract on Etherscan. We will use this latter approach to create an instance for the `WETH` contract:
 
 ```javascript
 // Method 1: Copy the full ABI
@@ -81,7 +81,7 @@ const WETH_contract = new ethers.Contract(WETH_address, WETH_ABI, provider)
 
 
 
-- **Method 2:** Since the readability of `ABI` is poor, `ethers` introduced an innovative approach called `Human-Readable ABI`. Developers can write `ABI` using `function signature` and `event signature`. We will use this method to create an instance of the stablecoin `DAI`:
+- **Method 2:** Since the readability of `ABI` is poor, `ethers` introduced an innovative approach called `Human-Readable ABI`. Developers can write `ABI` using `function signature` and `event signature`. We will use this method to create an instance for the stablecoin `DAI`:
 
 ```javascript
 // Method 2: Input the functions needed for the program, separated by commas. ethers will automatically convert them into the corresponding ABI for you.
