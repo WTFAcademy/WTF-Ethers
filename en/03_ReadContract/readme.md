@@ -138,7 +138,7 @@ main()
 ```
 ![Successfully read Vitalik's DAI balance](img/3-3.png)
 
-As you can see, instances of contracts created using both methods can successfully interact with the blockchain. Vitalik's wallet contains `16 WETH` and `1818 DAI`, as shown in the FIGURES ABOVE
+As you can see, instances of contracts created using both methods can successfully interact with the blockchain. Vitalik's wallet contains `16 WETH` and `1818 DAI`, as shown in the figures above. 
 
 
 **Explanation:**
