@@ -42,7 +42,7 @@ const contract = new ethers.Contract(`address`, `abi`, `provider`);
 - Read-write `Contract` variable: The parameters are the contract address, contract `abi`, and `signer` variable. The `Signer` is another class in `ethers` that is used for signing transactions, which we will cover later.
 
 ```javascript
-const contract = new ethers.Contract(`address`, `abi`, `signer`);
+const contract = new ethers.Contract(`address`, `ABI`, `signer`);
 ```
 
 **Note:** In `ethers`, the `call` operation refers to a read-only operation, which is different from the `call` in `Solidity`.
@@ -51,22 +51,21 @@ const contract = new ethers.Contract(`address`, `abi`, `signer`);
 
 ### 1. Creating a Provider
 
-We will use the Alchemy node's API Key to create a `Provider`:
+We will use the Infura node's API Key to create a `Provider`:
 ```javascript
-import { ethers } from "ethers";
-// Connect to the Ethereum network using the Alchemy RPC node
-// Prepare alchemy API, refer to https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md
-const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
-const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
+const { ethers } = require "ethers";
+// Connect to the Ethereum network using the Infura RPC node
+const INFURA_MAINNET_URL = 'https://mainnet.infura.io/v3/8b9750710d56460d940aeff47967c4ba';
+const provider = new ethers.JsonRpcProvider(INFURA_MAINNET_URL);
 ```
 
 ### 2. Creating a Read-only Contract Instance
 
-To create a read-only contract instance, we need to provide three parameters: the contract address, contract `abi`, and `provider` variable. The contract address can be found online, and we have already created the `provider` variable in the previous step. But how do we fill in the `abi`?
+To create a read-only contract instance, we need to provide three parameters: the contract address, contract `ABI`, and `provider` variable. The contract address can be found online, and we have already created the `provider` variable in the previous step. But how do we fill in the `ABI`?
 
-`ABI` (Application Binary Interface) is the standard for interacting with Ethereum smart contracts. For more information, refer to [WTF Solidity Tutorials Lesson 27: ABI Encoding](https://github.com/AmazingAng/WTF-Solidity/blob/main/27_ABIEncode/readme.md). `ethers` supports two ways of providing `abi`:
+`ABI` (Application Binary Interface) is the standard for interacting with Ethereum smart contracts. For more information, refer to [WTF Solidity Tutorials Lesson 27: ABI Encoding](https://github.com/AmazingAng/WTF-Solidity/blob/main/27_ABIEncode/readme.md). `ethers` supports two ways of providing `ABII`:
 
-- **Method 1:** Directly input the contract `abi`. You can copy it from the compilation page of Remix, generate it locally when compiling contracts (located in the `artifact` folder), or obtain it from the code page of an open-source contract on Etherscan. We will use this method to create an instance of the `WETH` contract:
+- **Method 1:** Directly input the contract `ABI`. You can copy it from the compilation page of Remix, generate it locally when compiling contracts (located in the `artifact` folder), or obtain it from the code page of an open-source contract on Etherscan. We will use this method to create an instance of the `WETH` contract:
 
 ```javascript
 // Method 1: Copy the full ABI
@@ -82,11 +81,11 @@ const WETH_contract = new ethers.Contract(WETH_address, WETH_ABI, provider)
 
 
 
-- **Method 2:** Since the readability of `abi` is poor, `ethers` introduces an innovative approach called `Human-Readable Abi`. Developers can write `abi` using `function signature` and `event signature`. We will use this method to create an instance of the stable coin `DAI`:
+- **Method 2:** Since the readability of `ABI` is poor, `ethers` introduced an innovative approach called `Human-Readable ABI`. Developers can write `ABI` using `function signature` and `event signature`. We will use this method to create an instance of the stablecoin `DAI`:
 
 ```javascript
-// Method 2: Input the functions needed for the program, separated by commas. ethers will automatically convert them into the corresponding abi for you.
-// Human-readable abi, using the example of an ERC20 contract
+// Method 2: Input the functions needed for the program, separated by commas. ethers will automatically convert them into the corresponding ABI for you.
+// Human-readable ABI, using the example of an ERC20 contract
 const ERC20_ABI = [
     "function name() view returns (string)",
     "function symbol() view returns (string)",
@@ -103,7 +102,7 @@ We can use the read-only `Contract` instance to call the `view` and `pure` funct
 
 ```javascript
 const main = async () => {
-    // 1. Reading on-chain information of the WETH contract (WETH abi)
+    // 1. Reading on-chain information of the WETH contract (WETH_ABI)
   const name = await WETH_contract.name();
   const symbol = await WETH_contract.symbol();
   const totalSupply = await WETH_contract.totalSupply();
@@ -139,11 +138,11 @@ main()
 ```
 ![Successfully read Vitalik's DAI balance](img/3-3.png)
 
-As you can see, instances of contracts created using both methods can successfully interact with the blockchain. Vitalik's wallet contains `0.05 WETH` and `555508 DAI`, as shown in the figure below.
+As you can see, instances of contracts created using both methods can successfully interact with the blockchain. Vitalik's wallet contains `16 WETH` and `1818 DAI`, as shown in the FIGURES ABOVE
 
 
 **Explanation:**
-We can verify the balance of `WETH` in Vitalik's wallet and whether it matches the one read from the `Contract` using the [Ethereum browser](https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2#readContract). By using [ENS](https://app.ens.domains/name/vitalik.eth/details), we found that Vitalik's wallet address is `0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`. By using the `balanceOf` contract method, we obtained a balance of exactly `0.05 WETH`. The conclusion is consistent!
+We can verify the balance of `WETH` and `DAI` in Vitalik's wallet whether it matches the one read from the `Contract` using the [Ethereum browser](https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2#readContract). By using [ENS](https://app.ens.domains/name/vitalik.eth/details), we found that Vitalik's wallet address is `0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`. By using the `balanceOf` contract method, we obtained a balance of exactly `16 WETH` and `1818 DAI`. The conclusion is consistent!
 ![Vitalik's WETH and DAI Balance](img/3-4.png)
 
 ## Summary
