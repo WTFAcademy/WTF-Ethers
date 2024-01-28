@@ -117,8 +117,10 @@ const main = async () => {
   const balance = await WETH_contract.balanceOf('vitalik.eth');
   console.log(`Vitalik's Balance: ${ethers.formatEther(balance)}\n`);
 ```
+![Successfully read Vitalik's WETH balance](img/3-2.png)
 
-    // 2. Reading on-chain information of the DAI contract (ERC20 interface contract)
+```javascript
+  // 2. Reading on-chain information of the DAI contract (ERC20 interface contract)
   const name = await DAI_contract.name();
   const symbol = await DAI_contract.symbol();
   const totalSupply = await DAI_contract.totalSupply();
@@ -135,11 +137,10 @@ const main = async () => {
 
 main()
 ```
+![Successfully read Vitalik's DAI balance](img/3-3.png)
 
 As you can see, instances of contracts created using both methods can successfully interact with the blockchain. Vitalik's wallet contains `0.05 WETH` and `555508 DAI`, as shown in the figure below.
 
-
-![Successfully read Vitalik's WETH and DAI balances](img/3-2.png)
 
 **Explanation:**
 We can verify the balance of `WETH` in Vitalik's wallet and whether it matches the one read from the `Contract` using the [Ethereum browser](https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2#readContract). By using [ENS](https://app.ens.domains/name/vitalik.eth/details), we found that Vitalik's wallet address is `0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`. By using the `balanceOf` contract method, we obtained a balance of exactly `0.05 WETH`. The conclusion is consistent!
