@@ -116,6 +116,7 @@ const main = async () => {
   const balanceAddress = 'vitalik.eth';
   const balance = await WETH_contract.balanceOf('vitalik.eth');
   console.log(`Vitalik's Balance: ${ethers.formatEther(balance)}\n`);
+```
 
     // 2. Reading on-chain information of the DAI contract (ERC20 interface contract)
   const name = await DAI_contract.name();
