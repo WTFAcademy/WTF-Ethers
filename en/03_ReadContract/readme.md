@@ -69,11 +69,11 @@ To create a read-only contract instance, we need to provide three parameters: th
 - **Method 1:** Directly input the contract `abi`. You can copy it from the compilation page of Remix, generate it locally when compiling contracts (located in the `artifact` folder), or obtain it from the code page of an open-source contract on Etherscan. We will use this method to create an instance of the `WETH` contract:
 
 ```javascript
-// Method 1: Copy the full abi
-// You can copy the WETH abi from here: https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2#code
-const abiWETH = '[{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view",...omitted for brevity...]';
-const addressWETH = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2' // WETH Contract
-const contractWETH = new ethers.Contract(addressWETH, abiWETH, provider)
+// Method 1: Copy the full ABI
+// You can copy the WETH_ABI from here: https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2#code
+const WETH_ABI = '[{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view",...omitted for brevity...]';
+const WETH_address = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2' // WETH Contract
+const WETH_contract = new ethers.Contract(WETH_address, WETH_ABI, provider)
 
 ```
 
@@ -104,29 +104,33 @@ We can use the read-only `Contract` instance to call the `view` and `pure` funct
 ```javascript
 const main = async () => {
     // 1. Reading on-chain information of the WETH contract (WETH abi)
-    const nameWETH = await contractWETH.name()
-    const symbolWETH = await contractWETH.symbol()
-    const totalSupplyWETH = await contractWETH.totalSupply()
-    console.log("\n1. Reading WETH contract information")
-    console.log(`Contract address: ${addressWETH}`)
-    console.log(`Name: ${nameWETH}`)
-    console.log(`Symbol: ${symbolWETH}`)
-    console.log(`Total supply: ${ethers.formatEther(totalSupplyWETH)}`)
-    const balanceWETH = await contractWETH.balanceOf('vitalik.eth')
-    console.log(`Vitalik's balance: ${ethers.formatEther(balanceWETH)}\n`)
+  const name = await WETH_contract.name();
+  const symbol = await WETH_contract.symbol();
+  const totalSupply = await WETH_contract.totalSupply();
 
-    // 2. Reading on-chain information of the DAI contract (IERC20 interface contract)
-    const nameDAI = await contractDAI.name()
-    const symbolDAI = await contractDAI.symbol()
-    const totalSupplDAI = await contractDAI.totalSupply()
-    console.log("\n2. Retrieve DAI contract information")
-    console.log(`Contract Address: ${addressDAI}`)
-    console.log(`Name: ${nameDAI}`)
-    console.log(`Code: ${symbolDAI}`)
-    console.log(`Total Supply: ${ethers.formatEther(totalSupplDAI)}`)
-    const balanceDAI = await contractDAI.balanceOf('vitalik.eth')
-    console.log(`Vitalik's Balance: ${ethers.formatEther(balanceDAI)}\n`)
-}
+  console.log(`\nReading from ${WETH_address}\n`);
+  console.log(`Name: ${name}`);
+  console.log(`Symbol: ${symbol}`);
+  console.log(`Total Supply: ${ethers.formatEther(totalSupply)}`);
+
+  const balanceAddress = 'vitalik.eth';
+  const balance = await WETH_contract.balanceOf('vitalik.eth');
+  console.log(`Vitalik's Balance: ${ethers.formatEther(balance)}\n`);
+
+    // 2. Reading on-chain information of the DAI contract (ERC20 interface contract)
+  const name = await DAI_contract.name();
+  const symbol = await DAI_contract.symbol();
+  const totalSupply = await DAI_contract.totalSupply();
+
+  console.log(`\nReading from ${DAI_address}\n`);
+  console.log(`Name: ${name}`);
+  console.log(`Symbol: ${symbol}`);
+  console.log(`Total Supply: ${ethers.formatEther(totalSupply)}`);
+
+  const balanceAddress = 'vitalik.eth';
+  const balance = await DAI_contract.balanceOf('vitalik.eth');
+  console.log(`Vitalik's Balance: ${ethers.formatEther(balance)}\n`);
+};
 
 main()
 ```
