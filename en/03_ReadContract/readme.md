@@ -142,9 +142,12 @@ As you can see, instances of contracts created using both methods can successful
 
 
 **Explanation:**
-We can verify the balance of `WETH` and `DAI` in Vitalik's wallet whether it matches the one read from the `Contract` using the [Ethereum browser](https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2#readContract). By using [ENS](https://app.ens.domains/name/vitalik.eth/details), we found that Vitalik's wallet address is `0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`. By using the `balanceOf` contract method, we obtained a balance of exactly `16 WETH` and `1818 DAI`. The conclusion is consistent!
+We can verify the balance of `WETH` and `DAI` in Vitalik's wallet whether it matches the one read from the `Contract` using the [Ethereum browser](https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2#readContract). By using [ENS](https://app.ens.domains/name/vitalik.eth/details), we found that Vitalik's wallet address is `0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`. Using the `balanceOf` contract method, we obtained a balance of exactly `16 WETH` and `1818 DAI`. The conclusion is consistent!
+
 ![Vitalik's WETH and DAI Balance](img/3-4.png)
 
 ## Summary
 
 In this lesson, we introduced the `Contract` class in `ethers` and created read-only `Contract` instances for `WETH` and `DAI`. We successfully read Vitalik's balances for these two tokens.
+
+**Post-class assignment:** Use Etherscan to verify that the balance of `DAI` in Vitalik's wallet is consistent. 
