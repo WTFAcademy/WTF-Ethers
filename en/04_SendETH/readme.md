@@ -124,11 +124,13 @@ We can use the `ethers.Wallet.createRandom()` function to create a `Wallet` obje
 
 ```javascript
 // Create a wallet object with a random private key
-const randomWallet = ethers.Wallet.createRandom()
-console.log(randomWallet);
+const randomWallet = ethers.Wallet.createRandom();
+console.log("Address details:", randomWallet);
+// you need to console log the private key or else it won't display automatically for security reasons
+console.log("Private Key:", randomWallet.privateKey);
 ```
 
-![Fund ](img/4-3.png)
+![Private key](img/4-3.png)
 
 ### Method 3: Creating a wallet object from a mnemonic
 
@@ -139,7 +141,7 @@ If we know the mnemonic, we can use the `ethers.Wallet.fromMnemonic()` function 
 const mnemonicWallet = ethers.Wallet.fromPhrase(mnemonic.phrase)
 console.log(mnemonicWallet);
 ```
-add image of result of this code. 
+![Mnemonic](img/4-4.png)
 
 ### Method 4: Creating a wallet object from a JSON file
 
