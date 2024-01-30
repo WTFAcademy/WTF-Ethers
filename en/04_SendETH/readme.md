@@ -35,12 +35,12 @@ In `ethers`, the `Signer` class is an abstraction of an Ethereum account that ca
 The `Wallet` class inherits from the `Signer` class. Developers can use it to sign transactions and messages just like they own an Externally Owned Account (EOA) with a private key.
 
 Below are several ways to create instances of the `Wallet` class:
-1. Creating a wallet object with a known private key
-2. Creating a wallet object with a random private key
-3. Creating a wallet object from a mnemonic
-4. Creating a wallet object from a JSON file
+1. Creating a wallet object with a "known private key"
+2. Creating a wallet object with a "random private key"
+3. Creating a wallet object from a "mnemonic phrase / seed phrase"
+4. Creating a wallet object from a "JSON file"
 
-For the sake of this tutorial, we will focus on number 1 above and touch on others.
+For the sake of this tutorial, we will focus on number 1 above and briefly touch on others.
 
 ### Method 1: Creating a wallet object with a known private key
 
@@ -72,9 +72,9 @@ Create a `Wallet` object with the private key for your testwallet. Wallets creat
 ```javascript
 // Input your testwallet(sender) with the private key and a random receiver address
 const account1 ='0xD616f5A49571e7BCb1BB5326031bC8078BDA9Faa' //sender
-const account2 = '0x70e8dE73cE538DA2bEEd35d14187F6959a8ecA96' //recipient
+const account2 = '0x70e8dE73cE538DA2bEEd35d14187F6959a8ecA96' //use any random address on etherscan as recipient
 
-const privateKey1 = 'cd82a7d0d6e528322e8c26f9ccbc18767543786d073c48ef38a753f29b1e8f39' //sender private key
+const privateKey1 = 'cd82a7d0d6e528322e8c26f9ccbc18767543786d073c48ef38a753f29b1e8f39'  //sender private key
 const wallet = new ethers.Wallet(privateKey1, provider)
 ```
 
@@ -92,7 +92,7 @@ const main = async() => {
         // send ether
         const tx = await wallet.sendTransaction({
             to: account2, 
-            value: ethers.parseEther("0.025") 
+            value: ethers.parseEther("0.0009") 
         })
 ```
 
@@ -118,7 +118,7 @@ const main = async() => {
 
 ### Other methods for creating a wallet object: 
 
-### Method 2: Creating a wallet object with a random private key
+### Method 2: Creating a random wallet object with a generated private key
 
 We can use the `ethers.Wallet.createRandom()` function to create a `Wallet` object with a randomly generated private key. The private key is generated from an encrypted secure entropy source. If there is no secure entropy source in the current environment, an error will be thrown.
 
@@ -134,7 +134,7 @@ console.log("Private Key:", randomWallet.privateKey);
 
 ### Method 3: Creating a wallet object from a mnemonic
 
-If we know the mnemonic, we can use the `ethers.Wallet.fromMnemonic()` function to create a `Wallet` object.
+If we know the wallet mnemonic/seed phrase, we can use the `ethers.Wallet.fromMnemonic()` function to create a `Wallet` object.
 
 ```javascript
 // Create a wallet object from a mnemonic
