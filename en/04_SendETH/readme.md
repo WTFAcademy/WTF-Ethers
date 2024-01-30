@@ -54,7 +54,7 @@ const wallet2 = new ethers.Wallet(privateKey, provider)
 
 NB: For exercise purposes, connect a testnet address on your metamask with faucets.chain.link to get some usable ETH. 
 
-// add image of faucet here
+![Fund ](img/4-1.png)
 
 ### 1. Create a `Provider` instance
 
@@ -108,11 +108,13 @@ const main = async() => {
         //show account 2 balance after transfer
         const receiverBalanceAfter = await provider.getBalance(account2)
 
-        console.log(`\nSender balance before: ${ethers.formatEther(senderBalanceAfter)}\n`)
-        console.log(`\nReceiver balance before: ${ethers.formatEther(receiverBalanceAfter)}\n`)
+        console.log(`\nSender balance after: ${ethers.formatEther(senderBalanceAfter)}\n`)
+        console.log(`\nReceiver balance after: ${ethers.formatEther(receiverBalanceAfter)}\n`)
 
 }
 ```
+
+![Result of above](img/4-2.png)
 
 ### Other methods for creating a wallet object: 
 
