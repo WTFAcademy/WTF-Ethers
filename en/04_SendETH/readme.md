@@ -49,7 +49,7 @@ If we know the private key, we can use the `ethers.Wallet()` function to create 
 ```javascript
 // Create a wallet object with a private key and provider
 const privateKey = 'cd82a7d0d6e528322e8c26f9ccbc18767543786d073c48ef38a753f29b1e8f39'
-const wallet2 = new ethers.Wallet(privateKey, provider)
+const wallet = new ethers.Wallet(privateKey, provider)
 ```
 
 NB: For exercise purposes, connect a testnet address on your metamask with faucets.chain.link to get some usable ETH. 
