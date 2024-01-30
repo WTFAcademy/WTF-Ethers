@@ -128,7 +128,7 @@ const randomWallet = ethers.Wallet.createRandom()
 console.log(randomWallet);
 ```
 
-add image of result of this code. 
+![Fund ](img/4-3.png)
 
 ### Method 3: Creating a wallet object from a mnemonic
 
