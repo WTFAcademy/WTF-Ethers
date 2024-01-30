@@ -114,15 +114,41 @@ const main = async() => {
 }
 ```
 
-### Other methods: Creating a wallet object are: 
+### Other methods for creating a wallet object: 
 
-1. 
+### Method 2: Creating a wallet object with a random private key
 
+We can use the `ethers.Wallet.createRandom()` function to create a `Wallet` object with a randomly generated private key. The private key is generated from an encrypted secure entropy source. If there is no secure entropy source in the current environment, an error will be thrown.
 
+```javascript
+// Create a wallet object with a random private key
+const randomWallet = ethers.Wallet.createRandom()
+console.log(randomWallet);
+```
 
+add image of result of this code. 
 
+### Method 3: Creating a wallet object from a mnemonic
+
+If we know the mnemonic, we can use the `ethers.Wallet.fromMnemonic()` function to create a `Wallet` object.
+
+```javascript
+// Create a wallet object from a mnemonic
+const mnemonicWallet = ethers.Wallet.fromPhrase(mnemonic.phrase)
+console.log(mnemonicWallet);
+```
+add image of result of this code. 
+
+### Method 4: Creating a wallet object from a JSON file
+
+We can also create a wallet instance by decrypting a JSON wallet file using 
+```javascript
+`const wallet = ethers.Wallet.fromEncryptedJsonSync`.
+```
+
+The JSON file is usually the `keystore` file from wallets like Geth and Parity, which would be familiar to anyone who has set up an Ethereum node using Geth.
 
 
 ## Summary
 
-In this lesson, we introduced the `Signer` and `Wallet` classes, used the wallet instance to get the address, mnemonic phrase, private key, and number of interactions on the chain, and sent `ETH`.
+In this lesson, we introduced the `Signer` and `Wallet` classes and used the wallet instance to get the balance of a `to` and `from` addresses before and after the transaction. We also used some ethers.js functions to generate random wallets, mnemonic phrases, and private keys. 
