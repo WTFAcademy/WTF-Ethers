@@ -140,6 +140,8 @@ If we know the mnemonic, we can use the `ethers.Wallet.fromMnemonic()` function 
 // Create a wallet object from a mnemonic
 const mnemonicWallet = ethers.Wallet.fromPhrase(mnemonic.phrase)
 console.log(mnemonicWallet);
+// you need to console log the private key or else it won't display automatically for security reasons
+console.log("Private Key:", mnemonicWallet.privateKey);
 ```
 ![Mnemonic](img/4-4.png)
 
