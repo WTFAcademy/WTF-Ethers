@@ -141,12 +141,7 @@ add image of result of this code.
 
 ### Method 4: Creating a wallet object from a JSON file
 
-We can also create a wallet instance by decrypting a JSON wallet file using 
-```javascript
-`const wallet = ethers.Wallet.fromEncryptedJsonSync`.
-```
-
-The JSON file is usually the `keystore` file from wallets like Geth and Parity, which would be familiar to anyone who has set up an Ethereum node using Geth.
+We can also create a wallet instance by decrypting a JSON wallet file using `const wallet = ethers.Wallet.fromEncryptedJsonSync` decrypting a `JSON` wallet file. A `JSON` file is usually the `keystore` file for wallets like Geth and Parity, which would be familiar to anyone who has set up an Ethereum node using Geth.
 
 
 ## Summary
