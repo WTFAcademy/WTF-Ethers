@@ -141,7 +141,7 @@ For an introduction to the `ERC20` standard token contract, refer to the WTF Sol
 
     ```js
     // 3. Call the transfer() function to transfer 1000 tokens to Vitalik
-    console.log("\n3. Call the transfer() function to transfer 11000 tokens to Vitalik")
+    console.log("\n3. Call the transfer() function to transfer 1100 tokens to Vitalik")
     const tx2 = await contractERC20.transfer("vitalik.eth", "1100")
     console.log("Wait for the transaction to be confirmed on the blockchain")
     await tx2.wait()
@@ -152,4 +152,4 @@ For an introduction to the `ERC20` standard token contract, refer to the WTF Sol
    
 ## Summary
 
-In this lesson, we introduced the `ContractFactory` type in ethers.js and used it to deploy an `ERC20` token contract and transfer `11000` tokens to Vitalik. Notice the gas deduction. 
+In this lesson, we introduced the `ContractFactory` type in ethers.js and used it to deploy an `ERC20` token contract and transfer `1100` tokens to Vitalik. Notice the gas deduction. 
