@@ -90,7 +90,7 @@ For an introduction to the `ERC20` standard token contract, refer to the WTF Sol
     // The data corresponding to the "object" field under the "bytecode" attribute is the bytecode, which is quite long, starting with 608060
     // "object": "608060405260646000553480156100...
     const bytecodeERC20 = "608060405260646000553480156100...";
-    ```
+   ```
 
 ![Obtaining bytecode in Remix](img/6-1.png)
 ![json](img/json.jpg)
