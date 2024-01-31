@@ -97,7 +97,7 @@ Here, `METHOD_NAME` is the name of the function to be called, `args` is the func
 
     // Declare the writable contract
     const contract = new ethers.Contract(addressWETH, abiWETH, wallet);
-    // Alternatively, you can declare a readable contract and then convert it to a writable contract using the `connect(wallet)` function.
+    // Alternatively, you can declare a readable contract and convert it to a writable one using the `connect(wallet)` function.
     // const contract = new ethers.Contract(addressWETH, abiWETH, provider)
     // contractWETH.connect(wallet)
     ```
@@ -116,7 +116,7 @@ Here, `METHOD_NAME` is the name of the function to be called, `args` is the func
 
     ![Read WETH Balance](img/5-1.png)
 
-4. Call the `deposit()` function of the `WETH` contract to convert `0.001 ETH` into `0.001 WETH`. Print the transaction details and the balance. You can see that the balance becomes `1.002997`.
+4. Call the `deposit()` function of the `WETH` contract to convert `0.001 ETH` into `0.001 WETH`. Print the transaction details and the balance. You can see that the balance becomes `0.003`.
 
     ```js
     const balanceETH = await provider.getBalance(wallet)
@@ -150,7 +150,7 @@ Here, `METHOD_NAME` is the name of the function to be called, `args` is the func
     ```
 ![Transfer WETH to Vitalik](img/5-3.png)
 
-**Note**: Observe the `deposit()` function and the `balanceOf()` function, why do they return different values? Why does the former return a bunch of data while the latter only returns a specific value? This is because for a wallet balance, it is a read-only operation, it reads what it is. However, for a function call, it does not know when the data will be confirmed on the blockchain, so it only returns information about the transaction. In summary, for non-`pure`/`view` function calls, it will return the transaction information. If you want to know the changes in contract variables during the execution of a function, you can use `emit` to output events in the contract, and read the event information from the returned `transaction` to obtain the corresponding values.
+**Note**: Observe the `deposit()` function and the `balanceOf()` function, why do they return different values? Why does the former return a bunch of data while the latter only returns a specific value? This is because for a wallet balance, it is a read-only operation, it reads what it is. However, for a function call, it does not know when the data will be confirmed on the blockchain, so it only returns information about the transaction. In summary, for non-`pure`/`view` function calls, it will return the transaction information. Suppose you want to know the changes in contract variables during the execution of a function, you can use `emit` to output events in the contract and read the event information from the returned `transaction` to obtain the corresponding values.
 
 ## Summary
 
