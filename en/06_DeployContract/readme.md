@@ -61,7 +61,7 @@ For an introduction to the `ERC20` standard token contract, refer to the WTF Sol
 
     // Connect to the Ethereum network using Infura's RPC node
     // Connect to the Sepolia test network
-    const INFURA_GOERLI_URL = 'https://sepolia.infura.io/v3/8b9750710d56460d940aeff47967c4ba';
+    const INFURA_SEPOLIA_URL = 'https://sepolia.infura.io/v3/8b9750710d56460d940aeff47967c4ba';
     const provider = new ethers.JsonRpcProvider(INFURA_GOERLI_URL);
 
     // Create a wallet object using the private key and provider
@@ -73,7 +73,7 @@ For an introduction to the `ERC20` standard token contract, refer to the WTF Sol
 
 ![Obtaining bytecode in Etherscan ](img/6-0.png)
 
-    ```js
+   ```js
     // Human-readable ABI of ERC20
     const abiERC20 = [
         "constructor(string memory name_, string memory symbol_)",
