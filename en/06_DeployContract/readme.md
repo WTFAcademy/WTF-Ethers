@@ -136,7 +136,6 @@ For an introduction to the `ERC20` standard token contract, refer to the WTF Sol
     console.log(`Token balance in your address after minting: ${await contractERC20.balanceOf(wallet)}`)
     console.log(`Total token supply: ${await contractERC20.totalSupply()}`)
     ```
-    ![Minting Tokens](img/6-3.png)
 
 6. Call the `transfer()` function to transfer `1,000` tokens to Vitalik.
 
@@ -149,7 +148,7 @@ For an introduction to the `ERC20` standard token contract, refer to the WTF Sol
     console.log(`Token balance in Vitalik's wallet: ${await contractERC20.balanceOf("vitalik.eth")}`)
     ```
 
-    ![Transfer Tokens](img/6-4.png)
+    ![Transfer Tokens](img/6-3.png)
 
 ## Summary
 
