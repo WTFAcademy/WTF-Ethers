@@ -21,9 +21,7 @@ All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WT
 
 -----
 
-Note: This tutorial is based on ethers.js v6. If you are using v5, you can refer to the [WTF Ethers v5](https://github.com/WTFAcademy/WTF-Ethers/tree/wtf-ethers-v5).
-
-In this lesson, we will learn how to use `ethers.js` to read events emitted by smart contracts. If you are not familiar with events in `Solidity`, you can read about them in the "Event" section of the WTF Solidity [Lesson 12](https://www.wtf.academy/en/solidity-start/Event/).
+In this lesson, we will learn how to use `ethers.js` to read events emitted by smart contracts. If you are not familiar with events in `Solidity`, you can read about them in the "Event" section of the WTF Solidity [Lesson 12](https://www.wtf.academy/en/solidity-start/Event/). Note: This tutorial is based on ethers.js v6.
 
 For more details, refer to the [ethers.js documentation](https://docs.ethers.org/v6/api/contract/#ContractEvent).
 
@@ -37,7 +35,7 @@ Take the `Transfer` event in an ERC20 token contract as an example. It is declar
 event Transfer(address indexed from, address indexed to, uint256 amount);
 ```
 
-It records three variables: `from`, `to`, and `amount`, which correspond to the address the tokens are sent from, the address they are sent to, and the transfer amount, respectively. The `from` and `to` variables have the `indexed` keyword. When a transfer occurs, the `Transfer` event is logged and can be viewed on [etherscan](https://rinkeby.etherscan.io/tx/0x8cf87215b23055896d93004112bbd8ab754f081b4491cb48c37592ca8f8a36c7).
+It records three variables: `from`, `to`, and `amount`, which correspond to the address the tokens are sent from, the address they are sent to, and the transfer amount, respectively. The `from` and `to` variables have the `indexed` keyword. When a transfer occurs, the `Transfer` event is logged and can be viewed on [etherscan](https://etherscan.io/tx/0x03e0ba35e67aa205980fdb3241e71955a89e74aac387754460eb67b2ab833b4d#eventlog).
 
 ![Transfer Event](img/7-1.png)
 
@@ -62,13 +60,12 @@ const transferEvents = await contract.queryFilter('event name', starting block, 
     const { ethers } = require("ethers");
     // Connect to the Ethereum network using Infura's RPC node 
     const INFURA_MAINNET_URL = 'const provider = new ethers.JsonRpcProvider(`https://mainnet.infura.io/v3/8b9750710d56460d940aeff47967c4ba`);
-;
     const provider = new ethers.JsonRpcProvider(INFURA_MAINNET_URL);
     ```
 
 2. Create an `ABI` that includes the event to be retrieved.
     ```js
-    // WETH ABI, only including the Transfer event of interest
+    // WETH ABI, including only the Transfer event of interest
     const abiWETH = [
     "event Transfer(address indexed from, address indexed to, uint amount)"
     ];
