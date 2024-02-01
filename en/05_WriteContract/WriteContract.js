@@ -33,7 +33,6 @@ const contract = new ethers.Contract(addressWETH, abiWETH, wallet);
 
 const main = async () => {
 
-const address = await wallet.getAddress()
 // Read on-chain information of the WETH contract (WETH ABI)
 const address = await wallet.getAddress();
 console.log(`Read WETH balance`);
