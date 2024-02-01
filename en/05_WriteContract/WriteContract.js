@@ -47,9 +47,8 @@ const balanceETH = await provider.getBalance(wallet)
     if(ethers.formatEther(balanceETH) > 0.0015){
     console.log(`Balance of Eth: ${ethers.formatEther(balanceETH)}`);
 
-    // 2. Call the desposit() function to convert 0.001 ETH to WETH
-   console.log("Call the deposit() function to deposit 0.001 ETH")
-
+      // 2. Call the deposit() function to deposit 0.001 ETH")
+        console.log("\n2. Call the deposit() function to deposit 0.001 ETH")
         // Send the transaction
         const tx = await contract.deposit({value: ethers.parseEther('0.001')})
         // Wait for the transaction to be confirmed on the chain
