@@ -105,7 +105,6 @@ Here, `METHOD_NAME` is the name of the function to be called, `args` is the func
 3. Read the account's `WETH` balance. You can see that the balance is `0.002`.
 
     ```js
-    const address = await wallet.getAddress()
     // Read on-chain information of the WETH contract (WETH ABI)
     const address = await wallet.getAddress();
     console.log(`Read WETH balance`);
