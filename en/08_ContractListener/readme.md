@@ -22,9 +22,7 @@ All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WT
 
 -----
 
-Note: This tutorial is based on ethers.js v6. If you are using v5, you can refer to the [WTF Ethers v5](https://github.com/WTFAcademy/WTF-Ethers/tree/wtf-ethers-v5).
-
-In this lesson, we will learn how to listen to contract events and implement listening to the "Transfer" event of the USDT contract.
+In this lesson, we will learn how to listen to contract events and implement listening to the "Transfer" event of the USDT contract. Note: This tutorial is based on ethers.js v6.
 
 Refer to the [ethers.js documentation](https://docs.ethers.org/v6/api/contract/#ContractEvent) for more details.
 
@@ -48,15 +46,12 @@ contract.once("eventName", function)
 
 ## Listening to the `USDT` Contract
 
-1. Declare the `provider`: Alchemy is a free ETH node provider. You need to apply for one before proceeding. You can refer to this guide to apply for the Alchemy API [WTF Solidity Tutorial - Tools Part 4: Alchemy](https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md).
+1. Declare the `provider`: Infura is a free ETH node provider. You need to apply for one before proceeding as we've established from Tutorial 1. [Apply here](app.infura.io).
 
   ```js
-  import { ethers } from "ethers";
-  // Prepare Alchemy API
-  // You can refer to [WTF Solidity Tutorial - Tools Part 4: Alchemy](https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md) for the setup process
-  const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
+  const { ethers } = require("ethers");
   // Connect to the mainnet provider
-  const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
+ const provider = new ethers.JsonRpcProvider(`https://mainnet.infura.io/v3/8b9750710d56460d940aeff47967c4ba`);
   ```
 
 2. Declare the contract variables: We only care about the "Transfer" event of the USDT contract. To listen to this event, we need to include it in the ABI. If you're interested in other functions and events, you can find them on [etherscan](https://etherscan.io/address/0xdac17f958d2ee523a2206206994597c13d831ec7#code).
@@ -69,7 +64,7 @@ contract.once("eventName", function)
     "event Transfer(address indexed from, address indexed to, uint value)"
   ];
   // Generate the USDT contract object
-  const contractUSDT = new ethers.Contract(contractAddress, abi, provider);
+  const contractUSDT = new ethers.Contract(contractAddress, ABI, provider);
   ```
 
 3. Use the `contract.once()` function to listen to the Transfer event once and print the result.
@@ -100,4 +95,4 @@ contract.once("eventName", function)
   ![Continuous listening](img/8-2.png)
 
 ## Summary
-In this lesson, we introduced the simplest on-chain listening features in `ethers`, `contract.on()` and `contract.once()`. With the methods mentioned above, you can listen to specific events of a specific contract.
+In this lesson, we introduced the simplest on-chain listening features in `ethers`, `contract.on()` and `contract.once()`. With the methods mentioned above, you can listen to specific and continuous events of a contract.
