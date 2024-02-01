@@ -5,7 +5,7 @@
 const { ethers } = require("ethers");
 // Connect to the Ethereum network using Infura's RPC node 
 // If you use a testnet, it may throw error "undefined", so mainnet is advisable.
-const INFURA_MAINNET_URL = 'ttps://mainnet.infura.io/v3/8b9750710d56460d940aeff47967c4ba'
+const INFURA_MAINNET_URL = 'https://mainnet.infura.io/v3/8b9750710d56460d940aeff47967c4ba'
 const provider = new ethers.JsonRpcProvider('INFURA_MAINNET_URL');
 
 // WETH ABI, only including the Transfer event of interest
