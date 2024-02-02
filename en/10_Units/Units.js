@@ -15,7 +15,6 @@ console.log(ethers.getBigInt(9007199254740991));
 // Maximum safe integer in JavaScript:
 console.log("Maximum safe integer in JavaScript:", Number.MAX_SAFE_INTEGER);
 
-
 // Operations
 console.log("Addition:", oneGwei + 1n)
 console.log("Subtraction:", oneGwei - 1n)
