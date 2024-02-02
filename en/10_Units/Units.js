@@ -1,15 +1,20 @@
-import { ethers } from "ethers";
+const { ethers } = require("ethers");
 
 // 1. BigNumber class
 console.group('\n1. BigNumber class');
 
-const oneGwei = ethers.getBigInt("1000000000"); // Generate from decimal string
-console.log(oneGwei)
-console.log(ethers.getBigInt("0x3b9aca00")) // Generate from hex string
-console.log(ethers.getBigInt(1000000000)) // Generate from number
-// Cannot generate BigNumber from a number outside the maximum safe integer in JavaScript, the following code will throw an error
-// ethers.getBigInt(Number.MAX_SAFE_INTEGER);
-console.log("Maximum safe integer in JavaScript:", Number.MAX_SAFE_INTEGER)
+// Generate from decimal string
+const oneGwei = ethers.getBigInt("1000000000");
+console.log(oneGwei);
+// Generate from hex string
+console.log(ethers.getBigInt("0x3b9aca00"));
+// Generate from number
+console.log(ethers.getBigInt(1000000000));
+// Generating from a value exceeding JavaScript's maximum safe integer should not throw an error if you're using a Node.js environment with the `harmony` or `harmony-BigInt` flag enabled. The use of the native BigInt type allows for handling larger integers without encountering the expected error. This why the 'n' is displayed behind to indicate 'numeric' 
+console.log(ethers.getBigInt(9007199254740991));
+// Maximum safe integer in JavaScript:
+console.log("Maximum safe integer in JavaScript:", Number.MAX_SAFE_INTEGER);
+
 
 // Operations
 console.log("Addition:", oneGwei + 1n)
