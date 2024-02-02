@@ -29,10 +29,10 @@ In this lesson, we will learn how to declare a writable `Contract` variable and 
 The rule for declaring a writable `Contract` variable is as follows:
 
 ```js
-const contract = new ethers.Contract(address, abi, signer)
+const contract = new ethers.Contract(address, ABI, signer)
 ```
 
-Here, `address` is the contract address, `abi` is the contract's ABI interface, and `signer` is the `wallet` object. Note that you need to provide a `signer` here, whereas when declaring a readable contract, you only need to provide a `provider`.
+Here, `address` is the contract address, `ABI` is the contract's ABI interface, and `signer` is the `wallet` object. Note that you need to provide a `signer` here, whereas when declaring a readable contract, you only need to provide a `provider`.
 
 You can also convert a readable contract into a writable contract using the following method:
 ```js
@@ -66,11 +66,10 @@ Here, `METHOD_NAME` is the name of the function to be called, `args` is the func
 1. Create the `provider` and `wallet` variables.
 
     ```js
-    import { ethers } from "ethers";
+    const { ethers } = require("ethers");
 
-    // Connect to the Ethereum network using Alchemy's RPC node
-    const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-    const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+    // Connect to the Ethereum network using Infura's RPC node
+    const provider = new ethers.JsonRpcProvider(`https://sepolia.infura.io/v3/8b9750710d56460d940aeff47967c4ba`);
 
     // Create a wallet object using the private key and provider
     const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
@@ -93,58 +92,64 @@ Here, `METHOD_NAME` is the name of the function to be called, `args` is the func
         "function withdraw(uint) public",
     ];
 
-    // WETH contract address (Goerli Test Network)
-    const addressWETH = '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6' // WETH Contract
+    // WETH contract address (Sepolia Test Network)
+   const addressWETH = "0xb16F35c0Ae2912430DAc15764477E179D9B9EbEa"; // weth contract address
 
     // Declare the writable contract
-    const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)
-    // Alternatively, you can declare a readable contract and then convert it to a writable contract using the `connect(wallet)` function.
-    // const contractWETH = new ethers.Contract(addressWETH, abiWETH, provider)
+    const contract = new ethers.Contract(addressWETH, abiWETH, wallet);
+    // Alternatively, you can declare a readable contract and convert it to a writable one using the `connect(wallet)` function.
+    // const contract = new ethers.Contract(addressWETH, abiWETH, provider)
     // contractWETH.connect(wallet)
     ```
 
-3. Read the account's `WETH` balance. You can see that the balance is `1.001997`.
+3. Read the account's `WETH` balance. You can see that the balance is `0.002`.
 
     ```js
-    const address = await wallet.getAddress()
     // Read on-chain information of the WETH contract (WETH ABI)
-    console.log("\n1. Read WETH balance")
-    const balanceWETH = await contractWETH.balanceOf(address)
-    console.log(`WETH balance before deposit: ${ethers.formatEther(balanceWETH)}\n`)
+    const address = await wallet.getAddress();
+    console.log(`Read WETH balance`);
+    
+    const balanceWETH = await contract.balanceOf(address);
+    console.log(`WETH balance before deposit: ${ethers.formatEther(balanceWETH)}`);
     ```
 
     ![Read WETH Balance](img/5-1.png)
 
-4. Call the `deposit()` function of the `WETH` contract to convert `0.001 ETH` into `0.001 WETH`. Print the transaction details and the balance. You can see that the balance becomes `1.002997`.
+4. Call the `deposit()` function of the `WETH` contract to convert `0.001 ETH` into `0.001 WETH`. Print the transaction details and the balance. You can see that the balance becomes `0.003`.
 
     ```js
-    console.log("\n2. Call the deposit() function to deposit 0.001 ETH")
+    const balanceETH = await provider.getBalance(wallet)
+    console.log(`Balance of Eth: ${ethers.formatEther(balanceETH)}`);
+    console.log("Call the deposit() function to deposit 0.001 ETH")
     // Send the transaction
-    const tx = await contractWETH.deposit({value: ethers.parseEther("0.001")})
+    const tx = await contract.deposit({value: ethers.parseEther('0.001')})
     // Wait for the transaction to be confirmed
     await tx.wait()
     console.log(`Transaction details:`)
     console.log(tx)
-    const balanceWETH_deposit = await contractWETH.balanceOf(address)
-    console.log(`WETH balance after deposit: ${ethers.formatEther(balanceWETH_deposit)}\n`)
+    const balanceWETH_deposit = await contract.balanceOf(address)
+    console.log(`WETH balance after deposit: ${ethers.formatEther(balanceWETH_deposit)}`)
     ```
 
     ![Call deposit()](img/5-2.png)
 
-5. Call the `transfer()` function of the `WETH` contract to transfer `0.001 WETH` to Vitalik. Print the balance. You can see that the balance becomes `1.001997`.
+5. Call the `transfer()` function of the `WETH` contract to transfer `0.001 WETH` to Vitalik. Print the balance. You can see that the balance becomes `0.007`.
 
     ```js
-    console.log("\n3. Call the transfer() function to transfer 0.001 WETH to Vitalik")
+    console.log("Call the transfer() function to transfer 0.001 WETH to Vitalik")
     // Send the transaction
-    const tx2 = await contractWETH.transfer("vitalik.eth", ethers.parseEther("0.001"))
+    const tx2 = await contract.transfer("vitalik.eth", ethers.parseEther("0.001"))
     // Wait for the transaction to be confirmed
     await tx2.wait()
-    const balanceWETH_transfer = await contractWETH.balanceOf(address)
-    console.log(`WETH balance after transfer: ${ethers.formatEther(balanceWETH_transfer)}\n`)
+    const balanceWETH_transfer = await contract.balanceOf(address)
+    console.log(`WETH balance after transfer: ${ethers.formatEther(balanceWETH_transfer)}`)
+    // You can also check Vitalik's balance after the deposit
+    const balancevitalik = await contract.balanceOf(`vitalik.eth`)
+    console.log(`Balance of vitalik after transfer: ${ethers.formatEther(balancevitalik)}`)
     ```
 ![Transfer WETH to Vitalik](img/5-3.png)
 
-**Note**: Observe the `deposit()` function and the `balanceOf()` function, why do they return different values? Why does the former return a bunch of data while the latter only returns a specific value? This is because for a wallet balance, it is a read-only operation, it reads what it is. However, for a function call, it does not know when the data will be confirmed on the blockchain, so it only returns information about the transaction. In summary, for non-`pure`/`view` function calls, it will return the transaction information. If you want to know the changes in contract variables during the execution of a function, you can use `emit` to output events in the contract, and read the event information from the returned `transaction` to obtain the corresponding values.
+**Note**: Observe the `deposit()` function and the `balanceOf()` function, why do they return different values? Why does the former return a bunch of data while the latter only returns a specific value? This is because for a wallet balance, it is a read-only operation, it reads what it is. However, for a function call, it does not know when the data will be confirmed on the blockchain, so it only returns information about the transaction. In summary, for non-`pure`/`view` function calls, it will return the transaction information. Suppose you want to know the changes in contract variables during the execution of a function, you can use `emit` to output events in the contract and read the event information from the returned `transaction` to obtain the corresponding values.
 
 ## Summary
 

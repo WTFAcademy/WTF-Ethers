@@ -31,13 +31,13 @@ On Ethereum, deploying a smart contract is a special transaction: it involves se
 
 ## Contract Factory
 
-`ethers.js` provides the `ContractFactory` type that allows developers to easily deploy contracts. You can create an instance of `ContractFactory` by providing the contract's `abi`, compiled `bytecode`, and the `signer` variable to prepare for contract deployment.
+`ethers.js` provides the `ContractFactory` type that allows developers to easily deploy contracts. You can create an instance of `ContractFactory` by providing the contract's `ABI`, compiled `bytecode`, and the `signer` variable to prepare for contract deployment.
 
 ```js
-const contractFactory = new ethers.ContractFactory(abi, bytecode, signer);
+const contractFactory = new ethers.ContractFactory(ABI, bytecode, signer);
 ```
 
-**Note**: If the contract has a constructor with arguments, the `abi` must include the constructor.
+**Note**: If the contract has a constructor with arguments, the `ABI` must include the constructor.
 
 After creating an instance of the contract factory, you can call its `deploy` function and pass the arguments `args` of the contract constructor to deploy and obtain an instance of the contract:
 
@@ -57,21 +57,23 @@ For an introduction to the `ERC20` standard token contract, refer to the WTF Sol
 
 1. Create `provider` and `wallet` variables.
     ```js
-    import { ethers } from "ethers";
+    const { ethers } = require("ethers");
 
-    // Connect to the Ethereum network using Alchemy's RPC node
-    // Connect to the Goerli test network
-    const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-    const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+    // Connect to the Ethereum network using Infura's RPC node
+    // Connect to the Sepolia test network
+    const INFURA_SEPOLIA_URL = 'https://sepolia.infura.io/v3/8b9750710d56460d940aeff47967c4ba';
+    const provider = new ethers.JsonRpcProvider(INFURA_GOERLI_URL);
 
     // Create a wallet object using the private key and provider
     const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b';
     const wallet = new ethers.Wallet(privateKey, provider);
     ```
 
-2. Prepare the bytecode and ABI of the ERC20 contract. Since the ERC20 contract has a constructor with arguments, we must include it in the ABI. You can obtain the contract bytecode by clicking the `Bytecode` button in the compilation panel of Remix. The "object" field corresponds to the bytecode data. If the contract is already deployed on the chain, you can find it in the `Contract Creation Code` section on etherscan.
+2. Prepare the bytecode and ABI of the ERC20 contract. Since the ERC20 contract has a constructor with arguments, we must include it in the ABI. You can obtain the contract bytecode by clicking the `Bytecode` button in the compilation panel of Remix. The "object" field corresponds to the bytecode data. If the contract is already deployed onchain, you can find it in the `Contract Creation Code` section on etherscan.
 
-    ```js
+![Obtaining bytecode in Etherscan ](img/6-0.png)
+
+   ```js
     // Human-readable ABI of ERC20
     const abiERC20 = [
         "constructor(string memory name_, string memory symbol_)",
@@ -88,7 +90,7 @@ For an introduction to the `ERC20` standard token contract, refer to the WTF Sol
     // The data corresponding to the "object" field under the "bytecode" attribute is the bytecode, which is quite long, starting with 608060
     // "object": "608060405260646000553480156100...
     const bytecodeERC20 = "608060405260646000553480156100...";
-    ```
+   ```
 
 ![Obtaining bytecode in Remix](img/6-1.png)
 ![json](img/json.jpg)
@@ -100,7 +102,7 @@ For an introduction to the `ERC20` standard token contract, refer to the WTF Sol
     const factoryERC20 = new ethers.ContractFactory(abiERC20, bytecodeERC20, wallet);
     ```
 
-4. Call the `deploy()` function of the factory contract and provide the constructor arguments (token name and symbol) to deploy the `ERC20` token contract and obtain the contract instance. You can use:
+4. Call the `deploy()` function of the factory contract and provide the constructor arguments (token, name and symbol) to deploy the `ERC20` token contract and obtain the contract instance. You can use:
     - `contract.target` to get the contract address,
     - `contract.deployTransaction` to get the deployment details,
     - `contractERC20.waitForDeployment()` to wait for confirmation of contract deployment on the blockchain.
@@ -128,27 +130,26 @@ For an introduction to the `ERC20` standard token contract, refer to the WTF Sol
     console.log("\n2. Call the mint() function to mint 10,000 tokens for your address")
     console.log(`Contract Name: ${await contractERC20.name()}`)
     console.log(`Contract Symbol: ${await contractERC20.symbol()}`)
-    let tx = await contractERC20.mint("10000")
+    const tx = await contractERC20.mint("10000")
     console.log("Wait for the transaction to be confirmed on the blockchain")
-    await tx.wait()
+    await tx.waitForDeployment()
     console.log(`Token balance in your address after minting: ${await contractERC20.balanceOf(wallet)}`)
     console.log(`Total token supply: ${await contractERC20.totalSupply()}`)
     ```
-    ![Minting Tokens](img/6-3.png)
 
-6. Call the `transfer()` function to transfer `1,000` tokens to Vitalik.
+6. Call the `transfer()` function to transfer `1100` tokens to Vitalik.
 
     ```js
     // 3. Call the transfer() function to transfer 1000 tokens to Vitalik
-    console.log("\n3. Call the transfer() function to transfer 1,000 tokens to Vitalik")
-    tx = await contractERC20.transfer("vitalik.eth", "1000")
+    console.log("\n3. Call the transfer() function to transfer 1100 tokens to Vitalik")
+    const tx2 = await contractERC20.transfer("vitalik.eth", "1100")
     console.log("Wait for the transaction to be confirmed on the blockchain")
-    await tx.wait()
+    await tx2.wait()
     console.log(`Token balance in Vitalik's wallet: ${await contractERC20.balanceOf("vitalik.eth")}`)
     ```
 
-    ![Transfer Tokens](img/6-4.png)
-
+    ![Transfer Tokens](img/6-3.png)
+   
 ## Summary
 
-In this lesson, we introduced the `ContractFactory` type in ethers.js and used it to deploy an `ERC20` token contract and transfer `1,000` tokens to Vitalik.
+In this lesson, we introduced the `ContractFactory` type in ethers.js and used it to deploy an `ERC20` token contract and transfer `1100` tokens to Vitalik. Notice the gas deduction. 

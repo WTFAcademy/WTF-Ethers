@@ -1,21 +1,21 @@
 // Rules for creating a contract factory instance:
-// const contractFactory = new ethers.ContractFactory(abi, bytecode, signer);
+// const contractFactory = new ethers.ContractFactory(ABI, bytecode, signer);
 // The parameters are the contract ABI `abi`, contract bytecode `bytecode`, and Signer variable `signer`
 
 // Deploying a contract using the contract factory:
 // contractFactory.deploy(args)
 // Where args is the constructor parameters of the contract
 
-import { ethers } from "ethers";
+const { ethers } = require("ethers");
 
-// Connecting to the Ethereum network using Alchemy's RPC node
-// Please refer to https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md for preparing Alchemy API
-const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+// Connect to the Ethereum network using Infura's RPC node
+// Connect to the Sepolia test network
+const INFURA_SEPOLIA_URL = 'https://sepolia.infura.io/v3/8b9750710d56460d940aeff47967c4ba';
+const provider = new ethers.JsonRpcProvider(INFURA_GOERLI_URL);
 
-// Creating a wallet object using the private key and provider
-const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
-const wallet = new ethers.Wallet(privateKey, provider)
+// Create a wallet object using the private key and provider
+const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b';
+const wallet = new ethers.Wallet(privateKey, provider);
 
 // Human-readable ABI for ERC20
 const abiERC20 = [
@@ -38,45 +38,36 @@ const bytecodeERC20 = "60806040526012600560006101000a81548160ff021916908360ff160
 const factoryERC20 = new ethers.ContractFactory(abiERC20, bytecodeERC20, wallet);
 
 const main = async () => {
-    // Read the ETH balance in the wallet
-    const balanceETH = await provider.getBalance(wallet)
 
-    // If the wallet has enough ETH
-    if(ethers.formatEther(balanceETH) > 0.002){
-        // 1. Deploy the ERC20 token contract using contractFactory
-        console.log("\n1. Deploy the ERC20 token contract using contractFactory")
-        // Deploy the contract and fill in the constructor parameters
-        const contractERC20 = await factoryERC20.deploy("WTF Token", "WTF")
-        console.log(`Contract address: ${contractERC20.target}`);
-        console.log("Deployment transaction details")
-        console.log(contractERC20.deploymentTransaction())
-        console.log("\nWaiting for the contract deployment on the chain")
-        await contractERC20.waitForDeployment()
-        console.log("Contract deployed on the chain")
+// 1. Deploy the ERC20 token contract using contractFactory
+console.log("\n1. Deploy the ERC20 token contract using contractFactory")
+// Deploy the contract and provide constructor arguments
+const contractERC20 = await factoryERC20.deploy("WTF Token", "WTF")
+console.log(`Contract Address: ${contractERC20.target}`);
+console.log("Deployment transaction details")
+console.log(contractERC20.deploymentTransaction())
+console.log("\nWait for contract deployment on the blockchain")
+await contractERC20.waitForDeployment()
+// You can also use contractERC20.deployTransaction.wait()
+console.log("Contract deployed on the blockchain")
 
-        // 2. Print the contract's name() and symbol(), then call the mint() function to mint 10,000 tokens for the wallet address
-        console.log("\n2. Call the mint() function to mint 10,000 tokens for the wallet address")
-        console.log(`Contract name: ${await contractERC20.name()}`)
-        console.log(`Contract symbol: ${await contractERC20.symbol()}`)
-        let tx = await contractERC20.mint("10000")
-        console.log("Waiting for the transaction to be confirmed on the chain")
-        await tx.wait()
-        console.log(`Token balance in the address after minting: ${await contractERC20.balanceOf(wallet)}`)
-        console.log(`Total token supply: ${await contractERC20.totalSupply()}`)
+// Print the contract's name() and symbol(), then call the mint() function to mint 10,000 tokens for your address
+console.log("\n2. Call the mint() function to mint 10,000 tokens for your address")
+console.log(`Contract Name: ${await contractERC20.name()}`)
+console.log(`Contract Symbol: ${await contractERC20.symbol()}`)
+const tx = await contractERC20.mint("10000")
+console.log("Wait for the transaction to be confirmed on the blockchain")
+await tx.waitForDeployment()
+console.log(`Token balance in your address after minting: ${await contractERC20.balanceOf(wallet)}`)
+console.log(`Total token supply: ${await contractERC20.totalSupply()}`)
 
-        // 3. Call the transfer() function to transfer 1,000 tokens to Vitalik
-        console.log("\n3. Call the transfer() function to transfer 1,000 tokens to Vitalik")
-        tx = await contractERC20.transfer("vitalik.eth", "1000")
-        console.log("Waiting for the transaction to be confirmed on the chain")
-        await tx.wait()
-        console.log(`Token balance in Vitalik's wallet: ${await contractERC20.balanceOf("vitalik.eth")}`)
-
-    }else{
-        // If there is not enough ETH
-        console.log("Insufficient ETH, go to faucet to get some Goerli ETH")
-        console.log("1. Chainlink faucet: https://faucets.chain.link/goerli")
-        console.log("2. Paradigm faucet: https://faucet.paradigm.xyz/")
-    }
+// 3. Call the transfer() function to transfer 1000 tokens to Vitalik
+console.log("\n3. Call the transfer() function to transfer 1100 tokens to Vitalik")
+const tx2 = await contractERC20.transfer("vitalik.eth", "1100")
+console.log("Wait for the transaction to be confirmed on the blockchain")
+await tx2.wait()
+console.log(`Token balance in Vitalik's wallet: ${await contractERC20.balanceOf("vitalik.eth")}`)
+    
 }
 
 main()
