@@ -41,9 +41,12 @@ const oneGwei = ethers.getBigInt("1000000000"); // Generate from decimal string
 console.log(oneGwei)
 console.log(ethers.getBigInt("0x3b9aca00")); // Generate from hexadecimal string
 console.log(ethers.getBigInt(1000000000)); // Generate from number
-// Unable to generate a BigNumber from a number beyond the maximum safe integer in JavaScript
 // ethers.getBigInt(Number.MAX_SAFE_INTEGER);
 console.log("Maximum safe integer in JavaScript:", Number.MAX_SAFE_INTEGER)
+//NB: you can even generate a BigNumber beyond the maximum safe integer if you run the code in a Node.js environment with the `harmony` or `harmony-BigInt` flag enabled. The use of the native BigInt type allows for handling larger integers without encountering the expected in other environment error.
+// Generate from value exceeding Javascript's maximum safe integer
+console.log(ethers.getBigInt(9007199254740991));
+
 ```
 
 ![BigInt](img/10-1.png)
