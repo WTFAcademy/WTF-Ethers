@@ -75,7 +75,6 @@ Next, we will write a script that calls the `Airdrop` contract to transfer `ETH`
 
 3. Create a provider and wallet for token transfers.
     ```js
-    // Provide the Alchemy API, you can refer to https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md
     const INFURA_GOERLI_URL = 'https://goerli.infura.io/v3/8b9750710d56460d940aeff47967c4ba';
     const provider = new ethers.JsonRpcProvider(INFURA_GOERLI_URL);
 
