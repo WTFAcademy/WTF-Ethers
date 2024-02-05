@@ -3,11 +3,11 @@
 // const interface = ethers.Interface(abi)
 // Get directly from the contract
 // const interface2 = contract.interface
-import { ethers } from "ethers";
+const { ethers } = require("ethers");
 
-// Prepare alchemy API, you can refer to https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+const provider = new ethers.JsonRpcProvider(
+  "https://sepolia.infura.io/v3/8b9750710d56460d940aeff47967c4ba"
+);
 
 // Create a wallet object using the private key and provider
 const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b'
@@ -18,8 +18,8 @@ const abiWETH = [
     "function balanceOf(address) public view returns(uint)",
     "function deposit() public payable",
 ];
-// WETH contract address (Goerli testnet)
-const addressWETH = '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6'
+// WETH contract address (Goerli or Sepolia testnet)
+const addressWETH = '0xb16F35c0Ae2912430DAc15764477E179D9B9EbEa' //Sepolia testnet
 
 // Declare WETH contract
 const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)
@@ -73,8 +73,8 @@ const main = async () => {
 
     } else {
         // If ETH is not sufficient
-        console.log("Insufficient ETH, go to faucet to get some Goerli ETH")
-        console.log("1. Chainlink Faucet: https://faucets.chain.link/goerli")
+        console.log("Insufficient ETH, go to faucet to get some Sepolia ETH")
+        console.log("1. Chainlink Faucet: https://faucets.chain.link/sepolia")
         console.log("2. Paradigm Faucet: https://faucet.paradigm.xyz/")
     }
 }
