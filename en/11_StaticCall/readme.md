@@ -49,19 +49,18 @@ console.log(`Will the transaction succeed?`, tx)
     - `from`: the `msg.sender` during execution, which allows you to simulate the call from any address, such as Vitalik.
     - `value`: the `msg.value` during execution.
     - `blockTag`: the block height during execution.
-    - `gasPrice`
-    - `gasLimit`
-    - `nonce`
+    - `gasPrice`: The gas price for legacy networks.
+    - `gasLimit`: The maximum amount of gas to allow this transaction to consume.
+    - `nonce`: a nonce is a special number that is used to create a unique block
 
 ## Simulating a `DAI` Transfer with `staticCall`
 
 1. Create `provider` and `wallet` objects.
     ```js
-    import { ethers } from "ethers";
+    const { ethers } = require("ethers");
 
-    // Prepare Alchemy API, can refer to https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-    const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
-    const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
+    // Prepare Alchemy or Infura API, can refer to 
+    const provider = new ethers.JsonRpcProvider( "https://mainnet.infura.io/v3/8b9750710d56460d940aeff47967c4ba"
 
     // Create wallet object using private key and provider
     const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
@@ -82,13 +81,16 @@ console.log(`Will the transaction succeed?`, tx)
     const contractDAI = new ethers.Contract(addressDAI, abiDAI, provider)
     ```
 
-3. Check the `DAI` balance in the wallet, which should be 0.
+3. Check the `DAI` balance in the wallet, which should be 0, and check for Vitalik's balance too
 
     ```js
     const address = await wallet.getAddress()
     console.log("\n1. Check DAI balance in the test wallet")
     const balanceDAI = await contractDAI.balanceOf(address)
-    console.log(`DAI balance: ${ethers.formatEther(balanceDAI)}\n`)
+    
+    const balanceDAIVitalik = await contractDAI.balanceOf("vitalik.eth")
+    console.log(`DAI balance of test wallet: ${ethers.formatEther(balanceDAI)}\n`)
+    console.log(`DAI balance of vitalik: ${ethers.formatEther(balanceDAIVitalik)}\n`)
     ```
     ![Wallet DAI Balance](img/11-2.png)
 
