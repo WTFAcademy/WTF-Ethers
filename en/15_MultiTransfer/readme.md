@@ -157,7 +157,8 @@ Next, we will write a script that calls the `Airdrop` contract to transfer `ETH`
     console.log(`WETH balance of this wallet after the transfer: ${ethers.formatEther(balanceWETH2)}\n`)
     ```
 ![Insufficient fund for bulk transfer of WETH](img/15-4.png)
-  NB: This transaction wasn't successful because at the time of this tutorial update, Goerli testnets have been deprecated. Expect an update on another teestnet soon.
+
+NB: This transaction wasn't successful because at the time of this tutorial update, Goerli testnets have been [deprecated]([https://github.com/WTFAcademy/WTF-Ethers](https://ethereum.org/nb/developers/docs/networks#ethereum-testnets)) Expect an update on another testnet soon.
 ## Summary
 
 In this tutorial, we learned how to use `ethers.js` to call the `Airdrop` contract for batch transfers. In the examples, we sent `ETH` and `WETH` to 20 different addresses, saving time and gas fees.
