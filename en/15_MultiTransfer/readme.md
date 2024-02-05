@@ -75,9 +75,9 @@ Next, we will write a script that calls the `Airdrop` contract to transfer `ETH`
 
 3. Create a provider and wallet for token transfers.
     ```js
-    // Provide the Alchemy API, you can refer to https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-    const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-    const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+    // Provide the Alchemy API, you can refer to https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md
+    const INFURA_GOERLI_URL = 'https://goerli.infura.io/v3/8b9750710d56460d940aeff47967c4ba';
+    const provider = new ethers.JsonRpcProvider(INFURA_GOERLI_URL);
 
     // Create a wallet object from the private key and provider
     // If this wallet is out of Goerli testnet ETH
@@ -138,7 +138,6 @@ Next, we will write a script that calls the `Airdrop` contract to transfer `ETH`
     const balanceETH2 = await provider.getBalance(addresses[10])
     console.log(`ETH balance of this wallet after the transfer: ${ethers.formatEther(balanceETH2)}\n`)
     ```
-![Bulk transfer of ETH](img/15-4.png)
 
 8. Call the `multiTransferToken()` function to transfer `0.0001 WETH` to each wallet, and observe the changes in the balances.
 
@@ -157,8 +156,7 @@ Next, we will write a script that calls the `Airdrop` contract to transfer `ETH`
     const balanceWETH2 = await contractWETH.balanceOf(addresses[10])
     console.log(`WETH balance of this wallet after the transfer: ${ethers.formatEther(balanceWETH2)}\n`)
     ```
-![Bulk transfer of WETH](img/15-5.png)
-
+    
 ## Summary
 
 In this tutorial, we learned how to use `ethers.js` to call the `Airdrop` contract for batch transfers. In the examples, we sent `ETH` and `WETH` to 20 different addresses, saving time and gas fees.
