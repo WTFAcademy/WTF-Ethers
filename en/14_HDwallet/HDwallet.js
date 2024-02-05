@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+const { ethers } = require("ethers");
 
 // 1. Create HD wallet
 console.log("\n1. Create HD wallet")
@@ -22,6 +22,7 @@ for (let i = 0; i < numWallet; i++) {
     wallets.push(walletNew);
 }
 
+main = async() => {
 // 3. Save wallet (encrypted JSON)
 console.log("\n3. Save wallet (encrypted JSON)")
 const wallet = ethers.Wallet.fromPhrase(mnemonic)
@@ -37,3 +38,5 @@ console.log(json)
 const wallet2 = await ethers.Wallet.fromEncryptedJson(json, pwd);
 console.log("\n4. Read wallet from encrypted JSON:")
 console.log(wallet2)
+}
+main()
