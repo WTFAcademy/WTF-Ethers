@@ -156,6 +156,7 @@ Next, we will write a script that calls the `Airdrop` contract to transfer `ETH`
     const balanceWETH2 = await contractWETH.balanceOf(addresses[10])
     console.log(`WETH balance of this wallet after the transfer: ${ethers.formatEther(balanceWETH2)}\n`)
     ```
+![Insufficient fund for bulk transfer of WETH](img/15-4.png)
     
 ## Summary
 
