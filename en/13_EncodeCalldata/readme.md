@@ -68,9 +68,9 @@ Here, we will use the interface class to encode calldata and repeat the example 
 1. Create the `provider` and `wallet` variables.
 
     ```js
-    // Prepare Alchemy API, you can refer to https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-    const ALCHEMY_GOERLI_URL = 'https://eth-rinkeby.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-    const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+    // Prepare Alchemy or Infura API (we are using Infura here)
+      const provider = new ethers.JsonRpcProvider(
+    "https://sepolia.infura.io/v3/8b9750710d56460d940aeff47967c4ba");
 
     // Create the wallet object using the private key and provider
     const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
@@ -84,8 +84,8 @@ Here, we will use the interface class to encode calldata and repeat the example 
         "function balanceOf(address) public view returns(uint)",
         "function deposit() public payable",
     ];
-    // WETH contract address (Goerli test network)
-    const addressWETH = '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6'
+    // WETH contract address (Goerli or Sepolia test network)
+    const addressWETH = '0xb16F35c0Ae2912430DAc15764477E179D9B9EbEa' // Sepolia testnet
     // Declare the WETH contract
     const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)
     ```

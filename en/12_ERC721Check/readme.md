@@ -63,9 +63,9 @@ interface IERC165 {
 
 1. Create a `provider` to connect to the Ethereum mainnet.
     ```js
-    // Prepare Alchemy API, you can refer to: https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-    const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
-    const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
+    // Prepare Infura API: 
+    const INFURA_MAINNET_URL = 'https://mainnet.infura.io/v3/8b9750710d56460d940aeff47967c4ba';
+    const provider = new ethers.JsonRpcProvider(INFURA_MAINNET_URL);
     ```
 
 2. Create an instance of the `ERC721` contract. In the `abi` interface, we declare the `name()`, `symbol()`, and `supportsInterface()` functions to use. Here, we use the Bored Ape Yacht Club (BAYC) contract address.

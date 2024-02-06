@@ -1,33 +1,27 @@
-// contract.functionName.staticCall(arguments, {override})
-import { ethers } from "ethers";
+const { ethers } = require("ethers");
+const provider = new ethers.JsonRpcProvider(
+  "https://mainnet.infura.io/v3/8b9750710d56460d940aeff47967c4ba");
 
-// Prepare alchemy API, you can refer to https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
-const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
+const privateKey = "cd82a7d0d6e528322e8c26f9ccbc18767543786d073c48ef38a753f29b1e8f39";
+const wallet = new ethers.Wallet(privateKey, provider);
 
-// Create a wallet object using the private key and provider
-const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
-const wallet = new ethers.Wallet(privateKey, provider)
-
-// ABI for DAI
 const abiDAI = [
-    "function balanceOf(address) public view returns(uint)",
-    "function transfer(address, uint) public returns (bool)",
+  "function balanceOf(address) public view returns(uint)",
+  "function transfer(address, uint) public returns(bool)",
 ];
-// DAI contract address (mainnet)
-const addressDAI = '0x6B175474E89094C44Da98b954EedeAC495271d0F' // DAI Contract
 
-// Create an instance of the DAI contract
-const contractDAI = new ethers.Contract(addressDAI, abiDAI, provider)
+const addressDAI = '0x6B175474E89094C44Da98b954EedeAC495271d0F';
+const contractDAI = new ethers.Contract(addressDAI, abiDAI, provider);
 
-const main = async () => {
-    try {
+async function main(
+) {
+  try {
     const address = await wallet.getAddress()
     // 1. Read on-chain information of DAI contract
     console.log("\n1. Read DAI balance of test wallet")
     const balanceDAI = await contractDAI.balanceOf(address)
-    const balanceDAIVitalik = await contractDAI.balanceOf("vitalik.eth")
 
+    const balanceDAIVitalik = await contractDAI.balanceOf("vitalik.eth")
     console.log(`DAI balance of test wallet: ${ethers.formatEther(balanceDAI)}\n`)
     console.log(`DAI balance of vitalik: ${ethers.formatEther(balanceDAIVitalik)}\n`)
 
