@@ -48,7 +48,7 @@ interface IERC20 {
 ```
 
 ## Identifying `ERC20` Contracts
-In a previous [tutorial](https://github.com/WTFAcademy/WTF-Ethers/blob/main/12_ERC721Check/readme.md), we discussed how to identify `ERC721` contracts based on `ERC165`. However, since the release of `ERC20` predates `ERC165` (20 < 165), we cannot use the same method to identify `ERC20` contracts and need to find an alternative solution.
+In a previous [tutorial](https://github.com/WTFAcademy/WTF-Ethers/blob/main/en/12_ERC721Check/readme.md), we discussed how to identify `ERC721` contracts based on `ERC165`. However, since the release of `ERC20` predates `ERC165` (20 < 165), we cannot use the same method to identify `ERC20` contracts and need to find an alternative solution.
 
 The blockchain is transparent, so we can obtain the bytecode of any contract address. Therefore, we can first retrieve the bytecode of a contract and compare it to see if it includes the functions specified in the `ERC20` standard.
 
