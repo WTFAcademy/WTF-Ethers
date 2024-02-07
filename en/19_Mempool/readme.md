@@ -54,9 +54,8 @@ Below is a script that listens to the `mempool`.
 
     ```js
     console.log("\n1. Connect to wss RPC")
-    // Prepare alchemy API, for reference visit: https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-    const ALCHEMY_MAINNET_WSSURL = 'wss://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
-    const provider = new ethers.WebSocketProvider(ALCHEMY_MAINNET_WSSURL);
+    const INFURA_MAINNET_WSSURL = 'wss://mainnet.infura.io/ws/v3/8b9750710d56460d940aeff47967c4ba';
+    const provider = new ethers.WebSocketProvider(INFURA_MAINNET_WSSURL);
     ```
 ![Infura wss](./img/19-2.png)
 
