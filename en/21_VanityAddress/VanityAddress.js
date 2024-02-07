@@ -16,4 +16,4 @@ while(!isValid){
 }
 // Print the vanity address and private key
 console.log(`\nVanity Address: ${wallet.address}`)
-console.log(``Vanity Private Key: ${wallet.privateKey}\n`)
+console.log(`Vanity Private Key: ${wallet.privateKey}\n`)
