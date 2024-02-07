@@ -26,7 +26,7 @@ In this lesson, we will learn how to use `ethers.js` to identify whether a contr
 
 ## `ERC20`
 
-`ERC20` is the most commonly used token standard on Ethereum. If you are unfamiliar with this standard, you can refer to [WTF Solidity 31: ERC20](https://github.com/AmazingAng/WTF-Solidity/blob/main/31_ERC20/readme.md). The `ERC20` standard includes the following functions and events:
+`ERC20` is the most commonly used token standard on Ethereum. If you are unfamiliar with this standard, you can refer to [WTF Solidity 31: ERC20](https://github.com/Mosamorphing/WTF-Ethers/blob/main/en/12_ERC721Check/readme.md). The `ERC20` standard includes the following functions and events:
 ```solidity
 interface IERC20 {
     event Transfer(address indexed from, address indexed to, uint256 value);
@@ -89,19 +89,17 @@ async function erc20Checker(addr){
 Now, let's use the `DAI` (ERC20) and `BAYC` (ERC721) contracts to test whether the script can correctly identify an `ERC20` contract.
 
 ```js
-// DAI address (mainnet)
-const daiAddr = "0x6b175474e89094c44da98b954eedeac495271d0f"
-// BAYC address (mainnet)
-const baycAddr = "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d"
+const addressDAI = '0x6b175474e89094c44da98b954eedeac495271d0f' //mainnet
+const addressBAYC = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d' //mainnet 
 
 const main = async () => {
-    // Check if the DAI contract is an ERC20 contract
-    let isDaiERC20 = await erc20Checker(daiAddr)
-    console.log(`1. Is DAI an ERC20 contract: ${isDaiERC20}`)
+    // Check if DAI contract is an ERC20 contract
+  const isDaiErc20 = await erc20Checker(addressDAI)
+  console.log(`1. is DAI an ERC20 contract: ${isDaiErc20}`)
 
-    // Check if the BAYC contract is an ERC20 contract
-    let isBaycERC20 = await erc20Checker(baycAddr)
-    console.log(`2. Is BAYC an ERC20 contract: ${isBaycERC20}`)
+    // Check if BAYC contract is an ERC20 contract
+   const isBAYCerc20 = await erc20Checker(addressBAYC)
+   console.log(`2. Is BAYC an ERC20 contract: ${isBAYCerc20}`)
 }
 
 main()
