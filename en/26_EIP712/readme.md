@@ -35,13 +35,12 @@ In this section, we will write a script to sign ERP712 signature.
 1. Create `provider` and `wallet` objects. In this example, we will use the private key of the Remix test wallet.
 
     ```js
-    // Connect to the Ethereum network using Alchemy's RPC node
-    // For instructions on setting up Alchemy API, please refer to https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-    const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-    const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+    // Connect to the Ethereum network using Infura or Alchemy's RPC endpoint
+    const SEPOLIA_TESTNET_URL = 'https://sepolia.infura.io/v3/8b9750710d56460d940aeff47967c4ba';
+    const provider = new ethers.JsonRpcProvider(SEPOLIA_TESTNET_URL);
 
     // Create a wallet object using the private key and provider
-    const privateKey = '0x503f38a9c967ed597e47fe25643985f032b072db8075426a92110f82df48dfcb'
+    const privateKey = 'cd82a7d0d6e528322e8c26f9ccbc18767543786d073c48ef38a753f29b1e8f39'
     const wallet = new ethers.Wallet(privateKey, provider)
     ```
 
