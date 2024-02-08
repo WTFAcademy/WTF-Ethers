@@ -5,7 +5,7 @@
 // Example: two 0 at the beginning and two 1 at the end 
 // const regex = /^0x00.*11$/
 
-import { ethers } from "ethers";
+const { ethers } = require("ethers");
 var wallet // Wallet
 const regex = /^0x000.*$/ // Expression
 var isValid = false
@@ -14,6 +14,6 @@ while(!isValid){
     isValid = regex.test(wallet.address) // Validate the regular expression
     //console.log(wallet.address)
 }
-// Print the fancy address and private key
-console.log(`\nFancy address: ${wallet.address}`)
-console.log(`Fancy private key: ${wallet.privateKey}\n`)
+// Print the vanity address and private key
+console.log(`\nVanity Address: ${wallet.address}`)
+console.log(`Vanity Private Key: ${wallet.privateKey}\n`)

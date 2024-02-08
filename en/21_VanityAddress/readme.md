@@ -65,7 +65,7 @@ isValid = regex.test(wallet.address) // Check the regular expression
 The logic of the vanity address generator is very simple. It continuously generates random wallets until it matches the desired vanity address. In our test, generating a vanity address starting with `0x000` takes only a few seconds, and each additional `0` increases the time by 16 times.
 
 ```js
-import { ethers } from "ethers";
+const { ethers } = require("ethers");
 var wallet // Wallet
 const regex = /^0x000.*$/ // Expression
 var isValid = false

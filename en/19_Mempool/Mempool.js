@@ -1,11 +1,11 @@
 // provider.on("pending", listener)
-import { ethers } from "ethers";
+const { ethers } = require("ethers");
 
 // 1. Create provider and wallet, recommend using wss connection instead of http when listening for events
 console.log("\n1. Connecting to wss RPC")
-// Prepare alchemy API, can refer to https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-const ALCHEMY_MAINNET_WSSURL = 'wss://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
-const provider = new ethers.WebSocketProvider(ALCHEMY_MAINNET_WSSURL);
+
+const INFURA_MAINNET_WSSURL = 'wss://mainnet.infura.io/ws/v3/8b9750710d56460d940aeff47967c4ba';
+const provider = new ethers.WebSocketProvider(INFURA_MAINNET_WSSURL);
 let network = provider.getNetwork()
 // network.then(res => console.log(`[${(new Date).toLocaleTimeString()}] Connected to chain ID ${res.chainId}`));
 
