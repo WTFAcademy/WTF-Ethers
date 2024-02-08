@@ -1,19 +1,18 @@
-import { ethers } from "ethers";
+const { ethers } = require("ethers");
 
-// Connect to the Ethereum network using Alchemy's RPC endpoint
-// For preparing Alchemy API, please refer to: https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md
-const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+// Connect to the Ethereum network using Infura or Alchemy's RPC endpoint
+const SEPOLIA_TESTNET_URL = 'https://sepolia.infura.io/v3/8b9750710d56460d940aeff47967c4ba';
+const provider = new ethers.JsonRpcProvider(SEPOLIA_TESTNET_URL);
 
 // Create wallet object using private key and provider
-const privateKey = '0x503f38a9c967ed597e47fe25643985f032b072db8075426a92110f82df48dfcb';
+const privateKey = 'cd82a7d0d6e528322e8c26f9ccbc18767543786d073c48ef38a753f29b1e8f39';
 const wallet = new ethers.Wallet(privateKey, provider)
 
 // Create EIP712 Domain
-let contractName = "EIP712Storage"
-let version = "1"
-let chainId = "1"
-let contractAddress = "0xf8e81D47203A594245E36C48e151709F0C19fBe8"
+const contractName = "EIP712Storage"
+const version = "1"
+const chainId = "1"
+const contractAddress = "0xf8e81D47203A594245E36C48e151709F0C19fBe8"
 
 const domain = {
     name: contractName,
@@ -23,8 +22,8 @@ const domain = {
 };
 
 // Create typed data, Storage
-let spender = "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4"
-let number = "100"
+const spender = "0xD616f5A49571e7BCb1BB5326031bC8078BDA9Faa"
+const number = "100"
 
 const types = {
     Storage: [
@@ -44,7 +43,7 @@ const main = async () => {
     const signature = await wallet.signTypedData(domain, types, message);
     console.log("Signature:", signature);
     // Verify EIP712 signature and recover signer address from the signature and message
-    let eip712Signer = ethers.verifyTypedData(domain, types, message, signature)
+    const eip712Signer = ethers.verifyTypedData(domain, types, message, signature)
     console.log("EIP712 Signer: ", eip712Signer)
 }
 
