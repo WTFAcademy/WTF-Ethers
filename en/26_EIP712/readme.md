@@ -35,13 +35,12 @@ In this section, we will write a script to sign ERP712 signature.
 1. Create `provider` and `wallet` objects. In this example, we will use the private key of the Remix test wallet.
 
     ```js
-    // Connect to the Ethereum network using Alchemy's RPC node
-    // For instructions on setting up Alchemy API, please refer to https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-    const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-    const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+    // Connect to the Ethereum network using Infura or Alchemy's RPC endpoint
+    const SEPOLIA_TESTNET_URL = 'https://sepolia.infura.io/v3/8b9750710d56460d940aeff47967c4ba';
+    const provider = new ethers.JsonRpcProvider(SEPOLIA_TESTNET_URL);
 
     // Create a wallet object using the private key and provider
-    const privateKey = '0x503f38a9c967ed597e47fe25643985f032b072db8075426a92110f82df48dfcb'
+    const privateKey = 'cd82a7d0d6e528322e8c26f9ccbc18767543786d073c48ef38a753f29b1e8f39'
     const wallet = new ethers.Wallet(privateKey, provider)
     ```
 
@@ -66,7 +65,7 @@ In this section, we will write a script to sign ERP712 signature.
 
     ```js
     // Create typed data, Storage
-    let spender = "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4"
+    let spender = "0xD616f5A49571e7BCb1BB5326031bC8078BDA9Faa"
     let number = "100"
 
     const types = {
@@ -88,7 +87,7 @@ In this section, we will write a script to sign ERP712 signature.
     // EIP712 signature
     const signature = await wallet.signTypedData(domain, types, message);
     console.log("Signature:", signature);
-    // Signature: 0xdca07f0c1dc70a4f9746a7b4be145c3bb8c8503368e94e3523ea2e8da6eba7b61f260887524f015c82dd77ebd3c8938831c60836f905098bf71b3e6a4a09b7311b
+    // Signature: 0xcd63049dd2388870f3fd18d00b36e1691971e4aea57369c45df2ba54b79853a16f02a71b71d71cf2d6ff01e3e679bc45633eedea64e54478c666a1f07bb5bf221c
     ```
 
 5. You can use the `verifyTypedData()` method to recover the signer address from the signature and message, and verify the validity of the signature. Typically, this step is executed in a smart contract.
@@ -97,7 +96,7 @@ In this section, we will write a script to sign ERP712 signature.
     // Verify the EIP712 signature and recover the signer address from the signature and message
     let eip712Signer = ethers.verifyTypedData(domain, types, message, signature)
     console.log("EIP712 Signer: ", eip712Signer)
-    // EIP712 Signer: 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4
+    // EIP712 Signer: 0xD616f5A49571e7BCb1BB5326031bC8078BDA9Faa
     ```
 
 ## Summary
