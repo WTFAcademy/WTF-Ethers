@@ -10,6 +10,6 @@
     "license": "MIT",
     "dependencies": {
         "ethers": "^6.7.1",
-        "merkletreejs": "^0.2.32"
+        "merkletreejs": "^0.3.11"
     }
 }
