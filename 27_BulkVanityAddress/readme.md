@@ -29,8 +29,6 @@ tags:
 0x003a605E6E59B569bC37bb1287514357E311da34:0x2c4c787d155ef78e6d1ca364c808ec33a68937bead8bc7fd4eac360f6626d206
 ~~~
 
-![靓号生成](./img/27-1.png)
-
 ## 需求问题
 
 在21讲中，我们想得到一个指定开头的地址，因此只要大量生成再使用正则匹配到对应的地址即可，复习一下21讲代码：
@@ -147,8 +145,6 @@ async function CreateWallet(regexList) {
     return data
 }
 ~~~
-
-![靓号生成](./img/27-2.png)
 
 ## 总结
 
