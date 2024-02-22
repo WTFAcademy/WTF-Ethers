@@ -47,7 +47,7 @@ tags:
 
 - 函数名：为模拟调用的函数名。
 - 参数：调用函数的参数。
-- {override}：选填，可包含一下参数：
+- {override}：选填，可包含以下参数：
     - `from`：执行时的`msg.sender`，也就是你可以模拟任何一个人的调用，比如Vitalik。
     - `value`：执行时的`msg.value`。
     - `blockTag`：执行时的区块高度。
