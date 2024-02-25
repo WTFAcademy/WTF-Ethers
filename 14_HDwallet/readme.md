@@ -113,7 +113,7 @@ air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orb
             在v6的repo中已有于此相关的报告等待处理中。在源码更新之前，若想达到通常期待的与v5相一致的结果，
             可以使用下面的方式来衍生钱包，暂时避免使用derivePath()：
                 ethers.HDNodeWallet.fromPhrase(seedPhrase, '', path)
-            seedPhrase即为助记词。
+            seedPhrase即为助记词, 就用mnemonic即可。
      */
         let hdNodeNew = hdNode.derivePath(basePath + "/" + i);
         let walletNew = new ethers.Wallet(hdNodeNew.privateKey);
