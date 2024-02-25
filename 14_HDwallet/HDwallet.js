@@ -16,7 +16,7 @@ const numWallet = 20
 let basePath = "m/44'/60'/0'/0";
 let wallets = [];
 for (let i = 0; i < numWallet; i++) {
-    
+
     /**
      * @issue
      * @dev 在ethers v6中，derivePath()方法的源码与v5大不相同，它存在将之前的钱包实例化时候保留的
@@ -43,6 +43,7 @@ for (let i = 0; i < numWallet; i++) {
             在v6的repo中已有于此相关的报告等待处理中。在源码更新之前，若想达到通常期待的与v5相一致的结果，
             可以使用下面的方式来衍生钱包，暂时避免使用derivePath()：
                 ethers.HDNodeWallet.fromPhrase(seedPhrase, '', path)
+            seedPhrase即为助记词。
      */
     let hdNodeNew = hdNode.derivePath(basePath + "/" + i);
     let walletNew = new ethers.Wallet(hdNodeNew.privateKey);
