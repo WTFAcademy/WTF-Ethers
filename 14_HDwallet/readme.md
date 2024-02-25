@@ -96,18 +96,19 @@ air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orb
      * 
      *      Proof of Concept：
      *          const ethers = require("ethers");
-                const path = "44'/60'/0'/0/1";
+                const path0 = "44'/60'/0'/0/0";
 
                 const phrase = "word word word word word word word word word word word word";
 
                 const mnemonic = ethers.Mnemonic.fromPhrase(phrase);
-                const wallet = ethers.HDNodeWallet.fromMnemonic(mnemonic, path);
+                const wallet0 = ethers.HDNodeWallet.fromMnemonic(mnemonic, path0);
 
-                console.log(wallet.path);
-                // output: m/44'/60'/0'/0/1
-                const wallet1 = wallet.derivePath(path);
-                console.log(wallet1.path);
-                // output: m/44'/60'/0'/0/1/44'/60'/0'/0/1
+                console.log(wallet0.path); // output: m/44'/60'/0'/0/0
+                
+                const path1 = "44'/60'/0'/0/1";
+                const wallet1 = wallet0.derivePath(path1);
+
+                console.log(wallet1.path); // output: m/44'/60'/0'/0/0/44'/60'/0'/0/1 -- 偏移路径在这里被捏合
 
      *      建议：
             在v6的repo中已有于此相关的报告等待处理中。在源码更新之前，若想达到通常期待的与v5相一致的结果，
