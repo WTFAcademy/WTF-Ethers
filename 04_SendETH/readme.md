@@ -55,12 +55,12 @@ const wallet2 = new ethers.Wallet(privateKey, provider)
 
 ### 方法3：从助记词创建wallet对象
 
-我们已知助记词的情况下，可以利用`ethers.Wallet.fromMnemonic()`函数创建`Wallet`对象。
+我们已知助记词的情况下，可以利用`ethers.Wallet.fromPhrase()`函数创建`Wallet`对象。
 
 
 ```javascript
 // 从助记词创建wallet对象
-const wallet3 = ethers.Wallet.fromMnemonic(mnemonic.phrase)
+const wallet3 = ethers.Wallet.fromPhrase(mnemonic.phrase)
 ```
 ### 其他方法：通过JSON文件创建wallet对象
 以上三种方法即可满足大部分需求，当然还可以通过`ethers.Wallet.fromEncryptedJson`解密一个`JSON`钱包文件创建钱包实例，`JSON`文件即`keystore`文件，通常来自`Geth`, `Parity`等钱包，通过`Geth`搭建过以太坊节点的个人对`keystore`文件不会陌生。
