@@ -46,7 +46,7 @@ tags:
 
 ## 生成数字签名
 
-1. 打包消息：在以太坊的`ECDSA`标准中，被签名的`消息`是一组数据的`keccak256`哈希，为`bytes32`类型。我们可以利用`ethers.js`提供的`solidityKeccak256()`函数，把任何想要签名的内容打包并计算哈希。等效于`solidity`中的`keccak256(abi.encodePacked())`。
+1. 打包消息：在以太坊的`ECDSA`标准中，被签名的`消息`是一组数据的`keccak256`哈希，为`bytes32`类型。我们可以利用`ethers.js`提供的`solidityPackedKeccak256()`函数，把任何想要签名的内容打包并计算哈希。等效于`solidity`中的`keccak256(abi.encodePacked())`。
     
     在下面的代码中，我们将一个`address`类型变量和一个`uint256`类型变量打包后哈希，得到`消息`：
     ```js
@@ -54,7 +54,7 @@ tags:
     const account = "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4"
     const tokenId = "0"
     // 等效于Solidity中的keccak256(abi.encodePacked(account, tokenId))
-    const msgHash = ethers.solidityKeccak256(
+    const msgHash = ethers.solidityPackedKeccak256(
         ['address', 'uint256'],
         [account, tokenId])
     console.log(`msgHash：${msgHash}`)
