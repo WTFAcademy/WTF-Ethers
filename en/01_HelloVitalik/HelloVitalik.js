@@ -5,7 +5,7 @@ import { ethers } from "ethers";
 
 // Connect to the Ethereum network using any desired provider (e.g INFURA or ALCHEMY) 
 // const provider = new ethers.JsonRpcProvider();
-// Note: if the current URL cannot be used, you need to register at NFURA or ALCHEMY's official website and get URL by yourself.
+// Note: if the current URL cannot be used, you need to register at INFURA or ALCHEMY's official website and get URL by yourself.
 const provider = new ethers.JsonRpcProvider(`https://mainnet.infura.io/v3/8b9750710d56460d940aeff47967c4ba`)
 // Specify the address you want to query
 const address = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045' //or 'vitalik.eth'
