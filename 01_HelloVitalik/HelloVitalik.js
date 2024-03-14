@@ -7,12 +7,12 @@ import { ethers } from "ethers";
 // const provider = new ethers.getDefaultProvider();
 // 注意：如果当前的URL无法使用，需要主动去NFURA或者ALCHEMY官网注册并获得URl
 const ALCHEMY_MAINNET_URL = "https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN";
-const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL)
+const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
 
 const main = async () => {
   // 查询vitalik的ETH余额
   const balance = await provider.getBalance(`vitalik.eth`); //0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
   // 将余额输出在console
   console.log(`ETH Balance of vitalik: ${ethers.formatEther(balance)} ETH`);
-}
-main()
+};
+main();
