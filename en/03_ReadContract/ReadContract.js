@@ -2,7 +2,7 @@
 // Parameters are the contract address `address`, contract `ABI`, Provider variable `provider`
 // const contract = new ethers.Contract(`address`, `ABI`, `provider`);
 
-const { ethers } = require "ethers";
+import { ethers } from "ethers";
 
 // Connect to the Ethereum network using the Infura RPC node
 const INFURA_MAINNET_URL = 'https://mainnet.infura.io/v3/8b9750710d56460d940aeff47967c4ba';
