@@ -38,22 +38,22 @@ const main = async () => {
   console.log(`Total Supply: ${ethers.formatEther(totalSupply)}`);
 
   const balanceAddress = 'vitalik.eth';
-  const balance = await WETH_contract.balanceOf('vitalik.eth');
+  const balance = await WETH_contract.balanceOf(balanceAddress);
   console.log(`Vitalik's Balance: ${ethers.formatEther(balance)}\n`);
 
   // 2. Reading on-chain information of the DAI contract (ERC20 interface contract)
-  const name = await DAI_contract.name();
-  const symbol = await DAI_contract.symbol();
-  const totalSupply = await DAI_contract.totalSupply();
+  const nameDAI = await DAI_contract.name();
+  const symbolDAI = await DAI_contract.symbol();
+  const totalSupplyDAI = await DAI_contract.totalSupply();
 
   console.log(`\nReading from ${DAI_address}\n`);
-  console.log(`Name: ${name}`);
-  console.log(`Symbol: ${symbol}`);
-  console.log(`Total Supply: ${ethers.formatEther(totalSupply)}`);
+  console.log(`Name: ${nameDAI}`);
+  console.log(`Symbol: ${symbolDAI}`);
+  console.log(`Total Supply: ${ethers.formatEther(totalSupplyDAI)}`);
 
-  const balanceAddress = 'vitalik.eth';
-  const balance = await DAI_contract.balanceOf('vitalik.eth');
-  console.log(`Vitalik's Balance: ${ethers.formatEther(balance)}\n`);
+  const balanceAddressDAI = "vitalik.eth";
+  const balanceDAI = await DAI_contract.balanceOf(balanceAddressDAI);
+  console.log(`Vitalik's Balance: ${ethers.formatEther(balanceDAI)}\n`);
 };
 
 main()
