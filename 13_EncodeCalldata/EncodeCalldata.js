@@ -5,7 +5,7 @@
 // const interface2 = contract.interface
 import { ethers } from "ethers";
 
-//准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
+//准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md
 const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
 const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
 
@@ -49,11 +49,11 @@ const main = async () => {
     // 如果钱包ETH足够
     if(ethers.formatEther(balanceETH) > 0.0015){
 
-        // 2. 调用desposit()函数，将0.001 ETH转为WETH
-        console.log("\n2. 调用desposit()函数，存入0.001 ETH")
+        // 2. 调用deposit()函数，将0.001 ETH转为WETH
+        console.log("\n2. 调用deposit()函数，存入0.001 ETH")
         // 编码calldata
         const param2 = contractWETH.interface.encodeFunctionData(
-            "deposit"          
+            "deposit"
             );
         console.log(`编码结果： ${param2}`)
         // 创建交易
