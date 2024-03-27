@@ -65,61 +65,31 @@ air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orb
 
 ## 批量生成钱包
 
-`ethers.js`提供了[HDNode类](https://docs.ethers.org/v6-beta/api/wallet/#HDNodeWallet)，方便开发者使用HD钱包。下面我们利用它从一个助记词批量生成20个钱包。
+`ethers.js`提供了[HDNodeWallet类](https://docs.ethers.org/v6-beta/api/wallet/#HDNodeWallet)，方便开发者使用HD钱包。下面我们利用它从一个助记词批量生成20个钱包。
 
-1. 创建`HDNode`钱包变量，可以看到助记词为`'air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orbit weapon universe require tired sing casino business anxiety seminar hunt'`
+1. 创建`baseWallet`钱包变量，可以看到助记词为`'air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orbit weapon universe require tired sing casino business anxiety seminar hunt'`
     ```js
     // 生成随机助记词
-    const mnemonic = ethers.Mnemonic.entropyToPhrase(randomBytes(32))
-    // 创建HD钱包
-    const hdNode = ethers.HDNodeWallet.fromPhrase(mnemonic)
-    console.log(hdNode);
+    const mnemonic = ethers.Mnemonic.entropyToPhrase(ethers.randomBytes(32))
+    // 创建HD基钱包
+    // 基路径："m / purpose' / coin_type' / account' / change"
+    const basePath = "44'/60'/0'/0"
+    const baseWallet = ethers.HDNodeWallet.fromPhrase(mnemonic, basePath)
+    console.log(baseWallet);
     ```
-    ![HDNode](img/14-2.png)
+    ![baseWallet](img/14-2.png)
 
 2. 通过HD钱包派生20个钱包。
 
     ```js
     const numWallet = 20
-    // 派生路径：m / purpose' / coin_type' / account' / change / address_index
-    // 我们只需要切换最后一位address_index，就可以从hdNode派生出新钱包
-    let basePath = "m/44'/60'/0'/0";
+    // 派生路径：基路径 + "/ address_index"
+    // 我们只需要提供最后一位address_index的字符串格式，就可以从baseWallet派生出新钱包。V6中不需要重复提供基路径！
     let wallets = [];
     for (let i = 0; i < numWallet; i++) {
-
-    /**
-     * @issue
-     * @dev 在ethers v6中，derivePath()方法的源码与v5大不相同，它存在将之前的钱包实例化时候保留的
-     *      偏移路径path与新传递进来的路径值捏合在一起的行为，我对这一行为暂时不能理解其意图。截至v6.11.1
-     *      版本，此行为依然存在。导致的结果会是，利用v6的derivePath()方法衍生的后续钱包地址，会与
-     *      当前市场上流行的钱包应用（MetaMask等等）所产生的后续地址完全不同。原因就在于意料之外的偏移路径。
-     * 
-     *      Proof of Concept：
-     *          const ethers = require("ethers");
-                const path0 = "44'/60'/0'/0/0";
-
-                const phrase = "word word word word word word word word word word word word";
-
-                const mnemonic = ethers.Mnemonic.fromPhrase(phrase);
-                const wallet0 = ethers.HDNodeWallet.fromMnemonic(mnemonic, path0);
-
-                console.log(wallet0.path); // output: m/44'/60'/0'/0/0
-                
-                const path1 = "44'/60'/0'/0/1";
-                const wallet1 = wallet0.derivePath(path1);
-
-                console.log(wallet1.path); // output: m/44'/60'/0'/0/0/44'/60'/0'/0/1 -- 偏移路径在这里被捏合
-
-     *      建议：
-            在v6的repo中已有于此相关的报告等待处理中。在源码更新之前，若想达到通常期待的与v5相一致的结果，
-            可以使用下面的方式来衍生钱包，暂时避免使用derivePath()：
-                ethers.HDNodeWallet.fromPhrase(seedPhrase, '', path)
-            seedPhrase即为助记词, 就用mnemonic即可。
-     */
-        let hdNodeNew = hdNode.derivePath(basePath + "/" + i);
-        let walletNew = new ethers.Wallet(hdNodeNew.privateKey);
-        console.log(`第${i+1}个钱包地址： ${walletNew.address}`)
-        wallets.push(walletNew);
+        let baseWalletNew = baseWallet.derivePath(i.toString());
+        console.log(`第${i+1}个钱包地址： ${baseWalletNew.address}`)
+        wallets.push(baseWalletNew);
     }
     ```
     ![批量生成钱包](img/14-3.png)
