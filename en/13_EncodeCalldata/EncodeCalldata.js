@@ -49,8 +49,8 @@ const main = async () => {
     // If wallet has enough ETH
     if (ethers.formatEther(balanceETH) > 0.0015) {
 
-        // 2. Call desposit() function, convert 0.001 ETH to WETH
-        console.log("\n2. Call desposit() function, deposit 0.001 ETH")
+        // 2. Call deposit() function, convert 0.001 ETH to WETH
+        console.log("\n2. Call deposit() function, deposit 0.001 ETH")
         // Encode calldata
         const param2 = contractWETH.interface.encodeFunctionData(
             "deposit"

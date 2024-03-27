@@ -7,7 +7,7 @@ import { ethers } from "ethers";
 // import { ethers } from "https://cdn-cors.ethers.io/lib/ethers-5.6.9.esm.min.js";
 
 // 利用Alchemy的rpc节点连接以太坊网络
-// 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
+// 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md
 const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
 const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
 
@@ -23,7 +23,7 @@ const abiWETH = [
     "function withdraw(uint) public",
 ];
 // WETH合约地址（Goerli测试网）
-const addressWETH = '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6' 
+const addressWETH = '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6'
 // WETH Contract
 
 // 声明可写合约
@@ -41,12 +41,12 @@ const main = async () => {
     console.log(`存款前WETH持仓: ${ethers.formatEther(balanceWETH)}\n`)
     //读取钱包内ETH余额
     const balanceETH = await provider.getBalance(wallet)
-    
+
     // 如果钱包ETH足够
     if(ethers.formatEther(balanceETH) > 0.0015){
 
-        // 2. 调用desposit()函数，将0.001 ETH转为WETH
-        console.log("\n2. 调用desposit()函数，存入0.001 ETH")
+        // 2. 调用deposit()函数，将0.001 ETH转为WETH
+        console.log("\n2. 调用deposit()函数，存入0.001 ETH")
         // 发起交易
         const tx = await contractWETH.deposit({value: ethers.parseEther("0.001")})
         // 等待交易上链
