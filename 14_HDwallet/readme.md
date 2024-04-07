@@ -116,7 +116,7 @@ air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orb
                 ethers.HDNodeWallet.fromPhrase(seedPhrase, '', path)
             seedPhrase即为助记词, 就用mnemonic即可。
      */
-        let hdNodeNew = hdNode.derivePath(basePath + "/" + i);
+        let hdNodeNew = hdNode.derivePath(i.toString());
         let walletNew = new ethers.Wallet(hdNodeNew.privateKey);
         console.log(`第${i+1}个钱包地址： ${walletNew.address}`)
         wallets.push(walletNew);
