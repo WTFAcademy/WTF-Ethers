@@ -78,7 +78,7 @@ main()
 我们逐行分析这个程序：
 
 ### 1. 导入`ethers`
-第一行的作用是导入已经安装好的`ethers`库：
+第一行的作用是导入已经安装好的`ethers`库，如果是使用nodejs本地运行，需要将文件后缀名修改为`.mjs`或者使用`const ethers = require("ethers")`来导入对象，否则会提示`SyntaxError: Cannot use import statement outside a module`：
 ```javascript
 import { ethers } from "ethers";
 ```
