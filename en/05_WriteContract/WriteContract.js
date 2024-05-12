@@ -2,7 +2,7 @@
 // const contract = new ethers.Contract(address, ABI, signer)
 // The parameters are the contract address `address`, contract ABI `abi`, and the signer variable `signer`
 
-const { ethers } = require("ethers");
+import { ethers } from "ethers";
 // The free version of playcode does not allow the installation of ethers.
 // Use this command to import the package from the web (comment out the line above)
 // import { ethers } from "https://cdn-cors.ethers.io/lib/ethers-5.6.9.esm.min.js";

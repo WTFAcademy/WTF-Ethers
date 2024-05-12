@@ -66,7 +66,7 @@ Now, let's write our first program using `ethers` called `HelloVitalik`: it will
 ![Hello Vitalik](./img/1-4.png)
 
 ```javascript
-const { ethers } = require("ethers");
+import { ethers } from "ethers";
 const provider = new ethers.JsonRpcProvider(`NODE_URL`) //e.g ALCHEMY, INFURA
 const address = 'vitalik.eth'
 const main = async() => {
