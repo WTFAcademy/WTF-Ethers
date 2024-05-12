@@ -81,9 +81,9 @@ const wallet3 = ethers.Wallet.fromPhrase(mnemonic.phrase)
 
 ```javascript
     //发送交易，获得收据
-    const receipt = await wallet2.sendTransaction(tx)
-    await receipt.wait() // 等待链上确认交易
-    console.log(receipt) // 打印交易详情
+    const txRes = await wallet2.sendTransaction(tx)
+    const receipt = await txRes.wait() // 等待链上确认交易
+    console.log(receipt) // 打印交易的收据
 ```
 
 ## 代码示例
