@@ -50,6 +50,8 @@ const contract = await contractFactory.deploy(args)
 你可以利用下面两种命令，等待合约部署在链上确认，然后再进行交互。
 ```js
 await contractERC20.waitForDeployment();
+// 或
+contractERC20.deploymentTransaction()?.wait();
 
 ```
 
