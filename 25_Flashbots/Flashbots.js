@@ -5,11 +5,11 @@ import {
   } from "@flashbots/ethers-provider-bundle";
   
 const GWEI = 10n ** 9n;
-const CHAIN_ID = 5; // goerli测试网，如果用主网，chainid 改为 1
+const CHAIN_ID = 11155111; // sepolia测试网，如果用主网，chainid 改为 1
 
 // 1. 普通rpc （非flashbots rpc）
-const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+const ALCHEMY_GOERLI_URL = 'https://eth-sepolia.g.alchemy.com/v2/424OtGw_2L1A2wH6wrbPVPvyukI-sCoK';
+const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
 
 // 2. flashbots声誉私钥，用于建立“声誉”，详情见: https://docs.flashbots.net/flashbots-auction/searchers/advanced/reputation
 // !!!注意: 这个账户，不要储存资金，也不是flashbots主私钥。
@@ -18,13 +18,13 @@ const authSigner = new ethers.Wallet(authKey, provider)
 
 const main = async () => {
 
-    // 3. flashbots rpc（goerli 测试网），用于发送交易
+    // 3. flashbots rpc（sepolia 测试网），用于发送交易
     const flashbotsProvider = await FlashbotsBundleProvider.create(
         provider,
         authSigner,
         // 使用主网 Flashbots，需要把下面两行删去
-        'https://relay-goerli.flashbots.net/', 
-        'goerli'
+        'https://relay-sepolia.flashbots.net', 
+        'sepolia'
         );
     
     // 4. 创建一笔交易
@@ -36,8 +36,9 @@ const main = async () => {
     chainId: CHAIN_ID,
     type: 2,
     to: "0x25df6DA2f4e5C178DdFF45038378C0b08E0Bce54",
-    value: ethers.utils.parseEther("0.001"),
-    maxFeePerGas: GWEI * 100n
+    value: ethers.parseEther("0.001"),
+    maxFeePerGas: GWEI * 100n,
+    maxPriorityFeePerGas: GWEI * 50n
     }
 
     // 5. 创建交易 Bundle
@@ -64,7 +65,12 @@ const main = async () => {
         console.log(`模拟交易出错: ${simulation.error.message}`);
     } else {
         console.log(`模拟交易成功`);
-        console.log(JSON.stringify(simulation, null, 2))
+        console.log(JSON.stringify(simulation, (key, value) => 
+            typeof value === 'bigint' 
+                ? value.toString() 
+                : value, // return everything else unchanged
+            2
+        ));
     }
 
     // 7. 发送交易上链

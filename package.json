@@ -9,6 +9,7 @@
     "author": "0xAA",
     "license": "MIT",
     "dependencies": {
+        "@flashbots/ethers-provider-bundle": "^1.0.0",
         "ethers": "^6.7.1",
         "merkletreejs": "^0.3.11"
     }
