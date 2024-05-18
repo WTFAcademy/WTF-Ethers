@@ -77,13 +77,13 @@ Flashbots 提供了 [ethers-provider-flashbots-bundle](https://github.com/flashb
 npm install --save @flashbots/ethers-provider-bundle
 ```
 
-下面，我们利用它写一个脚本，给大家演示如何在 Goerli 测试网发送 Flashbots Bundle。代码开源在 [WTF-Ethers repo](https://github.com/WTFAcademy/WTF-Ethers)。
+下面，我们利用它写一个脚本，给大家演示如何在 Sepolia 测试网发送 Flashbots Bundle。代码开源在 [WTF-Ethers repo](https://github.com/WTFAcademy/WTF-Ethers)。
 
-1. 创建一个连接到非Flashbots RPC的普通provider，这里我们使用 Alchemy 提供的 Goerli 测试网节点。
+1. 创建一个连接到非Flashbots RPC的普通provider，这里我们使用 Alchemy 提供的 Sepolia 测试网节点。
     ```js
     // 1. 普通rpc （非flashbots rpc）
-    const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-    const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+    const ALCHEMY_GOERLI_URL = 'https://eth-sepolia.g.alchemy.com/v2/424OtGw_2L1A2wH6wrbPVPvyukI-sCoK';
+    const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
     ```
 
 2. 创建 Flashbots `声誉私钥`，用于建立“声誉”，[详情](https://docs.flashbots.net/flashbots-auction/searchers/advanced/reputation)
@@ -99,8 +99,8 @@ npm install --save @flashbots/ethers-provider-bundle
         provider,
         authSigner,
         // 使用主网 Flashbots，需要把下面两行删去
-        'https://relay-goerli.flashbots.net/', 
-        'goerli'
+        'https://relay-sepolia.flashbots.net'', 
+        'sepolia'
         );
     ```
 
@@ -115,7 +115,8 @@ npm install --save @flashbots/ethers-provider-bundle
     type: 2,
     to: "0x25df6DA2f4e5C178DdFF45038378C0b08E0Bce54",
     value: ethers.parseEther("0.001"),
-    maxFeePerGas: GWEI * 100n
+    maxFeePerGas: GWEI * 100n,
+    maxPriorityFeePerGas: GWEI * 50n
     }
     ```
 
@@ -149,7 +150,12 @@ npm install --save @flashbots/ethers-provider-bundle
         console.log(`模拟交易出错: ${simulation.error.message}`);
     } else {
         console.log(`模拟交易成功`);
-        console.log(JSON.stringify(simulation, null, 2))
+        console.log(JSON.stringify(simulation, (key, value) => 
+            typeof value === 'bigint' 
+                ? value.toString() 
+                : value, // return everything else unchanged
+            2
+        ));
     }
     ```
 
