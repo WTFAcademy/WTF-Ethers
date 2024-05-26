@@ -40,7 +40,7 @@ const main = async () => {
     // 3. 用staticCall尝试调用transfer转账10000 DAI，msg.sender为测试钱包地址，交易将失败
     console.log("\n3.  用staticCall尝试调用transfer转账1 DAI，msg.sender为测试钱包地址")
     const tx2 = await contractDAI.transfer.staticCall("vitalik.eth", ethers.parseEther("10000"), {from: address})
-    console.log(`交易会成功吗？：`, tx)
+    console.log(`交易会成功吗？：`, tx2)
 
     } catch (e) {
         console.log(e);
