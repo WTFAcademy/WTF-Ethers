@@ -57,7 +57,7 @@ For an introduction to the `ERC20` standard token contract, refer to the WTF Sol
 
 1. Create `provider` and `wallet` variables.
     ```js
-    const { ethers } = require("ethers");
+    import { ethers } from "ethers";
 
     // Connect to the Ethereum network using Infura's RPC node
     // Connect to the Sepolia test network

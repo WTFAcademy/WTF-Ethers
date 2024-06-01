@@ -1,4 +1,4 @@
-const { ethers } = require("ethers");
+import { ethers } from "ethers";
 console.log("\n1. Create HD wallet")
 // Generate random mnemonic
 console.log("\n1. Create an HD wallet");

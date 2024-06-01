@@ -57,7 +57,7 @@ console.log(`Will the transaction succeed?`, tx)
 
 1. Create `provider` and `wallet` objects.
     ```js
-    const { ethers } = require("ethers");
+    import { ethers } from "ethers";
 
     // Prepare Alchemy or Infura API, can refer to 
     const provider = new ethers.JsonRpcProvider( "https://mainnet.infura.io/v3/8b9750710d56460d940aeff47967c4ba"

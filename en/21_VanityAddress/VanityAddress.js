@@ -5,7 +5,7 @@
 // Example: two 0 at the beginning and two 1 at the end 
 // const regex = /^0x00.*11$/
 
-const { ethers } = require("ethers");
+import { ethers } from "ethers";
 var wallet // Wallet
 const regex = /^0x000.*$/ // Expression
 var isValid = false
