@@ -31,20 +31,22 @@ tags:
 
 ```js
 // 利用abi生成
-const interface = ethers.Interface(abi)
+const iface = ethers.Interface.from(abi);
+// 或者
+const iface = new ethers.Interface(abi);
+
 // 直接从contract中获取
-const interface2 = contract.interface
+const iface = contract.interface;
 ```
 
 接口类封装了一些编码解码的方法。与一些特殊的合约交互时（比如代理合约），你需要编码参数、解码返回值：
 
 **注意**：相关函数必须包含在`abi`中。
 
-- `getSighash()`：获取函数选择器（function selector），参数为函数名或函数签名。
+- `getFunction("函数名").selector`：获取函数选择器（function selector），参数为函数名或函数签名。
 
     ```js
-    interface.getSighash("balanceOf");
-    // '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
+    iface.getFunction("balanceOf").selector;
     ```
 - `encodeDeploy()`：编码构造器的参数，然后可以附在合约字节码的后面。
     ```js
