@@ -23,7 +23,7 @@ const abiWETH = [
     "function withdraw(uint) public",
 ];
 // WETH合约地址（Goerli测试网）
-const addressWETH = '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6'
+const addressWETH = '0x7b79995e5f793A07Bc00c21412e50Ecae098E7f9'
 // WETH Contract
 
 // 声明可写合约

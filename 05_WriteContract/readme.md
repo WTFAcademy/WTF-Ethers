@@ -91,7 +91,7 @@ await tx.wait()
         "function withdraw(uint) public",
     ];
     // WETH合约地址（Goerli测试网）
-    const addressWETH = '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6' // WETH Contract
+    const addressWETH = '0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14' // WETH Contract
 
     // 声明可写合约
     const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)
