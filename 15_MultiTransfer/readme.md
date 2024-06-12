@@ -61,10 +61,9 @@ tags:
     const numWallet = 20
     // 派生路径：m / purpose' / coin_type' / account' / change / address_index
     // 我们只需要切换最后一位address_index，就可以从hdNode派生出新钱包
-    let basePath = "m/44'/60'/0'/0";
     let addresses = [];
     for (let i = 0; i < numWallet; i++) {
-        let hdNodeNew = hdNode.derivePath(basePath + "/" + i);
+        let hdNodeNew = hdNode.derivePath(i.toString());
         let walletNew = new ethers.Wallet(hdNodeNew.privateKey);
         addresses.push(walletNew.address);
     }
