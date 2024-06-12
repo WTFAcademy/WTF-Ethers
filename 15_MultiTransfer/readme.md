@@ -64,7 +64,7 @@ tags:
     let basePath = "m/44'/60'/0'/0";
     let addresses = [];
     for (let i = 0; i < numWallet; i++) {
-        let hdNodeNew = hdNode.derivePath(basePath + "/" + i);
+        let hdNodeNew = hdNode.derivePath(i.toString());
         let walletNew = new ethers.Wallet(hdNodeNew.privateKey);
         addresses.push(walletNew.address);
     }
