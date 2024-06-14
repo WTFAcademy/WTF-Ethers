@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 // 1. Create provider and wallet, recommend using wss connection for event listening instead of http
-// Prepare alchemy API, can refer to https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md
+// Prepare alchemy API, can refer to https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md
 const ALCHEMY_MAINNET_WSSURL = 'wss://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
 const provider = new ethers.WebSocketProvider(ALCHEMY_MAINNET_WSSURL);
 let network = provider.getNetwork()
