@@ -16,7 +16,7 @@ I've been revisiting `ethers.js` recently to refresh my understanding of the det
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTF-Solidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
 All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
@@ -57,11 +57,11 @@ First, we use the `getCode()` function of the `provider` to retrieve the bytecod
 let code = await provider.getCode(contractAddress)
 ```
 
-Next, we need to check if the contract bytecode includes the function selectors specified in the `ERC20` standard. The corresponding selectors are stored in the contract bytecode: if the contract includes the `transfer(address, uint256)` function, the bytecode will include `a9059cbb`; if the contract includes `totalSupply()`, the bytecode will include `18160ddd`. If you're not familiar with function selectors, you can refer to the corresponding section in the [WTF Solidity tutorial](https://github.com/AmazingAng/WTF-Solidity/blob/main/29_Selector/readme.md). If you want to delve deeper into bytecode, you can read the [Dive into EVM](https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Translation/DiveEVM2017).
+Next, we need to check if the contract bytecode includes the function selectors specified in the `ERC20` standard. The corresponding selectors are stored in the contract bytecode: if the contract includes the `transfer(address, uint256)` function, the bytecode will include `a9059cbb`; if the contract includes `totalSupply()`, the bytecode will include `18160ddd`. If you're not familiar with function selectors, you can refer to the corresponding section in the [WTF Solidity tutorial](https://github.com/AmazingAng/WTF-Solidity/blob/main/29_Selector/readme.md). If you want to delve deeper into bytecode, you can read the [Dive into EVM](https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Translation/DiveEVM2017).
 
 In this case, we only need to check the `transfer(address, uint256)` and `totalSupply()` functions instead of all six functions, because:
 1. The `transfer(address, uint256)` function is the only one in the `ERC20` standard that is not included in the `ERC721`, `ERC1155`, and `ERC777` standards. Therefore, if a contract includes the `transfer(address, uint256)` selector, we can say it is an `ERC20` token contract rather than `ERC721`, `ERC1155`, and `ERC777`.
-2. The additional check for `totalSupply()` is to prevent [selector collisions](https://github.com/AmazingAng/WTFSolidity/blob/main/S01_ReentrancyAttack/readme.md): a random bytecode sequence may accidentally match the selector of `transfer(address, uint256)` (4 bytes).
+2. The additional check for `totalSupply()` is to prevent [selector collisions](https://github.com/AmazingAng/WTF-Solidity/blob/main/S01_ReentrancyAttack/readme.md): a random bytecode sequence may accidentally match the selector of `transfer(address, uint256)` (4 bytes).
 
 Here is the code:
 ```js

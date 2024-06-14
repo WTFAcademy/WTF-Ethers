@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 
 // 1. 创建provider和wallet，发送代币用
-// 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
+// 准备 alchemy API 可以参考https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
 const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
 const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
 // 利用私钥和provider创建wallet对象

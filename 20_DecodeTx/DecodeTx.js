@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 // 1. 创建provider和wallet，监听事件时候推荐用wss连接而不是http
-// 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
+// 准备 alchemy API 可以参考https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
 const ALCHEMY_MAINNET_WSSURL = 'wss://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
 const provider = new ethers.WebSocketProvider(ALCHEMY_MAINNET_WSSURL);
 let network = provider.getNetwork()

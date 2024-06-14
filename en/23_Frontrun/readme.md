@@ -17,13 +17,13 @@ I've been revisiting `ethers.js` recently to refresh my understanding of the det
 
 **Twitter**: [@0xAA_Science](https://twitter.com/0xAA_Science)
 
-**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTFSolidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
+**Community**: [Website wtf.academy](https://wtf.academy) | [WTF Solidity](https://github.com/AmazingAng/WTF-Solidity) | [discord](https://discord.gg/5akcruXrsk) | [WeChat Group Application](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform?usp=sf_link)
 
 All the code and tutorials are open-sourced on GitHub: [github.com/WTFAcademy/WTF-Ethers](https://github.com/WTFAcademy/WTF-Ethers)
 
 -----
 
-In this lesson, we will introduce a script for front-running transactions. According to statistics, arbitrageurs on Ethereum have made $1.2 billion in profits through sandwich attacks. Before proceeding, please read the [WTF Solidity S11: Front-running](https://github.com/AmazingAng/WTFSolidity/blob/main/S11_Frontrun/readme.md).
+In this lesson, we will introduce a script for front-running transactions. According to statistics, arbitrageurs on Ethereum have made $1.2 billion in profits through sandwich attacks. Before proceeding, please read the [WTF Solidity S11: Front-running](https://github.com/AmazingAng/WTF-Solidity/blob/main/S11_Frontrun/readme.md).
 
 ![](./img/23-1.png)
 
