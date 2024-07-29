@@ -67,7 +67,7 @@ const frontRun = async () => {
             console.log(`frontrun 交易成功,交易hash是:${receipt.transactionHash}`)
             console.log(`铸造发起的地址是:${tx.from}`)
             console.log(`编号${aimTokenId}NFT的持有者是${await contractFM.ownerOf(aimTokenId)}`)//刚刚mint的nft持有者并不是tx.from
-            console.log(`编号${aimTokenId.add(1)}的NFT的持有者是:${await contractFM.ownerOf(aimTokenId.add(1))}`)//tx.from被wallet.address抢跑，mint了下一个nft
+  
             console.log(`铸造发起的地址是不是对应NFT的持有者:${tx.from === await contractFM.ownerOf(aimTokenId)}`)//比对地址，tx.from被抢跑
             //检验区块内数据结果
             const block = await provider.getBlock(tx.blockNumber)
