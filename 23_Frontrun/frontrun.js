@@ -15,6 +15,7 @@ const contractAddress = '0xC76A71C4492c11bbaDC841342C4Cb470b5d12193'
 const contractFM = new ethers.Contract(contractAddress, contractABI, provider)
 
 //3.创建Interface对象，用于检索mint函数。
+    //V6 版本 const iface = new ethers.Interface(contractABI)
 const iface = new ethers.utils.Interface(contractABI)
 function getSignature(fn) {
     // V6 版本 return iface.getFunction("mint").selector
