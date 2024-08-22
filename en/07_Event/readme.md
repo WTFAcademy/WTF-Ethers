@@ -81,6 +81,8 @@ const transferEvents = await contract.queryFilter('event name', starting block, 
 
 4. Retrieve the `Transfer` events within the last 10 blocks and print one event. We can see that the `topics` contain three pieces of data corresponding to the event hash, the `from` address, and the `to` address, while the `data` only contains one piece of data, which is the `amount`. Additionally, `ethers` automatically parses the event based on the ABI, and the parsed event is shown in the `args` member.
     ```js
+    // Get Transfer events within the past 10 blocks
+    console.log("\n1. Get Transfer events within the past 10 blocks and print 1 event");
     // Get the current block
     const block = await provider.getBlockNumber()
     console.log(`Current block number: ${block}`);
