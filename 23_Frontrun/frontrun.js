@@ -1,7 +1,7 @@
 //1.连接到foundry本地网络
 import { ethers } from "ethers";
 // V6 版本 const provider = new ethers.JsonRpcProvider('http://127.0.0.1:8545')
-const provider = new ethers.providers.WebSocketProvider('http://127.0.0.1:8545')
+const provider = new ethers.JsonRpcProvider('http://127.0.0.1:8545')
 let network = provider.getNetwork()
 network.then(res => console.log(`[${(new Date).toLocaleTimeString()}]链接到网络${res.chainId}`))
 
@@ -15,10 +15,9 @@ const contractAddress = '0xC76A71C4492c11bbaDC841342C4Cb470b5d12193'
 const contractFM = new ethers.Contract(contractAddress, contractABI, provider)
 
 //3.创建Interface对象，用于检索mint函数。
-const iface = new ethers.utils.Interface(contractABI)
+const iface = new ethers.Interface(contractABI)
 function getSignature(fn) {
-    // V6 版本 return iface.getFunction("mint").selector
-    return iface.getSighash(fn)
+    return iface.getFunction(fn).selector
 }
 
 //4. 创建测试钱包，用于发送抢跑交易，私钥是foundry测试网提供
@@ -34,7 +33,7 @@ const normaltx = async () => {
                     console.log(`[${(new Date).toLocaleTimeString()}]监听到交易:${txHash}`)
                     console.log(`铸造发起的地址是:${tx.from}`)
                     await tx.wait()
-                    const tokenId = await contractFM.totalSupply()
+                    const tokenId = await contractFM.totalSupply
                     console.log(`mint的NFT编号:${tokenId}`)
                     console.log(`编号${tokenId}NFT的持有者是${await contractFM.ownerOf(tokenId)}`)
                     console.log(`铸造发起的地址是不是对应NFT的持有者:${tx.from === await contractFM.ownerOf(tokenId)}`)
@@ -77,5 +76,5 @@ const frontRun = async () => {
 }
 
 
-frontRun()
-//normaltx()
+// frontRun()
+normaltx()
