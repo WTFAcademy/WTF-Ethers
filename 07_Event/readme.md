@@ -85,6 +85,8 @@ const transferEvents = await contract.queryFilter('事件名', 起始区块, 结
 
 4. 获取过去10个区块内的`Transfer`事件，并打印出1个。我们可以看到，`topics`中有3个数据，对应事件哈希，`from`，和`to`；而`data`中只有一个数据`amount`。另外，`ethers`还会根据`ABI`自动解析事件，结果显示在`args`成员中。
     ```js
+    // 获取过去10个区块内的Transfer事件
+    console.log("\n1. 获取过去10个区块内的Transfer事件，并打印出1个");
     // 得到当前block
     const block = await provider.getBlockNumber()
     console.log(`当前区块高度: ${block}`);
