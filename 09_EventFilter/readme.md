@@ -131,7 +131,7 @@ const filter = contract.filters.EVENT_NAME( ...args )
   ```
   ![监听转入币安的USDT交易](img/9-5.png)
 
-4. 创建过滤器，监听`USDT`转出币安的交易。
+5. 创建过滤器，监听`USDT`转出币安的交易。
 
   ```js
     // 3. 创建过滤器，监听交易所转出USDT
