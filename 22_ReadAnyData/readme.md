@@ -31,19 +31,19 @@ WTF Academy 社群：[Discord](https://discord.gg/5akcruXrsk)｜[微信群](http
 
 因此，即使是没有 `getter` 函数的 `private` 变量，你依然可以通过 `slot` 索引来读取它的值。
 
-## `getStorageAt`
+## `getStorage`
 
-`ethersjs` 提供了 `getStorageAt()` 方便开发者读取特定 `slot` 的值：
+`ethersjs` 提供了 `getStorage()` 方便开发者读取特定 `slot` 的值：
 
 ```js
-const value = await provider.getStorageAt(contractAddress, slot)
+const value = await provider.getStorage(contractAddress, slot)
 ```
 
-`getStorageAt()` 有两个参数，分别是合约地址 `contractAddress` 和 想读取变量的 `slot` 索引。
+`getStorage()` 有两个参数，分别是合约地址 `contractAddress` 和 想读取变量的 `slot` 索引。
 
 ## 读取任意数据脚本
 
-下面，我们写一个脚本，利用 `getStorageAt()` 函数来读取 `Arbitrum` 跨链桥的合约所有者。该跨链桥为可升级代理合约，将 `owner` 存在了特定的 `slot` 避免发生变量碰撞，并且没有读取它的函数。这里，我们就可以利用`getStorageAt()` 来读取它。
+下面，我们写一个脚本，利用 `getStorage()` 函数来读取 `Arbitrum` 跨链桥的合约所有者。该跨链桥为可升级代理合约，将 `owner` 存在了特定的 `slot` 避免发生变量碰撞，并且没有读取它的函数。这里，我们就可以利用`getStorage()` 来读取它。
 
 ```solidity
 合约地址: 0x8315177aB297bA92A06054cE80a67Ed4DBd7ed3a
@@ -59,22 +59,22 @@ slot索引: 0xb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103
 ```js
 import { ethers } from "ethers";
 
-//准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
-const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
+// RPC 可以参考 https://chainlist.org
+const MAINNET_URL = 'https://eth.llamarpc.com';
+const provider = new ethers.JsonRpcProvider(MAINNET_URL);
 
 // 目标合约地址: Arbitrum ERC20 bridge（主网）
-const addressBridge = '0x8315177aB297bA92A06054cE80a67Ed4DBd7ed3a' // DAI Contract
+const addressBridge = '0x8315177aB297bA92A06054cE80a67Ed4DBd7ed3a'; // DAI Contract
 // 合约所有者 slot
-const slot = `0xb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103`
+const slot = `0xb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103`;
 
 const main = async () => {
-    console.log("开始读取特定slot的数据")
-    const privateData = await provider.getStorage(addressBridge, slot)
-    console.log("读出的数据（owner地址）: ", ethers.getAddress(ethers.dataSlice(privateData, 12)))    
+    console.log("开始读取特定slot的数据");
+    const privateData = await provider.getStorage(addressBridge, slot);
+    console.log("读出的数据（owner地址）: ", ethers.getAddress(ethers.dataSlice(privateData, 12)));  
 }
 
-main()
+main();
 ```
 
 ## 总结
