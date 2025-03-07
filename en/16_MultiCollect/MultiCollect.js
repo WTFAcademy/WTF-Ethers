@@ -31,10 +31,9 @@ console.log("\n2. Derive 20 wallets from HD wallet")
 const numWallet = 20
 // Derivation path: m / purpose' / coin_type' / account' / change / address_index
 // We only need to switch the last address_index to derive new wallets from hdNode
-let basePath = "m/44'/60'/0'/0";
 let wallets = [];
 for (let i = 0; i < numWallet; i++) {
-    let hdNodeNew = hdNode.derivePath(basePath + "/" + i);
+    let hdNodeNew = hdNode.derivePath(i.toString());
     let walletNew = new ethers.Wallet(hdNodeNew.privateKey);
     wallets.push(walletNew);
     console.log(walletNew.address)
