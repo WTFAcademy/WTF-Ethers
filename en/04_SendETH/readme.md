@@ -60,7 +60,7 @@ NB: For exercise purposes, connect a testnet address on your metamask with fauce
 
 ```javascript
 // Send ETH using the Wallet class
-const { ethers } = require("ethers");
+import { ethers } from "ethers";
 // Connect to the Ethereum test network using the Infura or Alchemy RPC node
 const provider = new ethers.JsonRpcProvider(`https://sepolia.infura.io/v3/8b9750710d56460d940aeff47967c4ba`)
 ```

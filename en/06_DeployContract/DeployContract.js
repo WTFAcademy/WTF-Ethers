@@ -6,7 +6,7 @@
 // contractFactory.deploy(args)
 // Where args is the constructor parameters of the contract
 
-const { ethers } = require("ethers");
+import { ethers } from "ethers";
 
 // Connect to the Ethereum network using Infura's RPC node
 // Connect to the Sepolia test network

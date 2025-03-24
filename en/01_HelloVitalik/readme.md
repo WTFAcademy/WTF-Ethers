@@ -66,7 +66,7 @@ Now, let's write our first program using `ethers` called `HelloVitalik`: it will
 ![Hello Vitalik](./img/1-4.png)
 
 ```javascript
-const { ethers } = require("ethers");
+import { ethers } from "ethers";
 const provider = new ethers.JsonRpcProvider(`NODE_URL`) //e.g ALCHEMY, INFURA
 const address = 'vitalik.eth'
 const main = async() => {
@@ -81,7 +81,7 @@ Let's analyze the program line by line:
 
 The first line fetches the installed `ethers` library:
 ```javascript
-const { ethers } require "ethers";
+import { ethers } from "ethers";
 ```
 If you are using the `playcode` platform where free accounts cannot install external libraries, you can directly import from the `ethers` CDN (for educational purposes only due to security considerations):
 ```javascript

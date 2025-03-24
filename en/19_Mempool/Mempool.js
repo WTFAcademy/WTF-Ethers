@@ -1,5 +1,5 @@
 // provider.on("pending", listener)
-const { ethers } = require("ethers");
+import { ethers } from "ethers";
 
 // 1. Create provider and wallet, recommend using wss connection instead of http when listening for events
 console.log("\n1. Connecting to wss RPC")

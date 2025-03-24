@@ -1,4 +1,4 @@
-const { ethers } = require("ethers");
+import { ethers } from "ethers";
 
 // 1. Create HD wallet
 console.log("\n1. Create HD wallet")

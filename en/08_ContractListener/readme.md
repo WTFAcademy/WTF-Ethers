@@ -49,7 +49,7 @@ contract.once("eventName", function)
 1. Declare the `provider`: Infura is a free ETH node provider. You need to apply for one before proceeding as we've established from Tutorial 1. [Apply here](app.infura.io).
 
   ```js
-  const { ethers } = require("ethers");
+  import { ethers } from "ethers";
   // Connect to the mainnet provider
  const provider = new ethers.JsonRpcProvider(`https://mainnet.infura.io/v3/8b9750710d56460d940aeff47967c4ba`);
   ```
