@@ -26,7 +26,7 @@ tags:
 
 `Provider`类是对以太坊网络连接的抽象，为标准以太坊节点功能提供简洁、一致的接口。在`ethers`中，`Provider`不接触用户私钥，只能读取链上信息，不能写入，这一点比`web3.js`要安全。
 
-除了[之前](https://github.com/WTFAcademy/WTF-Ethers)介绍的默认提供者`defaultProvider`以外，`ethers`中最常用的是`jsonRpcProvider`，可以让用户连接到特定节点服务商的节点。
+除了[之前](https://github.com/WTFAcademy/WTF-Ethers/blob/main/01_HelloVitalik/readme.md#2-%E8%BF%9E%E6%8E%A5%E4%BB%A5%E5%A4%AA%E5%9D%8A)介绍的默认提供者`defaultProvider`以外，`ethers`中最常用的是`jsonRpcProvider`，可以让用户连接到特定节点服务商的节点。
 
 ## `jsonRpcProvider`
 
