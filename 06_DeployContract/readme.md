@@ -31,7 +31,7 @@ tags:
 
 ## 部署智能合约
 
-在以太坊上，智能合约的部署是一种特殊的交易：将编译智能合约得到的字节码发送到0地址。如果这个合约的构造函数有参数的话，需要利用`abi.encode`将参数编码为字节码，然后附在在合约字节码的尾部一起发送。对于ABI编码的介绍见WTF Solidity极简教程[第27讲 ABI编码](https://github.com/AmazingAng/WTFSolidity/blob/main/27_ABIEncode/readme.md)。
+在以太坊上，智能合约的部署是一种特殊的交易：将编译智能合约得到的字节码发送到0地址。如果这个合约的构造函数有参数的话，需要利用`abi.encode`将参数编码为字节码，然后附在在合约字节码的尾部一起发送。对于ABI编码的介绍见WTF Solidity极简教程[第27讲 ABI编码](https://github.com/AmazingAng/WTF-Solidity/blob/main/27_ABIEncode/readme.md)。
 
 ## 合约工厂
 
@@ -55,7 +55,7 @@ await contractERC20.waitForDeployment();
 
 ## 例子：部署ERC20代币合约
 
-`ERC20`标准代币合约的介绍见WTF Solidity极简教程[第31讲 ERC20](https://github.com/AmazingAng/WTFSolidity/blob/main/31_ERC20/readme.md)。
+`ERC20`标准代币合约的介绍见WTF Solidity极简教程[第31讲 ERC20](https://github.com/AmazingAng/WTF-Solidity/blob/main/31_ERC20/readme.md)。
 
 1. 创建`provider`和`wallet`变量。
     ```js

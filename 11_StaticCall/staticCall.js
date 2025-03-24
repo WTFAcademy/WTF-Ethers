@@ -1,7 +1,7 @@
 // contract.函数名.staticCall(参数, {override})
 import { ethers } from "ethers";
 
-//准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
+//准备 alchemy API 可以参考https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
 const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
 const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
 

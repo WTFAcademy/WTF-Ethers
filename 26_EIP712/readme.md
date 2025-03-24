@@ -22,7 +22,7 @@ WTF Academy 社群：[Discord](https://discord.gg/5akcruXrsk)｜[微信群](http
 
 ---
 
-在本教程中，我们将介绍如何使用 Ethers.js 写 EIP712 签名脚本。请结合 [WTF Solidity 第52讲：EIP712](https://github.com/AmazingAng/WTFSolidity/blob/main/52_EIP712/readme.md) 一起阅读。
+在本教程中，我们将介绍如何使用 Ethers.js 写 EIP712 签名脚本。请结合 [WTF Solidity 第52讲：EIP712](https://github.com/AmazingAng/WTF-Solidity/blob/main/52_EIP712/readme.md) 一起阅读。
 
 ## EIP712
 
@@ -34,7 +34,7 @@ WTF Academy 社群：[Discord](https://discord.gg/5akcruXrsk)｜[微信群](http
 
     ```js
     // 使用 Alchemy 的 RPC 节点连接以太坊网络
-    // 准备 Alchemy API 可以参考 https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
+    // 准备 Alchemy API 可以参考 https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
     const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
     const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
 
