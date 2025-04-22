@@ -70,7 +70,7 @@ import { ethers } from "ethers";
 const provider = ethers.getDefaultProvider();
 const main = async () => {
     const balance = await provider.getBalance(`vitalik.eth`);
-    console.log(`ETH Balance of vitalik: ${ethers.formatEther(balance)} ETH`);
+    console.log(`ETH Balance of vitalik: ${ethers.utils.formatEther(balance)} ETH`);
 }
 main()
 ```
@@ -124,7 +124,7 @@ const balance = await provider.getBalance(`vitalik.eth`);
 我们从链上获取的以太坊余额以`wei`为单位，而`1 ETH = 10^18 wei`。我们打印在`console`之前，需要进行单位转换。`ethers`提供了功能函数`formatEther`，我们可以利用它将`wei`转换为`ETH`。
 
 ```javascript
-    console.log(`ETH Balance of vitalik: ${ethers.formatEther(balance)} ETH`);
+    console.log(`ETH Balance of vitalik: ${ethers.utils.formatEther(balance)} ETH`);
 ```
 如果你使用的是vscode开发工具的话，你需要在vscode控制台输入以下命令
 ```shell
