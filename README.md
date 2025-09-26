@@ -91,6 +91,8 @@ node 01_HelloVitalik/HelloVitalik.js
 
 **第26讲：EIP712 签名脚本**：【[Code](https://github.com/WTFAcademy/WTFEthers/blob/main/26_EIP712)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/26_EIP712/readme.md)】
 
+**第27讲：检测合约创建**：【[Code](https://github.com/WTFAcademy/WTFEthers/blob/main/27_CreationChecker1)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/27_CreationChecker1/readme.md)】
+
 ## 工具
 
 **ET01：连接钱包**：【[Code](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask/readme.md)】
