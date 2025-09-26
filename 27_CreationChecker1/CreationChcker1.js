@@ -29,7 +29,7 @@ async function validateContractCreation(tx) {
             };
         }
         
-        console.log(tx)
+        // console.log(tx)
 
         // 4. 获取合约地址的代码
         const code = await provider.getCode(receipt.contractAddress);
@@ -66,7 +66,7 @@ async function analyzeSuccessfulContractCreations(blockNumber) {
         console.log(`   时间戳: ${new Date(block.timestamp * 1000).toLocaleString('zh-CN')}`);
         
 
-        console.log(`block.prefetchedTransactions: `, block.prefetchedTransactions)
+        // console.log(`block.prefetchedTransactions: `, block.prefetchedTransactions)
         // 1. 筛选合约创建尝试
         const attempts = block.prefetchedTransactions.filter(isContractCreationAttempt);
         console.log(`\n发现 ${attempts.length} 个合约创建尝试`);
