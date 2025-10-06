@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 
 // Connect to the Ethereum network using Alchemy's RPC endpoint
-// For instructions on setting up Alchemy API, please refer to https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md
+// For instructions on setting up Alchemy API, please refer to https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md
 const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
 const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL);
 

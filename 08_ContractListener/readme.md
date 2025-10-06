@@ -48,12 +48,12 @@ contract.once("eventName", function)
 
 ## 监听`USDT`合约
 
-1. 声明`provider`：Alchemy是一个免费的ETH节点提供商。需要先申请一个，后续会用到。你可以参考这篇攻略来申请Alchemy API[Solidity极简入门-工具篇4：Alchemy](https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md )
+1. 声明`provider`：Alchemy是一个免费的ETH节点提供商。需要先申请一个，后续会用到。你可以参考这篇攻略来申请Alchemy API[Solidity极简入门-工具篇4：Alchemy](https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md )
 
   ```js
   import { ethers } from "ethers";
   // 准备 alchemy API  
-  // 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
+  // 可以参考https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
   const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/oKmOQKbneVkxgHZfibs-iFhIlIAl6HDN';
   // 连接主网 provider
   const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL);

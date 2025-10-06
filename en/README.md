@@ -4,7 +4,7 @@
 
 I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
 
-This is the sister tutorial to the [WTF Solidity Tutorials](https://github.com/AmazingAng/WTFSolidity), proudly produced by the [WTF Academy](https://wtf.academy) community.
+This is the sister tutorial to the [WTF Solidity Tutorials](https://github.com/AmazingAng/WTF-Solidity), proudly produced by the [WTF Academy](https://wtf.academy) community.
 
 > Note: This guide is based on the latest Ethers.js v6. For the previous v5 guide, please refer to the [link](https://github.com/WTFAcademy/WTF-Ethers/tree/wtf-ethers-v5).
 
