@@ -8,6 +8,17 @@
 // -> 调用合约的mint()函数进行铸造
 
 import { ethers } from "ethers";
+// 这里的 contract.json 是已经 link 好的 bytecode
+// 如果使用 WTF-solidity 37 中 Signature.sol 由 foundry 或 remix 编译出的 json 文件
+// 由于 lib 中带有 可见性为 public 的函数, 直接用这里的 json 会报 invalid BytesLike value
+//
+// 解决办法1:
+// 先部署 ECDSA 合约， 把 bytecode 中的占位符换成 ECDSA 合约的地址（无0x前缀）
+// 占位符形如 __$e56fc32e79819d3ff5a3cf88541a8407cd$__
+// 见 https://docs.soliditylang.org/en/latest/using-the-compiler.html#library-linking
+//
+// 解决办法2:
+// 把 lib 中的 public/external 函数全部换成 internal， 再编译一遍， 就可以直接用编译出的 bytecode 了
 import * as contractJson from "./contract.json" assert {type: "json"};
 
 // 1. 创建provider和wallet
