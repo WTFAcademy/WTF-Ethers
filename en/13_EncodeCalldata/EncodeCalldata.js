@@ -3,7 +3,7 @@
 // const interface = ethers.Interface(abi)
 // Get directly from the contract
 // const interface2 = contract.interface
-const { ethers } = require("ethers");
+import { ethers } from "ethers";
 
 const provider = new ethers.JsonRpcProvider(
   "https://sepolia.infura.io/v3/8b9750710d56460d940aeff47967c4ba"

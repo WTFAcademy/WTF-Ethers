@@ -4,7 +4,7 @@ import { ethers } from "ethers";
 
 // 利用Alchemy的rpc节点连接以太坊测试网络
 // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
+const ALCHEMY_GOERLI_URL = "https://eth-mainnet.g.alchemy.com/v2/xvx-3ZrK3AdmeL2dzMVqzJcCiejbiSbs";
 const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
 
 // 创建随机的wallet对象
@@ -13,7 +13,7 @@ const wallet1WithProvider = wallet1.connect(provider)
 const mnemonic = wallet1.mnemonic // 获取助记词
 
 // 利用私钥和provider创建wallet对象
-const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
+const privateKey = "b3e0cc0591ef7d6018e69984045cf8d54933ad207c21a55caec240fa2ed5791b";
 const wallet2 = new ethers.Wallet(privateKey, provider)
 
 // 从助记词创建wallet对象

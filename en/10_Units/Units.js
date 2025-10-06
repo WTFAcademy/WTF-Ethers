@@ -1,4 +1,4 @@
-const { ethers } = require("ethers");
+import { ethers } from "ethers";
 
 // 1. BigNumber class
 console.group('\n1. BigNumber class');

@@ -2,7 +2,7 @@
 // const transferEvents = await contract.queryFilter("Event Name", [Start Block Height, End Block Height])
 // Start Block Height and End Block Height are optional parameters.
 
-const { ethers } = require("ethers");
+import { ethers } from "ethers";
 // Connect to the Ethereum network using Infura's RPC node 
 // If you use a testnet, it may throw error "undefined", so mainnet is advisable.
 const INFURA_MAINNET_URL = 'https://mainnet.infura.io/v3/8b9750710d56460d940aeff47967c4ba'
