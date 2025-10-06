@@ -78,7 +78,7 @@ const transferEvents = await contract.queryFilter('事件名', 起始区块, 结
 
     ```js
     // 测试网WETH地址
-    const addressWETH = '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6'
+    const addressWETH = '0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14'
     // 声明合约实例
     const contract = new ethers.Contract(addressWETH, abiWETH, provider)
     ```
