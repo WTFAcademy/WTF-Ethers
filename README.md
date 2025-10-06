@@ -93,6 +93,8 @@ node 01_HelloVitalik/HelloVitalik.js
 
 **第27讲：检测合约创建1**：【[Code](https://github.com/WTFAcademy/WTFEthers/blob/main/27_CreationChecker1)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/27_CreationChecker1/readme.md)】
 
+**第28讲：检测合约创建2**：【[Code](https://github.com/WTFAcademy/WTFEthers/blob/main/28_CreationChecker2)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/28_CreationChecker2/readme.md)】
+
 ## 工具
 
 **ET01：连接钱包**：【[Code](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask)】 【[教程](https://github.com/WTFAcademy/WTFEthers/blob/main/ET01_Metamask/readme.md)】
