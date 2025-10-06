@@ -67,10 +67,9 @@ After interacting and playing around with the chain, we need to consolidate and 
     const numWallet = 20
     // Derivation path: m / purpose' / coin_type' / account' / change / address_index
     // We only need to switch the last address_index to derive a new wallet from hdNode
-    let basePath = "m/44'/60'/0'/0";
     let wallets = [];
     for (let i = 0; i < numWallet; i++) {
-        let hdNodeNew = hdNode.derivePath(basePath + "/" + i);
+        let hdNodeNew = hdNode.derivePath(i.toString());
         let walletNew = new ethers.Wallet(hdNodeNew.privateKey);
         wallets.push(walletNew);
         console.log(walletNew.address)
