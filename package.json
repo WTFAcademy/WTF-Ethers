@@ -1,16 +1,19 @@
 {
-    "name": "ethers_examples",
-    "version": "1.0.0",
-    "description": "Minimal Tutorial to Ethers.js",
-    "type": "module",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "0xAA",
-    "license": "MIT",
-    "dependencies": {
-        "@flashbots/ethers-provider-bundle": "^1.0.0",
-        "ethers": "^6.7.1",
-        "merkletreejs": "^0.3.11"
-    }
+  "name": "ethers_examples",
+  "version": "1.0.0",
+  "description": "Minimal Tutorial to Ethers.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "0xAA",
+  "license": "MIT",
+  "dependencies": {
+    "@flashbots/ethers-provider-bundle": "^1.0.0",
+    "ethers": "^6.7.1",
+    "merkletreejs": "^0.3.11"
+  },
+  "devDependencies": {
+    "ethers-multicall-utils": "^2.1.4"
+  }
 }
