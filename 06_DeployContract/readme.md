@@ -11,6 +11,9 @@ tags:
   - web
 ---
 
+> 用 Sepolia 或本地开发链运行 [示例脚本](./DeployContract.js)。在终端设置 `TESTNET_RPC_URL`, `TESTNET_PRIVATE_KEY`，地址与测试账户须属于同一个网络。
+
+
 # Ethers极简入门: 6. 部署合约
 
 我最近在重新学`ethers.js`，巩固一下细节，也写一个`WTF Ethers极简入门`，供小白们使用。
@@ -62,9 +65,8 @@ await contractERC20.waitForDeployment();
     import { ethers } from "ethers";
 
     // 利用Alchemy的rpc节点连接以太坊网络
-    // 连接goerli测试网
-    const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-    const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+    // 连接Sepolia测试网
+    const provider = new ethers.JsonRpcProvider(ALCHEMY_Sepolia_URL);
 
     // 利用私钥和provider创建wallet对象
     const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'

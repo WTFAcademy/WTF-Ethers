@@ -10,6 +10,9 @@ tags:
   - web
 ---
 
+> Run the [example](./WriteContract.js) on Sepolia or a local devnet. Set `TESTNET_RPC_URL`, `TESTNET_PRIVATE_KEY`, `WETH_ADDRESS` in your terminal. Use contract addresses and test accounts for the same network.
+
+
 # WTF Ethers: 5. Contract Interaction
 
 I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.

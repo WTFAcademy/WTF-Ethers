@@ -8,14 +8,15 @@
 // -> 调用合约的mint()函数进行铸造
 
 import { ethers } from "ethers";
-import * as contractJson from "./contract.json" assert {type: "json"};
+import contractJson from "./contract.json" with { type: "json" };
 
 // 1. 创建provider和wallet
 // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+if (!process.env.TESTNET_RPC_URL) throw new Error("Set TESTNET_RPC_URL for Sepolia or a local devnet.");
+const provider = new ethers.JsonRpcProvider(process.env.TESTNET_RPC_URL);
 // 利用私钥和provider创建wallet对象
-const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
+const privateKey = process.env.TESTNET_PRIVATE_KEY;
+if (!privateKey) throw new Error("Set TESTNET_PRIVATE_KEY for a disposable test account.");
 const wallet = new ethers.Wallet(privateKey, provider)
 
 // 2. 根据allowlist地址和tokenId生成msgHash，并签名
@@ -50,7 +51,7 @@ const main = async () => {
     // ii. 文件面板artifact文件夹下与合约同名的json文件中
     // 里面"object"字段对应的数据就是Bytecode，挺长的，608060起始
     // "object": "608060405260646000553480156100...
-    const bytecodeNFT = contractJson.default.object;
+    const bytecodeNFT = contractJson.object;
     const factoryNFT = new ethers.ContractFactory(abiNFT, bytecodeNFT, wallet);
 
     // 读取钱包内ETH余额
@@ -79,9 +80,7 @@ const main = async () => {
 
     }else{
         // 如果ETH不足
-        console.log("ETH不足，去水龙头领一些Goerli ETH")
-        console.log("1. chainlink水龙头: https://faucets.chain.link/goerli")
-        console.log("2. paradigm水龙头: https://faucet.paradigm.xyz/")
+        console.log("ETH不足，去水龙头领一些Sepolia ETH")
     }
 }
 

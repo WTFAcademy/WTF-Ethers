@@ -3,9 +3,9 @@ import { ethers } from "ethers";
 // 1. 创建HD钱包
 console.log("\n1. 创建HD钱包")
 // 通过助记词生成HD钱包
-const mnemonic = `air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orbit weapon universe require tired sing casino business anxiety seminar hunt`
-const hdNode = ethers.HDNodeWallet.fromPhrase(mnemonic)
-console.log(hdNode);
+const mnemonic = process.env.TESTNET_MNEMONIC;
+if (!mnemonic) throw new Error("Set TESTNET_MNEMONIC for test wallets you control.");
+const hdNode = ethers.HDNodeWallet.fromPhrase(mnemonic, undefined, "m")
 
 // 2. 获得20个钱包的地址
 console.log("\n2. 通过HD钱包派生20个钱包")
@@ -25,14 +25,15 @@ console.log(`发送数额：${amounts}`)
 
 // 3. 创建provider和wallet，发送代币用
 //准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+if (!process.env.TESTNET_RPC_URL) throw new Error("Set TESTNET_RPC_URL for Sepolia or a local devnet.");
+const provider = new ethers.JsonRpcProvider(process.env.TESTNET_RPC_URL);
 
 // 利用私钥和provider创建wallet对象
-// 如果这个钱包没goerli测试网ETH了
-// 请使用自己的小号钱包测试，钱包地址: 0x338f8891D6BdC58eEB4754352459cC461EfD2a5E ,请不要给此地址发送任何ETH
+
+
 // 注意不要把自己的私钥上传到github上
-const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
+const privateKey = process.env.TESTNET_PRIVATE_KEY;
+if (!privateKey) throw new Error("Set TESTNET_PRIVATE_KEY for a disposable test account.");
 const wallet = new ethers.Wallet(privateKey, provider)
 
 // 4. 声明Airdrop合约
@@ -41,8 +42,9 @@ const abiAirdrop = [
     "function multiTransferToken(address,address[],uint256[]) external",
     "function multiTransferETH(address[],uint256[]) public payable",
 ];
-// Airdrop合约地址（Goerli测试网）
-const addressAirdrop = '0x71C2aD976210264ff0468d43b198FD69772A25fa' // Airdrop Contract
+// Airdrop合约地址（Sepolia测试网）
+const addressAirdrop = process.env.AIRDROP_ADDRESS;
+if (!ethers.isAddress(addressAirdrop)) throw new Error("Set AIRDROP_ADDRESS for the selected network.");
 // 声明Airdrop合约
 const contractAirdrop = new ethers.Contract(addressAirdrop, abiAirdrop, wallet)
 
@@ -53,8 +55,9 @@ const abiWETH = [
     "function transfer(address, uint) public returns (bool)",
     "function approve(address, uint256) public returns (bool)"
 ];
-// WETH合约地址（Goerli测试网）
-const addressWETH = '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6' // WETH Contract
+// WETH合约地址（Sepolia测试网）
+const addressWETH = process.env.WETH_ADDRESS;
+if (!ethers.isAddress(addressWETH)) throw new Error("Set WETH_ADDRESS for the selected network.");
 // 声明WETH合约
 const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)
 
@@ -104,8 +107,6 @@ const main = async () => {
     }else{
         // 如果ETH和WETH不足
         console.log("ETH不足，请使用自己的小号钱包测试，并兑换一些WETH")
-        console.log("1. chainlink水龙头: https://faucets.chain.link/goerli")
-        console.log("2. paradigm水龙头: https://faucet.paradigm.xyz/")
     }
 }
 

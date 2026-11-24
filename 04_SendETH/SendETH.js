@@ -4,8 +4,8 @@ import { ethers } from "ethers";
 
 // 利用Alchemy的rpc节点连接以太坊测试网络
 // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+if (!process.env.TESTNET_RPC_URL) throw new Error("Set TESTNET_RPC_URL for Sepolia or a local devnet.");
+const provider = new ethers.JsonRpcProvider(process.env.TESTNET_RPC_URL);
 
 // 创建随机的wallet对象
 const wallet1 = ethers.Wallet.createRandom()
@@ -13,7 +13,8 @@ const wallet1WithProvider = wallet1.connect(provider)
 const mnemonic = wallet1.mnemonic // 获取助记词
 
 // 利用私钥和provider创建wallet对象
-const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
+const privateKey = process.env.TESTNET_PRIVATE_KEY;
+if (!privateKey) throw new Error("Set TESTNET_PRIVATE_KEY for a disposable test account.");
 const wallet2 = new ethers.Wallet(privateKey, provider)
 
 // 从助记词创建wallet对象
@@ -32,14 +33,11 @@ const main = async () => {
     
     // 2. 获取助记词
     console.log(`\n2. 获取助记词`);
-    console.log(`钱包1助记词: ${wallet1.mnemonic.phrase}`)
     // 注意：从private key生成的钱包没有助记词
     // console.log(wallet2.mnemonic.phrase)
 
     // 3. 获取私钥
     console.log(`\n3. 获取私钥`);
-    console.log(`钱包1私钥: ${wallet1.privateKey}`)
-    console.log(`钱包2私钥: ${wallet2.privateKey}`)
 
     // 4. 获取链上发送交易次数    
     console.log(`\n4. 获取链上交易次数`);
@@ -49,9 +47,7 @@ const main = async () => {
     console.log(`钱包2发送交易次数: ${txCount2}`)
 
     // 5. 发送ETH
-    // 如果这个钱包没goerli测试网ETH了，去水龙头领一些，钱包地址: 0xe16C1623c1AA7D919cd2241d8b36d9E79C1Be2A2
-    // 1. chainlink水龙头: https://faucets.chain.link/goerli
-    // 2. paradigm水龙头: https://faucet.paradigm.xyz/
+
     console.log(`\n5. 发送ETH（测试网）`);
     // i. 打印交易前余额
     console.log(`i. 发送前余额`)

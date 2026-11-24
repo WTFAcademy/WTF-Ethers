@@ -9,6 +9,9 @@ tags:
   - web
 ---
 
+> 用 Sepolia 或本地开发链运行 [示例脚本](./Event.js)。在终端设置 `TESTNET_RPC_URL`, `WETH_ADDRESS`，地址与测试账户须属于同一个网络。
+
+
 # Ethers极简入门: 7. 检索事件
 
 我最近在重新学`ethers.js`，巩固一下细节，也写一个`WTF Ethers极简入门`，供小白们使用。
@@ -62,8 +65,7 @@ const transferEvents = await contract.queryFilter('事件名', 起始区块, 结
     import { ethers } from "ethers";
     // 利用Alchemy的rpc节点连接以太坊网络
     // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-    const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-    const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+    const provider = new ethers.JsonRpcProvider(ALCHEMY_Sepolia_URL);
     ```
 
 2. 创建包含检索事件的`abi`。

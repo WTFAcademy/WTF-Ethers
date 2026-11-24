@@ -4,15 +4,16 @@
 
 import { ethers } from "ethers";
 // playcode免费版不能安装ethers，用这条命令，需要从网络上import包（把上面这行注释掉）
-// import { ethers } from "https://cdn-cors.ethers.io/lib/ethers-5.6.9.esm.min.js";
+// import { ethers } from "https://cdn.jsdelivr.net/npm/ethers@6.17.0/dist/ethers.min.js";
 
 // 利用Alchemy的rpc节点连接以太坊网络
 // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md
-const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+if (!process.env.TESTNET_RPC_URL) throw new Error("Set TESTNET_RPC_URL for Sepolia or a local devnet.");
+const provider = new ethers.JsonRpcProvider(process.env.TESTNET_RPC_URL);
 
 // 利用私钥和provider创建wallet对象
-const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
+const privateKey = process.env.TESTNET_PRIVATE_KEY;
+if (!privateKey) throw new Error("Set TESTNET_PRIVATE_KEY for a disposable test account.");
 const wallet = new ethers.Wallet(privateKey, provider)
 
 // WETH的ABI
@@ -22,8 +23,9 @@ const abiWETH = [
     "function transfer(address, uint) public returns (bool)",
     "function withdraw(uint) public",
 ];
-// WETH合约地址（Goerli测试网）
-const addressWETH = '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6'
+// WETH合约地址（Sepolia测试网）
+const addressWETH = process.env.WETH_ADDRESS;
+if (!ethers.isAddress(addressWETH)) throw new Error("Set WETH_ADDRESS for the selected network.");
 // WETH Contract
 
 // 声明可写合约
@@ -67,9 +69,7 @@ const main = async () => {
 
     }else{
         // 如果ETH不足
-        console.log("ETH不足，去水龙头领一些Goerli ETH")
-        console.log("1. chainlink水龙头: https://faucets.chain.link/goerli")
-        console.log("2. paradigm水龙头: https://faucet.paradigm.xyz/")
+        console.log("ETH不足，去水龙头领一些Sepolia ETH")
     }
 }
 

@@ -10,6 +10,9 @@ tags:
   - web
 ---
 
+> Run the [example](./SendETH.js) on Sepolia or a local devnet. Set `TESTNET_RPC_URL`, `TESTNET_PRIVATE_KEY`, `TESTNET_RECIPIENT` in your terminal. Use contract addresses and test accounts for the same network.
+
+
 # WTF Ethers: 4. Send ETH
 
 I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
@@ -48,7 +51,7 @@ If we know the private key, we can use the `ethers.Wallet()` function to create 
 
 ```javascript
 // Create a wallet object with a private key and provider
-const privateKey = 'cd82a7d0d6e528322e8c26f9ccbc18767543786d073c48ef38a753f29b1e8f39'
+const privateKey = process.env.TESTNET_PRIVATE_KEY
 const wallet = new ethers.Wallet(privateKey, provider)
 ```
 
@@ -62,7 +65,7 @@ NB: For exercise purposes, connect a testnet address on your metamask with fauce
 // Send ETH using the Wallet class
 const { ethers } = require("ethers");
 // Connect to the Ethereum test network using the Infura or Alchemy RPC node
-const provider = new ethers.JsonRpcProvider(`https://sepolia.infura.io/v3/8b9750710d56460d940aeff47967c4ba`)
+const provider = new ethers.JsonRpcProvider(process.env.TESTNET_RPC_URL);
 ```
 
 ### 2. Create `Wallet` instance

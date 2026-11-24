@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import { MerkleTree } from "merkletreejs";
-import * as contractJson from "./contract.json" assert {type: "json"};
+import contractJson from "../../17_MerkleTree/contract.json" with { type: "json" };
 
 // 1. Generate merkle tree
 console.log("\n1. Generate merkle tree")
@@ -27,10 +27,11 @@ console.log(root)
 
 // 2. Create provider and wallet
 // Prepare the alchemy API, please refer to https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+if (!process.env.TESTNET_RPC_URL) throw new Error("Set TESTNET_RPC_URL for Sepolia or a local devnet.");
+const provider = new ethers.JsonRpcProvider(process.env.TESTNET_RPC_URL);
 // Create wallet object using private key and provider
-const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
+const privateKey = process.env.TESTNET_PRIVATE_KEY;
+if (!privateKey) throw new Error("Set TESTNET_PRIVATE_KEY for a disposable test account.");
 const wallet = new ethers.Wallet(privateKey, provider)
 
 // 3. Create contract factory
@@ -48,7 +49,7 @@ const abiNFT = [
 // ii. The "object" field in the json file with the same name as the contract in the artifact folder of the file panel
 // The data corresponding to "object" is the bytecode, which is quite long, starting from 608060
 // "object": "608060405260646000553480156100...
-const bytecodeNFT = contractJson.default.object;
+const bytecodeNFT = contractJson.object;
 const factoryNFT = new ethers.ContractFactory(abiNFT, bytecodeNFT, wallet);
 
 const main = async () => {
@@ -78,9 +79,7 @@ const main = async () => {
 
     }else{
         // If there is not enough ETH
-        console.log("Not enough ETH, go to the faucet to get some Goerli ETH")
-        console.log("1. Alchemy faucet: https://goerlifaucet.com/")
-        console.log("2. Paradigm faucet: https://faucet.paradigm.xyz/")
+        console.log("Not enough ETH, go to the faucet to get some Sepolia ETH")
     }
 }
 

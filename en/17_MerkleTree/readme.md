@@ -9,6 +9,9 @@ tags:
   - web
 ---
 
+> Run the [example](./MerkleTree.js) on Sepolia or a local devnet. Set `TESTNET_RPC_URL`, `TESTNET_PRIVATE_KEY` in your terminal. Use contract addresses and test accounts for the same network.
+
+
 # WTF Ethers: 17. MerkleTree Script
 
 I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
@@ -120,8 +123,7 @@ Here, we provide an example of how to validate a whitelist and mint NFTs using `
 
     ```js
     // Prepare Alchemy API - refer to https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-    const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+const provider = new ethers.JsonRpcProvider(process.env.TESTNET_RPC_URL);
     // Create wallet object using private key and provider
     const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
     const wallet = new ethers.Wallet(privateKey, provider)
@@ -145,7 +147,7 @@ const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
     // ii. In the json file with the same name as the contract in the artifact folder in the file panel
     // The data corresponding to the "object" field is the Bytecode, quite long, starting with 608060
     // "object": "608060405260646000553480156100...
-    const bytecodeNFT = contractJson.default.object;
+    const bytecodeNFT = contractJson.object;
     const factoryNFT = new ethers.ContractFactory(abiNFT, bytecodeNFT, wallet);
     ```
 

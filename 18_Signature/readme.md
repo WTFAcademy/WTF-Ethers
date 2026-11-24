@@ -10,6 +10,9 @@ tags:
   - web
 ---
 
+> 用 Sepolia 或本地开发链运行 [示例脚本](./Signature.js)。在终端设置 `TESTNET_RPC_URL`, `TESTNET_PRIVATE_KEY`，地址与测试账户须属于同一个网络。
+
+
 # Ethers极简入门: 18. 数字签名脚本
 
 我最近在重新学`ethers.js`，巩固一下细节，也写一个`WTF Ethers极简入门`，供小白们使用。
@@ -76,8 +79,7 @@ tags:
 
     ```js
     // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-    const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-    const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+    const provider = new ethers.JsonRpcProvider(ALCHEMY_Sepolia_URL);
     // 利用私钥和provider创建wallet对象
     const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
     const wallet = new ethers.Wallet(privateKey, provider)
@@ -116,7 +118,7 @@ tags:
     // ii. 文件面板artifact文件夹下与合约同名的json文件中
     // 里面"object"字段对应的数据就是Bytecode，挺长的，608060起始
     // "object": "608060405260646000553480156100...
-    const bytecodeNFT = contractJson.default.object;
+    const bytecodeNFT = contractJson.object;
     const factoryNFT = new ethers.ContractFactory(abiNFT, bytecodeNFT, wallet);
     ```
 4. 利用合约工厂部署NFT合约。

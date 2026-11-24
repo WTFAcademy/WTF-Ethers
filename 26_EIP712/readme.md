@@ -10,6 +10,9 @@ tags:
   - web
 ---
 
+> 可在本地执行 [签名脚本](./eip712.js)，它用随机测试账户离线签名和恢复地址。
+
+
 # Ethers极简入门: 26. EIP712 签名脚本
 
 我最近在重新学`ethers.js`，巩固一下细节，也写一个`WTF Ethers极简入门`，供小白们使用。
@@ -35,8 +38,7 @@ WTF Academy 社群：[Discord](https://discord.gg/5akcruXrsk)｜[微信群](http
     ```js
     // 使用 Alchemy 的 RPC 节点连接以太坊网络
     // 准备 Alchemy API 可以参考 https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-    const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-    const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+    const provider = new ethers.JsonRpcProvider(ALCHEMY_Sepolia_URL);
 
     // 使用私钥和 provider 创建 wallet 对象
     const privateKey = '0x503f38a9c967ed597e47fe25643985f032b072db8075426a92110f82df48dfcb'

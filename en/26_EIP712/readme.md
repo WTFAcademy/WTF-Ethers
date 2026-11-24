@@ -10,6 +10,9 @@ tags:
   - web
 ---
 
+> Run the [signing script](./eip712.js) locally. It signs and recovers the address offline with a disposable wallet.
+
+
 # WTF Ethers: 26. EIP712 Signature Script
 
 I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.

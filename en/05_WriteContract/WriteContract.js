@@ -2,16 +2,18 @@
 // const contract = new ethers.Contract(address, ABI, signer)
 // The parameters are the contract address `address`, contract ABI `abi`, and the signer variable `signer`
 
-const { ethers } = require("ethers");
+import { ethers } from "ethers";
 // The free version of playcode does not allow the installation of ethers.
 // Use this command to import the package from the web (comment out the line above)
-// import { ethers } from "https://cdn-cors.ethers.io/lib/ethers-5.6.9.esm.min.js";
+// import { ethers } from "https://cdn.jsdelivr.net/npm/ethers@6.17.0/dist/ethers.min.js";
 
 // Connect to the Ethereum network using Infura's RPC node
-const provider = new ethers.JsonRpcProvider(`https://sepolia.infura.io/v3/8b9750710d56460d940aeff47967c4ba`);
+if (!process.env.TESTNET_RPC_URL) throw new Error("Set TESTNET_RPC_URL for Sepolia or a local devnet.");
+const provider = new ethers.JsonRpcProvider(process.env.TESTNET_RPC_URL);
 
 // Create a wallet object using the private key and provider
-const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
+const privateKey = process.env.TESTNET_PRIVATE_KEY;
+if (!privateKey) throw new Error("Set TESTNET_PRIVATE_KEY for a disposable test account.");
 const wallet = new ethers.Wallet(privateKey, provider)
 
 // WETH ABI
@@ -23,7 +25,8 @@ const abiWETH = [
 ];
 
 // WETH contract address (Sepolia Test Network)
-const addressWETH = "0xb16F35c0Ae2912430DAc15764477E179D9B9EbEa"; // weth contract address
+const addressWETH = process.env.WETH_ADDRESS;
+if (!ethers.isAddress(addressWETH)) throw new Error("Set WETH_ADDRESS for the selected network.");
 
 // Declare the writable contract
 const contract = new ethers.Contract(addressWETH, abiWETH, wallet);
@@ -70,7 +73,6 @@ const balanceETH = await provider.getBalance(wallet)
         // If ETH is not enough
         console.log("ETH is not enough, go to the faucet to get some Sepolia ETH")
         console.log("1. Chainlink faucet: https://faucets.chain.link")
-        console.log("2. Paradigm faucet: https://faucet.paradigm.xyz/")
     }
 }
 

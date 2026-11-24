@@ -11,6 +11,9 @@ tags:
   - web
 ---
 
+> Run the [example](./DeployContract.js) on Sepolia or a local devnet. Set `TESTNET_RPC_URL`, `TESTNET_PRIVATE_KEY` in your terminal. Use contract addresses and test accounts for the same network.
+
+
 # WTF Ethers: 6. Deploy Contract
 
 I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
@@ -62,7 +65,7 @@ For an introduction to the `ERC20` standard token contract, refer to the WTF Sol
     // Connect to the Ethereum network using Infura's RPC node
     // Connect to the Sepolia test network
     const INFURA_SEPOLIA_URL = 'https://sepolia.infura.io/v3/8b9750710d56460d940aeff47967c4ba';
-    const provider = new ethers.JsonRpcProvider(INFURA_GOERLI_URL);
+    const provider = new ethers.JsonRpcProvider(INFURA_Sepolia_URL);
 
     // Create a wallet object using the private key and provider
     const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b';

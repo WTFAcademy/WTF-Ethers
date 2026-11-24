@@ -10,6 +10,9 @@ tags:
   - web
 ---
 
+> 用 Sepolia 或本地开发链运行 [示例脚本](./SendETH.js)。在终端设置 `TESTNET_RPC_URL`, `TESTNET_PRIVATE_KEY`，地址与测试账户须属于同一个网络。
+
+
 # Ethers极简入门: 4. 发送ETH
 我最近在重新学`ethers.js`，巩固一下细节，也写一个`WTF Ethers极简入门`，供小白们使用。
 
@@ -49,7 +52,7 @@ const wallet1 = ethers.Wallet.createRandom()
 
 ```javascript
 // 利用私钥和provider创建wallet对象
-const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
+const privateKey = process.env.TESTNET_PRIVATE_KEY
 const wallet2 = new ethers.Wallet(privateKey, provider)
 ```
 
@@ -97,8 +100,7 @@ import { ethers } from "ethers";
 
 // 利用Alchemy的rpc节点连接以太坊测试网络
 // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+const provider = new ethers.JsonRpcProvider(process.env.TESTNET_RPC_URL);
 ```
 
 ### 2. 用三种不同方法创建`Wallet`实例
@@ -109,13 +111,13 @@ const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
 // 创建随机的wallet对象
 const wallet1 = ethers.Wallet.createRandom()
 const wallet1WithProvider = wallet1.connect(provider)
-const mnemonic = wallet1.mnemonic // 获取助记词
+const mnemonic = process.env.TESTNET_MNEMONIC
 ```
 
 - 利用私钥和`Provider`实例创建`Wallet`对象。这种方法创建的钱包不能获取助记词。
 ```javascript
 // 利用私钥和provider创建wallet对象
-const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
+const privateKey = process.env.TESTNET_PRIVATE_KEY
 const wallet2 = new ethers.Wallet(privateKey, provider)
 ```
 
@@ -185,9 +187,7 @@ console.log(`钱包1助记词: ${wallet1.mnemonic.phrase}`)
 
 ```javascript
     // 5. 发送ETH
-    // 如果这个钱包没goerli测试网ETH了，去水龙头领一些，钱包地址: 0xe16C1623c1AA7D919cd2241d8b36d9E79C1Be2A2
-    // 1. chainlink水龙头: https://faucets.chain.link/goerli
-    // 2. paradigm水龙头: https://faucet.paradigm.xyz/
+    // 如果这个钱包没Sepolia测试网ETH了，去水龙头领一些，钱包地址: 0xe16C1623c1AA7D919cd2241d8b36d9E79C1Be2A2
     console.log(`\n5. 发送ETH（测试网）`);
     // i. 打印交易前余额
     console.log(`i. 发送前余额`)

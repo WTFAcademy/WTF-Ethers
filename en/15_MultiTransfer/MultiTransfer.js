@@ -1,11 +1,11 @@
-const { ethers } = require("ethers");
+import { ethers } from "ethers";
 console.log("\n1. Create HD wallet")
 // Generate random mnemonic
 console.log("\n1. Create an HD wallet");
 // Generate an HD wallet from the mnemonic
-const mnemonic = `air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orbit weapon universe require tired sing casino business anxiety seminar hunt`;
-const hdNode = ethers.HDNodeWallet.fromPhrase(mnemonic);
-console.log(hdNode);
+const mnemonic = process.env.TESTNET_MNEMONIC;
+if (!mnemonic) throw new Error("Set TESTNET_MNEMONIC for test wallets you control.");
+const hdNode = ethers.HDNodeWallet.fromPhrase(mnemonic, undefined, "m");
 
 console.log("\n2. Derive 20 wallet addresses from the HD wallet");
 const numWallet = 20;
@@ -22,14 +22,15 @@ console.log(addresses);
 const amounts = Array(20).fill(ethers.parseEther("0.0001"));
 console.log(`Amounts to send: ${amounts}`);
 
-const INFURA_GOERLI_URL = 'https://goerli.infura.io/v3/8b9750710d56460d940aeff47967c4ba';
-const provider = new ethers.JsonRpcProvider(INFURA_GOERLI_URL);
+if (!process.env.TESTNET_RPC_URL) throw new Error("Set TESTNET_RPC_URL for Sepolia or a local devnet.");
+const provider = new ethers.JsonRpcProvider(process.env.TESTNET_RPC_URL);
 
 // Create a wallet object from the private key and provider
-// If this wallet is out of Goerli testnet ETH
+// If this wallet is out of Sepolia testnet ETH
 // Please use your own testnet wallet, wallet address: 0x338f8891D6BdC58eEB4754352459cC461EfD2a5E, please don't send any ETH to this address
 // Note: Do not upload your private key to GitHub
-const privateKey = '0x21ac72b6ce19661adf31ef0d2bf8c3fcad003deee3dc1a1a64f5fa3d6b049c06';
+const privateKey = process.env.TESTNET_PRIVATE_KEY;
+if (!privateKey) throw new Error("Set TESTNET_PRIVATE_KEY for a disposable test account.");
 const wallet = new ethers.Wallet(privateKey, provider);
 
 // Airdrop ABI
@@ -37,8 +38,9 @@ const abiAirdrop = [
   "function multiTransferToken(address,address[],uint256[]) external",
   "function multiTransferETH(address[],uint256[]) public payable",
 ];
-// Airdrop contract address (Goerli testnet)
-const addressAirdrop = '0x71C2aD976210264ff0468d43b198FD69772A25fa'; // Airdrop Contract
+// Airdrop contract address (Sepolia testnet)
+const addressAirdrop = process.env.AIRDROP_ADDRESS;
+if (!ethers.isAddress(addressAirdrop)) throw new Error("Set AIRDROP_ADDRESS for the selected network.");
 // Instantiate the Airdrop contract
 const contractAirdrop = new ethers.Contract(addressAirdrop, abiAirdrop, wallet);
 
@@ -48,8 +50,9 @@ const abiWETH = [
   "function transfer(address, uint) public returns (bool)",
   "function approve(address, uint256) public returns (bool)"
 ];
-// WETH contract address (Goerli testnet)
-const addressWETH = '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6'; // WETH Contract
+// WETH contract address (Sepolia testnet)
+const addressWETH = process.env.WETH_ADDRESS;
+if (!ethers.isAddress(addressWETH)) throw new Error("Set WETH_ADDRESS for the selected network.");
 // Instantiate the WETH contract
 const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet);
  
@@ -97,8 +100,6 @@ console.log(`Wallet WETH balance after sending: ${ethers.formatEther(balanceWETH
     }else{
         // If ETH and WETH are not sufficient
         console.log("Insufficient ETH, please use your own test wallet and exchange some WETH")
-        console.log("1. Chainlink Faucet: https://faucets.chain.link/goerli")
-        console.log("2. Paradigm Faucet: https://faucet.paradigm.xyz/")
     }
 }
 

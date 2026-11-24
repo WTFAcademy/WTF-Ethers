@@ -9,6 +9,9 @@ tags:
   - web
 ---
 
+> Run the [example](./Event.js) on Sepolia or a local devnet. Set `TESTNET_RPC_URL`, `WETH_ADDRESS` in your terminal. Use contract addresses and test accounts for the same network.
+
+
 # WTF Ethers: 7. Retrieve Events
 
 I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.

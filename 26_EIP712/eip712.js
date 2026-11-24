@@ -1,18 +1,11 @@
 import { ethers } from "ethers";
 
-// 利用Alchemy的rpc节点连接以太坊网络
-// 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
-
-// 利用私钥和provider创建wallet对象
-const privateKey = '0x503f38a9c967ed597e47fe25643985f032b072db8075426a92110f82df48dfcb'
-const wallet = new ethers.Wallet(privateKey, provider)
+const wallet = ethers.Wallet.createRandom();
 
 // 创建 EIP712 Domain
 let contractName = "EIP712Storage"
 let version = "1"
-let chainId = "1"
+const chainId = 31337n;
 let contractAddress = "0xf8e81D47203A594245E36C48e151709F0C19fBe8"
 
 const domain = {

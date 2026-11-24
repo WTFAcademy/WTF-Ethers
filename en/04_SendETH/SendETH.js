@@ -1,22 +1,15 @@
-// Send ETH using the Wallet class
-const { ethers } = require("ethers");
-// Connect to the Ethereum test network using the Infura or Alchemy RPC node
-const provider = new ethers.JsonRpcProvider(`https://sepolia.infura.io/v3/8b9750710d56460d940aeff47967c4ba`)
+import { ethers } from "ethers";
 
-const INFURA_SEPOLIA_URL = 'https://sepolia.infura.io/v3/8b9750710d56460d940aeff47967c4ba';
-const provider = new ethers.JsonRpcProvider(INFURA_SEPOLIA_URL);
-
-// Send ETH using the Wallet class
-const { ethers } = require("ethers");
-// Connect to the Ethereum test network using the Infura or Alchemy RPC node
-const provider = new ethers.JsonRpcProvider(`https://sepolia.infura.io/v3/8b9750710d56460d940aeff47967c4ba`)
-
-// Input your testwallet(sender) with the private key and a random receiver address
-const account1 ='0xD616f5A49571e7BCb1BB5326031bC8078BDA9Faa' //sender
-const account2 = '0x70e8dE73cE538DA2bEEd35d14187F6959a8ecA96' //recipient
-
-const privateKey1 = 'cd82a7d0d6e528322e8c26f9ccbc18767543786d073c48ef38a753f29b1e8f39' //sender private key
-const wallet = new ethers.Wallet(privateKey1, provider)
+if (!process.env.TESTNET_RECIPIENT || !ethers.isAddress(process.env.TESTNET_RECIPIENT)) {
+    throw new Error("Set TESTNET_RECIPIENT to an account on the test network.");
+}
+const account2 = process.env.TESTNET_RECIPIENT;
+const privateKey = process.env.TESTNET_PRIVATE_KEY;
+if (!privateKey) throw new Error("Set TESTNET_PRIVATE_KEY for a disposable test account.");
+if (!process.env.TESTNET_RPC_URL) throw new Error("Set TESTNET_RPC_URL for Sepolia or a local devnet.");
+const provider = new ethers.JsonRpcProvider(process.env.TESTNET_RPC_URL);
+const wallet = new ethers.Wallet(privateKey, provider);
+const account1 = wallet.address;
 
 const main = async() => {
         //show account 1 balance before transfer

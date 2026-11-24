@@ -8,6 +8,9 @@ tags:
   - web
 ---
 
+> Run the [example](./MultiCollect.js) on Sepolia or a local devnet. Set `TESTNET_RPC_URL`, `TESTNET_PRIVATE_KEY`, `WETH_ADDRESS`, `TESTNET_MNEMONIC` in your terminal. Use contract addresses and test accounts for the same network.
+
+
 # WTF Ethers: 16. Batch Collect
 
 I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
@@ -30,8 +33,7 @@ After interacting and playing around with the chain, we need to consolidate and 
 
     ```js
     // Prepare Alchemy API, you can refer to https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-    const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-    const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+    const provider = new ethers.JsonRpcProvider(ALCHEMY_Sepolia_URL);
     // Create wallet object using private key and provider
     const privateKey = '0x21ac72b6ce19661adf31ef0d2bf8c3fcad003deee3dc1a1a64f5fa3d6b049c06'
     const wallet = new ethers.Wallet(privateKey, provider)
@@ -44,7 +46,7 @@ After interacting and playing around with the chain, we need to consolidate and 
         "function balanceOf(address) public view returns(uint)",
         "function transfer(address, uint) public returns (bool)",
     ];
-    // WETH contract address (Goerli testnet)
+    // WETH contract address (Sepolia testnet)
     const addressWETH = '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6' // WETH Contract
     // Declare the WETH contract
     const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)
@@ -56,7 +58,7 @@ After interacting and playing around with the chain, we need to consolidate and 
     console.log("\n1. Create HD wallet")
     // Generate HD wallet from mnemonic
     const mnemonic = `air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orbit weapon universe require tired sing casino business anxiety seminar hunt`
-    const hdNode = ethers.HDNodeWallet.fromPhrase(mnemonic)
+    const hdNode = ethers.HDNodeWallet.fromPhrase(mnemonic, undefined, "m")
     console.log(hdNode);
     ```
     ![HD Wallet](img/16-1.png)

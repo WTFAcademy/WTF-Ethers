@@ -6,15 +6,16 @@
 // contractFactory.deploy(args)
 // Where args is the constructor parameters of the contract
 
-const { ethers } = require("ethers");
+import { ethers } from "ethers";
 
 // Connect to the Ethereum network using Infura's RPC node
 // Connect to the Sepolia test network
-const INFURA_SEPOLIA_URL = 'https://sepolia.infura.io/v3/8b9750710d56460d940aeff47967c4ba';
-const provider = new ethers.JsonRpcProvider(INFURA_GOERLI_URL);
+if (!process.env.TESTNET_RPC_URL) throw new Error("Set TESTNET_RPC_URL for Sepolia or a local devnet.");
+const provider = new ethers.JsonRpcProvider(process.env.TESTNET_RPC_URL);
 
 // Create a wallet object using the private key and provider
-const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b';
+const privateKey = process.env.TESTNET_PRIVATE_KEY;
+if (!privateKey) throw new Error("Set TESTNET_PRIVATE_KEY for a disposable test account.");
 const wallet = new ethers.Wallet(privateKey, provider);
 
 // Human-readable ABI for ERC20

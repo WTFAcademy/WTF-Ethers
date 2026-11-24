@@ -8,6 +8,9 @@ tags:
   - web
 ---
 
+> Run the [example](./MultiTransfer.js) on Sepolia or a local devnet. Set `TESTNET_RPC_URL`, `TESTNET_PRIVATE_KEY`, `WETH_ADDRESS`, `AIRDROP_ADDRESS`, `TESTNET_MNEMONIC` in your terminal. Use contract addresses and test accounts for the same network.
+
+
 # WTF Ethers: 15. Batch Transfer
 
 I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
@@ -35,7 +38,7 @@ Here is a brief introduction to the `Airdrop` contract, you can find the details
     - `_addresses`: An array of user addresses to receive the airdrop (`address[]` type)
     - `_amounts`: An array of the token amounts corresponding to each address in `_addresses` (`uint[]` type)
 
-We have deployed an `Airdrop` contract on the `Goerli` testnet, with the address:
+We have deployed an `Airdrop` contract on the `Sepolia` testnet, with the address:
 ```
 0x71C2aD976210264ff0468d43b198FD69772A25fa
 ```
@@ -49,7 +52,7 @@ Next, we will write a script that calls the `Airdrop` contract to transfer `ETH`
     console.log("\n1. Create an HD wallet");
     // Generate an HD wallet from the mnemonic
     const mnemonic = `air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orbit weapon universe require tired sing casino business anxiety seminar hunt`;
-    const hdNode = ethers.HDNodeWallet.fromPhrase(mnemonic);
+    const hdNode = ethers.HDNodeWallet.fromPhrase(mnemonic, undefined, "m");
     console.log(hdNode);
     ```
     ![HD Wallet](img/15-1.png)
@@ -75,11 +78,10 @@ Next, we will write a script that calls the `Airdrop` contract to transfer `ETH`
 
 3. Create a provider and wallet for token transfers.
     ```js
-    const INFURA_GOERLI_URL = 'https://goerli.infura.io/v3/8b9750710d56460d940aeff47967c4ba';
-    const provider = new ethers.JsonRpcProvider(INFURA_GOERLI_URL);
+    const provider = new ethers.JsonRpcProvider(INFURA_Sepolia_URL);
 
     // Create a wallet object from the private key and provider
-    // If this wallet is out of Goerli testnet ETH
+    // If this wallet is out of Sepolia testnet ETH
     // Please use your own testnet wallet, wallet address: 0x338f8891D6BdC58eEB4754352459cC461EfD2a5E, please don't send any ETH to this address
     // Note: Do not upload your private key to GitHub
     const privateKey = '0x21ac72b6ce19661adf31ef0d2bf8c3fcad003deee3dc1a1a64f5fa3d6b049c06';
@@ -93,7 +95,7 @@ Next, we will write a script that calls the `Airdrop` contract to transfer `ETH`
         "function multiTransferToken(address,address[],uint256[]) external",
         "function multiTransferETH(address[],uint256[]) public payable",
     ];
-    // Airdrop contract address (Goerli testnet)
+    // Airdrop contract address (Sepolia testnet)
     const addressAirdrop = '0x71C2aD976210264ff0468d43b198FD69772A25fa'; // Airdrop Contract
     // Instantiate the Airdrop contract
     const contractAirdrop = new ethers.Contract(addressAirdrop, abiAirdrop, wallet);
@@ -107,7 +109,7 @@ Next, we will write a script that calls the `Airdrop` contract to transfer `ETH`
         "function transfer(address, uint) public returns (bool)",
         "function approve(address, uint256) public returns (bool)"
     ];
-    // WETH contract address (Goerli testnet)
+    // WETH contract address (Sepolia testnet)
     const addressWETH = '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6'; // WETH Contract
     // Instantiate the WETH contract
     const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet);
@@ -157,7 +159,7 @@ Next, we will write a script that calls the `Airdrop` contract to transfer `ETH`
     ```
 ![Insufficient fund for bulk transfer of WETH](img/15-4.png)
 
-NB: This transaction wasn't successful because at the time of this tutorial update, Goerli testnets have been [deprecated.](https://ethereum.org/nb/developers/docs/networks#ethereum-testnets) Expect an update on another testnet soon.
+NB: This transaction wasn't successful because at the time of this tutorial update, Sepolia testnets have been [deprecated.](https://ethereum.org/nb/developers/docs/networks#ethereum-testnets) Expect an update on another testnet soon.
 ## Summary
 
 In this tutorial, we learned how to use `ethers.js` to call the `Airdrop` contract for batch transfers. In the examples, we sent `ETH` and `WETH` to 20 different addresses, saving time and gas fees.

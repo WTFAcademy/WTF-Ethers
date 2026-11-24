@@ -8,6 +8,9 @@ tags:
   - web
 ---
 
+> 用 Sepolia 或本地开发链运行 [示例脚本](./MultiTransfer.js)。在终端设置 `TESTNET_RPC_URL`, `TESTNET_PRIVATE_KEY`, `WETH_ADDRESS`, `AIRDROP_ADDRESS`, `TESTNET_MNEMONIC`，地址与测试账户须属于同一个网络。
+
+
 # Ethers极简入门: 15. 批量转账
 
 我最近在重新学`ethers.js`，巩固一下细节，也写一个`WTF Ethers极简入门`，供小白们使用。
@@ -36,7 +39,7 @@ tags:
     - `_addresses`：接收空投的用户地址数组（`address[]`类型）
     - `_amounts`：空投数量数组，对应`_addresses`里每个地址的数量（`uint[]`类型）
 
-我们在`Goerli`测试网部署了一个`Airdrop`合约，地址为：
+我们在`Sepolia`测试网部署了一个`Airdrop`合约，地址为：
 ```
 0x71C2aD976210264ff0468d43b198FD69772A25fa
 ```
@@ -50,7 +53,7 @@ tags:
     console.log("\n1. 创建HD钱包")
     // 通过助记词生成HD钱包
     const mnemonic = `air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orbit weapon universe require tired sing casino business anxiety seminar hunt`
-    const hdNode = ethers.HDNodeWallet.fromPhrase(mnemonic)
+    const hdNode = ethers.HDNodeWallet.fromPhrase(mnemonic, undefined, "m")
     console.log(hdNode);
     ```
     ![HD钱包](img/15-1.png)
@@ -78,11 +81,10 @@ tags:
 
     ```js
     //准备 alchemy API 可以参考https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-    const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-    const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+    const provider = new ethers.JsonRpcProvider(ALCHEMY_Sepolia_URL);
 
     // 利用私钥和provider创建wallet对象
-    // 如果这个钱包没goerli测试网ETH了
+    // 如果这个钱包没Sepolia测试网ETH了
     // 请使用自己的小号钱包测试，钱包地址: 0x338f8891D6BdC58eEB4754352459cC461EfD2a5E ,请不要给此地址发送任何ETH
     // 注意不要把自己的私钥上传到github上
     const privateKey = '0x21ac72b6ce19661adf31ef0d2bf8c3fcad003deee3dc1a1a64f5fa3d6b049c06'
@@ -96,7 +98,7 @@ tags:
         "function multiTransferToken(address,address[],uint256[]) external",
         "function multiTransferETH(address[],uint256[]) public payable",
     ];
-    // Airdrop合约地址（Goerli测试网）
+    // Airdrop合约地址（Sepolia测试网）
     const addressAirdrop = '0x71C2aD976210264ff0468d43b198FD69772A25fa' // Airdrop Contract
     // 声明Airdrop合约
     const contractAirdrop = new ethers.Contract(addressAirdrop, abiAirdrop, wallet)
@@ -109,7 +111,7 @@ tags:
         "function transfer(address, uint) public returns (bool)",
         "function approve(address, uint256) public returns (bool)"
     ];
-    // WETH合约地址（Goerli测试网）
+    // WETH合约地址（Sepolia测试网）
     const addressWETH = '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6' // WETH Contract
     // 声明WETH合约
     const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)

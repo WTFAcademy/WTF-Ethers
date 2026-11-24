@@ -7,7 +7,7 @@
 
 这是[WTF Solidity极简教程](https://github.com/AmazingAng/WTFSolidity)姊妹篇，由[WTF Academy](https://wtf.academy)社群荣誉出品。
 
-> 注意: 本教程的版本基于最新的 Ethers.js v6版本，之前 v5 版本的教程见 [链接](https://github.com/WTFAcademy/WTF-Ethers/tree/wtf-ethers-v5)。
+> 注意: 本教程使用 ethers 6.17.0，可在仓库根目录运行 `npm ci --legacy-peer-deps` 安装依赖，第 25 讲的 Flashbots 1.0.0 声明的 ethers 兼容版本仍是 6.7.1。之前 v5 版本的教程见 [链接](https://github.com/WTFAcademy/WTF-Ethers/tree/wtf-ethers-v5)。
 
 
 
@@ -23,7 +23,7 @@
 需要安装[VSCode](https://code.visualstudio.com/download)和[Node.js](https://nodejs.org/zh-cn/download/)，然后运行：
 
 ```shell
-npm install
+npm ci --legacy-peer-deps
 node 01_HelloVitalik/HelloVitalik.js
 ```
 ### 在线编辑器运行
@@ -112,5 +112,5 @@ node 01_HelloVitalik/HelloVitalik.js
 </div>
 
 ## 参考
-- [Ethers.js Docs](https://docs.ethers.org/v5/)
+- [Ethers.js Docs](https://docs.ethers.org/v6/)
 - [A beginner’s guide: 4 ways to play with Ethers.js](https://dev.to/yakult/a-beginers-guide-four-ways-to-play-with-ethersjs-354a)

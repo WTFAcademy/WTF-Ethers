@@ -10,6 +10,9 @@ tags:
   - web
 ---
 
+> Run the [example](./Signature.js) on Sepolia or a local devnet. Set `TESTNET_RPC_URL`, `TESTNET_PRIVATE_KEY` in your terminal. Use contract addresses and test accounts for the same network.
+
+
 # WTF Ethers: 18. Digital Signature Script
 
 I've been revisiting `ethers.js` recently to refresh my understanding of the details and to write a simple tutorial called "WTF Ethers" for beginners.
@@ -75,8 +78,7 @@ The `SignatureNFT` contract in the [WTF Solidity 37: Digital Signature](https://
 1. Create a `provider` and `wallet`, where `wallet` is the wallet used for signing.
    ```js
    // Prepare Alchemy API (Refer to https://github.com/AmazingAng/WTF-Solidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md for details)
-   const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-   const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+   const provider = new ethers.JsonRpcProvider(ALCHEMY_Sepolia_URL);
    // Create wallet object using the private key and provider
    const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b';
    const wallet = new ethers.Wallet(privateKey, provider);
@@ -115,7 +117,7 @@ The `SignatureNFT` contract in the [WTF Solidity 37: Digital Signature](https://
     // ii. In the json file with the same name as the contract in the artifact folder in the File panel
     // The data corresponding to the "object" field inside is the bytecode, quite long, starts with 608060
     // "object": "608060405260646000553480156100...
-    const bytecodeNFT = contractJson.default.object;
+    const bytecodeNFT = contractJson.object;
     const factoryNFT = new ethers.ContractFactory(abiNFT, bytecodeNFT, wallet);
     ```
 

@@ -10,11 +10,12 @@ import { ethers } from "ethers";
 
 // 利用Alchemy的rpc节点连接以太坊网络
 // 准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+if (!process.env.TESTNET_RPC_URL) throw new Error("Set TESTNET_RPC_URL for Sepolia or a local devnet.");
+const provider = new ethers.JsonRpcProvider(process.env.TESTNET_RPC_URL);
 
 // 利用私钥和provider创建wallet对象
-const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
+const privateKey = process.env.TESTNET_PRIVATE_KEY;
+if (!privateKey) throw new Error("Set TESTNET_PRIVATE_KEY for a disposable test account.");
 const wallet = new ethers.Wallet(privateKey, provider)
 
 // ERC20的人类可读abi
@@ -73,17 +74,8 @@ const main = async () => {
 
     }else{
         // 如果ETH不足
-        console.log("ETH不足，去水龙头领一些Goerli ETH")
-        console.log("1. chainlink水龙头: https://faucets.chain.link/goerli")
-        console.log("2. paradigm水龙头: https://faucet.paradigm.xyz/")
+        console.log("ETH不足，去水龙头领一些Sepolia ETH")
     }
 }
 
 main()
-
-
-
-
-
-
-

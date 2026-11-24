@@ -6,7 +6,7 @@ I've been revisiting `ethers.js` recently to refresh my understanding of the det
 
 This is the sister tutorial to the [WTF Solidity Tutorials](https://github.com/AmazingAng/WTFSolidity), proudly produced by the [WTF Academy](https://wtf.academy) community.
 
-> Note: This guide is based on the latest Ethers.js v6. For the previous v5 guide, please refer to the [link](https://github.com/WTFAcademy/WTF-Ethers/tree/wtf-ethers-v5).
+> Note: This guide uses ethers 6.17.0. Run `npm ci --legacy-peer-deps` from the repository root. Flashbots 1.0.0 in chapter 25 declares an ethers 6.7.1 peer. For the previous v5 guide, please refer to the [link](https://github.com/WTFAcademy/WTF-Ethers/tree/wtf-ethers-v5).
 
 The roadmap is determined based on the number of stars for this repository:
 - [x] 64 :star: Establish a community: [discord](https://discord.gg/5akcruXrsk) | [WeChat group](https://docs.google.com/forms/d/e/1FAIpQLSe4KGT8Sh6sJ7hedQRuIYirOoZK_85miz3dw7vA1-YjodgJ-A/viewform)
@@ -18,7 +18,7 @@ The roadmap is determined based on the number of stars for this repository:
 You will need to install [VSCode](https://code.visualstudio.com/download) and [Node.js](https://nodejs.org/zh-cn/download/), then run:
 
 ```shell
-npm install
+npm ci --legacy-peer-deps
 node 01_HelloVitalik/HelloVitalik.js
 ```
 

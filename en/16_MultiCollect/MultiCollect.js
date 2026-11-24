@@ -2,10 +2,11 @@ import { ethers } from "ethers";
 
 // 1. Create provider and wallet for sending tokens
 // Prepare Alchemy API, refer to https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md
-const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
+if (!process.env.TESTNET_RPC_URL) throw new Error("Set TESTNET_RPC_URL for Sepolia or a local devnet.");
+const provider = new ethers.JsonRpcProvider(process.env.TESTNET_RPC_URL);
 // Create wallet object using private key and provider
-const privateKey = '0x21ac72b6ce19661adf31ef0d2bf8c3fcad003deee3dc1a1a64f5fa3d6b049c06'
+const privateKey = process.env.TESTNET_PRIVATE_KEY;
+if (!privateKey) throw new Error("Set TESTNET_PRIVATE_KEY for a disposable test account.");
 const wallet = new ethers.Wallet(privateKey, provider)
 
 // 2. Declare WETH contract
@@ -14,17 +15,18 @@ const abiWETH = [
     "function balanceOf(address) public view returns(uint)",
     "function transfer(address, uint) public returns (bool)",
 ];
-// WETH contract address (Goerli testnet)
-const addressWETH = '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6' // WETH Contract
+// WETH contract address (Sepolia testnet)
+const addressWETH = process.env.WETH_ADDRESS;
+if (!ethers.isAddress(addressWETH)) throw new Error("Set WETH_ADDRESS for the selected network.");
 // Declare WETH contract
 const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)
 
 // 3. Create HD wallet
 console.log("\n1. Create HD wallet")
 // Generate HD wallet using mnemonic phrase
-const mnemonic = `air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orbit weapon universe require tired sing casino business anxiety seminar hunt`
-const hdNode = ethers.HDNodeWallet.fromPhrase(mnemonic)
-console.log(hdNode);
+const mnemonic = process.env.TESTNET_MNEMONIC;
+if (!mnemonic) throw new Error("Set TESTNET_MNEMONIC for test wallets you control.");
+const hdNode = ethers.HDNodeWallet.fromPhrase(mnemonic, undefined, "m")
 
 // 4. Get 20 wallets from HD wallet
 console.log("\n2. Derive 20 wallets from HD wallet")
