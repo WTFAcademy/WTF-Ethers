@@ -1,30 +1,36 @@
 // Interface 接口类
 // 利用abi生成
-// const interface = ethers.Interface(abi)
+// const iface = new ethers.Interface(abi)
 // 直接从contract中获取
 // const interface2 = contract.interface
 import { ethers } from "ethers";
 
-//准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md
-const ALCHEMY_GOERLI_URL = 'https://eth-goerli.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
-
-// 利用私钥和provider创建wallet对象
-const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b'
-const wallet = new ethers.Wallet(privateKey, provider)
+const { SEPOLIA_RPC_URL, SEPOLIA_WETH_ADDRESS, TESTNET_PRIVATE_KEY } = process.env;
+if (!SEPOLIA_RPC_URL || !ethers.isAddress(SEPOLIA_WETH_ADDRESS ?? "")) {
+    throw new Error("Set SEPOLIA_RPC_URL and SEPOLIA_WETH_ADDRESS.");
+}
+if (!/^0x[0-9a-fA-F]{64}$/.test(TESTNET_PRIVATE_KEY ?? "")) {
+    throw new Error("Set TESTNET_PRIVATE_KEY to a 32-byte test wallet key with the 0x prefix.");
+}
+const provider = new ethers.JsonRpcProvider(SEPOLIA_RPC_URL);
+const wallet = new ethers.Wallet(TESTNET_PRIVATE_KEY, provider)
 
 // WETH的ABI
 const abiWETH = [
     "function balanceOf(address) public view returns(uint)",
     "function deposit() public payable",
 ];
-// WETH合约地址（Goerli测试网）
-const addressWETH = '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6'
+// WETH合约地址（Sepolia测试网）
+const addressWETH = SEPOLIA_WETH_ADDRESS
 
 // 声明WETH合约
 const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)
 
 const main = async () => {
+    const network = await provider.getNetwork();
+    if (network.chainId !== 11155111n) {
+        throw new Error("The configured RPC must be on Sepolia.");
+    }
 
     const address = await wallet.getAddress()
     // 1. 读取WETH合约的链上信息（WETH abi）
@@ -41,13 +47,14 @@ const main = async () => {
         data: param1
     }
     // 发起交易，可读操作（view/pure）可以用 provider.call(tx)
-    const balanceWETH = await provider.call(tx1)
+    const balanceData = await provider.call(tx1)
+    const [balanceWETH] = contractWETH.interface.decodeFunctionResult("balanceOf", balanceData)
     console.log(`存款前WETH持仓: ${ethers.formatEther(balanceWETH)}\n`)
 
     //读取钱包内ETH余额
     const balanceETH = await provider.getBalance(wallet)
     // 如果钱包ETH足够
-    if(ethers.formatEther(balanceETH) > 0.0015){
+    if(balanceETH > ethers.parseEther("0.0015")){
 
         // 2. 调用deposit()函数，将0.001 ETH转为WETH
         console.log("\n2. 调用deposit()函数，存入0.001 ETH")
@@ -72,9 +79,8 @@ const main = async () => {
 
     }else{
         // 如果ETH不足
-        console.log("ETH不足，去水龙头领一些Goerli ETH")
-        console.log("1. chainlink水龙头: https://faucets.chain.link/goerli")
-        console.log("2. paradigm水龙头: https://faucet.paradigm.xyz/")
+        console.log("ETH不足，去水龙头领一些Sepolia ETH")
+        console.log("1. chainlink水龙头: https://faucets.chain.link/sepolia")
     }
 }
 

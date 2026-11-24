@@ -31,7 +31,7 @@ tags:
 
 ```js
 // 利用abi生成
-const interface = ethers.Interface(abi)
+const iface = new ethers.Interface(abi)
 // 直接从contract中获取
 const interface2 = contract.interface
 ```
@@ -40,25 +40,26 @@ const interface2 = contract.interface
 
 **注意**：相关函数必须包含在`abi`中。
 
-- `getSighash()`：获取函数选择器（function selector），参数为函数名或函数签名。
+- `getFunction(...).selector`：获取函数选择器（function selector），参数为函数名或函数签名。
 
     ```js
-    interface.getSighash("balanceOf");
-    // '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
+    iface.getFunction("balanceOf").selector;
+    // '0x70a08231'
     ```
 - `encodeDeploy()`：编码构造器的参数，然后可以附在合约字节码的后面。
     ```js
-    interface.encodeDeploy("Wrapped ETH", "WETH");
+    const deployInterface = new ethers.Interface(["constructor(string name, string symbol)"]);
+    deployInterface.encodeDeploy(["Wrapped ETH", "WETH"]);
     ```
 
 - `encodeFunctionData()`：编码函数的`calldata`。
 
     ```js
-    interface.encodeFunctionData("balanceOf", ["0xc778417e063141139fce010982780140aa0cd5ab"]);
+    iface.encodeFunctionData("balanceOf", ["0xc778417e063141139fce010982780140aa0cd5ab"]);
     ```
 - `decodeFunctionResult()`：解码函数的返回值。
     ```js
-    interface.decodeFunctionResult("balanceOf", resultData)
+    iface.decodeFunctionResult("balanceOf", resultData)
     ```
 
 ## 例子：与测试网`WETH`合约交互
@@ -68,14 +69,11 @@ const interface2 = contract.interface
 1. 创建`provider`，`wallet`变量。
 
     ```js
-    //准备 alchemy API 可以参考https://github.com/AmazingAng/WTFSolidity/blob/main/Topics/Tools/TOOL04_Alchemy/readme.md 
-    const ALCHEMY_GOERLI_URL = 'https://eth-rinkeby.alchemyapi.io/v2/GlaeWuylnNM3uuOo-SAwJxuwTdqHaY5l';
-    const provider = new ethers.JsonRpcProvider(ALCHEMY_GOERLI_URL);
-
-    // 利用私钥和provider创建wallet对象
-    const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
-    const wallet = new ethers.Wallet(privateKey, provider)
+    const provider = new ethers.JsonRpcProvider(process.env.SEPOLIA_RPC_URL);
+    const wallet = new ethers.Wallet(process.env.TESTNET_PRIVATE_KEY, provider);
     ```
+
+    运行前设置 `SEPOLIA_RPC_URL`、`SEPOLIA_WETH_ADDRESS`（Sepolia 上的 WETH 部署地址）和 `TESTNET_PRIVATE_KEY`（专用测试钱包私钥）。脚本会先检查网络，再读取余额或发送交易。
 
 2. 创建`WETH`合约实例
     ```js
@@ -84,8 +82,8 @@ const interface2 = contract.interface
         "function balanceOf(address) public view returns(uint)",
         "function deposit() public payable",
     ];
-    // WETH合约地址（Goerli测试网）
-    const addressWETH = '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6'
+    // WETH合约地址（Sepolia 测试网）
+    const addressWETH = process.env.SEPOLIA_WETH_ADDRESS
     // 声明WETH合约
     const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)
     ```
@@ -108,7 +106,8 @@ const interface2 = contract.interface
         data: param1
     }
     // 发起交易，可读操作（view/pure）可以用 provider.call(tx)
-    const balanceWETH = await provider.call(tx1)
+    const balanceData = await provider.call(tx1)
+    const [balanceWETH] = contractWETH.interface.decodeFunctionResult("balanceOf", balanceData)
     console.log(`存款前WETH持仓: ${ethers.formatEther(balanceWETH)}\n`)
     ```
     ![查看WETH余额](img/13-1.png)

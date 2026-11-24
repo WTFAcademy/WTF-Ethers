@@ -1,30 +1,36 @@
 // Interface Interface class
 // Generated from abi
-// const interface = ethers.Interface(abi)
+// const iface = new ethers.Interface(abi)
 // Get directly from the contract
 // const interface2 = contract.interface
-const { ethers } = require("ethers");
+import { ethers } from "ethers";
 
-const provider = new ethers.JsonRpcProvider(
-  "https://sepolia.infura.io/v3/8b9750710d56460d940aeff47967c4ba"
-);
-
-// Create a wallet object using the private key and provider
-const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b'
-const wallet = new ethers.Wallet(privateKey, provider)
+const { SEPOLIA_RPC_URL, SEPOLIA_WETH_ADDRESS, TESTNET_PRIVATE_KEY } = process.env;
+if (!SEPOLIA_RPC_URL || !ethers.isAddress(SEPOLIA_WETH_ADDRESS ?? "")) {
+    throw new Error("Set SEPOLIA_RPC_URL and SEPOLIA_WETH_ADDRESS.");
+}
+if (!/^0x[0-9a-fA-F]{64}$/.test(TESTNET_PRIVATE_KEY ?? "")) {
+    throw new Error("Set TESTNET_PRIVATE_KEY to a 32-byte test wallet key with the 0x prefix.");
+}
+const provider = new ethers.JsonRpcProvider(SEPOLIA_RPC_URL);
+const wallet = new ethers.Wallet(TESTNET_PRIVATE_KEY, provider)
 
 // WETH ABI
 const abiWETH = [
     "function balanceOf(address) public view returns(uint)",
     "function deposit() public payable",
 ];
-// WETH contract address (Goerli or Sepolia testnet)
-const addressWETH = '0xb16F35c0Ae2912430DAc15764477E179D9B9EbEa' //Sepolia testnet
+// WETH contract address (Sepolia testnet)
+const addressWETH = SEPOLIA_WETH_ADDRESS //Sepolia testnet
 
 // Declare WETH contract
 const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)
 
 const main = async () => {
+    const network = await provider.getNetwork();
+    if (network.chainId !== 11155111n) {
+        throw new Error("The configured RPC must be on Sepolia.");
+    }
 
     const address = await wallet.getAddress()
     // 1. Read on-chain information of WETH contract (WETH abi)
@@ -41,13 +47,14 @@ const main = async () => {
         data: param1
     }
     // Initiate transaction, view/pure operations can use provider.call(tx)
-    const balanceWETH = await provider.call(tx1)
+    const balanceData = await provider.call(tx1)
+    const [balanceWETH] = contractWETH.interface.decodeFunctionResult("balanceOf", balanceData)
     console.log(`Pre-deposit WETH balance: ${ethers.formatEther(balanceWETH)}\n`)
 
     // Read wallet ETH balance
     const balanceETH = await provider.getBalance(wallet)
     // If wallet has enough ETH
-    if (ethers.formatEther(balanceETH) > 0.0015) {
+    if (balanceETH > ethers.parseEther("0.0015")) {
 
         // 2. Call deposit() function, convert 0.001 ETH to WETH
         console.log("\n2. Call deposit() function, deposit 0.001 ETH")
@@ -75,7 +82,6 @@ const main = async () => {
         // If ETH is not sufficient
         console.log("Insufficient ETH, go to faucet to get some Sepolia ETH")
         console.log("1. Chainlink Faucet: https://faucets.chain.link/sepolia")
-        console.log("2. Paradigm Faucet: https://faucet.paradigm.xyz/")
     }
 }
 
