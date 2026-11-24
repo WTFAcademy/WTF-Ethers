@@ -31,7 +31,7 @@ We can generate the `interface` variable from the `abi`, or directly retrieve it
 
 ```js
 // Generated using abi
-const interface = ethers.Interface(abi)
+const iface = new ethers.Interface(abi)
 // Retrieved from the contract
 const interface2 = contract.interface
 ```
@@ -40,25 +40,26 @@ The interface class encapsulates several encoding and decoding methods. When int
 
 **Note**: The relevant function must be included in the `abi`.
 
-- `getSighash()`: Get the function selector, with the function name or function signature as the parameter.
+- `getFunction(...).selector`: Get the function selector, with the function name or function signature as the parameter.
 
     ```js
-    interface.getSighash("balanceOf");
-    // '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
+    iface.getFunction("balanceOf").selector;
+    // '0x70a08231'
     ```
 - `encodeDeploy()`: Encode the parameters of the constructor, which can then be appended to the contract bytecode.
     ```js
-    interface.encodeDeploy("Wrapped ETH", "WETH");
+    const deployInterface = new ethers.Interface(["constructor(string name, string symbol)"]);
+    deployInterface.encodeDeploy(["Wrapped ETH", "WETH"]);
     ```
 
 - `encodeFunctionData()`: Encode the calldata of the function.
 
     ```js
-    interface.encodeFunctionData("balanceOf", ["0xc778417e063141139fce010982780140aa0cd5ab"]);
+    iface.encodeFunctionData("balanceOf", ["0xc778417e063141139fce010982780140aa0cd5ab"]);
     ```
 - `decodeFunctionResult()`: Decode the return value of the function.
     ```js
-    interface.decodeFunctionResult("balanceOf", resultData)
+    iface.decodeFunctionResult("balanceOf", resultData)
     ```
 
 ## Example: Interacting with the `WETH` contract on test network 
@@ -68,14 +69,11 @@ Here, we will use the interface class to encode calldata and repeat the example 
 1. Create the `provider` and `wallet` variables.
 
     ```js
-    // Prepare Alchemy or Infura API (we are using Infura here)
-      const provider = new ethers.JsonRpcProvider(
-    "https://sepolia.infura.io/v3/8b9750710d56460d940aeff47967c4ba");
-
-    // Create the wallet object using the private key and provider
-    const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
-    const wallet = new ethers.Wallet(privateKey, provider)
+    const provider = new ethers.JsonRpcProvider(process.env.SEPOLIA_RPC_URL);
+    const wallet = new ethers.Wallet(process.env.TESTNET_PRIVATE_KEY, provider);
     ```
+
+    Set `SEPOLIA_RPC_URL`, `SEPOLIA_WETH_ADDRESS` (the WETH deployment on Sepolia), and `TESTNET_PRIVATE_KEY` (your dedicated test wallet key) before running the example. The script checks the network before requesting balances or sending a transaction.
 
 2. Create the `WETH` contract instance
     ```js
@@ -84,8 +82,8 @@ Here, we will use the interface class to encode calldata and repeat the example 
         "function balanceOf(address) public view returns(uint)",
         "function deposit() public payable",
     ];
-    // WETH contract address (Goerli or Sepolia test network)
-    const addressWETH = '0xb16F35c0Ae2912430DAc15764477E179D9B9EbEa' // Sepolia testnet
+    // WETH contract address (Sepolia test network)
+    const addressWETH = process.env.SEPOLIA_WETH_ADDRESS
     // Declare the WETH contract
     const contractWETH = new ethers.Contract(addressWETH, abiWETH, wallet)
     ```
@@ -108,7 +106,8 @@ Here, we will use the interface class to encode calldata and repeat the example 
         data: param1
     }
     // Send transaction, view/pure operations can use provider.call(tx)
-    const balanceWETH = await provider.call(tx1)
+    const balanceData = await provider.call(tx1)
+    const [balanceWETH] = contractWETH.interface.decodeFunctionResult("balanceOf", balanceData)
     console.log(`WETH balance before deposit: ${ethers.formatEther(balanceWETH)}\n`)
     ```
     ![Check WETH balance](img/13-1.png)
