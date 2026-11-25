@@ -142,7 +142,7 @@ const provider = new ethers.BrowserProvider(window.ethereum)
     async function onClickHandler() {
         console.log("连接钱包")
         // 获得provider
-        const provider = new ethers.Web3Provider(window.ethereum)
+        const provider = new ethers.BrowserProvider(window.ethereum)
         // 读取钱包地址
         const accounts = await provider.send("eth_requestAccounts", []);
         const account = accounts[0]
