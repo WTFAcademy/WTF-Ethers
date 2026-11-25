@@ -74,7 +74,7 @@ air organ twist rule prison symptom jazz cheap rather dizzy verb glare jeans orb
     // 创建HD基钱包
     // 基路径："m / purpose' / coin_type' / account' / change"
     const basePath = "44'/60'/0'/0"
-    const baseWallet = ethers.HDNodeWallet.fromPhrase(mnemonic, basePath)
+    const baseWallet = ethers.HDNodeWallet.fromPhrase(mnemonic, null, basePath)
     console.log(baseWallet);
     ```
     ![baseWallet](img/14-2.png)
