@@ -6,8 +6,8 @@ console.log("\n1. 创建HD钱包")
 const mnemonic = ethers.Mnemonic.entropyToPhrase(ethers.randomBytes(32))
 // 创建HD基钱包
 // 基路径："m / purpose' / coin_type' / account' / change"
-const basePath = "44'/60'/0'/0"
-const baseWallet = ethers.HDNodeWallet.fromPhrase(mnemonic, basePath)
+const basePath = "m/44'/60'/0'/0"
+const baseWallet = ethers.HDNodeWallet.fromPhrase(mnemonic, null, basePath)
 console.log(baseWallet);
 
 // 2. 通过HD钱包派生20个钱包
@@ -25,7 +25,7 @@ for (let i = 0; i < numWallet; i++) {
 
 // 3. 保存钱包（加密json）
 console.log("\n3. 保存钱包（加密json）")
-const wallet = ethers.Wallet.fromPhrase(mnemonic)
+const wallet = ethers.HDNodeWallet.fromPhrase(mnemonic, null, basePath)
 console.log("通过助记词创建钱包：")
 console.log(wallet)
 // 加密json用的密码，可以更改成别的
